@@ -16,6 +16,9 @@
     <Filter Include="Random">
       <UniqueIdentifier>{044b759a-17ea-49d8-b088-4f5aabf4e848}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lock">
+      <UniqueIdentifier>{7546eadf-8b91-4510-84f8-93557d3aa3a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -36,7 +39,24 @@
     <ClInclude Include="Memory.h">
       <Filter>Memory</Filter>
     </ClInclude>
-    <ClInclude Include="STLAllocator.h" />
+    <ClInclude Include="MemoryPool.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="STLAllocator.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Lock.h">
+      <Filter>Lock</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadWriteLock.h">
+      <Filter>Lock</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="LockManager.h">
+      <Filter>Lock</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -51,6 +71,26 @@
     <ClCompile Include="Memory.cpp">
       <Filter>Memory</Filter>
     </ClCompile>
-    <ClCompile Include="STLAllocator.cpp" />
+    <ClCompile Include="MemoryPool.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="STLAllocator.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Lock.cpp">
+      <Filter>Lock</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadWriteLock.cpp">
+      <Filter>Lock</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonTLS.h">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="LockManager.cpp">
+      <Filter>Lock</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonDefines.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

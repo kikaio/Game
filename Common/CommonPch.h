@@ -15,11 +15,18 @@
 
 
 #include <memoryapi.h>
-
+#include <atomic>
+#include <mutex>
 //---------------------------------------------
 
 #include "Types.h"
+#include "Singleton.h"
 #include "CommonMacro.h"
+#include "CommonDefines.h"
 #include "Memory.h"
 #include "Allocator.h"
 #include "STLAllocator.h"
+#include "MemoryPool.h"
+#include "Lock.h"
+#include "ReadWriteLock.h"
+#include "CommonTLS.h"
