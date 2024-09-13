@@ -30,6 +30,13 @@
     <ClInclude Include="Utils\CommonMacro.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Allocator.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="STLAllocator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -38,5 +45,12 @@
     <ClCompile Include="Common.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="Allocator.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="STLAllocator.cpp" />
   </ItemGroup>
 </Project>
