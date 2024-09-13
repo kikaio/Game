@@ -21,8 +21,14 @@
     <ClInclude Include="pch.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="CommonPch.h">
       <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Types.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\CommonMacro.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
