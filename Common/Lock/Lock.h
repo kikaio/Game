@@ -10,11 +10,11 @@ public:
 private:
 	unique_lock<Mutex> uniqueLock;
 	Mutex lockObj;
-	const char* name = nullptr;
+	const string name ;
 public:
 	void DoLock();
 	void DoUnlock();
-	const char* GetName() const{
+	const string& GetName() const{
 		return name;
 	}
 };

@@ -19,7 +19,13 @@ public:
 		MemoryHeader* header = reinterpret_cast<MemoryHeader*>(ptr) -1;
 		return header;
 	}
-
+public:
+	void ClearSize() {
+		allocSize = 0;
+	}
+	const UInt32 GetAllocSize() {
+		return allocSize;
+	}	
 };
 
 
@@ -30,6 +36,7 @@ public:
 	~MemoryPool();
 
 private:
+	VAL_LOCK(headersLock);
 	UInt32 allocSize = 0;
 	atomic<UInt32> allocCnt = 0;
 

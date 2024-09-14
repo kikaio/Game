@@ -71,16 +71,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)\Random;$(ProjectDir)\Memory;$(ProjectDir)\Network;$(ProjectDir)\Utils;$(ProjectDir)\Buffer;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\Random;$(ProjectDir)\Memory;$(ProjectDir)\Network;$(ProjectDir)\Threads;$(ProjectDir)\Utils;$(ProjectDir)\Buffer;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)\Random;$(ProjectDir)\Memory;$(ProjectDir)\Network;$(ProjectDir)\Utils;$(ProjectDir)\Buffer;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\Random;$(ProjectDir)\Memory;$(ProjectDir)\Network;$(ProjectDir)\Threads;$(ProjectDir)\Utils;$(ProjectDir)\Buffer;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)\Random;$(ProjectDir)\Memory;$(ProjectDir)\Network;$(ProjectDir)\Utils;$(ProjectDir)\Buffer;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\Random;$(ProjectDir)\Memory;$(ProjectDir)\Network;$(ProjectDir)\Threads;$(ProjectDir)\Utils;$(ProjectDir)\Buffer;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir)\Random;$(ProjectDir)\Memory;$(ProjectDir)\Network;$(ProjectDir)\Utils;$(ProjectDir)\Buffer;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\Random;$(ProjectDir)\Memory;$(ProjectDir)\Network;$(ProjectDir)\Threads;$(ProjectDir)\Utils;$(ProjectDir)\Buffer;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -151,36 +151,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Allocator.h" />
     <ClInclude Include="CommonPch.h" />
-    <ClInclude Include="Lock.h" />
-    <ClInclude Include="LockManager.h" />
-    <ClInclude Include="Memory.h" />
-    <ClInclude Include="MemoryPool.h" />
+    <ClInclude Include="Lock\Lock.h" />
+    <ClInclude Include="Lock\LockManager.h" />
+    <ClInclude Include="Lock\ReadWriteLock.h" />
+    <ClInclude Include="Memory\Allocator.h" />
+    <ClInclude Include="Memory\Memory.h" />
+    <ClInclude Include="Memory\MemoryPool.h" />
+    <ClInclude Include="Memory\STLAllocator.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="ReadWriteLock.h" />
-    <ClInclude Include="Singleton.h" />
-    <ClInclude Include="STLAllocator.h" />
+    <ClInclude Include="Utils\CommonDefines.h" />
     <ClInclude Include="Utils\CommonMacro.h" />
+    <ClInclude Include="Utils\CommonTLS.h" />
+    <ClInclude Include="Utils\Singleton.h" />
     <ClInclude Include="Utils\Types.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Allocator.cpp" />
     <ClCompile Include="Common.cpp" />
-    <ClCompile Include="CommonDefines.cpp" />
-    <ClCompile Include="CommonTLS.h" />
-    <ClCompile Include="Lock.cpp" />
-    <ClCompile Include="LockManager.cpp" />
-    <ClCompile Include="Memory.cpp" />
-    <ClCompile Include="MemoryPool.cpp" />
+    <ClCompile Include="Lock\Lock.cpp" />
+    <ClCompile Include="Lock\LockManager.cpp" />
+    <ClCompile Include="Lock\ReadWriteLock.cpp" />
+    <ClCompile Include="Memory\Allocator.cpp" />
+    <ClCompile Include="Memory\Memory.cpp" />
+    <ClCompile Include="Memory\MemoryPool.cpp" />
+    <ClCompile Include="Memory\STLAllocator.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ReadWriteLock.cpp" />
-    <ClCompile Include="STLAllocator.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

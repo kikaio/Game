@@ -17,16 +17,20 @@ MemoryPool::~MemoryPool()
 
 void MemoryPool::Push(MemoryHeader* _header)
 {
-	//todo : use lock
+	if(_header == nullptr) {
+		return ;
+	}
+	LOCK_GUARDDING(headersLock);
+	_header->ClearSize();
 	headers.push(_header);
 	allocCnt.fetch_sub(1);
 }
 
 MemoryHeader* MemoryPool::Pop()
 {
-	//todo : use lock
 	MemoryHeader* header = nullptr;
 	{
+		LOCK_GUARDDING(headersLock);
 		if(headers.empty() == false) {
 			header = headers.front();
 			headers.pop();

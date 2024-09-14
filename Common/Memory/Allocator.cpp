@@ -29,3 +29,13 @@ void StompAllocator::Release(void* ptr)
 	VirtualFree(reinterpret_cast<void*>(oriAddr), 0, MEM_RELEASE);
 	return ;
 }
+
+void* PoolAllocator::Alloc(UInt32 size)
+{
+	return Memory::Get().Alloc(size);
+}
+
+void PoolAllocator::Release(void* ptr)
+{
+	Memory::Get().Release(ptr);
+}

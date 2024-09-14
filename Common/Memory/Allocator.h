@@ -20,3 +20,11 @@ public:
 	static void* Alloc(UInt32 size);
 	static void Release(void* ptr);
 };
+
+class PoolAllocator
+{
+public:
+	static void* Alloc(UInt32 size);
+	static void Release(void* ptr);
+
+};
