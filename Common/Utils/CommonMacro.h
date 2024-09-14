@@ -39,26 +39,6 @@ using namespace std;
 
 
 
-#define VAL_LOCK(lockName)								Lock lockName = Lock(#lockName)
-#define LOCK_GUARDDING(_targetObj)						LockGuard guardFor##_targetObj(_targetObj, __FILE__, __LINE__)
-
-
-#define USE_STOMP_ALLOC false
-#if USE_STOMP_ALLOC
-#define XALLOC(size)					StompAllocator::Alloc(size)
-#define XRELEASE(ptr)					StompAllocator::Release(ptr)
-#else
-#if true
-#define XALLOC(size)					PoolAllocator::Alloc(size)
-#define XRELEASE(ptr)					PoolAllocator::Release(ptr)
-#else
-#define XALLOC(size)					BaseAllocator::Alloc(size)
-#define XRELEASE(ptr)					BaseAllocator::Release(ptr)
-#endif
-#endif
-
-
-
 inline bool checkOverflow(UInt32 x, UInt32 add) {
 	auto orig = x;
 	auto ret = x + add;
@@ -82,13 +62,3 @@ template<typename T>
 UInt32 BufLen(T arr[]) {
 	return sizeof(arr) / sizeof(T);
 }
-
-#ifndef OUT
-#define OUT
-#endif
-
-#ifndef IN
-#define IN
-#endif
-
-

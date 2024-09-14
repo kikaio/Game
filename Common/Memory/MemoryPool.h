@@ -1,4 +1,6 @@
 #pragma once
+#include "Lock.h"
+
 
 struct MemoryHeader
 {
@@ -9,7 +11,6 @@ private:
 public:
 	static void* AttachHeader(MemoryHeader* _header, UInt32 _size)
 	{
-		UInt64 ptr = NULL;
 		new (_header)MemoryHeader(_size);
 		return reinterpret_cast<void*>(++_header);
 	}

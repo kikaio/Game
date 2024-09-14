@@ -1,12 +1,25 @@
 #include "pch.h"
+#include "Lock.h"
 #include "LockManager.h"
 
 
 
-void LockMananger::Push(Lock* _lock)
+bool LockManager::CheckCycle()
 {
+	return false;
 }
 
-void LockMananger::Pop(Lock* _lock)
+void LockManager::Push(Lock* _lock)
 {
+	LOCK_GUARDDING(mgrLock);
+	if(CheckCycle() == false) {
+		//todo : assert or logging
+	}
+	return ;
+}
+
+void LockManager::Pop(Lock* _lock)
+{
+	LOCK_GUARDDING(mgrLock);
+	return ;
 }

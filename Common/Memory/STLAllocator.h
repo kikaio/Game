@@ -12,7 +12,7 @@ public:
 	T* allocate(size_t count) {
 		T* ptr = nullptr;
 
-		const UInt32 memSize = static_cast<Uint32>(count * sizeof(T));
+		const UInt32 memSize = static_cast<UInt32>(count * sizeof(T));
 		ptr = static_cast<T*>(XALLOC(memSize));
 		return ptr;
 	}
@@ -50,5 +50,5 @@ template <typename K, typename T, typename Hasher = hash<K>, typename KeyEq = st
 using HashMap = unordered_map<K, T, Hasher, KeyEq, STLAllocator<std::pair<const K, T>>>;
 
 template <typename K, typename Hasher = hash<K>, typename KeyEq = std::equal_to<K>>
-using HashSet = unordered_map<K, Hasher, KeyEq, STLAllocator<K>>>;
+using HashSet = unordered_map<K, Hasher, KeyEq, STLAllocator<K>>;
 

@@ -13,20 +13,27 @@
 #include <unordered_map>
 #include <unordered_set>
 
-
+#include <Windows.h>
 #include <memoryapi.h>
 #include <atomic>
 #include <mutex>
 //---------------------------------------------
 
 #include "Types.h"
-#include "Singleton.h"
-#include "CommonMacro.h"
 #include "CommonDefines.h"
+#include "CommonMacro.h"
+#include "CommonTLS.h"
+#include "Singleton.h"
+
 #include "Memory.h"
 #include "Allocator.h"
 #include "STLAllocator.h"
 #include "MemoryPool.h"
+
 #include "Lock.h"
+#include "LockManager.h"
 #include "ReadWriteLock.h"
-#include "CommonTLS.h"
+
+
+#include "Thread.h"
+#include "ThreadManager.h"

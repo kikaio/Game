@@ -66,12 +66,15 @@
     <ClInclude Include="Utils\CommonTLS.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Threads\Thread.h">
+      <Filter>Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="Threads\ThreadManager.h">
+      <Filter>Threads</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="Common.cpp">
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="Memory\Allocator.cpp">
@@ -94,6 +97,12 @@
     </ClCompile>
     <ClCompile Include="Lock\ReadWriteLock.cpp">
       <Filter>Lock</Filter>
+    </ClCompile>
+    <ClCompile Include="Threads\Thread.cpp">
+      <Filter>Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="Threads\ThreadManager.cpp">
+      <Filter>Threads</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

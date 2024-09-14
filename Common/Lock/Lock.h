@@ -1,7 +1,5 @@
 #pragma once
 
-#define INVALID_LINE_NO		-1;
-
 
 class Lock
 {

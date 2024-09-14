@@ -1,11 +1,11 @@
 #pragma once
+#include "Singleton.h"
+#include "Lock.h"
 
-#define LOCK_MGR()			LockMananger::Get()
-
-class LockMananger : public Singleton<LockMananger>
+class LockManager : public Singleton<LockManager>
 {
 private:
-	Lock lock;
+	VAL_LOCK(mgrLock);
 private:
 	bool CheckCycle();
 public:
