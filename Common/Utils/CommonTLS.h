@@ -1,3 +1,3 @@
 #pragma once
 
-thread_local UInt32 LThreadId;
+extern thread_local UInt32 LThreadId;

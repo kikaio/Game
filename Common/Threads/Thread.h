@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-class Thread : public enable_shared_from_this<Thread>
+class Thread // : public enable_shared_from_this<Thread>
 {
 public:
 	Thread() = default;
@@ -20,7 +20,7 @@ private:
 	WorkFunc work;
 	thread worker;
 	string tName;
-	string threadDesc;
+	string tDesc;
 private:
 	void Init();
 	void Release();
@@ -28,4 +28,6 @@ private:
 public:
 	void Start();
 	void Join();
+public:
+	void RenderInfo();
 };
