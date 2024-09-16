@@ -12,6 +12,8 @@
 #define VAL_LOCK(lockName)								Lock lockName = (#lockName)
 #define LOCK_GUARDDING(_targetObj)						LockGuard guardFor##_targetObj(_targetObj, __FILE__, __LINE__)
 
+#define VAL_RW_LOCK(lockName)							ReadWriteLock lockName = (#lockName)
+
 
 #define USE_STOMP_ALLOC false
 #if USE_STOMP_ALLOC
@@ -31,6 +33,7 @@
 #define LOCK_MGR()			LockManager::Get()
 #define INVALID_LINE_NO		-1;
 
-#define DO_LOCK_TRACKING_LOG	false
+#define DO_LOCK_TRACKING_LOG			false
+#define EMPTY_CONST_CHAR				""
 
 

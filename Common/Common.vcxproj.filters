@@ -104,5 +104,8 @@
     <ClCompile Include="Threads\ThreadManager.cpp">
       <Filter>Threads</Filter>
     </ClCompile>
+    <ClCompile Include="Utils\CommonMacro.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

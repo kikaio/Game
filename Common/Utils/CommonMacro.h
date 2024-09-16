@@ -62,3 +62,8 @@ template<typename T>
 UInt32 BufLen(T arr[]) {
 	return sizeof(arr) / sizeof(T);
 }
+
+template<typename T, typename... Args>
+std::shared_ptr<T> MakeShared(Args&& ...args) {
+	return std::make_shared<T>(new T(std::forward(args)...));
+}

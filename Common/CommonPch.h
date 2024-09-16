@@ -12,11 +12,14 @@
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
+#include <functional>
 
 #include <Windows.h>
 #include <memoryapi.h>
 #include <atomic>
 #include <mutex>
+
+#include <thread>
 //---------------------------------------------
 
 #include "Types.h"

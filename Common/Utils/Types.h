@@ -21,3 +21,9 @@ template<typename T>
 using Atomic = std::atomic<T>;
 
 using Mutex = std::mutex;
+
+#define DCL_REF_USING(cName)				using cName##Sptr = std::shared_ptr<class cName>
+
+DCL_REF_USING(Thread);
+
+using WorkFunc = std::function<void()>;

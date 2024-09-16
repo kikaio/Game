@@ -184,6 +184,7 @@
     </ClCompile>
     <ClCompile Include="Threads\Thread.cpp" />
     <ClCompile Include="Threads\ThreadManager.cpp" />
+    <ClCompile Include="Utils\CommonMacro.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
