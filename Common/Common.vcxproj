@@ -72,15 +72,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(ProjectDir)Random;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)\;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(ProjectDir)Random;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)\;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(ProjectDir)Random;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)\;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(ProjectDir)Random;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)\;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
