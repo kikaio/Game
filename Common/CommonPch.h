@@ -24,11 +24,11 @@
 
 #include "Types.h"
 #include "CommonDefines.h"
+#include "Memory.h"
 #include "CommonMacro.h"
 #include "CommonTLS.h"
 #include "Singleton.h"
 
-#include "Memory.h"
 #include "Allocator.h"
 #include "STLAllocator.h"
 #include "MemoryPool.h"
