@@ -9,7 +9,7 @@ T* xnew(Args&&... args)
 {
 	T* ptr = nullptr;
 	ptr = static_cast<T*>(XALLOC(sizeof(T)));
-	new (ptr) T(forward(args)...);
+	new (ptr) T(forward<Args>(args)...);
 	return ptr;
 }
 

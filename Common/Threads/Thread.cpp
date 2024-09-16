@@ -4,8 +4,8 @@
 
 
 Thread::Thread(WorkFunc _work, UInt32 _seedNo, const char* _tName, const char* _desc)
- : seedNo(_seedNo)
 {
+	LThreadId = _seedNo;
 	work = ([&_work, ref=shared_from_this()]() {
 		ref->Init();
 		_work();
@@ -13,6 +13,45 @@ Thread::Thread(WorkFunc _work, UInt32 _seedNo, const char* _tName, const char* _
 	});
 	threadDesc = _desc;
 
+}
+
+Thread::Thread(const Thread& other)
+	: isStarted(other.isStarted), work(other.work), tName(other.tName), threadDesc(other.threadDesc)
+{
+}
+
+Thread::Thread(Thread&& other)
+{
+	isStarted = other.isStarted;
+	work = std::move(other.work);
+	tName = std::move(other.tName);
+	threadDesc = std::move(other.threadDesc);
+
+	other.isStarted = false;
+	other.work = nullptr;
+	other.tName = EMPTY_CONST_CHAR;
+	other.threadDesc = EMPTY_CONST_CHAR;
+}
+
+Thread& Thread::operator=(Thread&& other) noexcept{
+	isStarted = other.isStarted;
+	work = std::move(other.work);
+	tName = std::move(other.tName);
+	threadDesc = std::move(other.threadDesc);
+
+	other.isStarted = false;
+	other.work = nullptr;
+	other.tName = EMPTY_CONST_CHAR;
+	other.threadDesc = EMPTY_CONST_CHAR;
+	return *this;
+}
+
+Thread& Thread::operator=(const Thread& other) noexcept {
+	isStarted = other.isStarted;
+	work = std::move(other.work);
+	tName = std::move(other.tName);
+	threadDesc = std::move(other.threadDesc);
+	return *this;
 }
 
 Thread::~Thread()
@@ -34,7 +73,7 @@ void Thread::Release()
 
 void Thread::PrintfLog(const char* _msg)
 {
-	printf("[tId:%d][%s][seedNo:%d]%s\n", worker.get_id(), tName, seedNo, _msg);
+	printf("[tId:%d][%s]%s\n", LThreadId, tName.c_str(), _msg);
 }
 
 void Thread::Start()
