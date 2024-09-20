@@ -71,19 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory\;$(ProjectDir)Network\;$(ProjectDir)Threads\;$(ProjectDir)Utils\;$(ProjectDir)Buffer\;$(ProjectDir)Lock\;$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory\;$(ProjectDir)Network\;$(ProjectDir)Threads\;$(ProjectDir)Utils\;$(ProjectDir)Buffer\;$(ProjectDir)Lock\;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory\;$(ProjectDir)Network\;$(ProjectDir)Threads\;$(ProjectDir)Utils\;$(ProjectDir)Buffer\;$(ProjectDir)Lock\;$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory\;$(ProjectDir)Network\;$(ProjectDir)Threads\;$(ProjectDir)Utils\;$(ProjectDir)Buffer\;$(ProjectDir)Lock\;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory\;$(ProjectDir)Network\;$(ProjectDir)Threads\;$(ProjectDir)Utils\;$(ProjectDir)Buffer\;$(ProjectDir)Lock\;$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory\;$(ProjectDir)Network\;$(ProjectDir)Threads\;$(ProjectDir)Utils\;$(ProjectDir)Buffer\;$(ProjectDir)Lock\;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory\;$(ProjectDir)Network\;$(ProjectDir)Threads\;$(ProjectDir)Utils\;$(ProjectDir)Buffer\;$(ProjectDir)Lock\;$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory\;$(ProjectDir)Network\;$(ProjectDir)Threads\;$(ProjectDir)Utils\;$(ProjectDir)Buffer\;$(ProjectDir)Lock\;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -163,7 +163,10 @@
     <ClInclude Include="Memory\Memory.h" />
     <ClInclude Include="Memory\MemoryPool.h" />
     <ClInclude Include="Memory\STLAllocator.h" />
+    <ClInclude Include="Network\IOCP\IocpCore.h" />
     <ClInclude Include="Network\NetAddr.h" />
+    <ClInclude Include="Network\Session\Listener.h" />
+    <ClInclude Include="Network\Session\Session.h" />
     <ClInclude Include="Network\SocketUtil.h" />
     <ClInclude Include="Network\WsaReady.h" />
     <ClInclude Include="pch.h" />
@@ -185,7 +188,10 @@
     <ClCompile Include="Memory\Memory.cpp" />
     <ClCompile Include="Memory\MemoryPool.cpp" />
     <ClCompile Include="Memory\STLAllocator.cpp" />
+    <ClCompile Include="Network\IOCP\IocpCore.cpp" />
     <ClCompile Include="Network\NetAddr.cpp" />
+    <ClCompile Include="Network\Session\Listener.cpp" />
+    <ClCompile Include="Network\Session\Session.cpp" />
     <ClCompile Include="Network\SocketUtil.cpp" />
     <ClCompile Include="Network\WsaReady.cpp" />
     <ClCompile Include="pch.cpp">

@@ -22,6 +22,12 @@
     <Filter Include="Threads">
       <UniqueIdentifier>{b0b3a054-a0e1-43e5-879f-cd381d138ad6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Network\IOCP">
+      <UniqueIdentifier>{0853d881-014c-41d4-b3dc-64530d54463d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Session">
+      <UniqueIdentifier>{d6fc55d9-7910-416f-901c-e80cd67c340d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -81,6 +87,15 @@
     <ClInclude Include="Network\WsaReady.h">
       <Filter>Network</Filter>
     </ClInclude>
+    <ClInclude Include="Network\IOCP\IocpCore.h">
+      <Filter>Network\IOCP</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Session\Listener.h">
+      <Filter>Network\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Session\Session.h">
+      <Filter>Network\Session</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -130,6 +145,15 @@
     </ClCompile>
     <ClCompile Include="CommonPch.cpp">
       <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\IOCP\IocpCore.cpp">
+      <Filter>Network\IOCP</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Session\Listener.cpp">
+      <Filter>Network\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Session\Session.cpp">
+      <Filter>Network\Session</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

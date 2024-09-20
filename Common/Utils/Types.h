@@ -25,5 +25,7 @@ using Mutex = std::mutex;
 #define DCL_REF_USING(cName)				using cName##Sptr = std::shared_ptr<class cName>
 
 DCL_REF_USING(Thread);
+DCL_REF_USING(NetAddr);
 
 using WorkFunc = std::function<void()>;
+
