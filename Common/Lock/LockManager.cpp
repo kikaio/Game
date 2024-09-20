@@ -11,7 +11,7 @@ bool LockManager::CheckCycle()
 
 void LockManager::Push(Lock* _lock)
 {
-	LOCK_GUARDDING(mgrLock);
+	lock_guard<mutex> lg(mgrLock);
 	if(CheckCycle() == false) {
 		//todo : assert or logging
 	}
@@ -20,6 +20,6 @@ void LockManager::Push(Lock* _lock)
 
 void LockManager::Pop(Lock* _lock)
 {
-	LOCK_GUARDDING(mgrLock);
+	lock_guard<mutex> lg(mgrLock);
 	return ;
 }

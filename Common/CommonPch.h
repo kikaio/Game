@@ -20,6 +20,9 @@
 #include <mutex>
 
 #include <thread>
+
+#include <WS2tcpip.h>
+#include <WinSock2.h>
 //---------------------------------------------
 
 #include "Types.h"
@@ -40,3 +43,6 @@
 
 #include "Thread.h"
 #include "ThreadManager.h"
+
+#include "NetAddr.h"
+#include "SocketUtil.h"

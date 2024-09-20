@@ -72,6 +72,12 @@
     <ClInclude Include="Threads\ThreadManager.h">
       <Filter>Threads</Filter>
     </ClInclude>
+    <ClInclude Include="Network\NetAddr.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\SocketUtil.h">
+      <Filter>Network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -109,6 +115,12 @@
     </ClCompile>
     <ClCompile Include="CommonTLS.cpp">
       <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\NetAddr.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\SocketUtil.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

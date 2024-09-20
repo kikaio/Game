@@ -163,6 +163,8 @@
     <ClInclude Include="Memory\Memory.h" />
     <ClInclude Include="Memory\MemoryPool.h" />
     <ClInclude Include="Memory\STLAllocator.h" />
+    <ClInclude Include="Network\NetAddr.h" />
+    <ClInclude Include="Network\SocketUtil.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Threads\Thread.h" />
     <ClInclude Include="Threads\ThreadManager.h" />
@@ -181,6 +183,8 @@
     <ClCompile Include="Memory\Memory.cpp" />
     <ClCompile Include="Memory\MemoryPool.cpp" />
     <ClCompile Include="Memory\STLAllocator.cpp" />
+    <ClCompile Include="Network\NetAddr.cpp" />
+    <ClCompile Include="Network\SocketUtil.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

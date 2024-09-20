@@ -21,8 +21,8 @@
 #define XRELEASE(ptr)					StompAllocator::Release(ptr)
 #else
 #if true
-#define XALLOC(size)					PoolAllocator::Alloc(size)
-#define XRELEASE(ptr)					PoolAllocator::Release(ptr)
+#define XALLOC(size)					Memory::Get().Alloc(size)
+#define XRELEASE(ptr)					Memory::Get().Release(ptr)
 #else
 #define XALLOC(size)					BaseAllocator::Alloc(size)
 #define XRELEASE(ptr)					BaseAllocator::Release(ptr)
@@ -31,6 +31,7 @@
 
 
 #define LOCK_MGR()			LockManager::Get()
+#define MEM_MGR()			Memory::Get()
 #define INVALID_LINE_NO		-1;
 
 #define DO_LOCK_TRACKING_LOG			false

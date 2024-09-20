@@ -5,7 +5,7 @@
 class LockManager : public Singleton<LockManager>
 {
 private:
-	VAL_LOCK(mgrLock);
+	mutex mgrLock;
 private:
 	bool CheckCycle();
 public:
