@@ -78,6 +78,9 @@
     <ClInclude Include="Network\SocketUtil.h">
       <Filter>Network</Filter>
     </ClInclude>
+    <ClInclude Include="Network\WsaReady.h">
+      <Filter>Network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -121,6 +124,12 @@
     </ClCompile>
     <ClCompile Include="Network\SocketUtil.cpp">
       <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\WsaReady.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonPch.cpp">
+      <Filter>Main</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

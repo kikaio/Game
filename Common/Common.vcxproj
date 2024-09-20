@@ -165,6 +165,7 @@
     <ClInclude Include="Memory\STLAllocator.h" />
     <ClInclude Include="Network\NetAddr.h" />
     <ClInclude Include="Network\SocketUtil.h" />
+    <ClInclude Include="Network\WsaReady.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Threads\Thread.h" />
     <ClInclude Include="Threads\ThreadManager.h" />
@@ -175,6 +176,7 @@
     <ClInclude Include="Utils\Types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CommonPch.cpp" />
     <ClCompile Include="CommonTLS.cpp" />
     <ClCompile Include="Lock\Lock.cpp" />
     <ClCompile Include="Lock\LockManager.cpp" />
@@ -185,6 +187,7 @@
     <ClCompile Include="Memory\STLAllocator.cpp" />
     <ClCompile Include="Network\NetAddr.cpp" />
     <ClCompile Include="Network\SocketUtil.cpp" />
+    <ClCompile Include="Network\WsaReady.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

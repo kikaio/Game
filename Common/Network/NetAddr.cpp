@@ -1,11 +1,6 @@
 #include "pch.h"
 #include "NetAddr.h"
 
-NetAddr::NetAddr()
-{
-}
-
-
 void NetAddr::SetAddr(string _ip, UInt32 _port)
 {
 	ip = _ip;
@@ -23,5 +18,5 @@ void NetAddr::SetAddrAny(UInt32 _port)
 
 	sockAddr.sin_family = AF_INET;
 	sockAddr.sin_port = htons(port);
-	sockAddr.sin_addr.s_addr = INADDR_ANY;
+	sockAddr.sin_addr.s_addr = htonl(INADDR_ANY);
 }

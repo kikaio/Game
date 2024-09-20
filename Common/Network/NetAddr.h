@@ -3,12 +3,12 @@
 class NetAddr 
 {
 public:
-	NetAddr();
+	NetAddr() = default;
 private:
 	string ip = "";
 	UInt32 port = 0;
-	SOCKADDR_IN sockAddr;
-private:
+	SOCKADDR_IN sockAddr = { };
+public:
 	void SetAddr(string _ip, UInt32 _port);
 	void SetAddrAny(UInt32 _port);
 public:
