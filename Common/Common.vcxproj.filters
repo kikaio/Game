@@ -96,6 +96,12 @@
     <ClInclude Include="Network\Session\Session.h">
       <Filter>Network\Session</Filter>
     </ClInclude>
+    <ClInclude Include="Network\Session\SessionManager.h">
+      <Filter>Network\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\ClockUtil.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -154,6 +160,12 @@
     </ClCompile>
     <ClCompile Include="Network\Session\Session.cpp">
       <Filter>Network\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Session\SessionManager.cpp">
+      <Filter>Network\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\ClockUtil.cpp">
+      <Filter>Utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -41,6 +41,8 @@ using namespace std;
 #include "CommonMacro.h"
 #include "CommonTLS.h"
 #include "Singleton.h"
+#include "ClockUtil.h"
+
 
 #include "Allocator.h"
 #include "STLAllocator.h"
@@ -60,3 +62,6 @@ using namespace std;
 
 #include "IocpCore.h"
 #include "Listener.h"
+#include "Session.h"
+#include "SessionManager.h"
+

@@ -26,6 +26,8 @@ using Mutex = std::mutex;
 
 DCL_REF_USING(Thread);
 DCL_REF_USING(NetAddr);
+DCL_REF_USING(Listener);
+DCL_REF_USING(Session);
 
 using WorkFunc = std::function<void()>;
 

@@ -167,11 +167,13 @@
     <ClInclude Include="Network\NetAddr.h" />
     <ClInclude Include="Network\Session\Listener.h" />
     <ClInclude Include="Network\Session\Session.h" />
+    <ClInclude Include="Network\Session\SessionManager.h" />
     <ClInclude Include="Network\SocketUtil.h" />
     <ClInclude Include="Network\WsaReady.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Threads\Thread.h" />
     <ClInclude Include="Threads\ThreadManager.h" />
+    <ClInclude Include="Utils\ClockUtil.h" />
     <ClInclude Include="Utils\CommonDefines.h" />
     <ClInclude Include="Utils\CommonMacro.h" />
     <ClInclude Include="Utils\CommonTLS.h" />
@@ -192,6 +194,7 @@
     <ClCompile Include="Network\NetAddr.cpp" />
     <ClCompile Include="Network\Session\Listener.cpp" />
     <ClCompile Include="Network\Session\Session.cpp" />
+    <ClCompile Include="Network\Session\SessionManager.cpp" />
     <ClCompile Include="Network\SocketUtil.cpp" />
     <ClCompile Include="Network\WsaReady.cpp" />
     <ClCompile Include="pch.cpp">
@@ -202,6 +205,7 @@
     </ClCompile>
     <ClCompile Include="Threads\Thread.cpp" />
     <ClCompile Include="Threads\ThreadManager.cpp" />
+    <ClCompile Include="Utils\ClockUtil.cpp" />
     <ClCompile Include="Utils\CommonMacro.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -27,9 +27,9 @@ int main()
     NetAddr clientAddr;
     int size = sizeof(SOCKADDR);
     {
-        Session client;
-        client.sock = listener.Accept(client.SockAddr());
-        if (client.sock == INVALID_SOCKET) {
+        SessionSptr client = MakeShared<Session>();
+        client->sock = listener.Accept(client->SockAddr());
+        if (client->sock == INVALID_SOCKET) {
             int32_t err = WSAGetLastError();
             printf("accept failed - %d\n", err);
             return 0;
