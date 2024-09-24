@@ -14,8 +14,8 @@ private:
 	void ErrorHandle(UInt32 _err);
 	void DispatchEvent(class IocpEvent* _event, UInt32 _bytes);
 public:
-	void Ready();
-	void ReadyToAccept(ListenerSptr _listener, UInt32 _acceptCnt);
+	bool Ready();
+	bool ReadyToAccept(ListenerSptr _listener, UInt32 _acceptCnt);
 public:
 	HANDLE GetIocpHandle();
 	void Dispatch(UInt32 _milliSec);

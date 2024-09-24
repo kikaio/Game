@@ -49,20 +49,21 @@ BOOL SocketUtil::UpdateAcceptToSock(SOCKET _accepted, SOCKET _listener)
 		, (char*)&_listener, sizeof(_listener)
 	);
 
-	return ret == NO_ERROR;
+	return ret != SOCKET_ERROR;
 }
 
 BOOL SocketUtil::AcceptEx(ListenerSptr _listener, SessionSptr _client)
 {
 	int addrSize = sizeof(*_client->SockAddr());
 	DWORD dwBytes = 0;
-
+	_client->iocpAccept.Init();
 	_client->iocpAccept.session = _client;
 
-	const UInt32 bufferLen = 256;
+	const UInt32 bufferLen = 1024;
 	array<CHAR, bufferLen> tmpBuff = {};
 	return lpfnAcceptEx(_listener->Sock(), _client->sock
-		, tmpBuff.data(), NULL, addrSize + 16, addrSize + 16
+		, tmpBuff.data(), bufferLen - ((sizeof(sockaddr_in) + 16) * 2)
+		, addrSize + 16, addrSize + 16
 		, &dwBytes, reinterpret_cast<LPOVERLAPPED>(&_client->iocpAccept)
 	);
 }

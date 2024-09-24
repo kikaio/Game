@@ -13,6 +13,7 @@ private:
 public:
 	bool Ready();
 	BOOL RegistToIocp(SessionSptr _sessionId);
+	BOOL RegistListener(SOCKET _sock);
 	HANDLE IocpHandle() {
 		return iocpHandle;
 	}

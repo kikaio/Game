@@ -1,6 +1,13 @@
 #include "pch.h"
 #include "NetAddr.h"
 
+NetAddr::NetAddr() : port(0) {
+	ip = "";
+	ZeroMemory(&sockAddr, sizeof(SOCKADDR));
+}
+
+
+
 void NetAddr::SetAddr(string _ip, UInt32 _port)
 {
 	ip = _ip;

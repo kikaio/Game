@@ -26,10 +26,11 @@ HANDLE IocpCore::CreateIocpHandle(DWORD _threadCnt)
 
 bool IocpCore::Ready()
 {
-    iocpHandle = CreateIocpHandle(64);
+    iocpHandle = CreateIocpHandle(0);
     if (iocpHandle == NULL) {
         DWORD err = GetLastError();
         //todo : logging and assert
+        printf("iocp handle create failed. err - %d\n", err);
         return false;
     }
     return true;
@@ -42,6 +43,15 @@ BOOL IocpCore::RegistToIocp(SessionSptr _session)
     HANDLE newHandle = CreateIoCompletionPort(
         (HANDLE)_session->sock, iocpHandle
         , reinterpret_cast<ULONG_PTR>(&_session->iocpAccept), NULL
+    );
+    return newHandle != INVALID_HANDLE_VALUE;
+}
+
+BOOL IocpCore::RegistListener(SOCKET _sock)
+{
+    HANDLE newHandle = CreateIoCompletionPort(
+        (HANDLE)_sock, iocpHandle
+        , NULL, NULL
     );
     return newHandle != INVALID_HANDLE_VALUE;
 }

@@ -1,15 +1,21 @@
 #include "pch.h"
 #include "NetworkCore.h"
 
-void NetworkCore::Ready()
+bool NetworkCore::Ready()
 {
 	wsaReady = MakeShared<WsaReady>();
-	wsaReady->Ready();
+	if (wsaReady->Ready() == false) {
+		printf("wsa ready failed");
+		return false;
+	}
 
 	iocpCore = MakeShared<IocpCore>();
 	// ready에서 handle 도 생성함.
-	iocpCore->Ready();
-
+	if (iocpCore->Ready() == false) {
+		printf("iocp core ready failed\n");
+		return false;
+	}
+	return true;
 }
 
 void NetworkCore::ErrorHandle(UInt32 _err)
@@ -28,6 +34,7 @@ void NetworkCore::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 		printf("On Accept!!");
 		IocpAccept* iocpAccept = reinterpret_cast<IocpAccept*>(_event);
 		SessionSptr session = iocpAccept->session;
+		SocketUtil::UpdateAcceptToSock(listener-)
 		iocpAccept->Init();
 		iocpAccept->AfterAccept();
 		//Recv 등록.
@@ -53,8 +60,10 @@ void NetworkCore::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 	}
 }
 
-void NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _acceptCnt)
+bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _acceptCnt)
 {
+	iocpCore->RegistListener(_listener->Sock());
+
 	//listener의 addr은 외부에서 우선 지정.
 	if(_listener->Bind() == false) {
 		// todo  : ASSERT?
@@ -63,7 +72,7 @@ void NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _acceptCnt)
 		if (err != WSA_IO_PENDING) {
 			ErrorHandle(err);
 		}
-		return ;
+		return false;
 	}
 
 	if(_listener->Listen() == false) {
@@ -73,7 +82,7 @@ void NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _acceptCnt)
 		if (err != WSA_IO_PENDING) {
 			ErrorHandle(err);
 		}
-		return ;
+		return false;
 	}
 
 	DWORD dwBytes = 0;
@@ -85,12 +94,14 @@ void NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _acceptCnt)
 		if (err != WSA_IO_PENDING) {
 			ErrorHandle(err);
 		}
-		return;
+		return false;
 	}
 
 	for(unsigned int idx = 0; idx < _acceptCnt; ++idx) {
 		_listener->TryAccept(iocpCore);
 	}
+
+	return true;
 }
 
 HANDLE NetworkCore::GetIocpHandle()
@@ -111,14 +122,16 @@ void NetworkCore::Dispatch(UInt32 _milliSec)
 		, OUT &bytes, OUT reinterpret_cast<PULONG_PTR>(&completionKey) 
 		, &overlappedPtr, _milliSec
 	);
-	if(ret == false) {
-		UInt32 err = WSAGetLastError();
-		if(err != WSA_IO_PENDING) {
-			ErrorHandle(err);
-		}
+	if(ret == FALSE) {
+		return;
 	}
 
 	IocpEvent* iocpEvent = reinterpret_cast<IocpEvent*>(overlappedPtr);
+	if (iocpEvent == nullptr) {
+		printf("event must be not null...\n");
+		// todo : ASSERT
+		return;
+	}
 	DispatchEvent(iocpEvent, bytes);
 	return ;
 }

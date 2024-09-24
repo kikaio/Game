@@ -9,16 +9,24 @@ void PrintLn(const char* _msg)
 
 int main()
 {
+    int acceptCnt = 1;
     NetworkCore netCore;
+    if (netCore.Ready() == false) {
+        //todo : ASSERT
+        return 0;
+    }
+    printf("wsa standby.\n");
+
     NetAddrSptr addr = MakeShared<NetAddr>();
     addr->SetAddrAny(7777);
     ListenerSptr listener = MakeShared<Listener>(addr);
-    int acceptCnt = 10;
-    netCore.Ready();
     netCore.ReadyToAccept(listener, acceptCnt);
 
+    printf("accept ready\n");
+
+    UInt32 waitMilliSec = 100;
     while(true) {
-        this_thread::sleep_for(1s);
+        netCore.Dispatch(INFINITE);
     }
     return 0;
 }
