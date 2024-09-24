@@ -102,6 +102,12 @@
     <ClInclude Include="Utils\ClockUtil.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Network\IOCP\IocpEvent.h">
+      <Filter>Network\IOCP</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\NetworkCore.h">
+      <Filter>Network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -166,6 +172,12 @@
     </ClCompile>
     <ClCompile Include="Utils\ClockUtil.cpp">
       <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\IOCP\IocpEvent.cpp">
+      <Filter>Network\IOCP</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\NetworkCore.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

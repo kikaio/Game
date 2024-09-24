@@ -28,6 +28,8 @@ DCL_REF_USING(Thread);
 DCL_REF_USING(NetAddr);
 DCL_REF_USING(Listener);
 DCL_REF_USING(Session);
+DCL_REF_USING(IocpCore);
+DCL_REF_USING(WsaReady);
 
 using WorkFunc = std::function<void()>;
 

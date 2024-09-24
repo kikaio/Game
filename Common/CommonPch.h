@@ -31,7 +31,7 @@
 #include <ws2def.h>
 #include <WS2tcpip.h>
 #include <WinSock2.h>
-
+#include <MSWSock.h>
 using namespace std;
 //---------------------------------------------
 
@@ -60,8 +60,11 @@ using namespace std;
 #include "SocketUtil.h"
 #include "WsaReady.h"
 
-#include "IocpCore.h"
 #include "Listener.h"
 #include "Session.h"
 #include "SessionManager.h"
+#include "IocpEvent.h"
+#include "IocpCore.h"
+#include "NetworkCore.h"
+
 

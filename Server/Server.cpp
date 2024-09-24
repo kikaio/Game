@@ -9,32 +9,16 @@ void PrintLn(const char* _msg)
 
 int main()
 {
-    WsaReady wsa;
-    wsa.Ready();
+    NetworkCore netCore;
+    NetAddrSptr addr = MakeShared<NetAddr>();
+    addr->SetAddrAny(7777);
+    ListenerSptr listener = MakeShared<Listener>(addr);
+    int acceptCnt = 10;
+    netCore.Ready();
+    netCore.ReadyToAccept(listener, acceptCnt);
 
-    Listener listener(MakeShared<NetAddr>());
-    listener.NetAddr()->SetAddrAny(7777);
-    if (listener.Bind()) {
-        PrintLn("bind failed");
-        return 0;
+    while(true) {
+        this_thread::sleep_for(1s);
     }
-
-    if (listener.Listen()) {
-        PrintLn("listen failed");
-        return 0;
-    }
-
-    NetAddr clientAddr;
-    int size = sizeof(SOCKADDR);
-    {
-        SessionSptr client = MakeShared<Session>();
-        client->sock = listener.Accept(client->SockAddr());
-        if (client->sock == INVALID_SOCKET) {
-            int32_t err = WSAGetLastError();
-            printf("accept failed - %d\n", err);
-            return 0;
-        }
-    }
-
     return 0;
 }

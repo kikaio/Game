@@ -164,7 +164,9 @@
     <ClInclude Include="Memory\MemoryPool.h" />
     <ClInclude Include="Memory\STLAllocator.h" />
     <ClInclude Include="Network\IOCP\IocpCore.h" />
+    <ClInclude Include="Network\IOCP\IocpEvent.h" />
     <ClInclude Include="Network\NetAddr.h" />
+    <ClInclude Include="Network\NetworkCore.h" />
     <ClInclude Include="Network\Session\Listener.h" />
     <ClInclude Include="Network\Session\Session.h" />
     <ClInclude Include="Network\Session\SessionManager.h" />
@@ -191,7 +193,9 @@
     <ClCompile Include="Memory\MemoryPool.cpp" />
     <ClCompile Include="Memory\STLAllocator.cpp" />
     <ClCompile Include="Network\IOCP\IocpCore.cpp" />
+    <ClCompile Include="Network\IOCP\IocpEvent.cpp" />
     <ClCompile Include="Network\NetAddr.cpp" />
+    <ClCompile Include="Network\NetworkCore.cpp" />
     <ClCompile Include="Network\Session\Listener.cpp" />
     <ClCompile Include="Network\Session\Session.cpp" />
     <ClCompile Include="Network\Session\SessionManager.cpp" />

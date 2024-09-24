@@ -7,9 +7,30 @@ Listener::Listener(NetAddrSptr _ref)
 	sock = SocketUtil::CreateIocpTCP();
 }
 
+void Listener::DoAccept(IocpCoreSptr _iocpCore)
+{
+	SessionSptr reserveSession = MakeShared<Session>();
+	if(SocketUtil::AcceptEx(shared_from_this(), reserveSession) == false) {
+		UInt32 err = WSAGetLastError();
+		if(err != WSA_IO_PENDING) {
+			// todo : ASSERT
+		}
+	}
+
+	if(_iocpCore->RegistToIocp(reserveSession) == false) {
+		TryAccept(_iocpCore);
+		return ;
+	}
+}
+
+void Listener::OnAccepted()
+{
+}
+
 bool Listener::Bind()
 {
-	return ::bind(sock, netAddrSptr->SockAddr(), sizeof(SOCKADDR)) == NO_ERROR;
+	int ret = ::bind(sock, netAddrSptr->SockAddr(), sizeof(SOCKADDR));
+	return ret == NO_ERROR;
 }
 
 bool Listener::Listen()
@@ -17,11 +38,10 @@ bool Listener::Listen()
 	SocketUtil::SetConditionalAccept(sock);
 	SocketUtil::SetReuse(sock, true);
 	SocketUtil::SetLinger(sock, 0, 0);
-	return ::listen(sock, backLog) == NO_ERROR;
+	int ret = ::listen(sock, backLog);
+	return ret == NO_ERROR;
 }
-
-SOCKET Listener::Accept(SOCKADDR* _addr)
+void Listener::TryAccept(IocpCoreSptr _iocpCore)
 {
-	int size = sizeof(SOCKADDR);
-	return ::accept(sock, _addr, &size);
+	DoAccept(_iocpCore);
 }
