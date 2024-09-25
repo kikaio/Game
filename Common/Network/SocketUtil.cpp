@@ -10,6 +10,25 @@ GUID SocketUtil::guidAcceptEx = WSAID_ACCEPTEX;
 GUID SocketUtil::guidConnectEx = WSAID_CONNECTEX;
 GUID SocketUtil::guidDisconnectEx = WSAID_DISCONNECTEX;
 
+BOOL SocketUtil::SetExFunctions()
+{
+	SOCKET sock = CreateIocpTCP();
+	if(SetAcceptFunc(sock) == false) {
+		printf(" failed\n");
+		return false;
+	}
+	if (SetConnectFunc(sock) == false) {
+		printf(" failed\n");
+		return false;
+	}
+	if (SetDisconnectFunc(sock) == false) {
+		printf(" failed\n");
+		return false;
+	}
+
+	return true;
+}
+
 SOCKET SocketUtil::CreateTCP()
 {
 	return ::socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
@@ -52,6 +71,16 @@ BOOL SocketUtil::UpdateAcceptToSock(SOCKET _accepted, SOCKET _listener)
 	return ret != SOCKET_ERROR;
 }
 
+BOOL SocketUtil::UpdateConnectToSock(SOCKET _client)
+{
+	UInt32 ret = setsockopt(_client
+		, SOL_SOCKET, SO_UPDATE_CONNECT_CONTEXT
+		, nullptr, NULL
+	);
+
+	return ret != SOCKET_ERROR;
+}
+
 BOOL SocketUtil::AcceptEx(ListenerSptr _listener, IocpAccept* _accepter, SessionSptr _client)
 {
 	int addrSize = sizeof(*_client->SockAddr());
@@ -68,15 +97,31 @@ BOOL SocketUtil::AcceptEx(ListenerSptr _listener, IocpAccept* _accepter, Session
 	);
 }
 
-BOOL SocketUtil::SetAcceptableListener(SOCKET _sock)
+BOOL SocketUtil::ConnectEx(SOCKET _sock, const SOCKADDR* _addr, IocpConnect* _event)
 {
-	DWORD dwBytes = 0;
-	int ret = WSAIoctl(_sock, SIO_GET_EXTENSION_FUNCTION_POINTER
-		, &guidAcceptEx, sizeof(guidAcceptEx)
-		, &lpfnAcceptEx, sizeof(lpfnAcceptEx)
-		, &dwBytes, nullptr, nullptr
+	DWORD bytes = 0;
+	const int bufSize = 1024;
+	array<char, bufSize> tmpBuff = {0, };
+	int ret = lpfnConnectEx(
+		_sock, reinterpret_cast<const sockaddr*>(_addr)
+		, sizeof(sockaddr)
+		, &tmpBuff, bufSize, &bytes, _event
 	);
-
 	return ret != SOCKET_ERROR;
+}
+
+BOOL SocketUtil::SetAcceptFunc(SOCKET _sock)
+{
+	return SetIocpWSAIoctl(_sock, lpfnAcceptEx, guidAcceptEx);
+}
+
+BOOL SocketUtil::SetConnectFunc(SOCKET _sock)
+{
+	return SetIocpWSAIoctl(_sock, lpfnConnectEx, guidConnectEx);
+}
+
+BOOL SocketUtil::SetDisconnectFunc(SOCKET _sock)
+{
+	return SetIocpWSAIoctl(_sock, lpfnDisconnectEx, guidDisconnectEx);
 }
 

@@ -10,23 +10,30 @@ void PrintLn(const char* _msg) {
 int main()
 {
 	this_thread::sleep_for(2s);
+	string ip = "127.0.0.1";
+	UInt32 port = 7777;
 
-	NetAddrSptr addr = MakeShared<NetAddr>();
-	addr->SetAddr("127.0.0.1", 7777);
-	WsaReady wsaReady;
-	wsaReady.Ready();
+	NetworkCore netCore;
 
-	SOCKET sock = SocketUtil::CreateIocpTCP();
-	printf("try connect to server....\n");
-	if(connect(sock, addr->SockAddr(), sizeof(SOCKADDR)) == SOCKET_ERROR) {
-		int err = WSAGetLastError();
-		printf("connect failed - err : %d\n", err);
+	if (netCore.Ready() == false) {
+		printf("net core ready failed\n");
 		return 0;
 	}
-	printf("connect successed\n");
+	
+	if (netCore.ReadyToConnect() == false) {
+		printf("ReadyToConnect failed\n");
+		return 0;
+	}
+
+	printf("net core ready complete\n");
+	int connCnt = 1;
+	vector<SessionSptr> sessions = netCore.StartConnect(ip, port, connCnt);
+	printf("net core ready regist complete\n");
+
 
 	while(true) {
 		this_thread::sleep_for(1s);
+		printf("do something\n");
 	}
 	return 0;
 }

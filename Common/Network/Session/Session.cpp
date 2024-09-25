@@ -17,8 +17,55 @@ SOCKADDR* Session::SockAddr()
 	return netAddrSptr->SockAddr();
 }
 
+NetAddrSptr Session::Net()
+{
+	return netAddrSptr;
+}
+
 void Session::Dispatch(IocpEvent* _event, UInt32 _bytes)
 {
-	
+	switch (_event->Type()) {
+	case IocpEvent::IOCP_EVENT::CONNECT: {
+		IocpConnect* iocpConnect = reinterpret_cast<IocpConnect*>(_event);
+		iocpConnect->Init();
+		iocpConnect->session = nullptr;
+		OnConnected();
+		break;
+	}
+	case IocpEvent::IOCP_EVENT::RECV: {
+		break;
+	}
+	case IocpEvent::IOCP_EVENT::SEND: {
+		break;
+	}
+	case IocpEvent::IOCP_EVENT::DISCONNECT: {
+		break;
+	}
+	default: {
+		//todo : ASSERT
+		return;
+	}
+	}
+}
+
+void Session::TryConnect()
+{
+	DoConnect();
+}
+
+void Session::DoConnect()
+{
+	iocpConnect.Init();
+	iocpConnect.session = shared_from_this();
+	if (SocketUtil::ConnectEx(sock, netAddrSptr->SockAddr(), &iocpConnect) == false) {
+		printf("connect Ex failed. try again..\n");
+		DoConnect();
+		return;
+	}
+}
+
+void Session::OnConnected()
+{
+	printf("Session : On Connected called\n");
 }
 

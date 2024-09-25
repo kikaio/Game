@@ -16,6 +16,17 @@ bool NetworkCore::Ready()
 		printf("iocp core ready failed\n");
 		return false;
 	}
+
+	if (SocketUtil::SetExFunctions() == false) {
+		printf("SetExFunctions failed\n");
+		// todo : ASSERT, logging
+		UInt32 err = WSAGetLastError();
+		if (err != WSA_IO_PENDING) {
+			ErrorHandle(err);
+		}
+		return false;
+	}
+
 	return true;
 }
 
@@ -52,6 +63,10 @@ void NetworkCore::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 		break;
 	}
 	case IocpEvent::IOCP_EVENT::CONNECT: {
+		printf("On Connected\n");
+		IocpConnect* iocpConnect = reinterpret_cast<IocpConnect*>(_event);
+		SessionSptr session = iocpConnect->session;
+		session->Dispatch(_event, _bytes);
 		break;
 	}
 	case IocpEvent::IOCP_EVENT::RECV: {
@@ -94,15 +109,7 @@ bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _acceptCnt)
 		return false;
 	}
 
-	if (SocketUtil::SetAcceptableListener(_listener->Sock()) == false) {
-		printf("Accepter setting failed\n");
-		// todo : ASSERT, logging
-		UInt32 err = WSAGetLastError();
-		if (err != WSA_IO_PENDING) {
-			ErrorHandle(err);
-		}
-		return false;
-	}
+	
 
 	for(unsigned int idx = 0; idx < _acceptCnt; ++idx) {
 		_listener->TryAccept(iocpCore);
@@ -111,6 +118,29 @@ bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _acceptCnt)
 	return true;
 }
 
+
+bool NetworkCore::ReadyToConnect()
+{
+	return true;
+}
+
+vector<SessionSptr> NetworkCore::StartConnect(string _ip, UInt32 _port, UInt32 _connCnt)
+{
+	vector<SessionSptr> sessions;
+	for (int idx = 0; idx < _connCnt; idx++) {
+		SessionSptr session = MakeShared<Session>();
+		session->Net()->SetAddr(_ip, _port);
+		session->iocpConnect.session = session;
+		iocpCore->RegistToIocp(session->sock, &session->iocpConnect);
+		sessions.push_back(session);
+	}
+
+	for (auto& _session : sessions) {
+		_session->TryConnect();
+	}
+
+	return sessions;
+}
 HANDLE NetworkCore::GetIocpHandle()
 {
 	if(iocpCore == nullptr) {
