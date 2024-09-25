@@ -36,22 +36,21 @@ bool IocpCore::Ready()
     return true;
 }
 
-BOOL IocpCore::RegistToIocp(SessionSptr _session)
+BOOL IocpCore::RegistToIocp(SOCKET _sock, class IocpEvent* _event)
 {
-    _session->iocpAccept.session = _session;
-
+    _event->Init();
     HANDLE newHandle = CreateIoCompletionPort(
-        (HANDLE)_session->sock, iocpHandle
-        , reinterpret_cast<ULONG_PTR>(&_session->iocpAccept), NULL
+        (HANDLE)_sock, iocpHandle
+        , reinterpret_cast<ULONG_PTR>(_event), NULL
     );
     return newHandle != INVALID_HANDLE_VALUE;
 }
 
-BOOL IocpCore::RegistListener(SOCKET _sock)
+BOOL IocpCore::RegistListener(SOCKET _sock, class IocpAccept* _accepter)
 {
     HANDLE newHandle = CreateIoCompletionPort(
         (HANDLE)_sock, iocpHandle
-        , NULL, NULL
+        , reinterpret_cast<ULONG_PTR>(_accepter), NULL
     );
     return newHandle != INVALID_HANDLE_VALUE;
 }

@@ -5,7 +5,6 @@ Session::Session()
 {
 	sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);  //SocketUtil::CreateIocpTCP();
 	netAddrSptr = MakeShared<NetAddr>();
-	iocpAccept.Init();
 }
 
 Session::~Session()

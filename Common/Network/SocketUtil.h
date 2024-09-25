@@ -28,6 +28,6 @@ public:
 
 	static BOOL UpdateAcceptToSock(SOCKET _client, SOCKET _listener);
 
-	static BOOL AcceptEx(ListenerSptr _listener, SessionSptr _client);
+	static BOOL AcceptEx(ListenerSptr _listener, class IocpAccept* _accepter, SessionSptr _client);
 
 };

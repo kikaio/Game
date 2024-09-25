@@ -6,14 +6,14 @@ public:
 	IocpCore();
 	~IocpCore();
 private:
-	HANDLE iocpHandle= nullptr;
+	HANDLE iocpHandle= INVALID_HANDLE_VALUE;
 private:
 	void ErrorHandle(UInt32 _err);
 	HANDLE CreateIocpHandle(DWORD _threadCnt);
 public:
 	bool Ready();
-	BOOL RegistToIocp(SessionSptr _sessionId);
-	BOOL RegistListener(SOCKET _sock);
+	BOOL RegistToIocp(SOCKET _sock, class IocpEvent* _event);
+	BOOL RegistListener(SOCKET _sock, class IocpAccept* _accepter);
 	HANDLE IocpHandle() {
 		return iocpHandle;
 	}

@@ -9,14 +9,14 @@ private:
 	NetAddrSptr netAddrSptr = nullptr;
 	SOCKET sock = NULL;
 	Int32 backLog = 100;
+	vector<class IocpAccept*> acceptEvents;
 private:
-	void DoAccept(IocpCoreSptr _iocpCore);
-protected:
-	virtual void OnAccepted(); // 상속 후 재정의 
+	void DoAccept(IocpCoreSptr _iocpCore, class IocpAccept* _accepter);
+public:
+	virtual void OnAccepted(SessionSptr _session); // 상속 후 재정의 
 public:
 	bool Bind();
 	bool Listen();
-	
 	NetAddrSptr NetAddr() {
 		return netAddrSptr;
 	}

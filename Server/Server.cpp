@@ -24,9 +24,9 @@ int main()
 
     printf("accept ready\n");
 
-    UInt32 waitMilliSec = 100;
+    UInt32 waitMilliSec = INFINITE;
     while(true) {
-        netCore.Dispatch(INFINITE);
+        netCore.Dispatch(waitMilliSec);
     }
     return 0;
 }

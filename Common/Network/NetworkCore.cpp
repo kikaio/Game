@@ -5,7 +5,8 @@ bool NetworkCore::Ready()
 {
 	wsaReady = MakeShared<WsaReady>();
 	if (wsaReady->Ready() == false) {
-		printf("wsa ready failed");
+		int err = WSAGetLastError();
+		printf("wsa ready failed\n");
 		return false;
 	}
 
@@ -34,9 +35,18 @@ void NetworkCore::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 		printf("On Accept!!");
 		IocpAccept* iocpAccept = reinterpret_cast<IocpAccept*>(_event);
 		SessionSptr session = iocpAccept->session;
-		SocketUtil::UpdateAcceptToSock(listener-)
+		ListenerSptr listener = iocpAccept->listener;
+		listener->OnAccepted(session);
 		iocpAccept->Init();
 		iocpAccept->AfterAccept();
+		session->iocpRecv.session = session;
+		if (iocpCore->RegistToIocp(session->sock, &session->iocpRecv) == false) {
+			printf("Session Accepte Dispatch failed.\n");
+			// todo : ASSERT
+			return;
+		}
+		//iocpCore->RegistToIocp(session->sock, &session->iocpRecv);
+		//iocpCore->RegistToIocp(session->sock, &session->iocpRecv);
 		//Recv 등록.
 		//session->TryRecv();
 		break;
@@ -62,7 +72,6 @@ void NetworkCore::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 
 bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _acceptCnt)
 {
-	iocpCore->RegistListener(_listener->Sock());
 
 	//listener의 addr은 외부에서 우선 지정.
 	if(_listener->Bind() == false) {
@@ -85,8 +94,6 @@ bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _acceptCnt)
 		return false;
 	}
 
-	DWORD dwBytes = 0;
-	
 	if (SocketUtil::SetAcceptableListener(_listener->Sock()) == false) {
 		printf("Accepter setting failed\n");
 		// todo : ASSERT, logging
@@ -115,11 +122,11 @@ HANDLE NetworkCore::GetIocpHandle()
 void NetworkCore::Dispatch(UInt32 _milliSec)
 {
 	DWORD bytes = 0;
-	ULONG completionKey = 0;
+	ULONG_PTR completionKey = 0;
 	LPOVERLAPPED overlappedPtr = nullptr;
 
 	BOOL ret = GetQueuedCompletionStatus(GetIocpHandle()
-		, OUT &bytes, OUT reinterpret_cast<PULONG_PTR>(&completionKey) 
+		, OUT &bytes, OUT &completionKey
 		, &overlappedPtr, _milliSec
 	);
 	if(ret == FALSE) {

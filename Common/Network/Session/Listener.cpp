@@ -7,34 +7,25 @@ Listener::Listener(NetAddrSptr _ref)
 	sock = SocketUtil::CreateIocpTCP();
 }
 
-void Listener::DoAccept(IocpCoreSptr _iocpCore)
+void Listener::DoAccept(IocpCoreSptr _iocpCore, IocpAccept* _accepter)
 {
 	SessionSptr reserveSession = MakeShared<Session>();
-	if(SocketUtil::AcceptEx(shared_from_this(), reserveSession) == false) {
+
+	if(SocketUtil::AcceptEx(shared_from_this(), _accepter, reserveSession) == false) {
 		UInt32 err = WSAGetLastError();
 		if(err != WSA_IO_PENDING) {
 			printf("soket util's acceptEx failed - %d\n", err);
 			// todo : ASSERT
-			DoAccept(_iocpCore);
+			DoAccept(_iocpCore, _accepter);
 			return;
 		}
 	}
-
-	if(_iocpCore->RegistToIocp(reserveSession) == false) {
-		printf("client socket regist to Iocp is failed.\n");
-		DoAccept(_iocpCore);
-		return ;
-	}
-	
-	if (SocketUtil::UpdateAcceptToSock(reserveSession->sock, sock) == false) {
-		//todo : ASSERT
-		printf("UpdateAcceptToSock failed\n");
-		return;
-	}
 }
 
-void Listener::OnAccepted()
+void Listener::OnAccepted(SessionSptr _session)
 {
+	printf("accepted!\n");
+	SocketUtil::UpdateAcceptToSock(_session->sock, sock);
 }
 
 bool Listener::Bind()
@@ -53,5 +44,10 @@ bool Listener::Listen()
 }
 void Listener::TryAccept(IocpCoreSptr _iocpCore)
 {
-	DoAccept(_iocpCore);
+	IocpAccept* accepter = xnew<IocpAccept>();
+	accepter->listener = shared_from_this();
+	acceptEvents.push_back(accepter);
+	accepter->Init();
+	_iocpCore->RegistListener(sock, accepter);
+	DoAccept(_iocpCore, accepter);
 }

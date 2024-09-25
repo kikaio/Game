@@ -29,6 +29,7 @@ public:
 	IocpAccept() : IocpEvent(IOCP_EVENT::ACCEPT){};
 public:
 	SessionSptr session = nullptr;
+	ListenerSptr listener = nullptr;
 public: 
 	void AfterAccept();
 };
@@ -43,6 +44,8 @@ class IocpRecv : public IocpEvent
 {
 public:
 	IocpRecv() : IocpEvent(IOCP_EVENT::RECV) {};
+public:
+	SessionSptr session = nullptr;
 };
 
 class IocpSend : public IocpEvent

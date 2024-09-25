@@ -12,7 +12,7 @@ private:
 	NetAddrSptr netAddrSptr = nullptr;
 public:
 	SOCKET sock = NULL;
-	IocpAccept iocpAccept;
+	IocpRecv iocpRecv;
 public:
 	SOCKADDR* SockAddr();
 	void Dispatch(class IocpEvent* _event, UInt32 _bytes);
