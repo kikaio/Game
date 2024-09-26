@@ -14,9 +14,9 @@ private:
 private:
 	template<typename FN, typename GUID_TYPE>
 	static BOOL SetIocpWSAIoctl(SOCKET _sock, OUT FN& _fn, OUT GUID_TYPE& _guid);
-	static BOOL SetAcceptFunc(SOCKET _sock);
-	static BOOL SetConnectFunc(SOCKET _sock);
-	static BOOL SetDisconnectFunc(SOCKET _sock);
+	static BOOL SetAcceptFunc();
+	static BOOL SetConnectFunc();
+	static BOOL SetDisconnectFunc();
 
 public:
 	static BOOL SetExFunctions();
@@ -33,7 +33,7 @@ public:
 
 public:
 	static BOOL AcceptEx(ListenerSptr _listener, class IocpAccept* _accepter, SessionSptr _client);
-	static BOOL ConnectEx(SOCKET _sock, const class SOCKADDR* _addr, class IocpConnect* _event);
+	static BOOL ConnectEx(SOCKET _sock, const SOCKADDR* _addr, class IocpConnect* _event);
 };
 
 

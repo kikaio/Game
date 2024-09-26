@@ -22,6 +22,11 @@ NetAddrSptr Session::Net()
 	return netAddrSptr;
 }
 
+bool Session::Bind()
+{
+	return ::bind(sock, netAddrSptr->SockAddr(), sizeof(SOCKADDR)) != SOCKET_ERROR;
+}
+
 void Session::Dispatch(IocpEvent* _event, UInt32 _bytes)
 {
 	switch (_event->Type()) {
@@ -50,6 +55,7 @@ void Session::Dispatch(IocpEvent* _event, UInt32 _bytes)
 
 void Session::TryConnect()
 {
+	printf("try connect colled\n");
 	DoConnect();
 }
 
@@ -58,9 +64,11 @@ void Session::DoConnect()
 	iocpConnect.Init();
 	iocpConnect.session = shared_from_this();
 	if (SocketUtil::ConnectEx(sock, netAddrSptr->SockAddr(), &iocpConnect) == false) {
-		printf("connect Ex failed. try again..\n");
-		DoConnect();
-		return;
+		if(WSAGetLastError() != WSA_IO_PENDING) {
+			printf("connect Ex failed. try again..\n");
+			DoConnect();
+			return;
+		}
 	}
 }
 

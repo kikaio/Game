@@ -41,7 +41,7 @@ BOOL IocpCore::RegistToIocp(SOCKET _sock, class IocpEvent* _event)
     _event->Init();
     HANDLE newHandle = CreateIoCompletionPort(
         (HANDLE)_sock, iocpHandle
-        , reinterpret_cast<ULONG_PTR>(_event), NULL
+        , NULL, NULL
     );
     return newHandle != INVALID_HANDLE_VALUE;
 }

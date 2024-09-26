@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "Listener.h"
-
 Listener::Listener(NetAddrSptr _ref)
 	: netAddrSptr(_ref)
 {

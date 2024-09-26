@@ -16,7 +16,15 @@ void NetAddr::SetAddr(string _ip, UInt32 _port)
 	ZeroMemory(&sockAddr, sizeof(SOCKADDR_IN));
 	sockAddr.sin_family = AF_INET;
 	sockAddr.sin_port = htons(port);
-	inet_pton(AF_INET, ip.c_str(), &sockAddr.sin_addr.s_addr);
+	int ret = inet_pton(AF_INET, ip.c_str(), &sockAddr.sin_addr);
+	if(ret == -1) { 
+	}
+	else if (ret == 0) {
+		printf("not included char in ip\n");
+	}
+	else {
+		printf("invalid af.\n");
+	}
 }
 
 void NetAddr::SetAddrAny(UInt32 _port)

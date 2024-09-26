@@ -23,8 +23,8 @@ bool NetworkCore::Ready()
 		UInt32 err = WSAGetLastError();
 		if (err != WSA_IO_PENDING) {
 			ErrorHandle(err);
+			return false;
 		}
-		return false;
 	}
 
 	return true;
@@ -127,10 +127,13 @@ bool NetworkCore::ReadyToConnect()
 vector<SessionSptr> NetworkCore::StartConnect(string _ip, UInt32 _port, UInt32 _connCnt)
 {
 	vector<SessionSptr> sessions;
-	for (int idx = 0; idx < _connCnt; idx++) {
+	for (UInt32 idx = 0; idx < _connCnt; idx++) {
 		SessionSptr session = MakeShared<Session>();
 		session->Net()->SetAddr(_ip, _port);
-		session->iocpConnect.session = session;
+		if(session->Bind() == false) {
+			printf("this session bind failed..");
+			continue;
+		}
 		iocpCore->RegistToIocp(session->sock, &session->iocpConnect);
 		sessions.push_back(session);
 	}

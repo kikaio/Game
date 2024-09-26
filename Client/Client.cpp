@@ -27,13 +27,13 @@ int main()
 
 	printf("net core ready complete\n");
 	int connCnt = 1;
+
 	vector<SessionSptr> sessions = netCore.StartConnect(ip, port, connCnt);
-	printf("net core ready regist complete\n");
+	printf("clients connect ready complete\n");
 
-
+	UInt32 waitMilliSec = INFINITE;
 	while(true) {
-		this_thread::sleep_for(1s);
-		printf("do something\n");
+		netCore.Dispatch(waitMilliSec);
 	}
 	return 0;
 }

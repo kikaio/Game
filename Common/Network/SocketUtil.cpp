@@ -12,17 +12,16 @@ GUID SocketUtil::guidDisconnectEx = WSAID_DISCONNECTEX;
 
 BOOL SocketUtil::SetExFunctions()
 {
-	SOCKET sock = CreateIocpTCP();
-	if(SetAcceptFunc(sock) == false) {
-		printf(" failed\n");
+	if(SetAcceptFunc() == false) {
+		printf("SetAcceptFunc failed\n");
 		return false;
 	}
-	if (SetConnectFunc(sock) == false) {
-		printf(" failed\n");
+	if (SetConnectFunc() == false) {
+		printf("SetConnectFunc failed\n");
 		return false;
 	}
-	if (SetDisconnectFunc(sock) == false) {
-		printf(" failed\n");
+	if (SetDisconnectFunc() == false) {
+		printf("SetDisconnectFunc failed\n");
 		return false;
 	}
 
@@ -103,25 +102,28 @@ BOOL SocketUtil::ConnectEx(SOCKET _sock, const SOCKADDR* _addr, IocpConnect* _ev
 	const int bufSize = 1024;
 	array<char, bufSize> tmpBuff = {0, };
 	int ret = lpfnConnectEx(
-		_sock, reinterpret_cast<const sockaddr*>(_addr)
-		, sizeof(sockaddr)
-		, &tmpBuff, bufSize, &bytes, _event
+		_sock, reinterpret_cast<const SOCKADDR*>(_addr)
+		, sizeof(SOCKADDR)
+		, nullptr, 0, nullptr, _event
 	);
 	return ret != SOCKET_ERROR;
 }
 
-BOOL SocketUtil::SetAcceptFunc(SOCKET _sock)
+BOOL SocketUtil::SetAcceptFunc()
 {
+	SOCKET _sock = SocketUtil::CreateIocpTCP();
 	return SetIocpWSAIoctl(_sock, lpfnAcceptEx, guidAcceptEx);
 }
 
-BOOL SocketUtil::SetConnectFunc(SOCKET _sock)
+BOOL SocketUtil::SetConnectFunc()
 {
+	SOCKET _sock = SocketUtil::CreateIocpTCP();
 	return SetIocpWSAIoctl(_sock, lpfnConnectEx, guidConnectEx);
 }
 
-BOOL SocketUtil::SetDisconnectFunc(SOCKET _sock)
+BOOL SocketUtil::SetDisconnectFunc()
 {
+	SOCKET _sock = SocketUtil::CreateIocpTCP();
 	return SetIocpWSAIoctl(_sock, lpfnDisconnectEx, guidDisconnectEx);
 }
 
