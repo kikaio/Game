@@ -155,6 +155,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Buffer\BufReader.h" />
+    <ClInclude Include="Buffer\BufWriter.h" />
+    <ClInclude Include="Buffer\PacketBuffer.h" />
     <ClInclude Include="CommonPch.h" />
     <ClInclude Include="Lock\Lock.h" />
     <ClInclude Include="Lock\LockManager.h" />
@@ -183,6 +186,9 @@
     <ClInclude Include="Utils\Types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Buffer\BufReader.cpp" />
+    <ClCompile Include="Buffer\BufWriter.cpp" />
+    <ClCompile Include="Buffer\PacketBuffer.cpp" />
     <ClCompile Include="CommonPch.cpp" />
     <ClCompile Include="CommonTLS.cpp" />
     <ClCompile Include="Lock\Lock.cpp" />

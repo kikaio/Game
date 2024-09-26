@@ -60,6 +60,9 @@ using namespace std;
 #include "SocketUtil.h"
 #include "WsaReady.h"
 
+#include "PacketBuffer.h"
+
+
 #include "Listener.h"
 #include "Session.h"
 #include "SessionManager.h"

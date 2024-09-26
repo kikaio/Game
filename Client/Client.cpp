@@ -9,31 +9,17 @@ void PrintLn(const char* _msg) {
 
 int main()
 {
-	this_thread::sleep_for(2s);
-	string ip = "127.0.0.1";
-	UInt32 port = 7777;
+	PacketBuffer pb;
+	UInt32 testVal = 1000;
+	UInt32 testVal2 = 10;
 
-	NetworkCore netCore;
+	pb.WriteBytes(reinterpret_cast<BYTE*>(&testVal), sizeof(UInt32));
+	pb.Calc();
+	pb.Render();
 
-	if (netCore.Ready() == false) {
-		printf("net core ready failed\n");
-		return 0;
-	}
-	
-	if (netCore.ReadyToConnect() == false) {
-		printf("ReadyToConnect failed\n");
-		return 0;
-	}
+	UInt32 retVal = 0;
+	pb.ReadBytes(reinterpret_cast<BYTE*>(&retVal), sizeof(UInt32));
+	printf("read val : %d\n", retVal);
 
-	printf("net core ready complete\n");
-	int connCnt = 1;
-
-	vector<SessionSptr> sessions = netCore.StartConnect(ip, port, connCnt);
-	printf("clients connect ready complete\n");
-
-	UInt32 waitMilliSec = INFINITE;
-	while(true) {
-		netCore.Dispatch(waitMilliSec);
-	}
 	return 0;
 }

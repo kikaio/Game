@@ -28,6 +28,9 @@
     <Filter Include="Network\Session">
       <UniqueIdentifier>{d6fc55d9-7910-416f-901c-e80cd67c340d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Buffer">
+      <UniqueIdentifier>{b14c0e64-5136-4de0-b939-cd933aeb6416}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -108,6 +111,15 @@
     <ClInclude Include="Network\NetworkCore.h">
       <Filter>Network</Filter>
     </ClInclude>
+    <ClInclude Include="Buffer\PacketBuffer.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Buffer\BufWriter.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Buffer\BufReader.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -178,6 +190,15 @@
     </ClCompile>
     <ClCompile Include="Network\NetworkCore.cpp">
       <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Buffer\PacketBuffer.cpp">
+      <Filter>Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Buffer\BufWriter.cpp">
+      <Filter>Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Buffer\BufReader.cpp">
+      <Filter>Buffer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

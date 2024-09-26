@@ -10,6 +10,7 @@ Session::Session()
 Session::~Session()
 {
 	printf("session released");
+	closesocket(sock);
 }
 
 SOCKADDR* Session::SockAddr()
@@ -74,6 +75,7 @@ void Session::DoConnect()
 
 void Session::OnConnected()
 {
+	isConnected = true;
 	printf("Session : On Connected called\n");
 }
 

@@ -71,16 +71,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads\;$(SolutionDir)Common\Utils\;$(SolutionDir)Common\Network\;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads\;$(SolutionDir)Common\Utils\;$(SolutionDir)Common\Network\;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads\;$(SolutionDir)Common\Utils\;$(SolutionDir)Common\Network\;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads\;$(SolutionDir)Common\Utils\;$(SolutionDir)Common\Network\;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads\;$(SolutionDir)Common\Utils\;$(SolutionDir)Common\Network\;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads\;$(SolutionDir)Common\Utils\;$(SolutionDir)Common\Network\;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads\;$(SolutionDir)Common\Utils\;$(SolutionDir)Common\Network\;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads\;$(SolutionDir)Common\Utils\;$(SolutionDir)Common\Network\;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
