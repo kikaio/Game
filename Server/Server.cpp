@@ -10,6 +10,8 @@ void PrintLn(const char* _msg)
 int main()
 {
     int acceptCnt = 1;
+    int backlog = 100;
+    int port = 7777;
     NetworkCore netCore;
     if (netCore.Ready() == false) {
         //todo : ASSERT
@@ -17,10 +19,8 @@ int main()
     }
     printf("wsa standby.\n");
 
-    NetAddrSptr addr = MakeShared<NetAddr>();
-    addr->SetAddrAny(7777);
-    ListenerSptr listener = MakeShared<Listener>(addr);
-    netCore.ReadyToAccept(listener, acceptCnt);
+    ListenerSptr listener = MakeShared<Listener>(port);
+    netCore.ReadyToAccept(listener, backlog, acceptCnt);
 
     printf("accept ready\n");
 

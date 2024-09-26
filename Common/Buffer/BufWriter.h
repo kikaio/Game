@@ -19,15 +19,6 @@ public:
 		return *this;
 	}
 
-	BufWriter& operator<< (const string& _str) {
-		UInt16 len = _str.size();
-		buf.WriteBytes(reinterpret_cast<BYTE*>(&len), sizeof(len));
-		for(char _ch : _str) {
-			buf.WriteBytes(reinterpret_cast<BYTE*>(&_ch), sizeof(_ch));
-		}
-		return *this;
-	}
-
 	BufWriter& operator<< (string _str) {
 		UInt16 len = _str.size();
 		buf.WriteBytes(reinterpret_cast<BYTE*>(&len), sizeof(len));

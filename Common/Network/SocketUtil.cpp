@@ -89,7 +89,7 @@ BOOL SocketUtil::AcceptEx(IocpObjSptr _listener, IocpAccept* _accepter, SessionS
 
 	const UInt32 bufferLen = 1024;
 	array<CHAR, bufferLen> tmpBuff = {};
-	return lpfnAcceptEx(_listener->Sock(), _client->sock
+	return lpfnAcceptEx(_listener->Sock(), _client->Sock()
 		, tmpBuff.data(), 0
 		, addrSize + 16, addrSize + 16
 		, OUT &dwBytes, reinterpret_cast<LPOVERLAPPED>(_accepter)

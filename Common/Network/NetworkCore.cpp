@@ -41,43 +41,22 @@ void NetworkCore::ErrorHandle(UInt32 _err)
 
 void NetworkCore::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 {
-
-	switch (_event->Type()) {
-	
-	case IocpEvent::IOCP_EVENT::CONNECT: {
-		printf("On Connected\n");
-		IocpConnect* iocpConnect = reinterpret_cast<IocpConnect*>(_event);
-		SessionSptr session = iocpConnect->session;
-		session->Dispatch(_event, _bytes);
-		break;
-	}
-	case IocpEvent::IOCP_EVENT::RECV: {
-		break;
-	}
-	case IocpEvent::IOCP_EVENT::SEND: {
-		break;
-	}
-	case IocpEvent::IOCP_EVENT::DISCONNECT: {
-		break;
-	}
-	default: {
-		IocpObjSptr obj = _event->owner;
-		obj->DispatchEvent(_event, _bytes);
-		//todo : ASSERT
-		return;
-	}
-	}
+	IocpObjSptr obj = _event->owner;
+	obj->DispatchEvent(_event, _bytes);
 }
 
 bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _backlog, UInt32 _acceptCnt)
 {
 
 	//listener의 addr은 외부에서 우선 지정.
+	_listener->SetSockOpts();
+	_listener->SetIocpCore(iocpCore);
+
 	if(_listener->Bind() == false) {
-		// todo  : ASSERT?
-		printf("bind failed\n");
 		UInt32 err = WSAGetLastError();
 		if (err != WSA_IO_PENDING) {
+			// todo  : ASSERT?
+			printf("bind failed\n");
 			ErrorHandle(err);
 		}
 		return false;
@@ -114,7 +93,7 @@ vector<SessionSptr> NetworkCore::StartConnect(string _ip, UInt32 _port, UInt32 _
 			printf("this session bind failed..");
 			continue;
 		}
-		iocpCore->RegistToIocp(session->sock, &session->iocpConnect);
+		iocpCore->RegistToIocp(session->Sock(), &session->iocpConnect);
 		sessions.push_back(session);
 	}
 

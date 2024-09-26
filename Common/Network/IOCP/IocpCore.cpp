@@ -50,7 +50,7 @@ BOOL IocpCore::RegistListener(SOCKET _sock, class IocpAccept* _accepter)
 {
     HANDLE newHandle = CreateIoCompletionPort(
         (HANDLE)_sock, iocpHandle
-        , reinterpret_cast<ULONG_PTR>(_accepter), NULL
+        , NULL, NULL
     );
     return newHandle != INVALID_HANDLE_VALUE;
 }

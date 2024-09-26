@@ -9,27 +9,28 @@ void PrintLn(const char* _msg) {
 
 int main()
 {
-	PacketBuffer buf;
-	BufWriter writer(buf);
-	UInt16 testVal = 1000;
-	UInt16 testVal2 = 10;
-	string testStr = "test_msg";
+	string ip = "127.0.0.1";
+	int port = 7777;
+	int clientCnt = 1;
 
-	writer << testVal;
-	writer << testVal2;
-	writer << testStr;
+	NetworkCore netCore;
+	if (netCore.Ready() == false) {
+		//todo : ASSERT
+		return 0;
+	}
+	printf("wsa standby.\n");
+	
+	if (netCore.ReadyToConnect() == false) {
+		printf("ReadyToConnect failed\n");
+		return 0;
+	}
+	
+	vector<SessionSptr> sessions = netCore.StartConnect(ip, port, clientCnt);
 
-	BufReader reader(buf);
-	UInt16 retVal = 0;
-	UInt16 retVal2 = 0;
-	string retStr;
-	reader >> retVal;
-	reader >> retVal2;
-	reader >> retStr;
-
-	printf("read val : %d\n", retVal);
-	printf("read val2 : %d\n", retVal2);
-	printf("read retStr : %s\n", retStr.c_str());
+	UInt32 waitMilliSec = INFINITE;
+	while (true) {
+		netCore.Dispatch(waitMilliSec);
+	}
 
 	return 0;
 }
