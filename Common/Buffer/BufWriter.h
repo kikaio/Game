@@ -1,8 +1,40 @@
 #pragma once
 
-#define HEADER_BUF_SIZE 32
-#define BODY_BUF_SIZE 256
+#include "PacketBuffer.h"
+
 class BufWriter
 {
 	friend class PacketBuffer;
+public:
+
+	BufWriter(PacketBuffer& _buf) : buf(_buf) {
+	}
+	~BufWriter() = default;
+private:
+	PacketBuffer& buf;
+public:
+	template<typename T>
+	BufWriter& operator<<(T& _val) {
+		buf.WriteBytes(reinterpret_cast<BYTE*>(&_val), sizeof(T));
+		return *this;
+	}
+
+	BufWriter& operator<< (const string& _str) {
+		UInt16 len = _str.size();
+		buf.WriteBytes(reinterpret_cast<BYTE*>(&len), sizeof(len));
+		for(char _ch : _str) {
+			buf.WriteBytes(reinterpret_cast<BYTE*>(&_ch), sizeof(_ch));
+		}
+		return *this;
+	}
+
+	BufWriter& operator<< (string _str) {
+		UInt16 len = _str.size();
+		buf.WriteBytes(reinterpret_cast<BYTE*>(&len), sizeof(len));
+		for (char _ch : _str) {
+			buf.WriteBytes(reinterpret_cast<BYTE*>(&_ch), sizeof(_ch));
+		}
+		return *this;
+	}
+
 };

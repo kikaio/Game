@@ -38,3 +38,6 @@
 #define EMPTY_CONST_CHAR				""
 
 
+
+#define HEADER_BUF_SIZE 32
+#define BODY_BUF_SIZE 256

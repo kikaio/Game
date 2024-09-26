@@ -9,17 +9,27 @@ void PrintLn(const char* _msg) {
 
 int main()
 {
-	PacketBuffer pb;
-	UInt32 testVal = 1000;
-	UInt32 testVal2 = 10;
+	PacketBuffer buf;
+	BufWriter writer(buf);
+	UInt16 testVal = 1000;
+	UInt16 testVal2 = 10;
+	string testStr = "test_msg";
 
-	pb.WriteBytes(reinterpret_cast<BYTE*>(&testVal), sizeof(UInt32));
-	pb.Calc();
-	pb.Render();
+	writer << testVal;
+	writer << testVal2;
+	writer << testStr;
 
-	UInt32 retVal = 0;
-	pb.ReadBytes(reinterpret_cast<BYTE*>(&retVal), sizeof(UInt32));
+	BufReader reader(buf);
+	UInt16 retVal = 0;
+	UInt16 retVal2 = 0;
+	string retStr;
+	reader >> retVal;
+	reader >> retVal2;
+	reader >> retStr;
+
 	printf("read val : %d\n", retVal);
+	printf("read val2 : %d\n", retVal2);
+	printf("read retStr : %s\n", retStr.c_str());
 
 	return 0;
 }

@@ -61,7 +61,8 @@ using namespace std;
 #include "WsaReady.h"
 
 #include "PacketBuffer.h"
-
+#include "BufWriter.h"
+#include "BufReader.h"
 
 #include "Listener.h"
 #include "Session.h"

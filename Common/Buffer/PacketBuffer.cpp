@@ -34,6 +34,7 @@ void PacketBuffer::ReadBytes(BYTE* _start, UInt32 _size)
 		return ;
 	}
 	memcpy_s(_start, _size, body+readPos, _size);
+	readPos += _size;
 	return ;
 }
 
