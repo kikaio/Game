@@ -41,27 +41,9 @@ void NetworkCore::ErrorHandle(UInt32 _err)
 
 void NetworkCore::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 {
+
 	switch (_event->Type()) {
-	case IocpEvent::IOCP_EVENT::ACCEPT: {
-		printf("On Accept!!");
-		IocpAccept* iocpAccept = reinterpret_cast<IocpAccept*>(_event);
-		SessionSptr session = iocpAccept->session;
-		ListenerSptr listener = iocpAccept->listener;
-		listener->OnAccepted(session);
-		iocpAccept->Init();
-		iocpAccept->AfterAccept();
-		session->iocpRecv.session = session;
-		if (iocpCore->RegistToIocp(session->sock, &session->iocpRecv) == false) {
-			printf("Session Accepte Dispatch failed.\n");
-			// todo : ASSERT
-			return;
-		}
-		//iocpCore->RegistToIocp(session->sock, &session->iocpRecv);
-		//iocpCore->RegistToIocp(session->sock, &session->iocpRecv);
-		//Recv 등록.
-		//session->TryRecv();
-		break;
-	}
+	
 	case IocpEvent::IOCP_EVENT::CONNECT: {
 		printf("On Connected\n");
 		IocpConnect* iocpConnect = reinterpret_cast<IocpConnect*>(_event);
@@ -79,13 +61,15 @@ void NetworkCore::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 		break;
 	}
 	default: {
+		IocpObjSptr obj = _event->owner;
+		obj->DispatchEvent(_event, _bytes);
 		//todo : ASSERT
 		return;
 	}
 	}
 }
 
-bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _acceptCnt)
+bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _backlog, UInt32 _acceptCnt)
 {
 
 	//listener의 addr은 외부에서 우선 지정.
@@ -99,7 +83,7 @@ bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _acceptCnt)
 		return false;
 	}
 
-	if(_listener->Listen() == false) {
+	if(_listener->Listen(_backlog) == false) {
 		// todo : ASSERT
 		printf("listen failed\n");
 		UInt32 err = WSAGetLastError();
@@ -109,11 +93,7 @@ bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _acceptCnt)
 		return false;
 	}
 
-	
-
-	for(unsigned int idx = 0; idx < _acceptCnt; ++idx) {
-		_listener->TryAccept(iocpCore);
-	}
+	_listener->TryAccept(_acceptCnt);
 
 	return true;
 }

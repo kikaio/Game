@@ -32,7 +32,7 @@ public:
 	static BOOL UpdateConnectToSock(SOCKET _client);
 
 public:
-	static BOOL AcceptEx(ListenerSptr _listener, class IocpAccept* _accepter, SessionSptr _client);
+	static BOOL AcceptEx(IocpObjSptr _listener, class IocpAccept* _accepter, SessionSptr _client);
 	static BOOL ConnectEx(SOCKET _sock, const SOCKADDR* _addr, class IocpConnect* _event);
 };
 

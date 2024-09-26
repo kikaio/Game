@@ -16,11 +16,14 @@ public:
 	}
 private:
 	IOCP_EVENT type = IOCP_EVENT::NONE;
+public :
+	IocpObjSptr owner = nullptr;
 public:
 	IOCP_EVENT Type() {
 		return type;
 	}
 	void Init();
+
 };
 
 class IocpAccept : public IocpEvent 
@@ -29,7 +32,6 @@ public:
 	IocpAccept() : IocpEvent(IOCP_EVENT::ACCEPT){};
 public:
 	SessionSptr session = nullptr;
-	ListenerSptr listener = nullptr;
 public: 
 	void AfterAccept();
 };

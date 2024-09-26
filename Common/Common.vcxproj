@@ -168,6 +168,7 @@
     <ClInclude Include="Memory\STLAllocator.h" />
     <ClInclude Include="Network\IOCP\IocpCore.h" />
     <ClInclude Include="Network\IOCP\IocpEvent.h" />
+    <ClInclude Include="Network\IOCP\IocpObj.h" />
     <ClInclude Include="Network\NetAddr.h" />
     <ClInclude Include="Network\NetworkCore.h" />
     <ClInclude Include="Network\Session\Listener.h" />
@@ -200,6 +201,7 @@
     <ClCompile Include="Memory\STLAllocator.cpp" />
     <ClCompile Include="Network\IOCP\IocpCore.cpp" />
     <ClCompile Include="Network\IOCP\IocpEvent.cpp" />
+    <ClCompile Include="Network\IOCP\IocpObj.cpp" />
     <ClCompile Include="Network\NetAddr.cpp" />
     <ClCompile Include="Network\NetworkCore.cpp" />
     <ClCompile Include="Network\Session\Listener.cpp" />

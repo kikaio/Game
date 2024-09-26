@@ -80,7 +80,7 @@ BOOL SocketUtil::UpdateConnectToSock(SOCKET _client)
 	return ret != SOCKET_ERROR;
 }
 
-BOOL SocketUtil::AcceptEx(ListenerSptr _listener, IocpAccept* _accepter, SessionSptr _client)
+BOOL SocketUtil::AcceptEx(IocpObjSptr _listener, IocpAccept* _accepter, SessionSptr _client)
 {
 	int addrSize = sizeof(*_client->SockAddr());
 	DWORD dwBytes = 0;

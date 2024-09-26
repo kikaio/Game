@@ -1,28 +1,8 @@
 ﻿#pragma once
 
 //iocp 용
-class Listener : public enable_shared_from_this<Listener>
+class Listener : public IocpObj, public enable_shared_from_this<Listener>
 {
 public:
-	Listener(NetAddrSptr _ref);
-private:
-	NetAddrSptr netAddrSptr = nullptr;
-	SOCKET sock = NULL;
-	Int32 backLog = 100;
-	vector<class IocpAccept*> acceptEvents;
-private:
-	void DoAccept(IocpCoreSptr _iocpCore, class IocpAccept* _accepter);
-public:
-	virtual void OnAccepted(SessionSptr _session); // 상속 후 재정의 
-public:
-	bool Bind();
-	bool Listen();
-	NetAddrSptr NetAddr() {
-		return netAddrSptr;
-	}
-	SOCKET Sock() {
-		return sock;
-	}
-public:
-	void TryAccept(IocpCoreSptr _iocpCore);
+	Listener(UInt32 _port);
 };

@@ -64,6 +64,7 @@ using namespace std;
 #include "BufWriter.h"
 #include "BufReader.h"
 
+#include "IocpObj.h"
 #include "Listener.h"
 #include "Session.h"
 #include "SessionManager.h"
