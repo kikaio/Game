@@ -54,8 +54,9 @@ SOCKET IocpObj::Sock()
 	return sock;
 }
 
-void IocpObj::DoAccept(IocpAccept* _accepter, SessionSptr _clientSession)
+void IocpObj::DoAccept(IocpAccept* _accepter)
 {
+	SessionSptr _clientSession = NetworkCore::CreateSessionFactory();
 	_accepter->Init();
 	_accepter->session = _clientSession;
 
@@ -64,7 +65,7 @@ void IocpObj::DoAccept(IocpAccept* _accepter, SessionSptr _clientSession)
 		if (err != ERROR_IO_PENDING) {
 			printf("soket util's acceptEx failed - %d\n", err);
 			// todo : ASSERT
-			DoAccept(_accepter, _clientSession);
+			DoAccept(_accepter);
 			return;
 		}
 	}
@@ -83,7 +84,7 @@ void IocpObj::DoConnect()
 	}
 }
 
-void IocpObj::TryAccept(SessionSptr _clientSession)
+void IocpObj::TryAccept()
 {
 	printf("Try Accept called\n");
 	IocpAccept* accepter = xnew<IocpAccept>();
@@ -94,14 +95,14 @@ void IocpObj::TryAccept(SessionSptr _clientSession)
 		printf("RegistListener failed. err : %d\n", err);
 		return;
 	}
-	DoAccept(accepter, _clientSession);
+	DoAccept(accepter);
 }
 
 void IocpObj::OnAccepted(IocpAccept* _iocpAccept, SessionSptr _session)
 {
 	printf("accepted!\n");
 	if (SocketUtil::UpdateAcceptToSock(_session->sock, sock) == false) {
-		DoAccept(_iocpAccept, _session);
+		DoAccept(_iocpAccept);
 		return;
 	}
 	_session->iocpRecv.owner = _session;
@@ -113,6 +114,8 @@ void IocpObj::OnAccepted(IocpAccept* _iocpAccept, SessionSptr _session)
 	}
 	//Recv 등록.
 	//session->TryRecv();
+
+	DoAccept(_iocpAccept);
 }
 
 void IocpObj::TryConnect()

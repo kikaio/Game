@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+using SessionCreateFunc = std::function<SessionSptr()>;
 
 class NetworkCore
 {
@@ -7,11 +8,12 @@ private :
 	IocpCoreSptr iocpCore = nullptr;
 	WsaReadySptr wsaReady = nullptr;
 public:
-	
+	static SessionCreateFunc  CreateSessionFactory;
 
 private:
 	void ErrorHandle(UInt32 _err);
 	void DispatchEvent(class IocpEvent* _event, UInt32 _bytes);
+
 public:
 	bool Ready();
 	bool ReadyToAccept(ListenerSptr _listener, UInt32 _backlog, UInt32 _acceptCnt);

@@ -1,6 +1,10 @@
 #include "pch.h"
 #include "NetworkCore.h"
 
+SessionCreateFunc NetworkCore::CreateSessionFactory = []() {
+	return MakeShared<Session>();
+};
+	
 bool NetworkCore::Ready()
 {
 	wsaReady = MakeShared<WsaReady>();
@@ -29,6 +33,7 @@ bool NetworkCore::Ready()
 
 	return true;
 }
+
 
 void NetworkCore::ErrorHandle(UInt32 _err)
 {
@@ -74,8 +79,7 @@ bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _backlog, UInt32 
 	}
 
 	for (UInt32 idx = 0; idx < _acceptCnt; idx++) {
-		SessionSptr clientSession = MakeShared<Session>();
-		_listener->TryAccept(clientSession);
+		_listener->TryAccept();
 	}
 
 	return true;
@@ -93,7 +97,7 @@ vector<SessionSptr> NetworkCore::StartConnect(string _ip, UInt32 _port, UInt32 _
 
 	vector<SessionSptr> sessions;
 	for (UInt32 idx = 0; idx < _connCnt; idx++) {
-		SessionSptr session = MakeShared<Session>();
+		SessionSptr session = CreateSessionFactory();
 		session->Net()->SetAddrAny(0);
 		if(session->Bind() == false) {
 			printf("this session bind failed.. err : %d\n", WSAGetLastError());

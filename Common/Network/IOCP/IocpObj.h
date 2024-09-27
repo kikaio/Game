@@ -26,11 +26,11 @@ public:
 	SOCKET Sock();
 
 private:
-	void  DoAccept(IocpAccept* _accepter, SessionSptr _clientSession);
+	void  DoAccept(IocpAccept* _accepter);
 	virtual void DoConnect();
 
 public:
-	virtual void TryAccept(SessionSptr _clientSession);
+	virtual void TryAccept();
 	virtual void OnAccepted(IocpAccept* _iocpAccept, SessionSptr _session);
 
 	virtual void TryConnect();
