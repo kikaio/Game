@@ -7,14 +7,18 @@ public:
 	~IocpCore();
 private:
 	HANDLE iocpHandle= INVALID_HANDLE_VALUE;
+	NetAddrSptr netTarget = nullptr;
 private:
 	void ErrorHandle(UInt32 _err);
 	HANDLE CreateIocpHandle(DWORD _threadCnt);
 public:
 	bool Ready();
-	BOOL RegistToIocp(SOCKET _sock, class IocpEvent* _event);
-	BOOL RegistListener(SOCKET _sock, class IocpAccept* _accepter);
+	BOOL RegistToIocp(SOCKET _sock);
 	HANDLE IocpHandle() {
 		return iocpHandle;
+	}
+
+	NetAddrSptr GetNetTarget() {
+		return netTarget;
 	}
 };

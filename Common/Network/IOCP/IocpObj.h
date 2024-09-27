@@ -5,10 +5,9 @@ class IocpObj : public enable_shared_from_this<IocpObj>
 {
 public:
 	IocpObj();
-	~IocpObj();
+	virtual ~IocpObj();
 private:
-	bool isConnected = false;
-	bool isDisconneccted = false;
+	atomic<bool> isConnected = false;
 	NetAddrSptr netAddrSptr = nullptr;
 	SOCKET sock = NULL;
 	IocpCoreSptr iocpCore = nullptr;
@@ -23,15 +22,16 @@ public:
 	bool Listen(UInt32 _backlog);
 	SOCKADDR* SockAddr();
 	NetAddrSptr Net();
+	
 	SOCKET Sock();
 
 private:
-	void  DoAccept(IocpAccept* _accepter);
+	void  DoAccept(IocpAccept* _accepter, SessionSptr _clientSession);
 	virtual void DoConnect();
 
 public:
-	virtual void TryAccept(UInt32 _acceptCnt);
-	virtual void OnAccepted(SessionSptr _session);
+	virtual void TryAccept(SessionSptr _clientSession);
+	virtual void OnAccepted(IocpAccept* _iocpAccept, SessionSptr _session);
 
 	virtual void TryConnect();
 	virtual void OnConnected();

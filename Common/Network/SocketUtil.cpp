@@ -35,7 +35,7 @@ SOCKET SocketUtil::CreateTCP()
 
 SOCKET SocketUtil::CreateIocpTCP()
 {
-	return WSASocket(AF_INET, SOCK_STREAM, IPPROTO_IP, nullptr, NULL, WSA_FLAG_OVERLAPPED);
+	return WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, nullptr, NULL, WSA_FLAG_OVERLAPPED);
 }
 
 SOCKET SocketUtil::CreateUDP()
@@ -84,8 +84,8 @@ BOOL SocketUtil::AcceptEx(IocpObjSptr _listener, IocpAccept* _accepter, SessionS
 {
 	int addrSize = sizeof(*_client->SockAddr());
 	DWORD dwBytes = 0;
-	_accepter->Init();
-	_accepter->session = _client;
+//	_accepter->Init();
+//	_accepter->session = _client;
 
 	const UInt32 bufferLen = 1024;
 	array<CHAR, bufferLen> tmpBuff = {};

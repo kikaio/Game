@@ -3,13 +3,9 @@
 
 class NetworkCore
 {
-private:
-	//비동기 소켓 입출력 관련
-	LPFN_ACCEPTEX lpfnAcceptEx = nullptr;
-	GUID guidAcceptEx = WSAID_ACCEPTEX;
 private :
-	IocpCoreSptr iocpCore;
-	WsaReadySptr wsaReady;
+	IocpCoreSptr iocpCore = nullptr;
+	WsaReadySptr wsaReady = nullptr;
 public:
 	
 

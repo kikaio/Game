@@ -14,5 +14,4 @@ void IocpEvent::Init()
 void IocpAccept::AfterAccept()
 {
 	session = nullptr;
-	owner = nullptr;
 }

@@ -42,13 +42,14 @@ void NetworkCore::ErrorHandle(UInt32 _err)
 void NetworkCore::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 {
 	IocpObjSptr obj = _event->owner;
+	if (_event->Type() == IocpEvent::IOCP_EVENT::ACCEPT) {
+		int a = 10;
+	}
 	obj->DispatchEvent(_event, _bytes);
 }
 
 bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _backlog, UInt32 _acceptCnt)
 {
-
-	//listener의 addr은 외부에서 우선 지정.
 	_listener->SetSockOpts();
 	_listener->SetIocpCore(iocpCore);
 
@@ -72,7 +73,10 @@ bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _backlog, UInt32 
 		return false;
 	}
 
-	_listener->TryAccept(_acceptCnt);
+	for (UInt32 idx = 0; idx < _acceptCnt; idx++) {
+		SessionSptr clientSession = MakeShared<Session>();
+		_listener->TryAccept(clientSession);
+	}
 
 	return true;
 }
@@ -85,15 +89,18 @@ bool NetworkCore::ReadyToConnect()
 
 vector<SessionSptr> NetworkCore::StartConnect(string _ip, UInt32 _port, UInt32 _connCnt)
 {
+	iocpCore->GetNetTarget()->SetAddr(_ip, _port);
+
 	vector<SessionSptr> sessions;
 	for (UInt32 idx = 0; idx < _connCnt; idx++) {
 		SessionSptr session = MakeShared<Session>();
-		session->Net()->SetAddr(_ip, _port);
+		session->Net()->SetAddrAny(0);
 		if(session->Bind() == false) {
-			printf("this session bind failed..");
+			printf("this session bind failed.. err : %d\n", WSAGetLastError());
 			continue;
 		}
-		iocpCore->RegistToIocp(session->Sock(), &session->iocpConnect);
+		session->SetIocpCore(iocpCore);
+		iocpCore->RegistToIocp(session->Sock());
 		sessions.push_back(session);
 	}
 
@@ -124,13 +131,13 @@ void NetworkCore::Dispatch(UInt32 _milliSec)
 	if(ret == FALSE) {
 		return;
 	}
-
 	IocpEvent* iocpEvent = reinterpret_cast<IocpEvent*>(overlappedPtr);
 	if (iocpEvent == nullptr) {
 		printf("event must be not null...\n");
 		// todo : ASSERT
 		return;
 	}
+
 	DispatchEvent(iocpEvent, bytes);
 	return ;
 }

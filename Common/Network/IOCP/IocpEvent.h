@@ -40,8 +40,6 @@ class IocpConnect : public IocpEvent
 {
 public:
 	IocpConnect() : IocpEvent(IOCP_EVENT::CONNECT) {};
-public:
-	SessionSptr session = nullptr;
 };
 
 class IocpRecv : public IocpEvent
@@ -49,7 +47,6 @@ class IocpRecv : public IocpEvent
 public:
 	IocpRecv() : IocpEvent(IOCP_EVENT::RECV) {};
 public:
-	SessionSptr session = nullptr;
 };
 
 class IocpSend : public IocpEvent

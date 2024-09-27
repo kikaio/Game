@@ -3,6 +3,7 @@
 
 IocpCore::IocpCore()
 {
+    netTarget = MakeShared<NetAddr>();
 }
 
 IocpCore::~IocpCore()
@@ -21,7 +22,7 @@ void IocpCore::ErrorHandle(UInt32 _err)
 
 HANDLE IocpCore::CreateIocpHandle(DWORD _threadCnt)
 {
-    return CreateIoCompletionPort(INVALID_HANDLE_VALUE, nullptr, NULL, _threadCnt);
+    return CreateIoCompletionPort(INVALID_HANDLE_VALUE, nullptr, NULL, 0);
 }
 
 bool IocpCore::Ready()
@@ -36,17 +37,7 @@ bool IocpCore::Ready()
     return true;
 }
 
-BOOL IocpCore::RegistToIocp(SOCKET _sock, class IocpEvent* _event)
-{
-    _event->Init();
-    HANDLE newHandle = CreateIoCompletionPort(
-        (HANDLE)_sock, iocpHandle
-        , NULL, NULL
-    );
-    return newHandle != INVALID_HANDLE_VALUE;
-}
-
-BOOL IocpCore::RegistListener(SOCKET _sock, class IocpAccept* _accepter)
+BOOL IocpCore::RegistToIocp(SOCKET _sock)
 {
     HANDLE newHandle = CreateIoCompletionPort(
         (HANDLE)_sock, iocpHandle
@@ -54,5 +45,3 @@ BOOL IocpCore::RegistListener(SOCKET _sock, class IocpAccept* _accepter)
     );
     return newHandle != INVALID_HANDLE_VALUE;
 }
-
-

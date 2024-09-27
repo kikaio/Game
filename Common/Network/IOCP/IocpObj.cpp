@@ -9,8 +9,12 @@ IocpObj::IocpObj()
 
 IocpObj::~IocpObj()
 {
-	if (isDisconneccted == false) {
+	
+	if (isConnected.load()) {
 		closesocket(sock);
+	}
+	for (IocpAccept* _ptr : acceptEvents) {
+		xfree(_ptr);
 	}
 }
 
@@ -50,16 +54,17 @@ SOCKET IocpObj::Sock()
 	return sock;
 }
 
-void IocpObj::DoAccept(IocpAccept* _accepter)
+void IocpObj::DoAccept(IocpAccept* _accepter, SessionSptr _clientSession)
 {
-	SessionSptr reserveSession = MakeShared<Session>();
+	_accepter->Init();
+	_accepter->session = _clientSession;
 
-	if (SocketUtil::AcceptEx(shared_from_this(), _accepter, reserveSession) == false) {
+	if (SocketUtil::AcceptEx(_accepter->owner, _accepter, _clientSession) == false) {
 		UInt32 err = WSAGetLastError();
-		if (err != WSA_IO_PENDING) {
+		if (err != ERROR_IO_PENDING) {
 			printf("soket util's acceptEx failed - %d\n", err);
 			// todo : ASSERT
-			DoAccept(_accepter);
+			DoAccept(_accepter, _clientSession);
 			return;
 		}
 	}
@@ -69,7 +74,7 @@ void IocpObj::DoConnect()
 {
 	iocpConnect.Init();
 	iocpConnect.owner = shared_from_this();
-	if (SocketUtil::ConnectEx(sock, netAddrSptr->SockAddr(), &iocpConnect) == false) {
+	if (SocketUtil::ConnectEx(sock, iocpCore->GetNetTarget()->SockAddr(), &iocpConnect) == false) {
 		if (WSAGetLastError() != WSA_IO_PENDING) {
 			printf("connect Ex failed. try again..\n");
 			DoConnect();
@@ -78,26 +83,30 @@ void IocpObj::DoConnect()
 	}
 }
 
-void IocpObj::TryAccept(UInt32 _acceptCnt)
+void IocpObj::TryAccept(SessionSptr _clientSession)
 {
-	printf("TryAccept called\n");
-	for (UInt32 idx = 0; idx < _acceptCnt; idx++) {
-		IocpAccept* accepter = xnew<IocpAccept>();
-		accepter->owner = shared_from_this();
-		acceptEvents.push_back(accepter);
-		accepter->Init();
-		iocpCore->RegistListener(sock, accepter);
-		DoAccept(accepter);
+	printf("Try Accept called\n");
+	IocpAccept* accepter = xnew<IocpAccept>();
+	acceptEvents.push_back(accepter);
+	accepter->owner = shared_from_this();
+	if (iocpCore->RegistToIocp(sock) == false) {
+		int err = WSAGetLastError();
+		printf("RegistListener failed. err : %d\n", err);
+		return;
 	}
+	DoAccept(accepter, _clientSession);
 }
 
-void IocpObj::OnAccepted(SessionSptr _session)
+void IocpObj::OnAccepted(IocpAccept* _iocpAccept, SessionSptr _session)
 {
 	printf("accepted!\n");
-	SocketUtil::UpdateAcceptToSock(_session->sock, sock);
-	_session->iocpRecv.session = _session;
+	if (SocketUtil::UpdateAcceptToSock(_session->sock, sock) == false) {
+		DoAccept(_iocpAccept, _session);
+		return;
+	}
+	_session->iocpRecv.owner = _session;
 	_session->SetIocpCore(iocpCore);
-	if (iocpCore->RegistToIocp(_session->sock, &_session->iocpRecv) == false) {
+	if (iocpCore->RegistToIocp(_session->sock) == false) {
 		printf("Session Accepte Dispatch failed.\n");
 		// todo : ASSERT
 		return;
@@ -108,13 +117,13 @@ void IocpObj::OnAccepted(SessionSptr _session)
 
 void IocpObj::TryConnect()
 {
-	printf("try connect colled\n");
+	printf("try connect called\n");
 	DoConnect();
 }
 
 void IocpObj::OnConnected()
 {
-	isConnected = true;
+	isConnected.store(true);
 	printf("Session : On Connected called\n");
 }
 
@@ -132,7 +141,7 @@ void IocpObj::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 		SessionSptr session = iocpAccept->session;
 		iocpAccept->Init();
 		iocpAccept->AfterAccept();
-		OnAccepted(session);
+		OnAccepted(iocpAccept, session);
 		break;
 	}
 	case IocpEvent::IOCP_EVENT::CONNECT: {
@@ -153,6 +162,7 @@ void IocpObj::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 	}
 	default: {
 		//todo : ASSERT
+		printf("IocpObj DispatchEvent default case..?\n");
 		return;
 	}
 	}
