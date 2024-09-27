@@ -26,14 +26,16 @@ public:
 	static SOCKET CreateIocpTCP();
 	static SOCKET CreateUDP(); 
 	static void SetReuse(SOCKET _sock, bool _flag); 
-	static void SetLinger(SOCKET _sock, DWORD _onoff, DWORD _linger); 
+	static void SetLinger(SOCKET _sock, DWORD _onoff, DWORD _linger);
 	static void SetConditionalAccept(SOCKET _listener);
 	static BOOL UpdateAcceptToSock(SOCKET _client, SOCKET _listener);
 	static BOOL UpdateConnectToSock(SOCKET _client);
 
+	static BOOL CloseSocket(SOCKET _sock);
 public:
 	static BOOL AcceptEx(IocpObjSptr _listener, class IocpAccept* _accepter, SessionSptr _client);
 	static BOOL ConnectEx(SOCKET _sock, const SOCKADDR* _addr, class IocpConnect* _event);
+	static BOOL DisconnectEx(SOCKET _sock, class IocpDisconnect* _event);
 };
 
 

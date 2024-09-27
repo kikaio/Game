@@ -15,6 +15,7 @@ public:
 	vector<IocpAccept*> acceptEvents;
 	IocpRecv iocpRecv;
 	IocpConnect iocpConnect;
+	IocpDisconnect iocpDisconnect;
 
 public:
 	void SetSockOpts();
@@ -26,9 +27,9 @@ public:
 	SOCKET Sock();
 
 private:
-	void  DoAccept(IocpAccept* _accepter);
-	virtual void DoConnect();
-
+	void DoAccept(IocpAccept* _accepter);
+	void DoConnect();
+	void DoDisconnect();
 public:
 	virtual void TryAccept();
 	virtual void OnAccepted(IocpAccept* _iocpAccept, SessionSptr _session);
@@ -36,6 +37,8 @@ public:
 	virtual void TryConnect();
 	virtual void OnConnected();
 
+	virtual void TryDisconnect();
+	virtual void OnDisconnect();
 public:
 	void SetIocpCore(IocpCoreSptr _iocpCore);
 	void DispatchEvent(IocpEvent* _event, UInt32 _bytes);

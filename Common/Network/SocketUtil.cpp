@@ -80,6 +80,11 @@ BOOL SocketUtil::UpdateConnectToSock(SOCKET _client)
 	return ret != SOCKET_ERROR;
 }
 
+BOOL SocketUtil::CloseSocket(SOCKET _sock)
+{
+	return closesocket(_sock) == NO_ERROR;
+}
+
 BOOL SocketUtil::AcceptEx(IocpObjSptr _listener, IocpAccept* _accepter, SessionSptr _client)
 {
 	int addrSize = sizeof(*_client->SockAddr());
@@ -107,6 +112,11 @@ BOOL SocketUtil::ConnectEx(SOCKET _sock, const SOCKADDR* _addr, IocpConnect* _ev
 		, nullptr, 0, nullptr, _event
 	);
 	return ret != SOCKET_ERROR;
+}
+
+BOOL SocketUtil::DisconnectEx(SOCKET _sock, IocpDisconnect* _event)
+{
+	return lpfnDisconnectEx(_sock, _event, TF_REUSE_SOCKET, NULL);
 }
 
 BOOL SocketUtil::SetAcceptFunc()

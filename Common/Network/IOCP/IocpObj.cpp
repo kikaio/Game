@@ -16,6 +16,7 @@ IocpObj::~IocpObj()
 	for (IocpAccept* _ptr : acceptEvents) {
 		xfree(_ptr);
 	}
+	printf("IocpObj released!\n");
 }
 
 void IocpObj::SetSockOpts()
@@ -62,7 +63,7 @@ void IocpObj::DoAccept(IocpAccept* _accepter)
 
 	if (SocketUtil::AcceptEx(_accepter->owner, _accepter, _clientSession) == false) {
 		UInt32 err = WSAGetLastError();
-		if (err != ERROR_IO_PENDING) {
+		if (err != WSA_IO_PENDING) {
 			printf("soket util's acceptEx failed - %d\n", err);
 			// todo : ASSERT
 			DoAccept(_accepter);
@@ -84,6 +85,20 @@ void IocpObj::DoConnect()
 	}
 }
 
+void IocpObj::DoDisconnect()
+{
+	iocpDisconnect.Init();
+	iocpDisconnect.owner = shared_from_this();
+	if (SocketUtil::DisconnectEx(sock, &iocpDisconnect) == false) {
+		int err = WSAGetLastError();
+		if (err != WSA_IO_PENDING) {
+			printf("disconnect Ex failed. err : %d\n", err);
+			DoDisconnect();
+			return ;
+		}
+	}
+}
+
 void IocpObj::TryAccept()
 {
 	printf("Try Accept called\n");
@@ -101,6 +116,10 @@ void IocpObj::TryAccept()
 void IocpObj::OnAccepted(IocpAccept* _iocpAccept, SessionSptr _session)
 {
 	printf("accepted!\n");
+	_iocpAccept->Init();
+	_iocpAccept->AfterAccept();
+
+
 	if (SocketUtil::UpdateAcceptToSock(_session->sock, sock) == false) {
 		DoAccept(_iocpAccept);
 		return;
@@ -130,6 +149,23 @@ void IocpObj::OnConnected()
 	printf("Session : On Connected called\n");
 }
 
+void IocpObj::TryDisconnect()
+{
+	DoDisconnect();
+}
+
+void IocpObj::OnDisconnect()
+{
+	iocpDisconnect.owner = nullptr;
+	if (isConnected.load() == false) {
+		return;
+	}
+	iocpDisconnect.Init();
+	iocpDisconnect.owner = nullptr;
+	isConnected.store(false);
+	SocketUtil::CloseSocket(sock);
+}
+
 void IocpObj::SetIocpCore(IocpCoreSptr _iocpCore)
 {
 	iocpCore = _iocpCore;
@@ -142,15 +178,12 @@ void IocpObj::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 		printf("On Accept!!");
 		IocpAccept* iocpAccept = reinterpret_cast<IocpAccept*>(_event);
 		SessionSptr session = iocpAccept->session;
-		iocpAccept->Init();
-		iocpAccept->AfterAccept();
 		OnAccepted(iocpAccept, session);
 		break;
 	}
 	case IocpEvent::IOCP_EVENT::CONNECT: {
 		printf("On Connected\n");
 		IocpConnect* iocpConnect = reinterpret_cast<IocpConnect*>(_event);
-		iocpConnect->Init();
 		OnConnected();
 		break;
 	}
@@ -161,6 +194,8 @@ void IocpObj::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 		break;
 	}
 	case IocpEvent::IOCP_EVENT::DISCONNECT: {
+		IocpDisconnect* iocpDisconn = reinterpret_cast<IocpDisconnect*>(_event);
+		OnDisconnect();
 		break;
 	}
 	default: {
