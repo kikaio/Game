@@ -47,12 +47,16 @@ class IocpRecv : public IocpEvent
 public:
 	IocpRecv() : IocpEvent(IOCP_EVENT::RECV) {};
 public:
+	PacketBuffer packetBuffer;
 };
 
 class IocpSend : public IocpEvent
 {
 public:
 	IocpSend() : IocpEvent(IOCP_EVENT::SEND) {};
+public:
+	BYTE* buf;
+	UInt32 remainCnt = 0;
 };
 
 class IocpDisconnect : public IocpEvent

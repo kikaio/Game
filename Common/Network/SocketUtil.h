@@ -36,6 +36,10 @@ public:
 	static BOOL AcceptEx(IocpObjSptr _listener, class IocpAccept* _accepter, SessionSptr _client);
 	static BOOL ConnectEx(SOCKET _sock, const SOCKADDR* _addr, class IocpConnect* _event);
 	static BOOL DisconnectEx(SOCKET _sock, class IocpDisconnect* _event);
+
+	static BOOL WSASend(SOCKET _sock, class IocpSend* _event);
+	static BOOL WSARecv(SOCKET _sock, class IocpRecv* _event);
+
 };
 
 

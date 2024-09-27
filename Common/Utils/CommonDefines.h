@@ -39,5 +39,8 @@
 
 
 
-#define HEADER_BUF_SIZE 32
-#define BODY_BUF_SIZE 256
+#define HEADER_BUF_SIZE			32
+#define BODY_BUF_SIZE			256
+#define MIN_BUF_SIZE			32
+#define SMALL_BUF_SIZE			64
+#define MIDLE_BUF_SIZE			256

@@ -16,7 +16,7 @@ public:
 	IocpRecv iocpRecv;
 	IocpConnect iocpConnect;
 	IocpDisconnect iocpDisconnect;
-
+	IocpSend iocpSend;
 public:
 	void SetSockOpts();
 	bool Bind();
@@ -30,6 +30,8 @@ private:
 	void DoAccept(IocpAccept* _accepter);
 	void DoConnect();
 	void DoDisconnect();
+	void DoSend(BYTE* _buf, UInt32 _len);
+	void DoRecv();
 public:
 	virtual void TryAccept();
 	virtual void OnAccepted(IocpAccept* _iocpAccept, SessionSptr _session);
@@ -39,6 +41,12 @@ public:
 
 	virtual void TryDisconnect();
 	virtual void OnDisconnect();
+
+	virtual void TrySend(BYTE* _orig, UInt32 _len);
+	virtual void OnSended(UInt32 _bytes);
+
+	virtual void TryRecv();
+	virtual void OnRecved(UInt32 _bytes);
 public:
 	void SetIocpCore(IocpCoreSptr _iocpCore);
 	void DispatchEvent(IocpEvent* _event, UInt32 _bytes);

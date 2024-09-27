@@ -36,11 +36,15 @@ void DoSimpleClient() {
 	WSACleanup();
 }
 
+atomic<bool> connected = false;
+vector<SessionSptr> sessions;
+
+
 void DoIocpClient() {
 
 	string ip = "127.0.0.1";
 	int port = 7777;
-	int clientCnt = 100;
+	int clientCnt = 2;
 
 	NetworkCore netCore;
 	if (netCore.Ready() == false) {
@@ -57,20 +61,47 @@ void DoIocpClient() {
 	this_thread::sleep_for(3s);
 
 	NetAddrSptr net = MakeShared<NetAddr>();
-	vector<SessionSptr> sessions = netCore.StartConnect(ip, port, clientCnt);
 
+	{
+		sessions = netCore.StartConnect(ip, port, clientCnt);
+		connected.store(true);
+	}
 	UInt32 waitMilliSec = INFINITE;
 	while (true) {
 		netCore.Dispatch(waitMilliSec);
 	}
 }
 
+
+char sendMsg[SMALL_BUF_SIZE] = "hello, I'm client. who are you?\n";
+
+void DoEchoSend() {
+
+	while(true) {
+		if(connected.load() == false) {
+			this_thread::sleep_for(2s);
+		}
+		else {
+			for(auto _session : sessions) {
+				_session->TrySend(reinterpret_cast<BYTE*>(sendMsg), SMALL_BUF_SIZE);
+			}
+			this_thread::sleep_for(5s);
+		}
+	}
+
+	return ;
+}
+
 int main()
 {
 
 	//DoSimpleClient();
-	DoIocpClient();
-
+	//	DoIocpClient();
+	thread iocpWorker = thread(DoIocpClient);
+	thread iocpEcho = thread(DoEchoSend);
 	
+	iocpWorker.join();
+	iocpEcho.join();
+
 	return 0;
 }

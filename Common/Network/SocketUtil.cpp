@@ -119,6 +119,25 @@ BOOL SocketUtil::DisconnectEx(SOCKET _sock, IocpDisconnect* _event)
 	return lpfnDisconnectEx(_sock, _event, TF_REUSE_SOCKET, NULL);
 }
 
+BOOL SocketUtil::WSASend(SOCKET _sock, IocpSend* _event)
+{
+	WSABUF wsaBuf = {};
+	wsaBuf.buf = reinterpret_cast<char*>(_event->buf);
+	wsaBuf.len = _event->remainCnt;
+	DWORD bytes = 0;
+	return ::WSASend(_sock, &wsaBuf, 1, NULL, 0, _event, nullptr) == NO_ERROR;
+}
+
+BOOL SocketUtil::WSARecv(SOCKET _sock, IocpRecv* _event)
+{
+	WSABUF wsaBuf = {};
+	DWORD bytes = 0;
+	DWORD flag= 0;
+	wsaBuf.buf = reinterpret_cast<char*>(_event->packetBuffer.GetBodyPtr());
+	wsaBuf.len = _event->packetBuffer.GetWritableSize();
+	return ::WSARecv(_sock, &wsaBuf, 1, &bytes, &flag, _event, NULL) == NO_ERROR;
+}
+
 BOOL SocketUtil::SetAcceptFunc()
 {
 	SOCKET _sock = SocketUtil::CreateIocpTCP();

@@ -25,4 +25,15 @@ public:
 	void ReadBytes(BYTE* _start, UInt32 _size);
 	void ClearHeader();
 	void ClearBody();
+	BYTE* GetHeaderPtr() {
+		return header;
+	}
+
+	BYTE* GetBodyPtr(UInt32 _delta = 0) {
+		return body + _delta;
+	}
+
+	UInt32 GetWritableSize() {
+		return BODY_BUF_SIZE - writePos;
+	}
 };

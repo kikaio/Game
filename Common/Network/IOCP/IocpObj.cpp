@@ -99,6 +99,36 @@ void IocpObj::DoDisconnect()
 	}
 }
 
+void IocpObj::DoSend(BYTE* _buf, UInt32 _len)
+{
+	iocpSend.Init();
+	iocpSend.owner = shared_from_this();
+	iocpSend.buf = _buf;
+	iocpSend.remainCnt = _len;
+	if(SocketUtil::WSASend(sock, &iocpSend) == false) {
+		int err = WSAGetLastError();
+		if(err != WSA_IO_PENDING) {
+			DoSend(_buf, _len);
+			return;
+		}
+	}
+	return ;
+}
+
+void IocpObj::DoRecv()
+{
+	iocpRecv.Init();
+	iocpRecv.owner = shared_from_this();
+	if(SocketUtil::WSARecv(sock, &iocpRecv) == false) {
+		int err = WSAGetLastError();
+		if(err != WSA_IO_PENDING) {
+			printf("SocketUtil::WSARecv failed. err : %d\n", err);
+			DoRecv();
+			return;
+		}
+	}
+}
+
 void IocpObj::TryAccept()
 {
 	printf("Try Accept called\n");
@@ -107,8 +137,11 @@ void IocpObj::TryAccept()
 	accepter->owner = shared_from_this();
 	if (iocpCore->RegistToIocp(sock) == false) {
 		int err = WSAGetLastError();
-		printf("RegistListener failed. err : %d\n", err);
-		return;
+		if(err != WSA_IO_PENDING) {
+			DoAccept(accepter);
+			printf("RegistListener failed. err : %d\n", err);
+			return;
+		}
 	}
 	DoAccept(accepter);
 }
@@ -127,14 +160,15 @@ void IocpObj::OnAccepted(IocpAccept* _iocpAccept, SessionSptr _session)
 	_session->iocpRecv.owner = _session;
 	_session->SetIocpCore(iocpCore);
 	if (iocpCore->RegistToIocp(_session->sock) == false) {
-		printf("Session Accepte Dispatch failed.\n");
+		int err = GetLastError();
+		printf("Session Accepte Dispatch failed. err : %d\n", err);
 		// todo : ASSERT
+		DoAccept(_iocpAccept);
 		return;
 	}
-	//Recv 등록.
-	//session->TryRecv();
-
+	
 	DoAccept(_iocpAccept);
+	_session->TryRecv();
 }
 
 void IocpObj::TryConnect()
@@ -166,10 +200,62 @@ void IocpObj::OnDisconnect()
 	SocketUtil::CloseSocket(sock);
 }
 
+void IocpObj::TrySend(BYTE* _orig, UInt32 _len)
+{
+	printf("Try send called\n");
+	DoSend(_orig, _len);
+}
+
+void IocpObj::OnSended(UInt32 _bytes)
+{
+	printf("OnSended called. bytes : %d\n", _bytes);
+	iocpSend.owner = nullptr;
+	printf("OnSended Called\n");
+	if(_bytes == 0) {
+		//todo : Discon
+		TryDisconnect();
+		return ;
+	}
+
+	int remainLen = iocpSend.remainCnt - _bytes;
+	if(remainLen == 0) { 
+		printf("send Complete\n");
+		return;
+	}
+	else if (remainLen > 0) {
+		TrySend(iocpSend.buf+_bytes, remainLen);
+		return;
+	}
+	else {
+		//todo ASSERT
+		return ;
+	}
+	return ;
+}
+
+void IocpObj::TryRecv()
+{
+	printf("Try Recv Called\n");
+	DoRecv();
+}
+
+void IocpObj::OnRecved(UInt32 _bytes)
+{
+	printf("OnRecved called. bytes : %d\n", _bytes);
+	iocpRecv.owner = nullptr;
+	if(_bytes == 0) {
+		TryDisconnect();
+		return ;
+	}
+	DoRecv();
+}
+
 void IocpObj::SetIocpCore(IocpCoreSptr _iocpCore)
 {
 	iocpCore = _iocpCore;
 }
+
+char testMsg[SMALL_BUF_SIZE] = "Wellcome to the Game!!\0";
 
 void IocpObj::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 {
@@ -188,9 +274,11 @@ void IocpObj::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 		break;
 	}
 	case IocpEvent::IOCP_EVENT::RECV: {
+		OnRecved(_bytes);
 		break;
 	}
 	case IocpEvent::IOCP_EVENT::SEND: {
+		OnSended(_bytes);
 		break;
 	}
 	case IocpEvent::IOCP_EVENT::DISCONNECT: {

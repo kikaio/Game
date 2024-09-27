@@ -47,9 +47,6 @@ void NetworkCore::ErrorHandle(UInt32 _err)
 void NetworkCore::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 {
 	IocpObjSptr obj = _event->owner;
-	if (_event->Type() == IocpEvent::IOCP_EVENT::ACCEPT) {
-		int a = 10;
-	}
 	obj->DispatchEvent(_event, _bytes);
 }
 
