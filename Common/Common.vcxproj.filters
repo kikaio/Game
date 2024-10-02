@@ -123,6 +123,9 @@
     <ClInclude Include="Network\IOCP\IocpObj.h">
       <Filter>Network\IOCP</Filter>
     </ClInclude>
+    <ClInclude Include="Buffer\RecvBuffer.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -205,6 +208,9 @@
     </ClCompile>
     <ClCompile Include="Network\IOCP\IocpObj.cpp">
       <Filter>Network\IOCP</Filter>
+    </ClCompile>
+    <ClCompile Include="Buffer\RecvBuffer.cpp">
+      <Filter>Buffer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
