@@ -55,8 +55,7 @@ class IocpSend : public IocpEvent
 public:
 	IocpSend() : IocpEvent(IOCP_EVENT::SEND) {};
 public:
-	BYTE* buf;
-	UInt32 remainCnt = 0;
+	vector<WSABUF> wsaBufs;
 };
 
 class IocpDisconnect : public IocpEvent

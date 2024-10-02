@@ -101,16 +101,26 @@ void IocpObj::DoDisconnect()
 
 void IocpObj::DoSend(BYTE* _buf, UInt32 _len)
 {
-	iocpSend.Init();
-	iocpSend.owner = shared_from_this();
-	iocpSend.buf = _buf;
-	iocpSend.remainCnt = _len;
-	if(SocketUtil::WSASend(sock, &iocpSend) == false) {
-		int err = WSAGetLastError();
-		if(err != WSA_IO_PENDING) {
-			DoSend(_buf, _len);
-			return;
+	if (isSending.load()) {
+		WSABUF wsabuf = {};
+		wsabuf.buf = reinterpret_cast<char*>(_buf);
+		wsabuf.len = _len;
+		iocpSend.wsaBufs.push_back(wsabuf);
+		return;
+	}
+	else
+	{
+		iocpSend.Init();
+		iocpSend.owner = shared_from_this();
+
+		if (SocketUtil::WSASend(sock, &iocpSend) == false) {
+			int err = WSAGetLastError();
+			if (err != WSA_IO_PENDING) {
+				DoSend(_buf, _len);
+				return;
+			}
 		}
+		isSending.store(true);
 	}
 	return ;
 }
@@ -208,6 +218,7 @@ void IocpObj::TrySend(BYTE* _orig, UInt32 _len)
 
 void IocpObj::OnSended(UInt32 _bytes)
 {
+	isSending.store(false);
 	printf("OnSended called. bytes : %d\n", _bytes);
 	iocpSend.owner = nullptr;
 	printf("OnSended Called\n");

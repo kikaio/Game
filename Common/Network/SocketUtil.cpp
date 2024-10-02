@@ -121,11 +121,7 @@ BOOL SocketUtil::DisconnectEx(SOCKET _sock, IocpDisconnect* _event)
 
 BOOL SocketUtil::WSASend(SOCKET _sock, IocpSend* _event)
 {
-	WSABUF wsaBuf = {};
-	wsaBuf.buf = reinterpret_cast<char*>(_event->buf);
-	wsaBuf.len = _event->remainCnt;
-	DWORD bytes = 0;
-	return ::WSASend(_sock, &wsaBuf, 1, NULL, 0, _event, nullptr) == NO_ERROR;
+	return ::WSASend(_sock, _event->wsaBufs.data(), _event->wsaBufs.size(), NULL, 0, _event, nullptr) == NO_ERROR;
 }
 
 BOOL SocketUtil::WSARecv(SOCKET _sock, IocpRecv* _event)

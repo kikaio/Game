@@ -8,6 +8,7 @@ public:
 	virtual ~IocpObj();
 private:
 	atomic<bool> isConnected = false;
+	atomic<bool> isSending = false;
 	NetAddrSptr netAddrSptr = nullptr;
 	SOCKET sock = NULL;
 	IocpCoreSptr iocpCore = nullptr;
