@@ -40,7 +40,7 @@ public:
 	virtual void TryConnect();
 	virtual void OnConnected();
 
-	virtual void TryDisconnect();
+	virtual void TryDisconnect(const char* _msg);
 	virtual void OnDisconnect();
 
 	virtual void TrySend(BYTE* _orig, UInt32 _len);

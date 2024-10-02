@@ -23,6 +23,8 @@ public:
 	
 	void WriteBytes(BYTE* _start, UInt32 _size);
 	void ReadBytes(BYTE* _start, UInt32 _size);
+	void OnWrite(UInt32 _len);
+	void OnRead(UInt32 _len);
 	void ClearHeader();
 	void ClearBody();
 	BYTE* GetHeaderPtr() {

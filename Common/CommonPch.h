@@ -60,9 +60,12 @@ using namespace std;
 #include "SocketUtil.h"
 #include "WsaReady.h"
 
+#include "RecvBuffer.h"
 #include "PacketBuffer.h"
 #include "BufWriter.h"
 #include "BufReader.h"
+
+
 
 #include "IocpObj.h"
 #include "Listener.h"

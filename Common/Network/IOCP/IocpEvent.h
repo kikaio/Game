@@ -47,7 +47,8 @@ class IocpRecv : public IocpEvent
 public:
 	IocpRecv() : IocpEvent(IOCP_EVENT::RECV) {};
 public:
-	PacketBuffer packetBuffer;
+	//PacketBuffer packetBuffer;
+	RecvBuffer recvBuffer = RecvBuffer(MIDLE_BUF_SIZE);
 };
 
 class IocpSend : public IocpEvent

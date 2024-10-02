@@ -121,7 +121,11 @@ BOOL SocketUtil::DisconnectEx(SOCKET _sock, IocpDisconnect* _event)
 
 BOOL SocketUtil::WSASend(SOCKET _sock, IocpSend* _event)
 {
-	return ::WSASend(_sock, _event->wsaBufs.data(), _event->wsaBufs.size(), NULL, 0, _event, nullptr) == NO_ERROR;
+	bool ret = ::WSASend(_sock, _event->wsaBufs.data(), _event->wsaBufs.size(), NULL, 0, _event, nullptr) == NO_ERROR;
+	if(ret) {
+		_event->wsaBufs.clear();
+	}
+	return ret;
 }
 
 BOOL SocketUtil::WSARecv(SOCKET _sock, IocpRecv* _event)
@@ -129,8 +133,8 @@ BOOL SocketUtil::WSARecv(SOCKET _sock, IocpRecv* _event)
 	WSABUF wsaBuf = {};
 	DWORD bytes = 0;
 	DWORD flag= 0;
-	wsaBuf.buf = reinterpret_cast<char*>(_event->packetBuffer.GetBodyPtr());
-	wsaBuf.len = _event->packetBuffer.GetWritableSize();
+	wsaBuf.buf = reinterpret_cast<char*>(_event->recvBuffer.WritePos());
+	wsaBuf.len = _event->recvBuffer.FreeSize();
 	return ::WSARecv(_sock, &wsaBuf, 1, &bytes, &flag, _event, NULL) == NO_ERROR;
 }
 

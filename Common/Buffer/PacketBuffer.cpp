@@ -38,6 +38,24 @@ void PacketBuffer::ReadBytes(BYTE* _start, UInt32 _size)
 	return ;
 }
 
+void PacketBuffer::OnWrite(UInt32 _len)
+{
+	if(writePos + _len > BODY_BUF_SIZE) {
+		//todo ASSERT
+		return ;
+	}
+	writePos += _len;
+}
+
+void PacketBuffer::OnRead(UInt32 _len)
+{
+	if(readPos + _len > BODY_BUF_SIZE) {
+		// todo : ASSERT
+		return ;
+	}
+	readPos += _len;
+}
+
 void PacketBuffer::ClearHeader()
 {
 	ZeroMemory(header, HEADER_BUF_SIZE);

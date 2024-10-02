@@ -9,10 +9,6 @@ IocpObj::IocpObj()
 
 IocpObj::~IocpObj()
 {
-	
-	if (isConnected.load()) {
-		closesocket(sock);
-	}
 	for (IocpAccept* _ptr : acceptEvents) {
 		xfree(_ptr);
 	}
@@ -74,12 +70,17 @@ void IocpObj::DoAccept(IocpAccept* _accepter)
 
 void IocpObj::DoConnect()
 {
+	if(isConnected.load()) {
+		return ;
+	}
+
 	iocpConnect.Init();
 	iocpConnect.owner = shared_from_this();
 	if (SocketUtil::ConnectEx(sock, iocpCore->GetNetTarget()->SockAddr(), &iocpConnect) == false) {
 		if (WSAGetLastError() != WSA_IO_PENDING) {
-			printf("connect Ex failed. try again..\n");
-			DoConnect();
+			//todo : logging
+			printf("connect Ex failed. check this..\n");
+			iocpConnect.owner = nullptr;
 			return;
 		}
 	}
@@ -92,8 +93,9 @@ void IocpObj::DoDisconnect()
 	if (SocketUtil::DisconnectEx(sock, &iocpDisconnect) == false) {
 		int err = WSAGetLastError();
 		if (err != WSA_IO_PENDING) {
+			//todo : logging
+			iocpDisconnect.owner = nullptr;
 			printf("disconnect Ex failed. err : %d\n", err);
-			DoDisconnect();
 			return ;
 		}
 	}
@@ -116,11 +118,12 @@ void IocpObj::DoSend(BYTE* _buf, UInt32 _len)
 		if (SocketUtil::WSASend(sock, &iocpSend) == false) {
 			int err = WSAGetLastError();
 			if (err != WSA_IO_PENDING) {
-				DoSend(_buf, _len);
+				// todo : logging
+				iocpSend.owner = nullptr;
 				return;
 			}
 		}
-		isSending.store(true);
+		isSending.store(false);
 	}
 	return ;
 }
@@ -191,27 +194,32 @@ void IocpObj::OnConnected()
 {
 	isConnected.store(true);
 	printf("Session : On Connected called\n");
+	TryRecv();
 }
 
-void IocpObj::TryDisconnect()
+void IocpObj::TryDisconnect(const char* _msg)
 {
+	// todo : logging
+	printf("%s\n", _msg);
 	DoDisconnect();
 }
 
 void IocpObj::OnDisconnect()
 {
-	iocpDisconnect.owner = nullptr;
-	if (isConnected.load() == false) {
+	if (isConnected.exchange(false) == false) {
 		return;
 	}
+
 	iocpDisconnect.Init();
 	iocpDisconnect.owner = nullptr;
-	isConnected.store(false);
 	SocketUtil::CloseSocket(sock);
 }
 
 void IocpObj::TrySend(BYTE* _orig, UInt32 _len)
 {
+	if (isConnected.load() == false) {
+		return;
+	}
 	printf("Try send called\n");
 	DoSend(_orig, _len);
 }
@@ -221,10 +229,9 @@ void IocpObj::OnSended(UInt32 _bytes)
 	isSending.store(false);
 	printf("OnSended called. bytes : %d\n", _bytes);
 	iocpSend.owner = nullptr;
-	printf("OnSended Called\n");
-	if(_bytes == 0) {
+ 	if(_bytes == 0) {
 		//todo : Discon
-		TryDisconnect();
+		TryDisconnect("on sended");
 		return ;
 	}
 
@@ -255,9 +262,12 @@ void IocpObj::OnRecved(UInt32 _bytes)
 	printf("OnRecved called. bytes : %d\n", _bytes);
 	iocpRecv.owner = nullptr;
 	if(_bytes == 0) {
-		TryDisconnect();
+		TryDisconnect("on recved");
 		return ;
 	}
+
+	iocpRecv.recvBuffer.OnWrite(_bytes);
+	AfterRecv(&iocpEvent, _bytes);
 	DoRecv();
 }
 
@@ -294,6 +304,7 @@ void IocpObj::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 	}
 	case IocpEvent::IOCP_EVENT::DISCONNECT: {
 		IocpDisconnect* iocpDisconn = reinterpret_cast<IocpDisconnect*>(_event);
+		iocpDisconn->owner = nullptr;
 		OnDisconnect();
 		break;
 	}

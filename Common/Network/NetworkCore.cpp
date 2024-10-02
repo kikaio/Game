@@ -100,6 +100,7 @@ vector<SessionSptr> NetworkCore::StartConnect(string _ip, UInt32 _port, UInt32 _
 			printf("this session bind failed.. err : %d\n", WSAGetLastError());
 			continue;
 		}
+		session->SetSockOpts();
 		session->SetIocpCore(iocpCore);
 		iocpCore->RegistToIocp(session->Sock());
 		sessions.push_back(session);
