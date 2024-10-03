@@ -56,7 +56,7 @@ class IocpSend : public IocpEvent
 public:
 	IocpSend() : IocpEvent(IOCP_EVENT::SEND) {};
 public:
-	vector<WSABUF> wsaBufs;
+	vector<SendBufferSptr> sendBuffers = {};
 };
 
 class IocpDisconnect : public IocpEvent

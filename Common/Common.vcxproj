@@ -159,6 +159,7 @@
     <ClInclude Include="Buffer\BufWriter.h" />
     <ClInclude Include="Buffer\PacketBuffer.h" />
     <ClInclude Include="Buffer\RecvBuffer.h" />
+    <ClInclude Include="Buffer\SendBuffer.h" />
     <ClInclude Include="CommonPch.h" />
     <ClInclude Include="Lock\Lock.h" />
     <ClInclude Include="Lock\LockManager.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="Buffer\BufWriter.cpp" />
     <ClCompile Include="Buffer\PacketBuffer.cpp" />
     <ClCompile Include="Buffer\RecvBuffer.cpp" />
+    <ClCompile Include="Buffer\SendBuffer.cpp" />
     <ClCompile Include="CommonPch.cpp" />
     <ClCompile Include="CommonTLS.cpp" />
     <ClCompile Include="Lock\Lock.cpp" />

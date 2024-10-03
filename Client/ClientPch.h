@@ -11,3 +11,4 @@
 
 
 #include "CommonPch.h"
+#include "DummySession.h"

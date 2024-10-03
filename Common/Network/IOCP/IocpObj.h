@@ -18,6 +18,9 @@ public:
 	IocpConnect iocpConnect;
 	IocpDisconnect iocpDisconnect;
 	IocpSend iocpSend;
+
+	VAL_LOCK(sendLock);
+	queue<SendBufferSptr> sendBuffers;
 public:
 	void SetSockOpts();
 	bool Bind();
@@ -31,7 +34,7 @@ private:
 	void DoAccept(IocpAccept* _accepter);
 	void DoConnect();
 	void DoDisconnect();
-	void DoSend(BYTE* _buf, UInt32 _len);
+	void DoSend();
 	void DoRecv();
 public:
 	virtual void TryAccept();
@@ -43,11 +46,22 @@ public:
 	virtual void TryDisconnect(const char* _msg);
 	virtual void OnDisconnect();
 
-	virtual void TrySend(BYTE* _orig, UInt32 _len);
+	virtual void TrySend(SendBufferSptr _sendBuffer);
 	virtual void OnSended(UInt32 _bytes);
 
 	virtual void TryRecv();
 	virtual void OnRecved(UInt32 _bytes);
+public:
+	virtual int32_t AfterRecved(RecvBuffer* _buf, UInt32 _bytes) {
+		return 0;
+	};
+	virtual void AfterSended(UInt32 _bytes) {
+		printf("send bytes : %d\n", _bytes);
+	}
+
+	virtual void AfterConnected() {
+		return;
+	}
 public:
 	void SetIocpCore(IocpCoreSptr _iocpCore);
 	void DispatchEvent(IocpEvent* _event, UInt32 _bytes);

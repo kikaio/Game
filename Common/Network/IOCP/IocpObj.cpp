@@ -101,29 +101,39 @@ void IocpObj::DoDisconnect()
 	}
 }
 
-void IocpObj::DoSend(BYTE* _buf, UInt32 _len)
+void IocpObj::DoSend()
 {
-	if (isSending.load()) {
-		WSABUF wsabuf = {};
-		wsabuf.buf = reinterpret_cast<char*>(_buf);
-		wsabuf.len = _len;
-		iocpSend.wsaBufs.push_back(wsabuf);
-		return;
-	}
-	else
+	iocpSend.Init();
+	iocpSend.owner = shared_from_this();
+		
+	vector<WSABUF> wsaBufs;
 	{
-		iocpSend.Init();
-		iocpSend.owner = shared_from_this();
+		LOCK_GUARDDING(sendLock);
+		int writeSize = 0;
+		while (sendBuffers.empty() == false) {
+			const SendBufferSptr sptr = sendBuffers.front();
+			WSABUF wsaBuf = {};
+			wsaBuf.buf = reinterpret_cast<char*>(sptr->Buffer());
+			wsaBuf.len = sptr->WriteSize();
+			wsaBufs.push_back(wsaBuf);
 
-		if (SocketUtil::WSASend(sock, &iocpSend) == false) {
-			int err = WSAGetLastError();
-			if (err != WSA_IO_PENDING) {
-				// todo : logging
-				iocpSend.owner = nullptr;
-				return;
-			}
+			writeSize += sptr->WriteSize();
+			// todo : send 부하 조절용
+
+			iocpSend.sendBuffers.push_back(sptr);
+			sendBuffers.pop();
 		}
-		isSending.store(false);
+	}
+
+	if (SocketUtil::WSASend(sock, &iocpSend, wsaBufs) == false) {
+		int err = WSAGetLastError();
+		if (err != WSA_IO_PENDING) {
+			// todo : logging
+			iocpSend.owner = nullptr;
+			iocpSend.sendBuffers.clear();
+			isSending.store(false);
+			return;
+		}
 	}
 	return ;
 }
@@ -195,6 +205,7 @@ void IocpObj::OnConnected()
 	isConnected.store(true);
 	printf("Session : On Connected called\n");
 	TryRecv();
+	AfterConnected();
 }
 
 void IocpObj::TryDisconnect(const char* _msg)
@@ -215,38 +226,45 @@ void IocpObj::OnDisconnect()
 	SocketUtil::CloseSocket(sock);
 }
 
-void IocpObj::TrySend(BYTE* _orig, UInt32 _len)
+void IocpObj::TrySend(SendBufferSptr _sendBuffer)
 {
 	if (isConnected.load() == false) {
 		return;
 	}
+	bool doSend = false;
 	printf("Try send called\n");
-	DoSend(_orig, _len);
+	{
+		LOCK_GUARDDING(sendLock);
+		sendBuffers.push(_sendBuffer);
+		if (isSending.exchange(true) == false) {
+			doSend = true;
+		}
+	}
+	if (doSend) {
+		DoSend();
+	}
 }
 
 void IocpObj::OnSended(UInt32 _bytes)
 {
-	isSending.store(false);
 	printf("OnSended called. bytes : %d\n", _bytes);
 	iocpSend.owner = nullptr;
- 	if(_bytes == 0) {
+	iocpSend.sendBuffers.clear();
+	if(_bytes == 0) {
 		//todo : Discon
 		TryDisconnect("on sended");
 		return ;
 	}
-
-	int remainLen = iocpSend.remainCnt - _bytes;
-	if(remainLen == 0) { 
-		printf("send Complete\n");
-		return;
-	}
-	else if (remainLen > 0) {
-		TrySend(iocpSend.buf+_bytes, remainLen);
-		return;
-	}
-	else {
-		//todo ASSERT
-		return ;
+	
+	{
+		LOCK_GUARDDING(sendLock);
+		if (sendBuffers.empty()) {
+			isSending.store(false);
+			AfterSended(_bytes);
+		}
+		else {
+			DoSend();
+		}
 	}
 	return ;
 }
@@ -266,8 +284,17 @@ void IocpObj::OnRecved(UInt32 _bytes)
 		return ;
 	}
 
-	iocpRecv.recvBuffer.OnWrite(_bytes);
-	AfterRecv(&iocpEvent, _bytes);
+	if (iocpRecv.recvBuffer.OnWrite(_bytes) == false) {
+		TryDisconnect("recv buffer on write failed\n");
+		return;
+	}
+	uint32_t dataSize = iocpRecv.recvBuffer.DataSize();
+	int32_t processedBytes = AfterRecved(&iocpRecv.recvBuffer, _bytes);
+	if (processedBytes < 0 || dataSize < processedBytes || (iocpRecv.recvBuffer.OnRead(processedBytes) == false)) {
+		TryDisconnect("OnPaketRecved failed\n");
+		return;
+	}
+	iocpRecv.recvBuffer.Clean();
 	DoRecv();
 }
 

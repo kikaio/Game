@@ -45,8 +45,8 @@ using namespace std;
 
 
 #include "Allocator.h"
-#include "STLAllocator.h"
 #include "MemoryPool.h"
+#include "STLAllocator.h"
 
 #include "Lock.h"
 #include "LockManager.h"
@@ -61,6 +61,7 @@ using namespace std;
 #include "WsaReady.h"
 
 #include "RecvBuffer.h"
+#include "SendBuffer.h"
 #include "PacketBuffer.h"
 #include "BufWriter.h"
 #include "BufReader.h"

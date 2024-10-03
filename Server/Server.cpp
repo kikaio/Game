@@ -18,6 +18,10 @@ void DoIocpServer() {
     }
     printf("wsa standby.\n");
 
+    NetworkCore::CreateSessionFactory = [] {
+        return MakeShared<UserSession>();
+    };
+
     ListenerSptr listener = MakeShared<Listener>(port);
     netCore.ReadyToAccept(listener, backlog, accepterCnt);
 

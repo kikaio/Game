@@ -9,3 +9,4 @@
 #endif
 
 #include "CommonPch.h"
+#include "UserSession.h"

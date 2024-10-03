@@ -119,12 +119,9 @@ BOOL SocketUtil::DisconnectEx(SOCKET _sock, IocpDisconnect* _event)
 	return lpfnDisconnectEx(_sock, _event, TF_REUSE_SOCKET, NULL);
 }
 
-BOOL SocketUtil::WSASend(SOCKET _sock, IocpSend* _event)
+BOOL SocketUtil::WSASend(SOCKET _sock, IocpSend* _event, vector<WSABUF>& _bufs)
 {
-	bool ret = ::WSASend(_sock, _event->wsaBufs.data(), _event->wsaBufs.size(), NULL, 0, _event, nullptr) == NO_ERROR;
-	if(ret) {
-		_event->wsaBufs.clear();
-	}
+	bool ret = ::WSASend(_sock, _bufs.data(), _bufs.size(), NULL, 0, _event, nullptr) == NO_ERROR;
 	return ret;
 }
 

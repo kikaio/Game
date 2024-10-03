@@ -31,6 +31,7 @@ DCL_REF_USING(Session);
 DCL_REF_USING(IocpCore);
 DCL_REF_USING(WsaReady);
 DCL_REF_USING(IocpObj);
+DCL_REF_USING(SendBuffer);
 
 
 using WorkFunc = std::function<void()>;

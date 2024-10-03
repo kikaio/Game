@@ -44,7 +44,7 @@ void DoIocpClient() {
 
 	string ip = "127.0.0.1";
 	int port = 7777;
-	int clientCnt = 2;
+	int clientCnt = 1;
 
 	NetworkCore netCore;
 	if (netCore.Ready() == false) {
@@ -59,7 +59,9 @@ void DoIocpClient() {
 	}
 
 	this_thread::sleep_for(3s);
-
+	NetworkCore::CreateSessionFactory = [] {
+		return MakeShared<DummySession>();
+	};
 	NetAddrSptr net = MakeShared<NetAddr>();
 
 	{
@@ -75,33 +77,14 @@ void DoIocpClient() {
 
 char sendMsg[SMALL_BUF_SIZE] = "hello, I'm client. who are you?\n";
 
-void DoEchoSend() {
-
-	while(true) {
-		if(connected.load() == false) {
-			this_thread::sleep_for(2s);
-		}
-		else {
-			for(auto _session : sessions) {
-				_session->TrySend(reinterpret_cast<BYTE*>(sendMsg), SMALL_BUF_SIZE);
-			}
-			this_thread::sleep_for(5s);
-		}
-	}
-
-	return ;
-}
-
 int main()
 {
 
 	//DoSimpleClient();
 	//	DoIocpClient();
 	thread iocpWorker = thread(DoIocpClient);
-	thread iocpEcho = thread(DoEchoSend);
 	
 	iocpWorker.join();
-	iocpEcho.join();
 
 	return 0;
 }
