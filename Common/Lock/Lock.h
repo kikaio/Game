@@ -6,14 +6,21 @@ class Lock
 public:
 	Lock(const char* _name);
 private:
-	unique_lock<Mutex> uniqueLock;
 	Mutex lockObj;
 	const string name ;
+	LockId lockId = 0;
 public:
 	void DoLock();
 	void DoUnlock();
 	const string& GetName() const{
 		return name;
+	}
+	void SetLockId(LockId _lockId) {
+		lockId = _lockId;
+		return ;
+	}
+	LockId LockId() const {
+		return lockId;
 	}
 };
 

@@ -1,4 +1,4 @@
 #include "pch.h"
 #include "CommonTLS.h"
 
-thread_local UInt32 LThreadId;
+thread_local ThreadId LThreadId;

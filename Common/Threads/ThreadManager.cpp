@@ -37,3 +37,11 @@ void ThreadManager::JoinAll()
 	}
 }
 
+void ThreadManager::RenderThreadsInfo()
+{
+	LOCK_GUARDDING(threadsLock);
+	for (auto& t : threads) {
+		t->RenderInfo();
+	}
+}
+

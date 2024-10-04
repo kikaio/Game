@@ -44,7 +44,7 @@ void DoIocpClient() {
 
 	string ip = "127.0.0.1";
 	int port = 7777;
-	int clientCnt = 1;
+	int clientCnt = 5;
 
 	NetworkCore netCore;
 	if (netCore.Ready() == false) {
@@ -76,15 +76,31 @@ void DoIocpClient() {
 
 
 char sendMsg[SMALL_BUF_SIZE] = "hello, I'm client. who are you?\n";
-
 int main()
 {
+	atomic<bool> clientDoRunning = true;
 
-	//DoSimpleClient();
-	//	DoIocpClient();
-	thread iocpWorker = thread(DoIocpClient);
+	ThreadManager::Get().PushThread(
+		DoIocpClient, "DoIocpDispatch", "iocp port dispatch while shutdown"
+	);
 	
-	iocpWorker.join();
+	/*ThreadManager::Get().PushThread(
+		[&clientDoRunning](){
+			while(clientDoRunning.load()) {
+				ThreadManager::Get().RenderThreadsInfo();
+				this_thread::sleep_for(5s);
+			}
+		}, "RenderThreadInfo", "Render All thread's info to console"
+	);*/
+
+
+	ThreadManager::Get().StartAll();
+
+	while(clientDoRunning.load()) {
+		this_thread::sleep_for(10s);
+	}
+
+	ThreadManager::Get().JoinAll();
 
 	return 0;
 }

@@ -16,6 +16,9 @@ using Char = char;
 using Byte = unsigned char;
 
 using str_t = std::string;
+using LockId = int32_t;
+using ThreadId = UInt32;
+
 
 template<typename T>
 using Atomic = std::atomic<T>;

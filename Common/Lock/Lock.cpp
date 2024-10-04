@@ -6,6 +6,7 @@
 Lock::Lock(const char* _name)
  : name(_name)
 {
+	lockId = LockManager::Get().GenLockId();
 }
 
 void Lock::DoLock()

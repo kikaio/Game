@@ -6,10 +6,12 @@ public:
 	virtual int32_t AfterRecved(RecvBuffer* _buf, UInt32 _bytes) {
 		static const int testMsgLen = 6;
 		static BYTE testMsg[] = { "hello~" };
-		this_thread::sleep_for(5s);
+		this_thread::sleep_for(2s);
 
 		SendBufferSptr sendBufferSptr = MakeShared<SendBuffer>(BUF_4096);
 		sendBufferSptr->CopyData(testMsg, testMsgLen);
+
+		printf("server sended : %s\n", sendBufferSptr->Buffer());
 		TrySend(sendBufferSptr);
 
 		return 0;
