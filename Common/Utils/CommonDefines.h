@@ -44,3 +44,11 @@
 #define MIN_BUF_SIZE			32
 #define SMALL_BUF_SIZE			64
 #define MIDLE_BUF_SIZE			256
+
+#define BUF_64					64
+#define BUF_128					128
+#define BUF_256					256
+#define BUF_512					512
+#define BUF_1024				1024
+#define BUF_2048				2048
+#define BUF_4096				4096

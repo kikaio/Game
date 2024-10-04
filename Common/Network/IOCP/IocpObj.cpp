@@ -191,7 +191,7 @@ void IocpObj::OnAccepted(IocpAccept* _iocpAccept, SessionSptr _session)
 	}
 	
 	DoAccept(_iocpAccept);
-	_session->TryRecv();
+	_session->OnConnected();
 }
 
 void IocpObj::TryConnect()

@@ -40,6 +40,6 @@ bool RecvBuffer::OnWrite(UInt32 _bytes)
 	if(_bytes > FreeSize()) {
 		return false;
 	}
-	readPos += _bytes;
+	writePos += _bytes;
 	return true;
 }
