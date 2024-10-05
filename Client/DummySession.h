@@ -3,7 +3,7 @@
 class DummySession : public Session
 {
 public:
-	virtual int32_t AfterRecved(RecvBuffer* _buf, UInt32 _bytes) {
+	virtual int32_t AfterRecved(RecvBuffer* _buf, UInt32 _bytes) override {
 		static const int testMsgLen = 6;
 		static BYTE testMsg[] = { "hello~" };
 		this_thread::sleep_for(2s);
@@ -17,11 +17,11 @@ public:
 		return 0;
 	};
 
-	virtual void AfterSended(UInt32 _bytes) {
+	virtual void AfterSended(UInt32 _bytes) override {
 		printf("send bytes : %d\n", _bytes);
 	}
 
-	virtual void AfterConnected() {
+	virtual void AfterConnected() override {
 		static const int testMsgLen = 6;
 		static BYTE testMsg[] = { "hello~" };
 		SendBufferSptr sendBufferSptr = MakeShared<SendBuffer>(BUF_4096);
