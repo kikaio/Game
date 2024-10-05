@@ -3,11 +3,15 @@
 class UserSession : public Session
 {
 public:
+	~UserSession();
+public:
 	virtual int32_t AfterRecved(RecvBuffer* _buf, UInt32 _bytes) {
-		static BYTE testMsg[] = { "hello~" };
-		SendBufferSptr sendBufferSptr = MakeShared<SendBuffer>(4096);
-		sendBufferSptr->CopyData(testMsg, 6);
+
+		SendBufferSptr sendBufferSptr = SendBufferManager::Get().Open(BUF_4096);
+		memcpy(sendBufferSptr->Buffer(), _buf, _bytes);
+		sendBufferSptr->Close(_bytes);
 		TrySend(sendBufferSptr);
+
 		return 0;
 	};
 

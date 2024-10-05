@@ -39,7 +39,6 @@ void DoSimpleClient() {
 	WSACleanup();
 }
 
-atomic<bool> connected = false;
 vector<SessionSptr> sessions;
 
 
@@ -66,10 +65,8 @@ void DoIocpClient() {
 	};
 	NetAddrSptr net = MakeShared<NetAddr>();
 
-	{
-		sessions = netCore.StartConnect(ip, port, clientCnt);
-		connected.store(true);
-	}
+	sessions = netCore.StartConnect(ip, port, clientCnt);
+
 	UInt32 waitMilliSec = INFINITE;
 	while (true) {
 		netCore.Dispatch(waitMilliSec);
@@ -81,36 +78,10 @@ int main()
 {
 	atomic<bool> clientDoRunning = true;
 
-	//ThreadManager::Get().PushThread(
-	//	DoIocpClient, "DoIocpDispatch", "iocp port dispatch while shutdown"
-	//);
-	TestA* aPtr = new TestA();
-	TestB* bPtr = new TestB();
+	ThreadManager::Get().PushThread(
+		DoIocpClient, "DoIocpDispatch", "iocp port dispatch while shutdown"
+	);
 	
-	aPtr->SetB(bPtr);
-	bPtr->SetA(aPtr);
-
-	ThreadManager::Get().PushThread(
-		[&aPtr]() {
-			while (true) {
-				aPtr->DoLock();
-				aPtr->CallBLock();
-				this_thread::sleep_for(1s);
-			}
-		}
-		, "A->B", ""
-	);
-
-	ThreadManager::Get().PushThread(
-		[&bPtr]() {
-			while (true) {
-				bPtr->DoLock();
-				bPtr->CallALock();
-			}
-		}
-		, "B->A", ""
-	);
-
 
 	ThreadManager::Get().StartAll();
 

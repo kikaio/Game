@@ -8,8 +8,9 @@ public:
 		static BYTE testMsg[] = { "hello~" };
 		this_thread::sleep_for(2s);
 
-		SendBufferSptr sendBufferSptr = MakeShared<SendBuffer>(BUF_4096);
-		sendBufferSptr->CopyData(testMsg, testMsgLen);
+		SendBufferSptr sendBufferSptr = SendBufferManager::Get().Open(BUF_4096);
+		memcpy(sendBufferSptr->Buffer(), _buf, _bytes);
+		sendBufferSptr->Close(_bytes);
 
 		printf("server sended : %s\n", sendBufferSptr->Buffer());
 		TrySend(sendBufferSptr);
@@ -24,8 +25,9 @@ public:
 	virtual void AfterConnected() override {
 		static const int testMsgLen = 6;
 		static BYTE testMsg[] = { "hello~" };
-		SendBufferSptr sendBufferSptr = MakeShared<SendBuffer>(BUF_4096);
-		sendBufferSptr->CopyData(testMsg, testMsgLen);
+		SendBufferSptr sendBufferSptr = SendBufferManager::Get().Open(BUF_4096);
+		memcpy(sendBufferSptr->Buffer(), testMsg, testMsgLen);
+		sendBufferSptr->Close(testMsgLen);
 		TrySend(sendBufferSptr);
 		return;
 	}

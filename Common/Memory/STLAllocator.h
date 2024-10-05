@@ -5,9 +5,11 @@ class STLAllocator
 {
 public : 
 	using value_type = T;
+	STLAllocator() { }
+
 public:
-	template<typename O>
-	STLAllocator(const STLAllocator<O>& other) {}
+	template<typename Other>
+	STLAllocator(const STLAllocator<Other>& ) {}
 
 	T* allocate(size_t count) {
 		T* ptr = nullptr;
@@ -21,7 +23,17 @@ public:
 		XRELEASE(ptr);
 		return ;
 	}
+
+	template<typename U>
+	bool operator==(const STLAllocator<U>&) { return true; }
+
+	template<typename U>
+	bool operator!=(const STLAllocator<U>&) { return false; }
+
 };
+
+template<typename T, uint32_t Size>
+using Array = array<T, Size>;
 
 template<typename T>
 using Vector = vector<T, STLAllocator<T>>;

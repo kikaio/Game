@@ -13,6 +13,8 @@ private:
 	SOCKET sock = NULL;
 	IocpCoreSptr iocpCore = nullptr;
 public:
+	atomic<bool> isDead = false;
+public:
 	vector<IocpAccept*> acceptEvents;
 	IocpRecv iocpRecv;
 	IocpConnect iocpConnect;
@@ -29,7 +31,8 @@ public:
 	NetAddrSptr Net();
 	
 	SOCKET Sock();
-
+private:
+	void HandleError(int32_t _err);
 private:
 	void DoAccept(IocpAccept* _accepter);
 	void DoConnect();

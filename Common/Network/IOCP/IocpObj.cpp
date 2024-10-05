@@ -51,6 +51,25 @@ SOCKET IocpObj::Sock()
 	return sock;
 }
 
+void IocpObj::HandleError(int32_t _err)
+{
+	switch(_err){
+	case WSAECONNRESET: { // 호스트가 연결이 끊김.
+		TryDisconnect("server host disconnected...\n");
+		break;
+	}
+	case WSAENOTCONN : { //소켓이 연결이 끊긴 상태에서 요청이 이루어진 경우
+		isConnected.store(false);
+		break;
+	}
+	default:{
+		printf("this error not handled. err : %d\n", _err);
+		TryDisconnect("unexpected error\n");
+		break;
+	}
+	}
+}
+
 void IocpObj::DoAccept(IocpAccept* _accepter)
 {
 	SessionSptr _clientSession = NetworkCore::CreateSessionFactory();
@@ -76,10 +95,12 @@ void IocpObj::DoConnect()
 	iocpConnect.Init();
 	iocpConnect.owner = shared_from_this();
 	if (SocketUtil::ConnectEx(sock, iocpCore->GetNetTarget()->SockAddr(), &iocpConnect) == false) {
-		if (WSAGetLastError() != WSA_IO_PENDING) {
+		int32_t err = WSAGetLastError();
+		if (err != WSA_IO_PENDING) {
+			iocpConnect.owner = nullptr;
 			//todo : logging
 			printf("connect Ex failed. check this..\n");
-			iocpConnect.owner = nullptr;
+			HandleError(err);
 			return;
 		}
 	}
@@ -95,6 +116,7 @@ void IocpObj::DoDisconnect()
 			//todo : logging
 			iocpDisconnect.owner = nullptr;
 			printf("disconnect Ex failed. err : %d\n", err);
+			HandleError(err);
 			return ;
 		}
 	}
@@ -131,6 +153,7 @@ void IocpObj::DoSend()
 			iocpSend.owner = nullptr;
 			iocpSend.sendBuffers.clear();
 			isSending.store(false);
+			HandleError(err);
 			return;
 		}
 	}
@@ -145,7 +168,7 @@ void IocpObj::DoRecv()
 		int err = WSAGetLastError();
 		if(err != WSA_IO_PENDING) {
 			printf("SocketUtil::WSARecv failed. err : %d\n", err);
-			DoRecv();
+			HandleError(err);
 			return;
 		}
 	}
@@ -160,8 +183,8 @@ void IocpObj::TryAccept()
 	if (iocpCore->RegistToIocp(sock) == false) {
 		int err = WSAGetLastError();
 		if(err != WSA_IO_PENDING) {
-			DoAccept(accepter);
 			printf("RegistListener failed. err : %d\n", err);
+			DoAccept(accepter);
 			return;
 		}
 	}
@@ -308,6 +331,9 @@ char testMsg[SMALL_BUF_SIZE] = "Wellcome to the Game!!\0";
 
 void IocpObj::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 {
+	if(_bytes == 0) {
+		int a = 01;
+	}
 	switch (_event->Type()) {
 	case IocpEvent::IOCP_EVENT::ACCEPT: {
 		printf("On Accept!!");
