@@ -36,12 +36,12 @@ LockGuard::LockGuard(Lock& _lock, const char* _fileName, const int _lineNo)
 
 LockGuard::~LockGuard()
 {
-	lock.DoUnlock();
 #if _DEBUG
 	LOCK_MGR().Pop(&lock);
 #endif
 #if DO_LOCK_TRACKING_LOG
 
 #endif
+	lock.DoUnlock();
 }
 

@@ -5,7 +5,9 @@ void SessionManager::Push(string _sId, SessionSptr _session)
 {
 	LOCK_GUARDDING(sessionsLock);
 	if(sessions.find(_sId) != sessions.end()) {
-		//todo : assert and session key duplication err logging
+		//todo : session key duplication err logging
+		printf("session key not exist. sid : %s\n", _sId.c_str());
+		CRASH("session key not exist");
 		return ;
 	}
 	sessions.insert(make_pair(_sId, _session));

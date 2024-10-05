@@ -10,7 +10,8 @@ bool NetworkCore::Ready()
 	wsaReady = MakeShared<WsaReady>();
 	if (wsaReady->Ready() == false) {
 		int err = WSAGetLastError();
-		printf("wsa ready failed\n");
+		printf("wsa ready failed, err : %d\n", err);
+		CRASH("wsa ready failed\n");
 		return false;
 	}
 
@@ -18,15 +19,16 @@ bool NetworkCore::Ready()
 	// ready에서 handle 도 생성함.
 	if (iocpCore->Ready() == false) {
 		printf("iocp core ready failed\n");
+		CRASH("iocp core ready failed\n");
 		return false;
 	}
 
 	if (SocketUtil::SetExFunctions() == false) {
 		printf("SetExFunctions failed\n");
-		// todo : ASSERT, logging
 		UInt32 err = WSAGetLastError();
 		if (err != WSA_IO_PENDING) {
-			ErrorHandle(err);
+			ErrorHandle(err); 
+			CRASH("SetExFunctions failed\n");
 			return false;
 		}
 	}
@@ -60,6 +62,7 @@ bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _backlog, UInt32 
 		if (err != WSA_IO_PENDING) {
 			// todo  : ASSERT?
 			printf("bind failed\n");
+			CRASH("bind failed\n");
 			ErrorHandle(err);
 		}
 		return false;
@@ -71,6 +74,8 @@ bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _backlog, UInt32 
 		UInt32 err = WSAGetLastError();
 		if (err != WSA_IO_PENDING) {
 			ErrorHandle(err);
+			printf("listen failed. err : %d\n", err);
+			CRASH("listen failed.\n");
 		}
 		return false;
 	}
@@ -136,7 +141,7 @@ void NetworkCore::Dispatch(UInt32 _milliSec)
 	IocpEvent* iocpEvent = reinterpret_cast<IocpEvent*>(overlappedPtr);
 	if (iocpEvent == nullptr) {
 		printf("event must be not null...\n");
-		// todo : ASSERT
+		CRASH("event must be not null...\n");
 		return;
 	}
 

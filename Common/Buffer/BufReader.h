@@ -17,7 +17,7 @@ public:
 	}
 
 	BufReader& operator>>(OUT string& _val) {
-		UInt16 strLen = 0;
+		size_t strLen = 0;
 		buf.ReadBytes(reinterpret_cast<BYTE*>(&strLen), sizeof(strLen));
 		for (int idx = 0; idx < strLen; idx++) {
 			char ch = '\0';

@@ -4,9 +4,8 @@
 
 
 Thread::Thread(WorkFunc _work, UInt32 _seedNo, const char* _tName, const char* _desc)
- : tName(_tName), tDesc(_desc)
+ : tName(_tName), tDesc(_desc), threadId(_seedNo)
 {
-	LThreadId = _seedNo;
 	work = ([this, _work=_work]() {
 		this->Init();
 		_work();
@@ -72,7 +71,7 @@ void Thread::Release()
 
 void Thread::PrintfLog(const char* _msg)
 {
-	printf("[tId:%d][%s]%s\n", LThreadId, tName.c_str(), _msg);
+	printf("[tId:%d][%s]%s\n", threadId, tName.c_str(), _msg);
 }
 
 void Thread::Start()
@@ -100,7 +99,7 @@ void Thread::Join()
 
 void Thread::RenderInfo()
 {
-	printf("tId : %d\n", LThreadId);
+	printf("tId : %d\n", threadId);
 	printf("tName : %s\n", tName.c_str());
 	printf("tDesc : %s\n", tDesc.c_str());
 }

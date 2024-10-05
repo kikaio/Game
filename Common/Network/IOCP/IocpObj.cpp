@@ -61,7 +61,6 @@ void IocpObj::DoAccept(IocpAccept* _accepter)
 		UInt32 err = WSAGetLastError();
 		if (err != WSA_IO_PENDING) {
 			printf("soket util's acceptEx failed - %d\n", err);
-			// todo : ASSERT
 			DoAccept(_accepter);
 			return;
 		}
@@ -184,9 +183,11 @@ void IocpObj::OnAccepted(IocpAccept* _iocpAccept, SessionSptr _session)
 	_session->SetIocpCore(iocpCore);
 	if (iocpCore->RegistToIocp(_session->sock) == false) {
 		int err = GetLastError();
-		printf("Session Accepte Dispatch failed. err : %d\n", err);
-		// todo : ASSERT
-		DoAccept(_iocpAccept);
+		if (err != WSA_IO_PENDING) {
+			printf("Session Accepte Dispatch failed. err : %d\n", err);
+			// todo : ASSERT
+			DoAccept(_iocpAccept);
+		}
 		return;
 	}
 	
@@ -337,7 +338,7 @@ void IocpObj::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 	}
 	default: {
 		//todo : ASSERT
-		printf("IocpObj DispatchEvent default case..?\n");
+		CRASH("IocpObj DispatchEvent default case..?\n");
 		return;
 	}
 	}

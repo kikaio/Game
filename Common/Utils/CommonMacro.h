@@ -38,6 +38,21 @@ using namespace std;
 }											\
 
 
+#define CRASH(cause)						\
+{											\
+	uint32_t* crash = nullptr;				\
+	__analysis_assume(crash != nullptr);	\
+	*crash = 0xDEADBEEF;					\
+}
+
+#define ASSERT_CRASH(expr)					\
+{											\
+	if (!(expr))							\
+	{										\
+		CRASH("ASSERT_CRASH");				\
+		__analysis_assume(expr);			\
+	}										\
+}
 
 inline bool checkOverflow(UInt32 x, UInt32 add) {
 	auto orig = x;

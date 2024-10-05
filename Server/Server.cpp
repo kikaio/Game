@@ -13,7 +13,6 @@ void DoIocpServer() {
     int port = 7777;
     NetworkCore netCore;
     if (netCore.Ready() == false) {
-        //todo : ASSERT
         return ;
     }
     printf("wsa standby.\n");

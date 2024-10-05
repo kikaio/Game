@@ -9,7 +9,10 @@ void PrintLn(const char* _msg) {
 
 void DoSimpleClient() {
 	WSAData wsaData = {};
-	WSAStartup(MAKEWORD(2, 2), &wsaData);
+	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != NO_ERROR) {
+		printf("WSAStartup failed.\n");
+		return;
+	}
 
 	string ip = "127.0.0.1";
 	int port = 7777;
@@ -47,10 +50,9 @@ void DoIocpClient() {
 	int clientCnt = 5;
 
 	NetworkCore netCore;
-	if (netCore.Ready() == false) {
-		//todo : ASSERT
-		return ;
-	}
+	
+	ASSERT_CRASH(netCore.Ready());
+	
 	printf("wsa standby.\n");
 
 	if (netCore.ReadyToConnect() == false) {
@@ -75,23 +77,39 @@ void DoIocpClient() {
 }
 
 
-char sendMsg[SMALL_BUF_SIZE] = "hello, I'm client. who are you?\n";
 int main()
 {
 	atomic<bool> clientDoRunning = true;
 
-	ThreadManager::Get().PushThread(
-		DoIocpClient, "DoIocpDispatch", "iocp port dispatch while shutdown"
-	);
+	//ThreadManager::Get().PushThread(
+	//	DoIocpClient, "DoIocpDispatch", "iocp port dispatch while shutdown"
+	//);
+	TestA* aPtr = new TestA();
+	TestB* bPtr = new TestB();
 	
-	/*ThreadManager::Get().PushThread(
-		[&clientDoRunning](){
-			while(clientDoRunning.load()) {
-				ThreadManager::Get().RenderThreadsInfo();
-				this_thread::sleep_for(5s);
+	aPtr->SetB(bPtr);
+	bPtr->SetA(aPtr);
+
+	ThreadManager::Get().PushThread(
+		[&aPtr]() {
+			while (true) {
+				aPtr->DoLock();
+				aPtr->CallBLock();
+				this_thread::sleep_for(1s);
 			}
-		}, "RenderThreadInfo", "Render All thread's info to console"
-	);*/
+		}
+		, "A->B", ""
+	);
+
+	ThreadManager::Get().PushThread(
+		[&bPtr]() {
+			while (true) {
+				bPtr->DoLock();
+				bPtr->CallALock();
+			}
+		}
+		, "B->A", ""
+	);
 
 
 	ThreadManager::Get().StartAll();

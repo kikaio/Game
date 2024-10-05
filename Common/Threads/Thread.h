@@ -16,6 +16,7 @@ public:
 
 	~Thread();
 private:
+	UInt32 threadId = 0;
 	bool isStarted = false;
 	WorkFunc work;
 	thread worker;

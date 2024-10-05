@@ -15,6 +15,8 @@
     <ClCompile Include="DummySession.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="TestA.cpp" />
+    <ClCompile Include="TestB.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClientPch.h">
@@ -26,5 +28,7 @@
     <ClInclude Include="DummySession.h">
       <Filter>Main</Filter>
     </ClInclude>
+    <ClInclude Include="TestA.h" />
+    <ClInclude Include="TestB.h" />
   </ItemGroup>
 </Project>

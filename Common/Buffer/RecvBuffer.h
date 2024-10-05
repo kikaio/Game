@@ -26,6 +26,7 @@ public:
 	}
 
 	UInt32 DataSize() {
+		ASSERT_CRASH(readPos < writePos);
 		if(readPos > writePos) {
 			//todo ASSERT ?
 			printf("read pos must less than write pos\n");

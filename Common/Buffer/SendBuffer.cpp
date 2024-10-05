@@ -13,10 +13,7 @@ SendBuffer::~SendBuffer()
 
 void SendBuffer::CopyData(BYTE* _buf, UInt32 _len)
 {
-	if (Capacity() < _len) {
-		//todo : ASSERT
-		return;
-	}
+	ASSERT_CRASH(Capacity() >= _len);
 
 	memcpy_s(buffer.data(), _len, _buf, _len);
 	writeSize = _len;

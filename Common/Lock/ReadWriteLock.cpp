@@ -25,21 +25,14 @@ void ReadWriteLock::ReadLock()
 			continue;
 		}
 
-		if (chrono::system_clock::now() - curTimePoint > chrono::seconds(ACQUIRE_TIME_OUT_SEC)) {
-			//todo : err assert -> deadlock
-			return;
-		}
+		ASSERT_CRASH(chrono::system_clock::now() - curTimePoint <= chrono::seconds(ACQUIRE_TIME_OUT_SEC));
 	}
 }
 
 void ReadWriteLock::ReadUnlock()
 {
-	if(lockFlag.load() == EMPTY_MASK) {
-		//todo : err assert
-	}
-
+	ASSERT_CRASH(lockFlag.load() != EMPTY_MASK)
 	lockFlag.fetch_sub(1);
-
 	return ;
 }
 
@@ -65,10 +58,7 @@ void ReadWriteLock::WriteLock()
 			continue;
 		}
 
-		if(chrono::system_clock::now() - curTimePoint > chrono::seconds(ACQUIRE_TIME_OUT_SEC)) {
-			//todo : err assert -> deadlock
-			return;
-		}
+		ASSERT_CRASH(chrono::system_clock::now() - curTimePoint <= chrono::seconds(ACQUIRE_TIME_OUT_SEC));
 	}
 	curWriteCnt++;
 	return ;
@@ -77,7 +67,7 @@ void ReadWriteLock::WriteLock()
 void ReadWriteLock::WriteUnlock()
 {
 	if(curWriteCnt < 1) {
-		//todo : err assert
+		CRASH("write unlock multiple\n");
 		return ;
 	}
 	else if(curWriteCnt == 1){

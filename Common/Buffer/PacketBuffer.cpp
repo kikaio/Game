@@ -18,10 +18,7 @@ void PacketBuffer::Render()
 
 void PacketBuffer::WriteBytes(BYTE* _start, UInt32 _size)
 {
-	if(writePos + _size >= BODY_BUF_SIZE) {
-		// todo : ASSERT
-		return ;
-	}
+	ASSERT_CRASH(writePos + _size < BODY_BUF_SIZE);
 	memcpy_s(body+writePos, _size, _start, _size);
 	writePos += _size;
 	return ;
@@ -29,10 +26,7 @@ void PacketBuffer::WriteBytes(BYTE* _start, UInt32 _size)
 
 void PacketBuffer::ReadBytes(BYTE* _start, UInt32 _size)
 {
-	if(readPos >= BODY_BUF_SIZE) {
-		//todo : ASSERT
-		return ;
-	}
+	ASSERT_CRASH(readPos < BODY_BUF_SIZE);
 	memcpy_s(_start, _size, body+readPos, _size);
 	readPos += _size;
 	return ;
@@ -40,19 +34,13 @@ void PacketBuffer::ReadBytes(BYTE* _start, UInt32 _size)
 
 void PacketBuffer::OnWrite(UInt32 _len)
 {
-	if(writePos + _len > BODY_BUF_SIZE) {
-		//todo ASSERT
-		return ;
-	}
+	ASSERT_CRASH(writePos + _len <= BODY_BUF_SIZE);
 	writePos += _len;
 }
 
 void PacketBuffer::OnRead(UInt32 _len)
 {
-	if(readPos + _len > BODY_BUF_SIZE) {
-		// todo : ASSERT
-		return ;
-	}
+	ASSERT_CRASH(readPos + _len <= BODY_BUF_SIZE);
 	readPos += _len;
 }
 

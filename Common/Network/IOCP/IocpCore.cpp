@@ -30,8 +30,9 @@ bool IocpCore::Ready()
     iocpHandle = CreateIocpHandle(0);
     if (iocpHandle == NULL) {
         DWORD err = GetLastError();
-        //todo : logging and assert
+        //todo : logging
         printf("iocp handle create failed. err - %d\n", err);
+        CRASH("write unlock multiple\n");
         return false;
     }
     return true;
