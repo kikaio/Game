@@ -46,7 +46,7 @@ void DoIocpClient() {
 
 	string ip = "127.0.0.1";
 	int port = 7777;
-	int clientCnt = 5;
+	int clientCnt = 1;
 
 	NetworkCore netCore;
 	

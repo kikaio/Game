@@ -136,15 +136,23 @@ void NetworkCore::Dispatch(UInt32 _milliSec)
 		, &overlappedPtr, _milliSec
 	);
 	if(ret == FALSE) {
+		int32_t error = WSAGetLastError();
+		switch (error) {
+		case WAIT_TIMEOUT: {
+			return;
+		}
+		default: {
+			//이 경우 처리를 해줘야 server에서 usersession에 대한 disconnected를 탐지가능.
+			IocpEvent* iocpEvent = reinterpret_cast<IocpEvent*>(overlappedPtr);
+			DispatchEvent(iocpEvent, bytes);
+			return;
+		}
+		}
 		return;
 	}
-	IocpEvent* iocpEvent = reinterpret_cast<IocpEvent*>(overlappedPtr);
-	if (iocpEvent == nullptr) {
-		printf("event must be not null...\n");
-		CRASH("event must be not null...\n");
-		return;
+	else {
+		IocpEvent* iocpEvent = reinterpret_cast<IocpEvent*>(overlappedPtr);
+		DispatchEvent(iocpEvent, bytes);
 	}
-
-	DispatchEvent(iocpEvent, bytes);
 	return ;
 }

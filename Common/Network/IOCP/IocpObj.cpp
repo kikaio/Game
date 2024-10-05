@@ -12,6 +12,7 @@ IocpObj::~IocpObj()
 	for (IocpAccept* _ptr : acceptEvents) {
 		xfree(_ptr);
 	}
+	SocketUtil::CloseSocket(sock);
 	printf("IocpObj released!\n");
 }
 
@@ -54,12 +55,9 @@ SOCKET IocpObj::Sock()
 void IocpObj::HandleError(int32_t _err)
 {
 	switch(_err){
+	case WSAECONNABORTED:
 	case WSAECONNRESET: { // 호스트가 연결이 끊김.
-		TryDisconnect("server host disconnected...\n");
-		break;
-	}
-	case WSAENOTCONN : { //소켓이 연결이 끊긴 상태에서 요청이 이루어진 경우
-		isConnected.store(false);
+		TryDisconnect("server host disconnected..");
 		break;
 	}
 	default:{
@@ -100,7 +98,6 @@ void IocpObj::DoConnect()
 			iocpConnect.owner = nullptr;
 			//todo : logging
 			printf("connect Ex failed. check this..\n");
-			HandleError(err);
 			return;
 		}
 	}
@@ -108,6 +105,9 @@ void IocpObj::DoConnect()
 
 void IocpObj::DoDisconnect()
 {
+	if (isConnected.exchange(false) == false) {
+		return;
+	}
 	iocpDisconnect.Init();
 	iocpDisconnect.owner = shared_from_this();
 	if (SocketUtil::DisconnectEx(sock, &iocpDisconnect) == false) {
@@ -116,14 +116,17 @@ void IocpObj::DoDisconnect()
 			//todo : logging
 			iocpDisconnect.owner = nullptr;
 			printf("disconnect Ex failed. err : %d\n", err);
-			HandleError(err);
 			return ;
 		}
 	}
+	return;
 }
 
 void IocpObj::DoSend()
 {
+	if (isConnected.load() == false) {
+		return;
+	}
 	iocpSend.Init();
 	iocpSend.owner = shared_from_this();
 		
@@ -162,6 +165,9 @@ void IocpObj::DoSend()
 
 void IocpObj::DoRecv()
 {
+	if (isConnected.load() == false) {
+		return ;
+	}
 	iocpRecv.Init();
 	iocpRecv.owner = shared_from_this();
 	if(SocketUtil::WSARecv(sock, &iocpRecv) == false) {
@@ -247,7 +253,6 @@ void IocpObj::OnDisconnect()
 
 	iocpDisconnect.Init();
 	iocpDisconnect.owner = nullptr;
-	SocketUtil::CloseSocket(sock);
 }
 
 void IocpObj::TrySend(SendBufferSptr _sendBuffer)
@@ -295,6 +300,9 @@ void IocpObj::OnSended(UInt32 _bytes)
 
 void IocpObj::TryRecv()
 {
+	if (isConnected.load() == false) {
+		return;
+	}
 	printf("Try Recv Called\n");
 	DoRecv();
 }
@@ -304,7 +312,7 @@ void IocpObj::OnRecved(UInt32 _bytes)
 	printf("OnRecved called. bytes : %d\n", _bytes);
 	iocpRecv.owner = nullptr;
 	if(_bytes == 0) {
-		TryDisconnect("on recved");
+		TryDisconnect("on recved try disconnect");
 		return ;
 	}
 
@@ -331,9 +339,6 @@ char testMsg[SMALL_BUF_SIZE] = "Wellcome to the Game!!\0";
 
 void IocpObj::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 {
-	if(_bytes == 0) {
-		int a = 01;
-	}
 	switch (_event->Type()) {
 	case IocpEvent::IOCP_EVENT::ACCEPT: {
 		printf("On Accept!!");

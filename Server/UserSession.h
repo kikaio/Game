@@ -7,12 +7,13 @@ public:
 public:
 	virtual int32_t AfterRecved(RecvBuffer* _buf, UInt32 _bytes) {
 
+		printf("recved : %s\n", _buf->ReadPos());
 		SendBufferSptr sendBufferSptr = SendBufferManager::Get().Open(BUF_4096);
-		memcpy(sendBufferSptr->Buffer(), _buf, _bytes);
+		memcpy(sendBufferSptr->Buffer(), _buf->ReadPos(), _bytes);
 		sendBufferSptr->Close(_bytes);
 		TrySend(sendBufferSptr);
 
-		return 0;
+		return _bytes;
 	};
 
 	virtual void AfterSended(UInt32 _bytes) {

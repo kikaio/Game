@@ -91,6 +91,5 @@ SendBufferSptr SendBufferManager::Open(uint32_t _size)
 		LSendBufferChunk = Pop();
 		LSendBufferChunk->Reset();
 	}
-	printf("FREE_SIZE : %d\n", LSendBufferChunk->FreeSize());
 	return LSendBufferChunk->Open(_size);
 }

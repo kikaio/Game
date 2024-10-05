@@ -6,20 +6,19 @@ public:
 	virtual int32_t AfterRecved(RecvBuffer* _buf, UInt32 _bytes) override {
 		static const int testMsgLen = 6;
 		static BYTE testMsg[] = { "hello~" };
-		this_thread::sleep_for(2s);
 
 		SendBufferSptr sendBufferSptr = SendBufferManager::Get().Open(BUF_4096);
-		memcpy(sendBufferSptr->Buffer(), _buf, _bytes);
+		memcpy(sendBufferSptr->Buffer(), _buf->ReadPos(), _bytes);
 		sendBufferSptr->Close(_bytes);
 
 		printf("server sended : %s\n", sendBufferSptr->Buffer());
+		this_thread::sleep_for(2s);
 		TrySend(sendBufferSptr);
 
 		return 0;
 	};
 
 	virtual void AfterSended(UInt32 _bytes) override {
-		printf("send bytes : %d\n", _bytes);
 	}
 
 	virtual void AfterConnected() override {

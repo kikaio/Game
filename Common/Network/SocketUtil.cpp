@@ -138,18 +138,24 @@ BOOL SocketUtil::WSARecv(SOCKET _sock, IocpRecv* _event)
 BOOL SocketUtil::SetAcceptFunc()
 {
 	SOCKET _sock = SocketUtil::CreateIocpTCP();
-	return SetIocpWSAIoctl(_sock, lpfnAcceptEx, guidAcceptEx);
+	bool ret = SetIocpWSAIoctl(_sock, lpfnAcceptEx, guidAcceptEx);
+	CloseSocket(_sock);
+	return ret;
 }
 
 BOOL SocketUtil::SetConnectFunc()
 {
 	SOCKET _sock = SocketUtil::CreateIocpTCP();
-	return SetIocpWSAIoctl(_sock, lpfnConnectEx, guidConnectEx);
+	bool ret = SetIocpWSAIoctl(_sock, lpfnConnectEx, guidConnectEx);
+	CloseSocket(_sock);
+	return ret;
 }
 
 BOOL SocketUtil::SetDisconnectFunc()
 {
 	SOCKET _sock = SocketUtil::CreateIocpTCP();
-	return SetIocpWSAIoctl(_sock, lpfnDisconnectEx, guidDisconnectEx);
+	bool ret = SetIocpWSAIoctl(_sock, lpfnDisconnectEx, guidDisconnectEx);
+	CloseSocket(_sock);
+	return ret;
 }
 
