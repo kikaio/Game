@@ -70,9 +70,12 @@ void IocpObj::HandleError(int32_t _err)
 
 void IocpObj::DoAccept(IocpAccept* _accepter)
 {
-	SessionSptr _clientSession = NetworkCore::CreateSessionFactory();
+	ASSERT_CRASH(netCore != nullptr);
+	SessionSptr _clientSession = netCore->CreateSessionFactory();
+	_clientSession->SetNetCore(netCore);
 	_accepter->Init();
 	_accepter->session = _clientSession;
+
 
 	if (SocketUtil::AcceptEx(_accepter->owner, _accepter, _clientSession) == false) {
 		UInt32 err = WSAGetLastError();
@@ -182,7 +185,6 @@ void IocpObj::DoRecv()
 
 void IocpObj::TryAccept()
 {
-	printf("Try Accept called\n");
 	IocpAccept* accepter = xnew<IocpAccept>();
 	acceptEvents.push_back(accepter);
 	accepter->owner = shared_from_this();
@@ -199,7 +201,6 @@ void IocpObj::TryAccept()
 
 void IocpObj::OnAccepted(IocpAccept* _iocpAccept, SessionSptr _session)
 {
-	printf("accepted!\n");
 	_iocpAccept->Init();
 	_iocpAccept->AfterAccept();
 
@@ -219,7 +220,8 @@ void IocpObj::OnAccepted(IocpAccept* _iocpAccept, SessionSptr _session)
 		}
 		return;
 	}
-	
+	AfterAccepted(_session);
+
 	DoAccept(_iocpAccept);
 	_session->OnConnected();
 }
@@ -233,7 +235,6 @@ void IocpObj::TryConnect()
 void IocpObj::OnConnected()
 {
 	isConnected.store(true);
-	printf("Session : On Connected called\n");
 	TryRecv();
 	AfterConnected();
 }
@@ -261,7 +262,6 @@ void IocpObj::TrySend(SendBufferSptr _sendBuffer)
 		return;
 	}
 	bool doSend = false;
-	printf("Try send called\n");
 	{
 		LOCK_GUARDDING(sendLock);
 		sendBuffers.push(_sendBuffer);
@@ -276,7 +276,6 @@ void IocpObj::TrySend(SendBufferSptr _sendBuffer)
 
 void IocpObj::OnSended(UInt32 _bytes)
 {
-	printf("OnSended called. bytes : %d\n", _bytes);
 	iocpSend.owner = nullptr;
 	iocpSend.sendBuffers.clear();
 	if(_bytes == 0) {
@@ -303,13 +302,11 @@ void IocpObj::TryRecv()
 	if (isConnected.load() == false) {
 		return;
 	}
-	printf("Try Recv Called\n");
 	DoRecv();
 }
 
 void IocpObj::OnRecved(UInt32 _bytes)
 {
-	printf("OnRecved called. bytes : %d\n", _bytes);
 	iocpRecv.owner = nullptr;
 	if(_bytes == 0) {
 		TryDisconnect("on recved try disconnect");
@@ -321,7 +318,7 @@ void IocpObj::OnRecved(UInt32 _bytes)
 		return;
 	}
 	uint32_t dataSize = iocpRecv.recvBuffer.DataSize();
-	int32_t processedBytes = AfterRecved(&iocpRecv.recvBuffer, _bytes);
+	int32_t processedBytes = AfterRecved(iocpRecv.recvBuffer.ReadPos(), dataSize);
 	if (processedBytes < 0 || dataSize < processedBytes || (iocpRecv.recvBuffer.OnRead(processedBytes) == false)) {
 		TryDisconnect("OnPaketRecved failed\n");
 		return;

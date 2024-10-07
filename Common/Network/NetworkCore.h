@@ -1,14 +1,19 @@
 ﻿#pragma once
+#include "SessionManager.h"
 
 using SessionCreateFunc = std::function<SessionSptr()>;
 
 class NetworkCore
 {
+public:
+	NetworkCore();
 private :
+	//현재 NetCore에 관련된 Session들만 관리하는 SessionMgr.
+	SessionManager sessionMgr;
 	IocpCoreSptr iocpCore = nullptr;
 	WsaReadySptr wsaReady = nullptr;
 public:
-	static SessionCreateFunc  CreateSessionFactory;
+	SessionCreateFunc  CreateSessionFactory;
 
 private:
 	void ErrorHandle(UInt32 _err);
@@ -22,4 +27,7 @@ public:
 public:
 	HANDLE GetIocpHandle();
 	void Dispatch(UInt32 _milliSec);
+	SessionManager& GetSessionMgr() {
+		return sessionMgr;
+	}
 };

@@ -39,7 +39,9 @@
 
 
 
+#define PAYLOAD_INFO			uint32_t
 #define HEADER_BUF_SIZE			32
+#define HEADER_BUF_TYPE_VAL		uint32_t
 #define BODY_BUF_SIZE			256
 #define MIN_BUF_SIZE			32
 #define SMALL_BUF_SIZE			64

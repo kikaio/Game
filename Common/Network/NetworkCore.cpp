@@ -1,10 +1,15 @@
 #include "pch.h"
 #include "NetworkCore.h"
 
-SessionCreateFunc NetworkCore::CreateSessionFactory = []() {
-	return MakeShared<Session>();
-};
-	
+
+NetworkCore::NetworkCore()
+{	
+	//기본 session 생성 
+	CreateSessionFactory = []() {
+		return MakeShared<Session>();
+	};
+}
+
 bool NetworkCore::Ready()
 {
 	wsaReady = MakeShared<WsaReady>();
@@ -56,6 +61,7 @@ bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _backlog, UInt32 
 {
 	_listener->SetSockOpts();
 	_listener->SetIocpCore(iocpCore);
+	_listener->SetNetCore(this); 
 
 	if(_listener->Bind() == false) {
 		UInt32 err = WSAGetLastError();
@@ -107,6 +113,7 @@ vector<SessionSptr> NetworkCore::StartConnect(string _ip, UInt32 _port, UInt32 _
 		}
 		session->SetSockOpts();
 		session->SetIocpCore(iocpCore);
+		session->SetNetCore(this);
 		iocpCore->RegistToIocp(session->Sock());
 		sessions.push_back(session);
 	}

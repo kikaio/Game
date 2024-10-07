@@ -17,8 +17,10 @@ void DoIocpServer() {
     }
     printf("wsa standby.\n");
 
-    NetworkCore::CreateSessionFactory = [] {
-        return MakeShared<UserSession>();
+    netCore.CreateSessionFactory = [] {
+        //sid는 accept, connect 완료 시 자동 할당한다. => After 함수들 참고.
+        auto user = MakeShared<UserSession>();
+        return user;
     };
 
     ListenerSptr listener = MakeShared<Listener>(port);
@@ -32,38 +34,12 @@ void DoIocpServer() {
     }
 }
 
-void DoSimpleServer() {
-    WSAData wsaData = {};
-    WSAStartup(MAKEWORD(2, 2), &wsaData);
-    SOCKET sock = ::socket(AF_INET, SOCK_STREAM, 0);
-    int port = 7777;
-    NetAddr netAddr;
-    netAddr.SetAddrAny(port);
-
-    if (::bind(sock, netAddr.SockAddr(), sizeof(SOCKADDR)) == SOCKET_ERROR)
-        return ;
-    if (::listen(sock, 100) == SOCKET_ERROR)
-        return ;
-
-    printf("accept Start\n");
-    SOCKADDR_IN clientAddr = {};
-    int size = sizeof(SOCKADDR);
-    SOCKET client = ::accept(sock, (SOCKADDR*)&clientAddr, &size);
-    if (client != INVALID_SOCKET) {
-        int a = 10;
-    }
-    printf("accept Fin\n");
-    while (true) {
-        this_thread::sleep_for(3s);
-    }
-
-    WSACleanup();
-}
-
 int main()
 {
-    //DoSimpleServer();
-    DoIocpServer();
+    ThreadManager::Get().PushAndStart(DoIocpServer, "", "");
+    this_thread::sleep_for(10s);
 
+    
+    ThreadManager::Get().JoinAll();
     return 0;
 }

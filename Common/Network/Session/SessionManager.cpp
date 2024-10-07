@@ -1,41 +1,61 @@
 #include "pch.h"
 #include "Session.h"
 
-void SessionManager::Push(string _sId, SessionSptr _session)
+void SessionManager::PushSession(SessionSptr _session)
 {
 	LOCK_GUARDDING(sessionsLock);
-	if(sessions.find(_sId) != sessions.end()) {
-		//todo : session key duplication err logging
-		printf("session key not exist. sid : %s\n", _sId.c_str());
-		CRASH("session key not exist");
-		return ;
-	}
-	sessions.insert(make_pair(_sId, _session));
+	sessions.push_back(_session);
+
+
+	//if(sessions.find(sId) != sessions.end()) {
+	//	//todo : session key duplication err logging
+	//	printf("session key not exist. sid : %s\n", sId.c_str());
+	//	CRASH("session key not exist");
+	//	return ;
+	//}
+	//sessions.insert(make_pair(sId, _session));
 }
 
-SessionSptr SessionManager::Get(string _sid)
+SessionSptr SessionManager::GetSession(string _sid)
 {
 	LOCK_GUARDDING(sessionsLock);
-	if(sessions.find(_sid) == sessions.end()) {
-		//todo : err logging
-		return nullptr;
+	for(SessionSptr _session : sessions) {
+		if(_session->GetSId().compare(_sid) == 0) {
+			return _session;
+		}
 	}
+	return nullptr;
 
-	return sessions[_sid];
+	//if(sessions.find(_sid) == sessions.end()) {
+	//	//todo : err logging
+	//	return nullptr;
+	//}
+
+	//return sessions[_sid];
 }
 
-SessionSptr SessionManager::Pop(string _sid)
+SessionSptr SessionManager::PopSession(string _sid)
 {
 	LOCK_GUARDDING(sessionsLock);
+	auto finder = find_if(sessions.begin(), sessions.end(), [_sid](SessionSptr _session){
+		return _sid.compare(_session->GetSId());
+	});
 	SessionSptr ret = nullptr;
-	auto finder = sessions.find(_sid);
-	if(finder == sessions.end()) {
-		//todo : err logging
-		return nullptr;
+	if(finder != sessions.end()) {
+		ret = *finder;
+		sessions.erase(finder);
 	}
+	return ret;
 
-	ret = sessions[_sid];
-	sessions.erase(finder);
+	//SessionSptr ret = nullptr;
+	//auto finder = sessions.find(_sid);
+	//if(finder == sessions.end()) {
+	//	//todo : err logging
+	//	return nullptr;
+	//}
+
+	//ret = sessions[_sid];
+	//sessions.erase(finder);
 	return ret;
 }
 
