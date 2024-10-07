@@ -77,6 +77,8 @@ protected:
 	virtual void AfterConnected() {
 		return;
 	}
+	virtual void AfterDisconnected() {
+	}
 public:
 	void SetIocpCore(IocpCoreSptr _iocpCore);
 	void DispatchEvent(IocpEvent* _event, UInt32 _bytes);

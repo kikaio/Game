@@ -59,6 +59,18 @@ SessionSptr SessionManager::PopSession(string _sid)
 	return ret;
 }
 
+SessionSptr SessionManager::PopSession(SessionSptr _target)
+{
+	LOCK_GUARDDING(sessionsLock);
+	SessionSptr ret = nullptr;
+	auto finder = find(sessions.begin(), sessions.end(), _target);
+	if(finder != sessions.end()) {
+		ret = *finder;
+		sessions.erase(finder);
+	}
+	return ret;
+}
+
 string SessionManager::GenSessionId()
 {
 	auto curTimeStr = ClockUtil::GetNowStrWithMilli();

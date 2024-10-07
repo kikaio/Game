@@ -13,6 +13,7 @@ public:
 	virtual int32_t AfterRecved(BYTE* _buf, UInt32 _dataSize) final ;
 	virtual void AfterAccepted(SessionSptr _session) final;
 	virtual void AfterConnected() final;
+	virtual void AfterDisconnected() final;
 protected:
 	virtual bool OnPacketRecved(BYTE* _payloadPtr, uint32_t payloadBytes);
 public:

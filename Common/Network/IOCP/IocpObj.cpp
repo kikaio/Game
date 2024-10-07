@@ -108,9 +108,6 @@ void IocpObj::DoConnect()
 
 void IocpObj::DoDisconnect()
 {
-	if (isConnected.exchange(false) == false) {
-		return;
-	}
 	iocpDisconnect.Init();
 	iocpDisconnect.owner = shared_from_this();
 	if (SocketUtil::DisconnectEx(sock, &iocpDisconnect) == false) {
@@ -234,7 +231,11 @@ void IocpObj::TryConnect()
 
 void IocpObj::OnConnected()
 {
-	isConnected.store(true);
+	if(isConnected.exchange(true) == true) {
+		printf("duplicated connect????\n");
+	}
+	iocpConnect.owner = nullptr;
+
 	TryRecv();
 	AfterConnected();
 }
@@ -242,18 +243,19 @@ void IocpObj::OnConnected()
 void IocpObj::TryDisconnect(const char* _msg)
 {
 	// todo : logging
+	if (isConnected.exchange(false) == false) {
+		return;
+	}
 	printf("%s\n", _msg);
 	DoDisconnect();
 }
 
 void IocpObj::OnDisconnect()
 {
-	if (isConnected.exchange(false) == false) {
-		return;
-	}
-
 	iocpDisconnect.Init();
 	iocpDisconnect.owner = nullptr;
+
+	AfterDisconnected();
 }
 
 void IocpObj::TrySend(SendBufferSptr _sendBuffer)

@@ -13,5 +13,6 @@ public:
 	void PushSession(SessionSptr _session);
 	SessionSptr GetSession(string _sid);
 	SessionSptr PopSession(string _sid); //sessions 에서 제거 후 반환.
+	SessionSptr PopSession(SessionSptr _target);
 	string GenSessionId();
 };

@@ -47,6 +47,11 @@ void Session::AfterConnected()
 	netCore->GetSessionMgr().PushSession(GetSession());
 }
 
+void Session::AfterDisconnected()
+{
+	netCore->GetSessionMgr().PopSession(GetSession());
+}
+
 bool Session::OnPacketRecved(BYTE* _payloadPtr, uint32_t payloadBytes)
 {
 	PAYLOAD_INFO protocolNo = *(reinterpret_cast<PAYLOAD_INFO*>(_payloadPtr));
