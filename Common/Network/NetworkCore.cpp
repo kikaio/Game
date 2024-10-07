@@ -163,3 +163,8 @@ void NetworkCore::Dispatch(UInt32 _milliSec)
 	}
 	return ;
 }
+
+void NetworkCore::BroadCast(SendBufferSptr _sendBuffer)
+{
+	sessionMgr.BroadCast(_sendBuffer);
+}

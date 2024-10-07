@@ -30,4 +30,6 @@ public:
 	SessionManager& GetSessionMgr() {
 		return sessionMgr;
 	}
+
+	void BroadCast(SendBufferSptr _sendBuffer);
 };

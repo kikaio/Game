@@ -340,7 +340,7 @@ void IocpObj::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
 {
 	switch (_event->Type()) {
 	case IocpEvent::IOCP_EVENT::ACCEPT: {
-		printf("On Accept!!");
+		printf("On Accept!!\n");
 		IocpAccept* iocpAccept = reinterpret_cast<IocpAccept*>(_event);
 		SessionSptr session = iocpAccept->session;
 		OnAccepted(iocpAccept, session);

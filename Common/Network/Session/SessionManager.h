@@ -15,4 +15,6 @@ public:
 	SessionSptr PopSession(string _sid); //sessions 에서 제거 후 반환.
 	SessionSptr PopSession(SessionSptr _target);
 	string GenSessionId();
+public:
+	void BroadCast(SendBufferSptr _sendBuffer);
 };

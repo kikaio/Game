@@ -1,5 +1,5 @@
 ﻿#pragma once
-
+#include "Thread.h"
 
 
 
@@ -11,8 +11,11 @@ private:
 	VAL_LOCK(threadsLock);
 public:
 	void PushThread(WorkFunc _func, const char* _tName, const char* _desc = "None Desc");
-	void PushAndStart(WorkFunc _func, const char* _tName, const char* _desc = "None Desc");
+	void PushAndStart(WorkFunc _func, const char* _tName = "NoName", const char* _desc = "None Desc");
+
 	void StartAll();
 	void JoinAll();
 	void RenderThreadsInfo();
 };
+
+

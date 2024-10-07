@@ -26,7 +26,7 @@ int32_t Session::AfterRecved(BYTE* _buf, UInt32 _dataSize)
 		}
 		BYTE* payloadPtr = reinterpret_cast<BYTE*>(++curHeader);
 		//온전히 packet을 읽는 상태.
-		ASSERT_CRASH(OnPacketRecved(payloadPtr, *curHeader));
+		ASSERT_CRASH(OnPacketRecved(payloadPtr, payloadLen));
 	
 		proceedBytes += HEADER_BUF_SIZE + payloadLen;
 		_dataSize -= HEADER_BUF_SIZE + payloadLen;

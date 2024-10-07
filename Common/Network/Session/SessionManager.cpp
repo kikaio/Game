@@ -78,3 +78,11 @@ string SessionManager::GenSessionId()
 	//todo : encrypt?
 	return ret;
 }
+
+void SessionManager::BroadCast(SendBufferSptr _sendBuffer)
+{
+	LOCK_GUARDDING(sessionsLock);
+	for(auto _session : sessions) {
+		_session->TrySend(_sendBuffer);
+	}
+}
