@@ -14,6 +14,7 @@ public:
 	BYTE* Buffer() { return buffer; }
 	UInt32 WriteSize() { return writeSize; }
 	void Close(uint32_t _writeSize);
+	uint32_t AllocSize() { return allocSize; }
 };
 
 

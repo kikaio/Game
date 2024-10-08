@@ -16,17 +16,14 @@ void DoIocpServer(NetworkCore& netCore) {
 
 void DoBroadCastPing(NetworkCore& _netCore) {
     
-    PacketBuffer packetBuf;
-    BufWriter bufWriter = BufWriter(packetBuf);
-    bufWriter << string("ping");
-    packetBuf.Calc();
-
-    uint32_t len = *reinterpret_cast<UInt32*>(packetBuf.GetHeaderPtr());
     SendBufferSptr sendBuffer = SendBufferManager::Get().Open(BUF_4096);
-    //header 복사
-    memcpy(sendBuffer->Buffer(), packetBuf.GetHeaderPtr(), packetBuf.HeaderSize());
-    memcpy(sendBuffer->Buffer() + packetBuf.HeaderSize(), packetBuf.GetBodyPtr(), len);
-    sendBuffer->Close(packetBuf.HeaderSize() + len);
+
+    BufWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
+    PacketHeader* header = bw.Reserve<PacketHeader>();
+    string msg = "hello~";
+    bw.Write(msg);
+    *header = sizeof(uint32_t) + msg.size() * sizeof(msg[0]); //실제 문자 및 문자열이 차지하는 Byte수
+
 
     while(true) {
         this_thread::sleep_for(5s);
@@ -36,11 +33,6 @@ void DoBroadCastPing(NetworkCore& _netCore) {
     return ;
 }
 
-
-void DoSendPing() {
-    while(true) {
-    }
-}
 
 int main()
 {

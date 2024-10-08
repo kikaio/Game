@@ -39,4 +39,4 @@ DCL_REF_USING(SendBufferChunk);
 
 
 using WorkFunc = std::function<void()>;
-
+using PacketHeader = uint32_t;

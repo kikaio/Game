@@ -13,23 +13,24 @@ Session::~Session()
 int32_t Session::AfterRecved(BYTE* _buf, UInt32 _dataSize)
 {
 	uint32_t proceedBytes = 0;
-	
+	auto headerSize = sizeof(PacketHeader);
 	while(true) {
-		if (_dataSize< HEADER_BUF_SIZE) {
+
+		if (_dataSize< headerSize) {
 			break;
 		}
-		HEADER_BUF_TYPE_VAL* curHeader = reinterpret_cast<HEADER_BUF_TYPE_VAL*>(_buf + proceedBytes);
-		int32_t payloadLen = *curHeader;
+		PacketHeader* curHeader = reinterpret_cast<PacketHeader*>(_buf + proceedBytes);
+		uint32_t payloadLen = *curHeader;
 		//curHeader 는 실제 contents의 길이를 저장 중.
-		if (_dataSize < HEADER_BUF_SIZE + payloadLen) {
+		if (_dataSize < headerSize + payloadLen) {
 			break;
 		}
 		BYTE* payloadPtr = reinterpret_cast<BYTE*>(++curHeader);
 		//온전히 packet을 읽는 상태.
 		ASSERT_CRASH(OnPacketRecved(payloadPtr, payloadLen));
 	
-		proceedBytes += HEADER_BUF_SIZE + payloadLen;
-		_dataSize -= HEADER_BUF_SIZE + payloadLen;
+		proceedBytes += (headerSize + payloadLen);
+		_dataSize -= (headerSize + payloadLen);
 	}
 	return proceedBytes;
 }
@@ -52,9 +53,8 @@ void Session::AfterDisconnected()
 	netCore->GetSessionMgr().PopSession(GetSession());
 }
 
-bool Session::OnPacketRecved(BYTE* _payloadPtr, uint32_t payloadBytes)
+bool Session::OnPacketRecved(BYTE* _payloadPtr, uint32_t _payloadBytes)
 {
-	PAYLOAD_INFO protocolNo = *(reinterpret_cast<PAYLOAD_INFO*>(_payloadPtr));
-	printf("protocol no : %d, payloadBytes = %d\n", protocolNo);
+	printf("payloadBytes = %d\n", _payloadBytes);
 	return true;
 }
