@@ -5,9 +5,9 @@ map<uint8_t, PacketFunc*> ClientPacketHandler::packetHandleMap = {};
 
 void ClientPacketHandler::Init()
 {
-	RegistPacketFunc(PROTOCOL::TEST, [](SessionSptr _session, BufReader& _br){
+	RegistPacketFunc(PROTOCOL::REQ_TEST, [](SessionSptr _session, BufReader* _br){
 		string testMsg = "";
-		_br.Read(testMsg);
+		_br->Read(testMsg);
 		printf("called TEST Packet Handle, and msg : %s\n", testMsg.c_str());
 		return true;
 	});
@@ -23,7 +23,7 @@ bool ClientPacketHandler::HandlePayload(SessionSptr _session, BYTE* _buf, uint32
 		ASSERT_CRASH("invalid protocol.");
 		return false;
 	}
-	return packetHandleMap[protocol](_session, br);
+	return packetHandleMap[protocol](_session, &br);
 }
 
 bool ClientPacketHandler::RegistPacketFunc(PROTOCOL _protocol, PacketFunc _packetHandle)

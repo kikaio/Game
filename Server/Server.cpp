@@ -24,7 +24,7 @@ void DoBroadCastPing(NetworkCore& _netCore) {
     string msg = "hello~";
     bw.Write(msg);
 
-    *protocol = PROTOCOL::TEST;
+    *protocol = PROTOCOL::REQ_TEST;
     *header = sizeof(Protocol) + sizeof(uint32_t) + msg.size() * sizeof(msg[0]); //실제 문자 및 문자열이 차지하는 Byte수
 
     sendBuffer->Close(bw.WriteSize());

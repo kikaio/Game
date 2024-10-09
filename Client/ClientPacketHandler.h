@@ -1,8 +1,5 @@
 #pragma once
 
-
-using PacketFunc = bool(SessionSptr _session, BufReader& _br);
-
 class ClientPacketHandler
 {
 private:

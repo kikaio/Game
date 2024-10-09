@@ -39,11 +39,14 @@ DCL_REF_USING(SendBufferChunk);
 
 
 using WorkFunc = std::function<void()>;
+
+using PacketFunc = bool(SessionSptr _session, class BufReader* _br);
 using PacketHeader = uint32_t;
 using Protocol = uint8_t;
 
 enum PROTOCOL : uint8_t
 {
-	TEST = 1
+	REQ_TEST = 1
+	, ANS_TEST = 1
 };
 

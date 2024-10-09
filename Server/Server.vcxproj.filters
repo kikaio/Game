@@ -18,6 +18,9 @@
     <ClCompile Include="UserSession.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="ServerPacketHandler.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ServerPch.h">
@@ -27,6 +30,9 @@
       <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="UserSession.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerPacketHandler.h">
       <Filter>Main</Filter>
     </ClInclude>
   </ItemGroup>
