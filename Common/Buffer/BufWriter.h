@@ -75,7 +75,7 @@ BufWriter& BufWriter::operator<<(const T& _src) {
 template<typename T>
 BufWriter& BufWriter::operator<<(T&& _src) {
 	using DataType = std::remove_reference_t<T>;
-	*(reinterpret_cast<DataType*>(&buf[pos])) = std::forward<T>(_src);
+	*(reinterpret_cast<DataType*>(&buf[pos])) = std::forward<DataType>(_src);
 	pos += sizeof(T);
 	return *this;
 }
