@@ -23,7 +23,7 @@ void DoBroadCastPing(NetworkCore& _netCore) {
     string msg = "hello~";
     bw.Write(msg);
     *header = sizeof(uint32_t) + msg.size() * sizeof(msg[0]); //실제 문자 및 문자열이 차지하는 Byte수
-
+    sendBuffer->Close(bw.WriteSize());
 
     while(true) {
         this_thread::sleep_for(5s);

@@ -42,7 +42,8 @@ SendBufferSptr SendBufferChunk::Open(uint32_t _allocSize)
 		return nullptr;
 	}
 	open = true;
-	return MakeShared<SendBuffer>(shared_from_this(), Buffer(), _allocSize);
+	return make_shared<SendBuffer>(shared_from_this(), Buffer(), _allocSize);
+//	return MakeShared<SendBuffer>(shared_from_this(), Buffer(), _allocSize);
 }
 
 void SendBufferChunk::Close(uint32_t _writeSize)

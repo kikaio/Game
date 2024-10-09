@@ -55,7 +55,7 @@ class SendBufferManager : public Singleton<SendBufferManager>
 public:
 private:
 	VAL_LOCK(chunkLock);
-	Vector<SendBufferChunkSptr> sendBufferChunks;
+	Vector<SendBufferChunkSptr> sendBufferChunks = {};
 private:
 	SendBufferChunkSptr Pop();
 	void Push(SendBufferChunkSptr _buffer);

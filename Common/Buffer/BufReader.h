@@ -47,7 +47,7 @@ public:
 
 template<typename T>
 BufReader& BufReader::operator>>(OUT T& _dest) {
-	auto dest = reinterpret_cast<void*>(_dest);
+	auto dest = reinterpret_cast<void*>(&_dest);
 	memcpy(dest, &buf[pos], sizeof(T));
 	pos += sizeof(T);
 	return *this;
