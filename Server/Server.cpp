@@ -20,9 +20,13 @@ void DoBroadCastPing(NetworkCore& _netCore) {
 
     BufWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
     PacketHeader* header = bw.Reserve<PacketHeader>();
+    Protocol* protocol = bw.Reserve<Protocol>();
     string msg = "hello~";
     bw.Write(msg);
-    *header = sizeof(uint32_t) + msg.size() * sizeof(msg[0]); //실제 문자 및 문자열이 차지하는 Byte수
+
+    *protocol = PROTOCOL::TEST;
+    *header = sizeof(Protocol) + sizeof(uint32_t) + msg.size() * sizeof(msg[0]); //실제 문자 및 문자열이 차지하는 Byte수
+
     sendBuffer->Close(bw.WriteSize());
 
     while(true) {

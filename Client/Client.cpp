@@ -43,7 +43,9 @@ void DoIocpClient() {
 int main()
 {
 	atomic<bool> clientDoRunning = true;
-	
+
+	ClientPacketHandler::Init();
+
 	ThreadManager::Get().PushThread(
 		DoIocpClient, "DoIocpDispatch", "iocp port dispatch while shutdown"
 	);
@@ -54,7 +56,6 @@ int main()
 	
 	while(clientDoRunning.load()) {
 		this_thread::sleep_for(10s);
-		printf("tick\n");
 	}
 
 	ThreadManager::Get().JoinAll();

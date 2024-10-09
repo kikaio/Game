@@ -40,3 +40,10 @@ DCL_REF_USING(SendBufferChunk);
 
 using WorkFunc = std::function<void()>;
 using PacketHeader = uint32_t;
+using Protocol = uint8_t;
+
+enum PROTOCOL : uint8_t
+{
+	TEST = 1
+};
+

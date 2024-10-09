@@ -38,4 +38,12 @@ public:
 	UInt32 FreeSize() {
 		return capacity - writePos;
 	}
+
+	void Render() {
+		printf("RecvBuffer\n");
+		for(uint32_t _idx = readPos; _idx < writePos; _idx++) {
+			printf("%c-", buffer[_idx]);
+		}
+		printf("\n");
+	}
 };

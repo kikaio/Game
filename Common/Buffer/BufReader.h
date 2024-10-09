@@ -41,7 +41,14 @@ public:
 
 	template<typename T>
 	BufReader& operator>>(OUT T& _inputVal);
-
+		
+	void Render() {
+		printf("bufreader\n");
+		for(uint32_t idx = pos; idx < size; ++idx) {
+			printf("%c, ", buf[idx]);
+		}
+		printf("\n");
+	}
 };
 
 

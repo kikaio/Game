@@ -15,6 +15,9 @@
     <ClCompile Include="DummySession.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="ClientPacketHandler.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClientPch.h">
@@ -24,6 +27,9 @@
       <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="DummySession.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientPacketHandler.h">
       <Filter>Main</Filter>
     </ClInclude>
   </ItemGroup>

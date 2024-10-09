@@ -319,6 +319,7 @@ void IocpObj::OnRecved(UInt32 _bytes)
 		TryDisconnect("recv buffer on write failed\n");
 		return;
 	}
+
 	uint32_t dataSize = iocpRecv.recvBuffer.DataSize();
 	int32_t processedBytes = AfterRecved(iocpRecv.recvBuffer.ReadPos(), dataSize);
 	if (processedBytes < 0 || dataSize < processedBytes || (iocpRecv.recvBuffer.OnRead(processedBytes) == false)) {
