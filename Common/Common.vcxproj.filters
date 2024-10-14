@@ -31,6 +31,9 @@
     <Filter Include="Buffer">
       <UniqueIdentifier>{b14c0e64-5136-4de0-b939-cd933aeb6416}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Protocol">
+      <UniqueIdentifier>{1f964e0d-3706-4e10-a786-db8fa95e35f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -218,5 +221,10 @@
     <ClCompile Include="Buffer\SendBuffer.cpp">
       <Filter>Buffer</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Protocol\UserAndGameServer.proto">
+      <Filter>Protocol</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -224,6 +224,9 @@
     <ClCompile Include="Utils\ClockUtil.cpp" />
     <ClCompile Include="Utils\CommonMacro.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Protocol\UserAndGameServer.proto" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

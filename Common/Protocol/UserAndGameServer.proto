@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package UserAndGameServer;
+
+message ERROR_INFO {
+	uint64 error_no = 1;
+	string error_desc = 2;
+}
+
+message REQ_PUBLIC_KEY {
+	string device_id = 1;
+}
+
+message ANS_PUBLIC_KEY {
+	string public_key = 1;
+}
+
+message REQ_CONNECT {
+	string device_id = 1;
+}
+
+message ANS_CONNEVT {
+	bool is_success = 1;
+	string session_id = 2;
+}
+
+message REQ_TEST_MSG {
+	string msg = 1;
+}
+
