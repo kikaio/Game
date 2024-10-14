@@ -71,19 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory\;$(ProjectDir)Network\;$(ProjectDir)Threads\;$(ProjectDir)Utils\;$(ProjectDir)Buffer\;$(ProjectDir)Lock\;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory\;$(ProjectDir)Network\;$(ProjectDir)Threads\;$(ProjectDir)Utils\;$(ProjectDir)Buffer\;$(ProjectDir)Lock\;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(SolutionDir)protobuf\include\;$(ProjectDir)Protocol\gen;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory\;$(ProjectDir)Network\;$(ProjectDir)Threads\;$(ProjectDir)Utils\;$(ProjectDir)Buffer\;$(ProjectDir)Lock\;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory\;$(ProjectDir)Network\;$(ProjectDir)Threads\;$(ProjectDir)Utils\;$(ProjectDir)Buffer\;$(ProjectDir)Lock\;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(SolutionDir)protobuf\include\;$(ProjectDir)Protocol\gen;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory\;$(ProjectDir)Network\;$(ProjectDir)Threads\;$(ProjectDir)Utils\;$(ProjectDir)Buffer\;$(ProjectDir)Lock\;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory\;$(ProjectDir)Network\;$(ProjectDir)Threads\;$(ProjectDir)Utils\;$(ProjectDir)Buffer\;$(ProjectDir)Lock\;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(SolutionDir)protobuf\include\;$(ProjectDir)Protocol\gen;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory\;$(ProjectDir)Network\;$(ProjectDir)Threads\;$(ProjectDir)Utils\;$(ProjectDir)Buffer\;$(ProjectDir)Lock\;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory\;$(ProjectDir)Network\;$(ProjectDir)Threads\;$(ProjectDir)Utils\;$(ProjectDir)Buffer\;$(ProjectDir)Lock\;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(SolutionDir)protobuf\include\;$(ProjectDir)Protocol\gen;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -161,6 +161,7 @@
     <ClInclude Include="Buffer\RecvBuffer.h" />
     <ClInclude Include="Buffer\SendBuffer.h" />
     <ClInclude Include="CommonPch.h" />
+    <ClInclude Include="CommonProtocol.h" />
     <ClInclude Include="Lock\Lock.h" />
     <ClInclude Include="Lock\LockManager.h" />
     <ClInclude Include="Lock\ReadWriteLock.h" />
@@ -179,6 +180,7 @@
     <ClInclude Include="Network\SocketUtil.h" />
     <ClInclude Include="Network\WsaReady.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Protocol\gen\UserAndGameServer.pb.h" />
     <ClInclude Include="Threads\Thread.h" />
     <ClInclude Include="Threads\ThreadManager.h" />
     <ClInclude Include="Utils\ClockUtil.h" />
@@ -218,6 +220,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Protocol\gen\UserAndGameServer.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Threads\Thread.cpp" />
     <ClCompile Include="Threads\ThreadManager.cpp" />

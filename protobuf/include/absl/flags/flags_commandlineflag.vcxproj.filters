@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\flags\commandlineflag.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\flags\commandlineflag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\flags\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{69B8B4E2-17ED-3C13-AA6E-74E003F47A28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{8E807095-1C4D-31AC-9396-8589F443AB82}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{04E72A89-BD95-3E05-AC4D-4264F135DEF6}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>abseil_test_dll</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\git\_protobuf\protobuf-main\bin\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">abseil_test_dll.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">abseil_test_dll</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\git\_protobuf\protobuf-main\bin\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">abseil_test_dll.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">abseil_test_dll</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\git\_protobuf\protobuf-main\bin\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">abseil_test_dll.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">abseil_test_dll</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\git\_protobuf\protobuf-main\bin\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">abseil_test_dll.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">abseil_test_dll</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\git\_protobuf\protobuf-main;C:\git\_protobuf\protobuf-main\src;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest\include;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock\include;C:\git\_protobuf\protobuf-main\third_party\abseil-cpp;\googletest\include;\googlemock\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4005;4068;4180;4244;4267;4503;4800</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NOMINMAX;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_ENABLE_EXTENDED_ALIGNED_STORAGE;GTEST_LINKED_AS_SHARED_LIBRARY=1;ABSL_BUILD_TEST_DLL;ABSL_CONSUME_DLL;CMAKE_INTDIR="Debug";abseil_test_dll_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;NOMINMAX;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_ENABLE_EXTENDED_ALIGNED_STORAGE;GTEST_LINKED_AS_SHARED_LIBRARY=1;ABSL_BUILD_TEST_DLL;ABSL_CONSUME_DLL;CMAKE_INTDIR=\"Debug\";abseil_test_dll_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\git\_protobuf\protobuf-main;C:\git\_protobuf\protobuf-main\src;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest\include;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock\include;C:\git\_protobuf\protobuf-main\third_party\abseil-cpp;\googletest\include;\googlemock\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -l0x409</AdditionalOptions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\git\_protobuf\protobuf-main;C:\git\_protobuf\protobuf-main\src;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest\include;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock\include;C:\git\_protobuf\protobuf-main\third_party\abseil-cpp;\googletest\include;\googlemock\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreLinkEvent>
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message>Auto build dll exports</Message>
+      <Command>setlocal
+cd C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E __create_def C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/abseil_test_dll.dir/Debug/exports.def C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/abseil_test_dll.dir/Debug//objects.txt
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>..\..\..\bin\Debug\abseil_dll.lib;..\..\..\bin\Debug\gmock.lib;-ignore:4221;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/git/_protobuf/protobuf-main/bin/Debug/abseil_test_dll.lib</ImportLibrary>
+      <ModuleDefinitionFile>C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/abseil_test_dll.dir/Debug/exports.def</ModuleDefinitionFile>
+      <ProgramDataBaseFile>C:/git/_protobuf/protobuf-main/bin/Debug/abseil_test_dll.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\git\_protobuf\protobuf-main;C:\git\_protobuf\protobuf-main\src;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest\include;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock\include;C:\git\_protobuf\protobuf-main\third_party\abseil-cpp;\googletest\include;\googlemock\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DisableSpecificWarnings>4005;4068;4180;4244;4267;4503;4800</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_ENABLE_EXTENDED_ALIGNED_STORAGE;GTEST_LINKED_AS_SHARED_LIBRARY=1;ABSL_BUILD_TEST_DLL;ABSL_CONSUME_DLL;CMAKE_INTDIR="Release";abseil_test_dll_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_ENABLE_EXTENDED_ALIGNED_STORAGE;GTEST_LINKED_AS_SHARED_LIBRARY=1;ABSL_BUILD_TEST_DLL;ABSL_CONSUME_DLL;CMAKE_INTDIR=\"Release\";abseil_test_dll_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\git\_protobuf\protobuf-main;C:\git\_protobuf\protobuf-main\src;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest\include;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock\include;C:\git\_protobuf\protobuf-main\third_party\abseil-cpp;\googletest\include;\googlemock\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -l0x409</AdditionalOptions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\git\_protobuf\protobuf-main;C:\git\_protobuf\protobuf-main\src;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest\include;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock\include;C:\git\_protobuf\protobuf-main\third_party\abseil-cpp;\googletest\include;\googlemock\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreLinkEvent>
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message>Auto build dll exports</Message>
+      <Command>setlocal
+cd C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E __create_def C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/abseil_test_dll.dir/Release/exports.def C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/abseil_test_dll.dir/Release//objects.txt
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>..\..\..\bin\Release\abseil_dll.lib;..\..\..\bin\Release\gmock.lib;-ignore:4221;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/git/_protobuf/protobuf-main/bin/Release/abseil_test_dll.lib</ImportLibrary>
+      <ModuleDefinitionFile>C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/abseil_test_dll.dir/Release/exports.def</ModuleDefinitionFile>
+      <ProgramDataBaseFile>C:/git/_protobuf/protobuf-main/bin/Release/abseil_test_dll.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\git\_protobuf\protobuf-main;C:\git\_protobuf\protobuf-main\src;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest\include;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock\include;C:\git\_protobuf\protobuf-main\third_party\abseil-cpp;\googletest\include;\googlemock\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DisableSpecificWarnings>4005;4068;4180;4244;4267;4503;4800</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_ENABLE_EXTENDED_ALIGNED_STORAGE;GTEST_LINKED_AS_SHARED_LIBRARY=1;ABSL_BUILD_TEST_DLL;ABSL_CONSUME_DLL;CMAKE_INTDIR="MinSizeRel";abseil_test_dll_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_ENABLE_EXTENDED_ALIGNED_STORAGE;GTEST_LINKED_AS_SHARED_LIBRARY=1;ABSL_BUILD_TEST_DLL;ABSL_CONSUME_DLL;CMAKE_INTDIR=\"MinSizeRel\";abseil_test_dll_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\git\_protobuf\protobuf-main;C:\git\_protobuf\protobuf-main\src;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest\include;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock\include;C:\git\_protobuf\protobuf-main\third_party\abseil-cpp;\googletest\include;\googlemock\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -l0x409</AdditionalOptions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\git\_protobuf\protobuf-main;C:\git\_protobuf\protobuf-main\src;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest\include;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock\include;C:\git\_protobuf\protobuf-main\third_party\abseil-cpp;\googletest\include;\googlemock\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreLinkEvent>
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message>Auto build dll exports</Message>
+      <Command>setlocal
+cd C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E __create_def C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/abseil_test_dll.dir/MinSizeRel/exports.def C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/abseil_test_dll.dir/MinSizeRel//objects.txt
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>..\..\..\bin\MinSizeRel\abseil_dll.lib;..\..\..\bin\MinSizeRel\gmock.lib;-ignore:4221;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/git/_protobuf/protobuf-main/bin/MinSizeRel/abseil_test_dll.lib</ImportLibrary>
+      <ModuleDefinitionFile>C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/abseil_test_dll.dir/MinSizeRel/exports.def</ModuleDefinitionFile>
+      <ProgramDataBaseFile>C:/git/_protobuf/protobuf-main/bin/MinSizeRel/abseil_test_dll.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\git\_protobuf\protobuf-main;C:\git\_protobuf\protobuf-main\src;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest\include;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock\include;C:\git\_protobuf\protobuf-main\third_party\abseil-cpp;\googletest\include;\googlemock\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4005;4068;4180;4244;4267;4503;4800</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_ENABLE_EXTENDED_ALIGNED_STORAGE;GTEST_LINKED_AS_SHARED_LIBRARY=1;ABSL_BUILD_TEST_DLL;ABSL_CONSUME_DLL;CMAKE_INTDIR="RelWithDebInfo";abseil_test_dll_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_ENABLE_EXTENDED_ALIGNED_STORAGE;GTEST_LINKED_AS_SHARED_LIBRARY=1;ABSL_BUILD_TEST_DLL;ABSL_CONSUME_DLL;CMAKE_INTDIR=\"RelWithDebInfo\";abseil_test_dll_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\git\_protobuf\protobuf-main;C:\git\_protobuf\protobuf-main\src;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest\include;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock\include;C:\git\_protobuf\protobuf-main\third_party\abseil-cpp;\googletest\include;\googlemock\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -l0x409</AdditionalOptions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\git\_protobuf\protobuf-main;C:\git\_protobuf\protobuf-main\src;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest;C:\git\_protobuf\protobuf-main\third_party\googletest\googletest\include;C:\git\_protobuf\protobuf-main\third_party\googletest\googlemock\include;C:\git\_protobuf\protobuf-main\third_party\abseil-cpp;\googletest\include;\googlemock\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreLinkEvent>
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message>Auto build dll exports</Message>
+      <Command>setlocal
+cd C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E __create_def C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/abseil_test_dll.dir/RelWithDebInfo/exports.def C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/abseil_test_dll.dir/RelWithDebInfo//objects.txt
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>..\..\..\bin\RelWithDebInfo\abseil_dll.lib;..\..\..\bin\RelWithDebInfo\gmock.lib;-ignore:4221;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/git/_protobuf/protobuf-main/bin/RelWithDebInfo/abseil_test_dll.lib</ImportLibrary>
+      <ModuleDefinitionFile>C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/abseil_test_dll.dir/RelWithDebInfo/exports.def</ModuleDefinitionFile>
+      <ProgramDataBaseFile>C:/git/_protobuf/protobuf-main/bin/RelWithDebInfo/abseil_test_dll.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/git/_protobuf/protobuf-main -BC:/git/_protobuf/protobuf-main --check-stamp-file C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/git/_protobuf/protobuf-main -BC:/git/_protobuf/protobuf-main --check-stamp-file C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/git/_protobuf/protobuf-main -BC:/git/_protobuf/protobuf-main --check-stamp-file C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/git/_protobuf/protobuf-main -BC:/git/_protobuf/protobuf-main --check-stamp-file C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\hash\hash_testing.h" />
+    <ClCompile Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\log\scoped_mock_log.cc" />
+    <ClInclude Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\log\scoped_mock_log.h" />
+    <ClCompile Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\random\internal\chi_square.cc" />
+    <ClInclude Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\random\internal\chi_square.h" />
+    <ClCompile Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\random\internal\distribution_test_util.cc" />
+    <ClInclude Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\random\internal\distribution_test_util.h" />
+    <ClInclude Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\random\internal\mock_helpers.h" />
+    <ClInclude Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\random\internal\mock_overload_set.h" />
+    <ClInclude Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\random\mocking_bit_gen.h" />
+    <ClInclude Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\random\mock_distributions.h" />
+    <ClInclude Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\status\status_matchers.h" />
+    <ClCompile Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\status\internal\status_matchers.cc" />
+    <ClInclude Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\status\internal\status_matchers.h" />
+    <ClInclude Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\strings\cordz_test_helpers.h" />
+    <ClInclude Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\strings\cord_test_helpers.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\git\_protobuf\protobuf-main\ZERO_CHECK.vcxproj">
+      <Project>{08FDC0ED-26E4-3395-9127-5D4E3BFCCC17}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\git\_protobuf\protobuf-main\third_party\abseil-cpp\absl\abseil_dll.vcxproj">
+      <Project>{19F8C110-8629-3913-A4C7-B67A6594759B}</Project>
+      <Name>abseil_dll</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\git\_protobuf\protobuf-main\gmock.vcxproj">
+      <Project>{63B9A4DB-F0F2-35CC-8158-94C98C3AA14E}</Project>
+      <Name>gmock</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

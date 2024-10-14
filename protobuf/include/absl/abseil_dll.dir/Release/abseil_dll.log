@@ -1,0 +1,170 @@
+﻿  Building Custom Rule C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/CMakeLists.txt
+  cycleclock.cc
+  low_level_alloc.cc
+  poison.cc
+  raw_logging.cc
+  scoped_set_env.cc
+  strerror.cc
+  spinlock.cc
+  spinlock_wait.cc
+  sysinfo.cc
+  thread_identity.cc
+  throw_delegate.cc
+  tracing.cc
+  unscaledcycleclock.cc
+  log_severity.cc
+  hashtablez_sampler.cc
+  hashtablez_sampler_force_weak_definition.cc
+  raw_hash_set.cc
+  crc32c.cc
+  cpu_detect.cc
+  crc.cc
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  crc_cord_state.cc
+  crc_x86_arm_combined.cc
+  crc_memcpy_fallback.cc
+  crc_memcpy_x86_arm_combined.cc
+  crc_non_temporal_memcpy.cc
+  failure_signal_handler.cc
+  stacktrace.cc
+  symbolize.cc
+  address_is_readable.cc
+  decode_rust_punycode.cc
+  demangle.cc
+  demangle_rust.cc
+  elf_mem_image.cc
+  examine_stack.cc
+  stack_consumption.cc
+  utf8_for_code_point.cc
+  vdso_support.cc
+  city.cc
+  hash.cc
+  low_level_hash.cc
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  die_if_null.cc
+  check_op.cc
+  conditions.cc
+  fnmatch.cc
+  log_format.cc
+  log_message.cc
+  log_sink_set.cc
+  nullguard.cc
+  proto.cc
+  vlog_config.cc
+  initialize.cc
+  log_entry.cc
+  log_sink.cc
+  int128.cc
+  exponential_biased.cc
+  periodic_sampler.cc
+  discrete_distribution.cc
+  gaussian_distribution.cc
+  pool_urbg.cc
+  randen.cc
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  randen_detect.cc
+  randen_hwaes.cc
+  randen_round_keys.cc
+  randen_slow.cc
+  seed_material.cc
+  seed_gen_exception.cc
+  seed_sequences.cc
+  status_internal.cc
+  status.cc
+  statusor.cc
+  status_payload_printer.cc
+  ascii.cc
+  charconv.cc
+  cord.cc
+  cord_analysis.cc
+  cord_buffer.cc
+  charconv_bigint.cc
+  charconv_parse.cc
+  cord_internal.cc
+  cord_rep_btree.cc
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  cord_rep_btree_navigator.cc
+  cord_rep_btree_reader.cc
+  cord_rep_crc.cc
+  cord_rep_consume.cc
+  cordz_functions.cc
+  cordz_handle.cc
+  cordz_info.cc
+  cordz_sample_token.cc
+  damerau_levenshtein_distance.cc
+  stringify_sink.cc
+  match.cc
+  numbers.cc
+  str_cat.cc
+  str_replace.cc
+  str_split.cc
+  string_view.cc
+  substitute.cc
+  memutil.cc
+  ostringstream.cc
+  pow10_helper.cc
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  arg.cc
+  bind.cc
+  extension.cc
+  float_conversion.cc
+  output.cc
+  parser.cc
+  utf8.cc
+  barrier.cc
+  blocking_counter.cc
+  mutex.cc
+  notification.cc
+  create_thread_identity.cc
+  futex_waiter.cc
+  graphcycles.cc
+  kernel_timeout.cc
+  per_thread_sem.cc
+  pthread_waiter.cc
+  sem_waiter.cc
+  stdcpp_waiter.cc
+  waiter_base.cc
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  win32_waiter.cc
+  civil_time.cc
+  clock.cc
+  duration.cc
+  format.cc
+  time.cc
+  civil_time_detail.cc
+  time_zone_fixed.cc
+  time_zone_format.cc
+  time_zone_if.cc
+  time_zone_impl.cc
+  time_zone_info.cc
+  time_zone_libc.cc
+  time_zone_lookup.cc
+  time_zone_posix.cc
+  zone_info_source.cc
+  bad_any_cast.cc
+  bad_optional_access.cc
+  bad_variant_access.cc
+  leak_check.cc
+  코드를 생성하고 있습니다...
+  globals.cc
+  globals.cc
+  escaping.cc
+  escaping.cc
+  Auto build dll exports
+raw_hash_set.obj : warning LNK4197: '??_7CordzHandle@cord_internal@absl@@6B@' 내보내기가 여러 번 지정되었습니다. 첫째 사양을 사용합니다.
+status_internal.obj : warning LNK4197: '??_7CordzHandle@cord_internal@absl@@6B@' 내보내기가 여러 번 지정되었습니다. 첫째 사양을 사용합니다.
+status.obj : warning LNK4197: '??_7CordzHandle@cord_internal@absl@@6B@' 내보내기가 여러 번 지정되었습니다. 첫째 사양을 사용합니다.
+statusor.obj : warning LNK4197: '??_7CordzHandle@cord_internal@absl@@6B@' 내보내기가 여러 번 지정되었습니다. 첫째 사양을 사용합니다.
+status_payload_printer.obj : warning LNK4197: '??_7CordzHandle@cord_internal@absl@@6B@' 내보내기가 여러 번 지정되었습니다. 첫째 사양을 사용합니다.
+cord.obj : warning LNK4197: '??_7CordzHandle@cord_internal@absl@@6B@' 내보내기가 여러 번 지정되었습니다. 첫째 사양을 사용합니다.
+cordz_handle.obj : warning LNK4197: '??_7CordzHandle@cord_internal@absl@@6B@' 내보내기가 여러 번 지정되었습니다. 첫째 사양을 사용합니다.
+cordz_info.obj : warning LNK4197: '??_7CordzHandle@cord_internal@absl@@6B@' 내보내기가 여러 번 지정되었습니다. 첫째 사양을 사용합니다.
+cordz_sample_token.obj : warning LNK4197: '??_7CordzHandle@cord_internal@absl@@6B@' 내보내기가 여러 번 지정되었습니다. 첫째 사양을 사용합니다.
+     C:/git/_protobuf/protobuf-main/bin/Release/abseil_dll.lib 라이브러리 및 C:/git/_protobuf/protobuf-main/bin/Release/abseil_dll.exp 개체를 생성하고 있습니다.
+  abseil_dll.vcxproj -> C:\git\_protobuf\protobuf-main\bin\Release\abseil_dll.dll

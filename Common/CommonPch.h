@@ -77,3 +77,4 @@ using namespace std;
 #include "NetworkCore.h"
 
 
+#include "CommonProtocol.h"

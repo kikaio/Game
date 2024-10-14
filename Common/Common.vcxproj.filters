@@ -34,6 +34,9 @@
     <Filter Include="Protocol">
       <UniqueIdentifier>{1f964e0d-3706-4e10-a786-db8fa95e35f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Protocol\gen">
+      <UniqueIdentifier>{5c919e8d-82e2-4126-aac0-153ac50d33dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -132,6 +135,12 @@
     <ClInclude Include="Buffer\SendBuffer.h">
       <Filter>Buffer</Filter>
     </ClInclude>
+    <ClInclude Include="Protocol\gen\UserAndGameServer.pb.h">
+      <Filter>Protocol\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonProtocol.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -220,6 +229,9 @@
     </ClCompile>
     <ClCompile Include="Buffer\SendBuffer.cpp">
       <Filter>Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\gen\UserAndGameServer.pb.cc">
+      <Filter>Protocol\gen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
