@@ -28,6 +28,7 @@
 #include "google/protobuf/message_lite.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
+#include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
 // @@protoc_insertion_point(includes)
 
@@ -52,10 +53,10 @@ struct TableStruct_UserAndGameServer_2eproto {
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_UserAndGameServer_2eproto;
 namespace UserAndGameServer {
-class ANS_CONNEVT;
-struct ANS_CONNEVTDefaultTypeInternal;
-extern ANS_CONNEVTDefaultTypeInternal _ANS_CONNEVT_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull ANS_CONNEVT_class_data_;
+class ANS_CONNECT;
+struct ANS_CONNECTDefaultTypeInternal;
+extern ANS_CONNECTDefaultTypeInternal _ANS_CONNECT_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull ANS_CONNECT_class_data_;
 class ANS_PUBLIC_KEY;
 struct ANS_PUBLIC_KEYDefaultTypeInternal;
 extern ANS_PUBLIC_KEYDefaultTypeInternal _ANS_PUBLIC_KEY_default_instance_;
@@ -83,6 +84,42 @@ namespace protobuf {
 }  // namespace google
 
 namespace UserAndGameServer {
+enum MsgType : int {
+  UNEXPECTED = 0,
+  REQ = 1,
+  ANS = 2,
+  NOTI = 3,
+  ERR = 4,
+  MsgType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  MsgType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool MsgType_IsValid(int value);
+extern const uint32_t MsgType_internal_data_[];
+constexpr MsgType MsgType_MIN = static_cast<MsgType>(0);
+constexpr MsgType MsgType_MAX = static_cast<MsgType>(4);
+constexpr int MsgType_ARRAYSIZE = 4 + 1;
+const ::google::protobuf::EnumDescriptor*
+MsgType_descriptor();
+template <typename T>
+const std::string& MsgType_Name(T value) {
+  static_assert(std::is_same<T, MsgType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to MsgType_Name().");
+  return MsgType_Name(static_cast<MsgType>(value));
+}
+template <>
+inline const std::string& MsgType_Name(MsgType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<MsgType_descriptor,
+                                                 0, 4>(
+      static_cast<int>(value));
+}
+inline bool MsgType_Parse(absl::string_view name, MsgType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<MsgType>(
+      MsgType_descriptor(), name, value);
+}
 
 // ===================================================================
 
@@ -1101,32 +1138,32 @@ class ANS_PUBLIC_KEY final
 extern const ::google::protobuf::internal::ClassDataFull ANS_PUBLIC_KEY_class_data_;
 // -------------------------------------------------------------------
 
-class ANS_CONNEVT final
+class ANS_CONNECT final
     : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:UserAndGameServer.ANS_CONNEVT) */ {
+/* @@protoc_insertion_point(class_definition:UserAndGameServer.ANS_CONNECT) */ {
  public:
-  inline ANS_CONNEVT() : ANS_CONNEVT(nullptr) {}
-  ~ANS_CONNEVT() PROTOBUF_FINAL;
+  inline ANS_CONNECT() : ANS_CONNECT(nullptr) {}
+  ~ANS_CONNECT() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(ANS_CONNEVT* msg, std::destroying_delete_t) {
+  void operator delete(ANS_CONNECT* msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(ANS_CONNEVT));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(ANS_CONNECT));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR ANS_CONNEVT(
+  explicit PROTOBUF_CONSTEXPR ANS_CONNECT(
       ::google::protobuf::internal::ConstantInitialized);
 
-  inline ANS_CONNEVT(const ANS_CONNEVT& from) : ANS_CONNEVT(nullptr, from) {}
-  inline ANS_CONNEVT(ANS_CONNEVT&& from) noexcept
-      : ANS_CONNEVT(nullptr, std::move(from)) {}
-  inline ANS_CONNEVT& operator=(const ANS_CONNEVT& from) {
+  inline ANS_CONNECT(const ANS_CONNECT& from) : ANS_CONNECT(nullptr, from) {}
+  inline ANS_CONNECT(ANS_CONNECT&& from) noexcept
+      : ANS_CONNECT(nullptr, std::move(from)) {}
+  inline ANS_CONNECT& operator=(const ANS_CONNECT& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ANS_CONNEVT& operator=(ANS_CONNEVT&& from) noexcept {
+  inline ANS_CONNECT& operator=(ANS_CONNECT&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -1154,16 +1191,16 @@ class ANS_CONNEVT final
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const ANS_CONNEVT& default_instance() {
+  static const ANS_CONNECT& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ANS_CONNEVT* internal_default_instance() {
-    return reinterpret_cast<const ANS_CONNEVT*>(
-        &_ANS_CONNEVT_default_instance_);
+  static inline const ANS_CONNECT* internal_default_instance() {
+    return reinterpret_cast<const ANS_CONNECT*>(
+        &_ANS_CONNECT_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 4;
-  friend void swap(ANS_CONNEVT& a, ANS_CONNEVT& b) { a.Swap(&b); }
-  inline void Swap(ANS_CONNEVT* other) {
+  friend void swap(ANS_CONNECT& a, ANS_CONNECT& b) { a.Swap(&b); }
+  inline void Swap(ANS_CONNECT* other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -1171,7 +1208,7 @@ class ANS_CONNEVT final
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ANS_CONNEVT* other) {
+  void UnsafeArenaSwap(ANS_CONNECT* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -1179,13 +1216,13 @@ class ANS_CONNEVT final
 
   // implements Message ----------------------------------------------
 
-  ANS_CONNEVT* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<ANS_CONNEVT>(arena);
+  ANS_CONNECT* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<ANS_CONNECT>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ANS_CONNEVT& from);
+  void CopyFrom(const ANS_CONNECT& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const ANS_CONNEVT& from) { ANS_CONNEVT::MergeImpl(*this, from); }
+  void MergeFrom(const ANS_CONNECT& from) { ANS_CONNECT::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(
@@ -1222,18 +1259,18 @@ class ANS_CONNEVT final
   private:
   void SharedCtor(::google::protobuf::Arena* arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(ANS_CONNEVT* other);
+  void InternalSwap(ANS_CONNECT* other);
  private:
   template <typename T>
   friend ::absl::string_view(
       ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "UserAndGameServer.ANS_CONNEVT"; }
+  static ::absl::string_view FullMessageName() { return "UserAndGameServer.ANS_CONNECT"; }
 
  protected:
-  explicit ANS_CONNEVT(::google::protobuf::Arena* arena);
-  ANS_CONNEVT(::google::protobuf::Arena* arena, const ANS_CONNEVT& from);
-  ANS_CONNEVT(::google::protobuf::Arena* arena, ANS_CONNEVT&& from) noexcept
-      : ANS_CONNEVT(arena) {
+  explicit ANS_CONNECT(::google::protobuf::Arena* arena);
+  ANS_CONNECT(::google::protobuf::Arena* arena, const ANS_CONNECT& from);
+  ANS_CONNECT(::google::protobuf::Arena* arena, ANS_CONNECT&& from) noexcept
+      : ANS_CONNECT(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
@@ -1278,7 +1315,7 @@ class ANS_CONNEVT final
   void _internal_set_is_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:UserAndGameServer.ANS_CONNEVT)
+  // @@protoc_insertion_point(class_scope:UserAndGameServer.ANS_CONNECT)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
@@ -1300,7 +1337,7 @@ class ANS_CONNEVT final
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const ANS_CONNEVT& from_msg);
+                          const ANS_CONNECT& from_msg);
     ::google::protobuf::internal::ArenaStringPtr session_id_;
     bool is_success_;
     ::google::protobuf::internal::CachedSize _cached_size_;
@@ -1310,7 +1347,7 @@ class ANS_CONNEVT final
   friend struct ::TableStruct_UserAndGameServer_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull ANS_CONNEVT_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull ANS_CONNECT_class_data_;
 
 // ===================================================================
 
@@ -1556,76 +1593,76 @@ inline void REQ_CONNECT::set_allocated_device_id(std::string* value) {
 
 // -------------------------------------------------------------------
 
-// ANS_CONNEVT
+// ANS_CONNECT
 
 // bool is_success = 1;
-inline void ANS_CONNEVT::clear_is_success() {
+inline void ANS_CONNECT::clear_is_success() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.is_success_ = false;
 }
-inline bool ANS_CONNEVT::is_success() const {
-  // @@protoc_insertion_point(field_get:UserAndGameServer.ANS_CONNEVT.is_success)
+inline bool ANS_CONNECT::is_success() const {
+  // @@protoc_insertion_point(field_get:UserAndGameServer.ANS_CONNECT.is_success)
   return _internal_is_success();
 }
-inline void ANS_CONNEVT::set_is_success(bool value) {
+inline void ANS_CONNECT::set_is_success(bool value) {
   _internal_set_is_success(value);
-  // @@protoc_insertion_point(field_set:UserAndGameServer.ANS_CONNEVT.is_success)
+  // @@protoc_insertion_point(field_set:UserAndGameServer.ANS_CONNECT.is_success)
 }
-inline bool ANS_CONNEVT::_internal_is_success() const {
+inline bool ANS_CONNECT::_internal_is_success() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.is_success_;
 }
-inline void ANS_CONNEVT::_internal_set_is_success(bool value) {
+inline void ANS_CONNECT::_internal_set_is_success(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.is_success_ = value;
 }
 
 // string session_id = 2;
-inline void ANS_CONNEVT::clear_session_id() {
+inline void ANS_CONNECT::clear_session_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.session_id_.ClearToEmpty();
 }
-inline const std::string& ANS_CONNEVT::session_id() const
+inline const std::string& ANS_CONNECT::session_id() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:UserAndGameServer.ANS_CONNEVT.session_id)
+  // @@protoc_insertion_point(field_get:UserAndGameServer.ANS_CONNECT.session_id)
   return _internal_session_id();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void ANS_CONNEVT::set_session_id(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void ANS_CONNECT::set_session_id(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.session_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:UserAndGameServer.ANS_CONNEVT.session_id)
+  // @@protoc_insertion_point(field_set:UserAndGameServer.ANS_CONNECT.session_id)
 }
-inline std::string* ANS_CONNEVT::mutable_session_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* ANS_CONNECT::mutable_session_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_session_id();
-  // @@protoc_insertion_point(field_mutable:UserAndGameServer.ANS_CONNEVT.session_id)
+  // @@protoc_insertion_point(field_mutable:UserAndGameServer.ANS_CONNECT.session_id)
   return _s;
 }
-inline const std::string& ANS_CONNEVT::_internal_session_id() const {
+inline const std::string& ANS_CONNECT::_internal_session_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.session_id_.Get();
 }
-inline void ANS_CONNEVT::_internal_set_session_id(const std::string& value) {
+inline void ANS_CONNECT::_internal_set_session_id(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.session_id_.Set(value, GetArena());
 }
-inline std::string* ANS_CONNEVT::_internal_mutable_session_id() {
+inline std::string* ANS_CONNECT::_internal_mutable_session_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.session_id_.Mutable( GetArena());
 }
-inline std::string* ANS_CONNEVT::release_session_id() {
+inline std::string* ANS_CONNECT::release_session_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:UserAndGameServer.ANS_CONNEVT.session_id)
+  // @@protoc_insertion_point(field_release:UserAndGameServer.ANS_CONNECT.session_id)
   return _impl_.session_id_.Release();
 }
-inline void ANS_CONNEVT::set_allocated_session_id(std::string* value) {
+inline void ANS_CONNECT::set_allocated_session_id(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.session_id_.SetAllocated(value, GetArena());
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.session_id_.IsDefault()) {
     _impl_.session_id_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.ANS_CONNEVT.session_id)
+  // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.ANS_CONNECT.session_id)
 }
 
 // -------------------------------------------------------------------
@@ -1687,6 +1724,19 @@ inline void REQ_TEST_MSG::set_allocated_msg(std::string* value) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace UserAndGameServer
 
+
+namespace google {
+namespace protobuf {
+
+template <>
+struct is_proto_enum<::UserAndGameServer::MsgType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::UserAndGameServer::MsgType>() {
+  return ::UserAndGameServer::MsgType_descriptor();
+}
+
+}  // namespace protobuf
+}  // namespace google
 
 // @@protoc_insertion_point(global_scope)
 

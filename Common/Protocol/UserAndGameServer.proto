@@ -2,6 +2,17 @@ syntax = "proto3";
 
 package UserAndGameServer;
 
+enum MsgType {
+	UNEXPECTED = 0;
+	REQ = 1;
+	ANS = 2;
+	NOTI = 3;
+	ERR = 4;
+}
+
+
+
+
 message ERROR_INFO {
 	uint64 error_no = 1;
 	string error_desc = 2;
@@ -19,7 +30,7 @@ message REQ_CONNECT {
 	string device_id = 1;
 }
 
-message ANS_CONNEVT {
+message ANS_CONNECT {
 	bool is_success = 1;
 	string session_id = 2;
 }

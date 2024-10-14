@@ -162,7 +162,7 @@ struct ANS_PUBLIC_KEYDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ANS_PUBLIC_KEYDefaultTypeInternal _ANS_PUBLIC_KEY_default_instance_;
 
-inline constexpr ANS_CONNEVT::Impl_::Impl_(
+inline constexpr ANS_CONNECT::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : session_id_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -171,27 +171,26 @@ inline constexpr ANS_CONNEVT::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR ANS_CONNEVT::ANS_CONNEVT(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR ANS_CONNECT::ANS_CONNECT(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(ANS_CONNEVT_class_data_.base()),
+    : ::google::protobuf::Message(ANS_CONNECT_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct ANS_CONNEVTDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ANS_CONNEVTDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ANS_CONNEVTDefaultTypeInternal() {}
+struct ANS_CONNECTDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ANS_CONNECTDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ANS_CONNECTDefaultTypeInternal() {}
   union {
-    ANS_CONNEVT _instance;
+    ANS_CONNECT _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ANS_CONNEVTDefaultTypeInternal _ANS_CONNEVT_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ANS_CONNECTDefaultTypeInternal _ANS_CONNECT_default_instance_;
 }  // namespace UserAndGameServer
-static constexpr const ::_pb::EnumDescriptor**
-    file_level_enum_descriptors_UserAndGameServer_2eproto = nullptr;
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_UserAndGameServer_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_UserAndGameServer_2eproto = nullptr;
 const ::uint32_t
@@ -235,15 +234,15 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::UserAndGameServer::REQ_CONNECT, _impl_.device_id_),
         ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ANS_CONNEVT, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ANS_CONNECT, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ANS_CONNEVT, _impl_.is_success_),
-        PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ANS_CONNEVT, _impl_.session_id_),
+        PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ANS_CONNECT, _impl_.is_success_),
+        PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ANS_CONNECT, _impl_.session_id_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::UserAndGameServer::REQ_TEST_MSG, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -261,7 +260,7 @@ static const ::_pbi::MigrationSchema
         {10, -1, -1, sizeof(::UserAndGameServer::REQ_PUBLIC_KEY)},
         {19, -1, -1, sizeof(::UserAndGameServer::ANS_PUBLIC_KEY)},
         {28, -1, -1, sizeof(::UserAndGameServer::REQ_CONNECT)},
-        {37, -1, -1, sizeof(::UserAndGameServer::ANS_CONNEVT)},
+        {37, -1, -1, sizeof(::UserAndGameServer::ANS_CONNECT)},
         {47, -1, -1, sizeof(::UserAndGameServer::REQ_TEST_MSG)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
@@ -269,7 +268,7 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::UserAndGameServer::_REQ_PUBLIC_KEY_default_instance_._instance,
     &::UserAndGameServer::_ANS_PUBLIC_KEY_default_instance_._instance,
     &::UserAndGameServer::_REQ_CONNECT_default_instance_._instance,
-    &::UserAndGameServer::_ANS_CONNEVT_default_instance_._instance,
+    &::UserAndGameServer::_ANS_CONNECT_default_instance_._instance,
     &::UserAndGameServer::_REQ_TEST_MSG_default_instance_._instance,
 };
 const char descriptor_table_protodef_UserAndGameServer_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
@@ -279,15 +278,17 @@ const char descriptor_table_protodef_UserAndGameServer_2eproto[] ABSL_ATTRIBUTE_
     "error_desc\030\002 \001(\t\"#\n\016REQ_PUBLIC_KEY\022\021\n\tde"
     "vice_id\030\001 \001(\t\"$\n\016ANS_PUBLIC_KEY\022\022\n\npubli"
     "c_key\030\001 \001(\t\" \n\013REQ_CONNECT\022\021\n\tdevice_id\030"
-    "\001 \001(\t\"5\n\013ANS_CONNEVT\022\022\n\nis_success\030\001 \001(\010"
+    "\001 \001(\t\"5\n\013ANS_CONNECT\022\022\n\nis_success\030\001 \001(\010"
     "\022\022\n\nsession_id\030\002 \001(\t\"\033\n\014REQ_TEST_MSG\022\013\n\003"
-    "msg\030\001 \001(\tb\006proto3"
+    "msg\030\001 \001(\t*>\n\007MsgType\022\016\n\nUNEXPECTED\020\000\022\007\n\003"
+    "REQ\020\001\022\007\n\003ANS\020\002\022\010\n\004NOTI\020\003\022\007\n\003ERR\020\004b\006proto"
+    "3"
 };
 static ::absl::once_flag descriptor_table_UserAndGameServer_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_UserAndGameServer_2eproto = {
     false,
     false,
-    297,
+    361,
     descriptor_table_protodef_UserAndGameServer_2eproto,
     "UserAndGameServer.proto",
     &descriptor_table_UserAndGameServer_2eproto_once,
@@ -301,6 +302,15 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_UserAndGameSer
     file_level_service_descriptors_UserAndGameServer_2eproto,
 };
 namespace UserAndGameServer {
+const ::google::protobuf::EnumDescriptor* MsgType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_UserAndGameServer_2eproto);
+  return file_level_enum_descriptors_UserAndGameServer_2eproto[0];
+}
+PROTOBUF_CONSTINIT const uint32_t MsgType_internal_data_[] = {
+    327680u, 0u, };
+bool MsgType_IsValid(int value) {
+  return 0 <= value && value <= 4;
+}
 // ===================================================================
 
 class ERROR_INFO::_Internal {
@@ -1277,90 +1287,90 @@ void REQ_CONNECT::InternalSwap(REQ_CONNECT* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
-class ANS_CONNEVT::_Internal {
+class ANS_CONNECT::_Internal {
  public:
 };
 
-ANS_CONNEVT::ANS_CONNEVT(::google::protobuf::Arena* arena)
+ANS_CONNECT::ANS_CONNECT(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, ANS_CONNEVT_class_data_.base()) {
+    : ::google::protobuf::Message(arena, ANS_CONNECT_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:UserAndGameServer.ANS_CONNEVT)
+  // @@protoc_insertion_point(arena_constructor:UserAndGameServer.ANS_CONNECT)
 }
-inline PROTOBUF_NDEBUG_INLINE ANS_CONNEVT::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ANS_CONNECT::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::UserAndGameServer::ANS_CONNEVT& from_msg)
+    const Impl_& from, const ::UserAndGameServer::ANS_CONNECT& from_msg)
       : session_id_(arena, from.session_id_),
         _cached_size_{0} {}
 
-ANS_CONNEVT::ANS_CONNEVT(
+ANS_CONNECT::ANS_CONNECT(
     ::google::protobuf::Arena* arena,
-    const ANS_CONNEVT& from)
+    const ANS_CONNECT& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, ANS_CONNEVT_class_data_.base()) {
+    : ::google::protobuf::Message(arena, ANS_CONNECT_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  ANS_CONNEVT* const _this = this;
+  ANS_CONNECT* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   _impl_.is_success_ = from._impl_.is_success_;
 
-  // @@protoc_insertion_point(copy_constructor:UserAndGameServer.ANS_CONNEVT)
+  // @@protoc_insertion_point(copy_constructor:UserAndGameServer.ANS_CONNECT)
 }
-inline PROTOBUF_NDEBUG_INLINE ANS_CONNEVT::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ANS_CONNECT::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : session_id_(arena),
         _cached_size_{0} {}
 
-inline void ANS_CONNEVT::SharedCtor(::_pb::Arena* arena) {
+inline void ANS_CONNECT::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.is_success_ = {};
 }
-ANS_CONNEVT::~ANS_CONNEVT() {
-  // @@protoc_insertion_point(destructor:UserAndGameServer.ANS_CONNEVT)
+ANS_CONNECT::~ANS_CONNECT() {
+  // @@protoc_insertion_point(destructor:UserAndGameServer.ANS_CONNECT)
   SharedDtor(*this);
 }
-inline void ANS_CONNEVT::SharedDtor(MessageLite& self) {
-  ANS_CONNEVT& this_ = static_cast<ANS_CONNEVT&>(self);
+inline void ANS_CONNECT::SharedDtor(MessageLite& self) {
+  ANS_CONNECT& this_ = static_cast<ANS_CONNECT&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.session_id_.Destroy();
   this_._impl_.~Impl_();
 }
 
-inline void* ANS_CONNEVT::PlacementNew_(const void*, void* mem,
+inline void* ANS_CONNECT::PlacementNew_(const void*, void* mem,
                                         ::google::protobuf::Arena* arena) {
-  return ::new (mem) ANS_CONNEVT(arena);
+  return ::new (mem) ANS_CONNECT(arena);
 }
-constexpr auto ANS_CONNEVT::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(ANS_CONNEVT),
-                                            alignof(ANS_CONNEVT));
+constexpr auto ANS_CONNECT::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(ANS_CONNECT),
+                                            alignof(ANS_CONNECT));
 }
-constexpr auto ANS_CONNEVT::InternalGenerateClassData_() {
+constexpr auto ANS_CONNECT::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
       ::google::protobuf::internal::ClassData{
-          &_ANS_CONNEVT_default_instance_._instance,
+          &_ANS_CONNECT_default_instance_._instance,
           &_table_.header,
           nullptr,  // OnDemandRegisterArenaDtor
           nullptr,  // IsInitialized
-          &ANS_CONNEVT::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<ANS_CONNEVT>(),
+          &ANS_CONNECT::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<ANS_CONNECT>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &ANS_CONNEVT::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<ANS_CONNEVT>(), &ANS_CONNEVT::ByteSizeLong,
-              &ANS_CONNEVT::_InternalSerialize,
+          &ANS_CONNECT::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<ANS_CONNECT>(), &ANS_CONNECT::ByteSizeLong,
+              &ANS_CONNECT::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(ANS_CONNEVT, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(ANS_CONNECT, _impl_._cached_size_),
           false,
       },
-      &ANS_CONNEVT::kDescriptorMethods,
+      &ANS_CONNECT::kDescriptorMethods,
       &descriptor_table_UserAndGameServer_2eproto,
       nullptr,  // tracker
   };
@@ -1368,16 +1378,16 @@ constexpr auto ANS_CONNEVT::InternalGenerateClassData_() {
 
 PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const ::google::protobuf::internal::ClassDataFull
-        ANS_CONNEVT_class_data_ =
-            ANS_CONNEVT::InternalGenerateClassData_();
+        ANS_CONNECT_class_data_ =
+            ANS_CONNECT::InternalGenerateClassData_();
 
-const ::google::protobuf::internal::ClassData* ANS_CONNEVT::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&ANS_CONNEVT_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(ANS_CONNEVT_class_data_.tc_table);
-  return ANS_CONNEVT_class_data_.base();
+const ::google::protobuf::internal::ClassData* ANS_CONNECT::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&ANS_CONNECT_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(ANS_CONNECT_class_data_.tc_table);
+  return ANS_CONNECT_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 48, 2> ANS_CONNEVT::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 48, 2> ANS_CONNECT::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1388,39 +1398,39 @@ const ::_pbi::TcParseTable<1, 2, 0, 48, 2> ANS_CONNEVT::_table_ = {
     2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    ANS_CONNEVT_class_data_.base(),
+    ANS_CONNECT_class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::UserAndGameServer::ANS_CONNEVT>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::UserAndGameServer::ANS_CONNECT>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // string session_id = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ANS_CONNEVT, _impl_.session_id_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ANS_CONNECT, _impl_.session_id_)}},
     // bool is_success = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ANS_CONNEVT, _impl_.is_success_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ANS_CONNEVT, _impl_.is_success_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ANS_CONNECT, _impl_.is_success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ANS_CONNECT, _impl_.is_success_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bool is_success = 1;
-    {PROTOBUF_FIELD_OFFSET(ANS_CONNEVT, _impl_.is_success_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ANS_CONNECT, _impl_.is_success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // string session_id = 2;
-    {PROTOBUF_FIELD_OFFSET(ANS_CONNEVT, _impl_.session_id_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ANS_CONNECT, _impl_.session_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
     "\35\0\12\0\0\0\0\0"
-    "UserAndGameServer.ANS_CONNEVT"
+    "UserAndGameServer.ANS_CONNECT"
     "session_id"
   }},
 };
 
-PROTOBUF_NOINLINE void ANS_CONNEVT::Clear() {
-// @@protoc_insertion_point(message_clear_start:UserAndGameServer.ANS_CONNEVT)
+PROTOBUF_NOINLINE void ANS_CONNECT::Clear() {
+// @@protoc_insertion_point(message_clear_start:UserAndGameServer.ANS_CONNECT)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -1432,17 +1442,17 @@ PROTOBUF_NOINLINE void ANS_CONNEVT::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* ANS_CONNEVT::_InternalSerialize(
+        ::uint8_t* ANS_CONNECT::_InternalSerialize(
             const MessageLite& base, ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const ANS_CONNEVT& this_ = static_cast<const ANS_CONNEVT&>(base);
+          const ANS_CONNECT& this_ = static_cast<const ANS_CONNECT&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* ANS_CONNEVT::_InternalSerialize(
+        ::uint8_t* ANS_CONNECT::_InternalSerialize(
             ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const ANS_CONNEVT& this_ = *this;
+          const ANS_CONNECT& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:UserAndGameServer.ANS_CONNEVT)
+          // @@protoc_insertion_point(serialize_to_array_start:UserAndGameServer.ANS_CONNECT)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
@@ -1457,7 +1467,7 @@ PROTOBUF_NOINLINE void ANS_CONNEVT::Clear() {
           if (!this_._internal_session_id().empty()) {
             const std::string& _s = this_._internal_session_id();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "UserAndGameServer.ANS_CONNEVT.session_id");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "UserAndGameServer.ANS_CONNECT.session_id");
             target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
@@ -1466,18 +1476,18 @@ PROTOBUF_NOINLINE void ANS_CONNEVT::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:UserAndGameServer.ANS_CONNEVT)
+          // @@protoc_insertion_point(serialize_to_array_end:UserAndGameServer.ANS_CONNECT)
           return target;
         }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t ANS_CONNEVT::ByteSizeLong(const MessageLite& base) {
-          const ANS_CONNEVT& this_ = static_cast<const ANS_CONNEVT&>(base);
+        ::size_t ANS_CONNECT::ByteSizeLong(const MessageLite& base) {
+          const ANS_CONNECT& this_ = static_cast<const ANS_CONNECT&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t ANS_CONNEVT::ByteSizeLong() const {
-          const ANS_CONNEVT& this_ = *this;
+        ::size_t ANS_CONNECT::ByteSizeLong() const {
+          const ANS_CONNECT& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:UserAndGameServer.ANS_CONNEVT)
+          // @@protoc_insertion_point(message_byte_size_start:UserAndGameServer.ANS_CONNECT)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
@@ -1500,10 +1510,10 @@ PROTOBUF_NOINLINE void ANS_CONNEVT::Clear() {
                                                      &this_._impl_._cached_size_);
         }
 
-void ANS_CONNEVT::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<ANS_CONNEVT*>(&to_msg);
-  auto& from = static_cast<const ANS_CONNEVT&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:UserAndGameServer.ANS_CONNEVT)
+void ANS_CONNECT::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<ANS_CONNECT*>(&to_msg);
+  auto& from = static_cast<const ANS_CONNECT&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:UserAndGameServer.ANS_CONNECT)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1517,15 +1527,15 @@ void ANS_CONNEVT::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goo
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ANS_CONNEVT::CopyFrom(const ANS_CONNEVT& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:UserAndGameServer.ANS_CONNEVT)
+void ANS_CONNECT::CopyFrom(const ANS_CONNECT& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:UserAndGameServer.ANS_CONNECT)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void ANS_CONNEVT::InternalSwap(ANS_CONNEVT* PROTOBUF_RESTRICT other) {
+void ANS_CONNECT::InternalSwap(ANS_CONNECT* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -1534,7 +1544,7 @@ void ANS_CONNEVT::InternalSwap(ANS_CONNEVT* PROTOBUF_RESTRICT other) {
         swap(_impl_.is_success_, other->_impl_.is_success_);
 }
 
-::google::protobuf::Metadata ANS_CONNEVT::GetMetadata() const {
+::google::protobuf::Metadata ANS_CONNECT::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
