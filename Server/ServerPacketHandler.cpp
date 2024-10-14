@@ -11,7 +11,7 @@ void ServerPacketHandler::Init()
 	});
 }
 
-void ServerPacketHandler::RegistPacketFunc(PROTOCOL _protocol, PacketFunc* _packetHandle)
+void ServerPacketHandler::RegistPacketFunc(UserAndGameServer::MsgType _protocol, PacketFunc* _packetHandle)
 {
 	if(packetHandlerMap.find(_protocol) != packetHandlerMap.end()) {
 		ASSERT_CRASH("packet handle func duplicated!!\n");
@@ -41,4 +41,11 @@ SendBufferSptr ServerPacketHandler::MakePacket_REQ_TEST(string& _msg)
 	br.Write(_msg);
 	sendBuffer->Close(br.WriteSize());
 	return sendBuffer;
+}
+
+SendBufferSptr ServerPacketHandler::MakeReqTestMsg(string& _msg)
+{
+	UserAndGameServer::ReqTestMsg testMsg;
+	testMsg.set_msg(_msg);
+	return MakeProtoPacket(UserAndGameServer::MsgType::Req, testMsg);
 }

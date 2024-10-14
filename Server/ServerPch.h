@@ -18,3 +18,4 @@
 
 #include "CommonPch.h"
 #include "UserSession.h"
+#include "ServerPacketHandler.h"

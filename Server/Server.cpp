@@ -16,22 +16,11 @@ void DoIocpServer(NetworkCore& netCore) {
 
 void DoBroadCastPing(NetworkCore& _netCore) {
     
-    SendBufferSptr sendBuffer = SendBufferManager::Get().Open(BUF_4096);
-
-    BufWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
-    PacketHeader* header = bw.Reserve<PacketHeader>();
-    Protocol* protocol = bw.Reserve<Protocol>();
-    string msg = "hello~";
-    bw.Write(msg);
-
-    *protocol = PROTOCOL::REQ_TEST;
-    *header = sizeof(Protocol) + sizeof(uint32_t) + msg.size() * sizeof(msg[0]); //실제 문자 및 문자열이 차지하는 Byte수
-
-    sendBuffer->Close(bw.WriteSize());
-
+    string msg("test");
+    auto protoPacket = ServerPacketHandler::MakeReqTestMsg(msg);
     while(true) {
         this_thread::sleep_for(5s);
-        _netCore.BroadCast(sendBuffer);
+        _netCore.BroadCast(protoPacket);
     }
 
     return ;

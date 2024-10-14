@@ -3,39 +3,50 @@ syntax = "proto3";
 package UserAndGameServer;
 
 enum MsgType {
-	UNEXPECTED = 0;
-	REQ = 1;
-	ANS = 2;
-	NOTI = 3;
-	ERR = 4;
+	Unexpected = 0;
+	Req = 1;
+	Ans = 2;
+	Noti = 3;
+	Err = 4;
+}
+
+enum Protocol {
+	ErrInfo = 1;
+	ReqPublicKey = 2;
+	AnsPublicKey = 3;
+	ReqConnect = 4;
+	AnsConnect = 5;
+	ReqTestMsg = 6;
+	AnsTestMsg = 7;
 }
 
 
-
-
-message ERROR_INFO {
-	uint64 error_no = 1;
-	string error_desc = 2;
+message ErrInfo {
+	uint64 err_no = 1;
+	string err_desc = 2;
 }
 
-message REQ_PUBLIC_KEY {
+message ReqPublicKey{
 	string device_id = 1;
 }
 
-message ANS_PUBLIC_KEY {
+message AnsPublicKey {
 	string public_key = 1;
 }
 
-message REQ_CONNECT {
+message ReqConnect {
 	string device_id = 1;
 }
 
-message ANS_CONNECT {
+message AnsConnect {
 	bool is_success = 1;
 	string session_id = 2;
 }
 
-message REQ_TEST_MSG {
+message ReqTestMsg {
 	string msg = 1;
 }
 
+message AnsTestMsg {
+	string msg = 1;
+}
