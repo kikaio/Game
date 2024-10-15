@@ -3,7 +3,7 @@ syntax = "proto3";
 package UserAndGameServer;
 
 enum MsgType {
-	Unexpected = 0;
+	INVALID_MSG_TYPE = 0;
 	Req = 1;
 	Ans = 2;
 	Noti = 3;
@@ -11,17 +11,15 @@ enum MsgType {
 }
 
 enum Protocol {
+	INVALID_PROTOCOL = 0;
 	ErrInfo = 1;
-	ReqPublicKey = 2;
-	AnsPublicKey = 3;
-	ReqConnect = 4;
-	AnsConnect = 5;
-	ReqTestMsg = 6;
-	AnsTestMsg = 7;
+	PublicKey = 2;
+	Connect = 3;
+	TestMsg = 4;
 }
 
 
-message ErrInfo {
+message NotiErrInfo {
 	uint64 err_no = 1;
 	string err_desc = 2;
 }

@@ -42,4 +42,3 @@ using WorkFunc = std::function<void()>;
 
 using PacketFunc = bool(SessionSptr _session, class BufReader* _br);
 using PacketHeader = uint32_t;
-using Protocol = uint8_t;

@@ -4,6 +4,9 @@
     <Filter Include="Main">
       <UniqueIdentifier>{b3e7d405-8b0b-4811-97fc-7c4d0f1995d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UserAndGameServerHandle">
+      <UniqueIdentifier>{54844700-9656-4f37-95ba-67f4161561e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -18,6 +21,9 @@
     <ClCompile Include="ClientPacketHandler.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="UserAndGameServerHandle\ReqTestMsg.cpp">
+      <Filter>UserAndGameServerHandle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClientPch.h">
@@ -31,6 +37,9 @@
     </ClInclude>
     <ClInclude Include="ClientPacketHandler.h">
       <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="UserAndGameServerHandle\ReqTestMsg.h">
+      <Filter>UserAndGameServerHandle</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

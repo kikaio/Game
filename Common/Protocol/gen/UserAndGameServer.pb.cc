@@ -107,7 +107,7 @@ struct ReqConnectDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReqConnectDefaultTypeInternal _ReqConnect_default_instance_;
 
-inline constexpr ErrInfo::Impl_::Impl_(
+inline constexpr NotiErrInfo::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : err_desc_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -116,24 +116,24 @@ inline constexpr ErrInfo::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR ErrInfo::ErrInfo(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR NotiErrInfo::NotiErrInfo(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(ErrInfo_class_data_.base()),
+    : ::google::protobuf::Message(NotiErrInfo_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct ErrInfoDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ErrInfoDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ErrInfoDefaultTypeInternal() {}
+struct NotiErrInfoDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR NotiErrInfoDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~NotiErrInfoDefaultTypeInternal() {}
   union {
-    ErrInfo _instance;
+    NotiErrInfo _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ErrInfoDefaultTypeInternal _ErrInfo_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NotiErrInfoDefaultTypeInternal _NotiErrInfo_default_instance_;
 
 inline constexpr AnsTestMsg::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -217,22 +217,22 @@ struct AnsConnectDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AnsConnectDefaultTypeInternal _AnsConnect_default_instance_;
 }  // namespace UserAndGameServer
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_UserAndGameServer_2eproto[1];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_UserAndGameServer_2eproto[2];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_UserAndGameServer_2eproto = nullptr;
 const ::uint32_t
     TableStruct_UserAndGameServer_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
         ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ErrInfo, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::UserAndGameServer::NotiErrInfo, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ErrInfo, _impl_.err_no_),
-        PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ErrInfo, _impl_.err_desc_),
+        PROTOBUF_FIELD_OFFSET(::UserAndGameServer::NotiErrInfo, _impl_.err_no_),
+        PROTOBUF_FIELD_OFFSET(::UserAndGameServer::NotiErrInfo, _impl_.err_desc_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ReqPublicKey, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -292,7 +292,7 @@ const ::uint32_t
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::UserAndGameServer::ErrInfo)},
+        {0, -1, -1, sizeof(::UserAndGameServer::NotiErrInfo)},
         {10, -1, -1, sizeof(::UserAndGameServer::ReqPublicKey)},
         {19, -1, -1, sizeof(::UserAndGameServer::AnsPublicKey)},
         {28, -1, -1, sizeof(::UserAndGameServer::ReqConnect)},
@@ -301,7 +301,7 @@ static const ::_pbi::MigrationSchema
         {56, -1, -1, sizeof(::UserAndGameServer::AnsTestMsg)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
-    &::UserAndGameServer::_ErrInfo_default_instance_._instance,
+    &::UserAndGameServer::_NotiErrInfo_default_instance_._instance,
     &::UserAndGameServer::_ReqPublicKey_default_instance_._instance,
     &::UserAndGameServer::_AnsPublicKey_default_instance_._instance,
     &::UserAndGameServer::_ReqConnect_default_instance_._instance,
@@ -312,21 +312,23 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_UserAndGameServer_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\027UserAndGameServer.proto\022\021UserAndGameSe"
-    "rver\"+\n\007ErrInfo\022\016\n\006err_no\030\001 \001(\004\022\020\n\010err_d"
-    "esc\030\002 \001(\t\"!\n\014ReqPublicKey\022\021\n\tdevice_id\030\001"
-    " \001(\t\"\"\n\014AnsPublicKey\022\022\n\npublic_key\030\001 \001(\t"
-    "\"\037\n\nReqConnect\022\021\n\tdevice_id\030\001 \001(\t\"4\n\nAns"
-    "Connect\022\022\n\nis_success\030\001 \001(\010\022\022\n\nsession_i"
-    "d\030\002 \001(\t\"\031\n\nReqTestMsg\022\013\n\003msg\030\001 \001(\t\"\031\n\nAn"
-    "sTestMsg\022\013\n\003msg\030\001 \001(\t*>\n\007MsgType\022\016\n\nUnex"
-    "pected\020\000\022\007\n\003Req\020\001\022\007\n\003Ans\020\002\022\010\n\004Noti\020\003\022\007\n\003"
-    "Err\020\004b\006proto3"
+    "rver\"/\n\013NotiErrInfo\022\016\n\006err_no\030\001 \001(\004\022\020\n\010e"
+    "rr_desc\030\002 \001(\t\"!\n\014ReqPublicKey\022\021\n\tdevice_"
+    "id\030\001 \001(\t\"\"\n\014AnsPublicKey\022\022\n\npublic_key\030\001"
+    " \001(\t\"\037\n\nReqConnect\022\021\n\tdevice_id\030\001 \001(\t\"4\n"
+    "\nAnsConnect\022\022\n\nis_success\030\001 \001(\010\022\022\n\nsessi"
+    "on_id\030\002 \001(\t\"\031\n\nReqTestMsg\022\013\n\003msg\030\001 \001(\t\"\031"
+    "\n\nAnsTestMsg\022\013\n\003msg\030\001 \001(\t*D\n\007MsgType\022\024\n\020"
+    "INVALID_MSG_TYPE\020\000\022\007\n\003Req\020\001\022\007\n\003Ans\020\002\022\010\n\004"
+    "Noti\020\003\022\007\n\003Err\020\004*V\n\010Protocol\022\024\n\020INVALID_P"
+    "ROTOCOL\020\000\022\013\n\007ErrInfo\020\001\022\r\n\tPublicKey\020\002\022\013\n"
+    "\007Connect\020\003\022\013\n\007TestMsg\020\004b\006proto3"
 };
 static ::absl::once_flag descriptor_table_UserAndGameServer_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_UserAndGameServer_2eproto = {
     false,
     false,
-    373,
+    471,
     descriptor_table_protodef_UserAndGameServer_2eproto,
     "UserAndGameServer.proto",
     &descriptor_table_UserAndGameServer_2eproto_once,
@@ -349,92 +351,101 @@ PROTOBUF_CONSTINIT const uint32_t MsgType_internal_data_[] = {
 bool MsgType_IsValid(int value) {
   return 0 <= value && value <= 4;
 }
+const ::google::protobuf::EnumDescriptor* Protocol_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_UserAndGameServer_2eproto);
+  return file_level_enum_descriptors_UserAndGameServer_2eproto[1];
+}
+PROTOBUF_CONSTINIT const uint32_t Protocol_internal_data_[] = {
+    327680u, 0u, };
+bool Protocol_IsValid(int value) {
+  return 0 <= value && value <= 4;
+}
 // ===================================================================
 
-class ErrInfo::_Internal {
+class NotiErrInfo::_Internal {
  public:
 };
 
-ErrInfo::ErrInfo(::google::protobuf::Arena* arena)
+NotiErrInfo::NotiErrInfo(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, ErrInfo_class_data_.base()) {
+    : ::google::protobuf::Message(arena, NotiErrInfo_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:UserAndGameServer.ErrInfo)
+  // @@protoc_insertion_point(arena_constructor:UserAndGameServer.NotiErrInfo)
 }
-inline PROTOBUF_NDEBUG_INLINE ErrInfo::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE NotiErrInfo::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::UserAndGameServer::ErrInfo& from_msg)
+    const Impl_& from, const ::UserAndGameServer::NotiErrInfo& from_msg)
       : err_desc_(arena, from.err_desc_),
         _cached_size_{0} {}
 
-ErrInfo::ErrInfo(
+NotiErrInfo::NotiErrInfo(
     ::google::protobuf::Arena* arena,
-    const ErrInfo& from)
+    const NotiErrInfo& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, ErrInfo_class_data_.base()) {
+    : ::google::protobuf::Message(arena, NotiErrInfo_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  ErrInfo* const _this = this;
+  NotiErrInfo* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   _impl_.err_no_ = from._impl_.err_no_;
 
-  // @@protoc_insertion_point(copy_constructor:UserAndGameServer.ErrInfo)
+  // @@protoc_insertion_point(copy_constructor:UserAndGameServer.NotiErrInfo)
 }
-inline PROTOBUF_NDEBUG_INLINE ErrInfo::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE NotiErrInfo::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : err_desc_(arena),
         _cached_size_{0} {}
 
-inline void ErrInfo::SharedCtor(::_pb::Arena* arena) {
+inline void NotiErrInfo::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.err_no_ = {};
 }
-ErrInfo::~ErrInfo() {
-  // @@protoc_insertion_point(destructor:UserAndGameServer.ErrInfo)
+NotiErrInfo::~NotiErrInfo() {
+  // @@protoc_insertion_point(destructor:UserAndGameServer.NotiErrInfo)
   SharedDtor(*this);
 }
-inline void ErrInfo::SharedDtor(MessageLite& self) {
-  ErrInfo& this_ = static_cast<ErrInfo&>(self);
+inline void NotiErrInfo::SharedDtor(MessageLite& self) {
+  NotiErrInfo& this_ = static_cast<NotiErrInfo&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.err_desc_.Destroy();
   this_._impl_.~Impl_();
 }
 
-inline void* ErrInfo::PlacementNew_(const void*, void* mem,
+inline void* NotiErrInfo::PlacementNew_(const void*, void* mem,
                                         ::google::protobuf::Arena* arena) {
-  return ::new (mem) ErrInfo(arena);
+  return ::new (mem) NotiErrInfo(arena);
 }
-constexpr auto ErrInfo::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(ErrInfo),
-                                            alignof(ErrInfo));
+constexpr auto NotiErrInfo::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(NotiErrInfo),
+                                            alignof(NotiErrInfo));
 }
-constexpr auto ErrInfo::InternalGenerateClassData_() {
+constexpr auto NotiErrInfo::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
       ::google::protobuf::internal::ClassData{
-          &_ErrInfo_default_instance_._instance,
+          &_NotiErrInfo_default_instance_._instance,
           &_table_.header,
           nullptr,  // OnDemandRegisterArenaDtor
           nullptr,  // IsInitialized
-          &ErrInfo::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<ErrInfo>(),
+          &NotiErrInfo::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<NotiErrInfo>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &ErrInfo::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<ErrInfo>(), &ErrInfo::ByteSizeLong,
-              &ErrInfo::_InternalSerialize,
+          &NotiErrInfo::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<NotiErrInfo>(), &NotiErrInfo::ByteSizeLong,
+              &NotiErrInfo::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(ErrInfo, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(NotiErrInfo, _impl_._cached_size_),
           false,
       },
-      &ErrInfo::kDescriptorMethods,
+      &NotiErrInfo::kDescriptorMethods,
       &descriptor_table_UserAndGameServer_2eproto,
       nullptr,  // tracker
   };
@@ -442,16 +453,16 @@ constexpr auto ErrInfo::InternalGenerateClassData_() {
 
 PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const ::google::protobuf::internal::ClassDataFull
-        ErrInfo_class_data_ =
-            ErrInfo::InternalGenerateClassData_();
+        NotiErrInfo_class_data_ =
+            NotiErrInfo::InternalGenerateClassData_();
 
-const ::google::protobuf::internal::ClassData* ErrInfo::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&ErrInfo_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(ErrInfo_class_data_.tc_table);
-  return ErrInfo_class_data_.base();
+const ::google::protobuf::internal::ClassData* NotiErrInfo::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&NotiErrInfo_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(NotiErrInfo_class_data_.tc_table);
+  return NotiErrInfo_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 42, 2> ErrInfo::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 46, 2> NotiErrInfo::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -462,39 +473,39 @@ const ::_pbi::TcParseTable<1, 2, 0, 42, 2> ErrInfo::_table_ = {
     2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    ErrInfo_class_data_.base(),
+    NotiErrInfo_class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::UserAndGameServer::ErrInfo>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::UserAndGameServer::NotiErrInfo>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // string err_desc = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ErrInfo, _impl_.err_desc_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(NotiErrInfo, _impl_.err_desc_)}},
     // uint64 err_no = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(ErrInfo, _impl_.err_no_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ErrInfo, _impl_.err_no_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(NotiErrInfo, _impl_.err_no_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(NotiErrInfo, _impl_.err_no_)}},
   }}, {{
     65535, 65535
   }}, {{
     // uint64 err_no = 1;
-    {PROTOBUF_FIELD_OFFSET(ErrInfo, _impl_.err_no_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(NotiErrInfo, _impl_.err_no_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
     // string err_desc = 2;
-    {PROTOBUF_FIELD_OFFSET(ErrInfo, _impl_.err_desc_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(NotiErrInfo, _impl_.err_desc_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\31\0\10\0\0\0\0\0"
-    "UserAndGameServer.ErrInfo"
+    "\35\0\10\0\0\0\0\0"
+    "UserAndGameServer.NotiErrInfo"
     "err_desc"
   }},
 };
 
-PROTOBUF_NOINLINE void ErrInfo::Clear() {
-// @@protoc_insertion_point(message_clear_start:UserAndGameServer.ErrInfo)
+PROTOBUF_NOINLINE void NotiErrInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:UserAndGameServer.NotiErrInfo)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -506,17 +517,17 @@ PROTOBUF_NOINLINE void ErrInfo::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* ErrInfo::_InternalSerialize(
+        ::uint8_t* NotiErrInfo::_InternalSerialize(
             const MessageLite& base, ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const ErrInfo& this_ = static_cast<const ErrInfo&>(base);
+          const NotiErrInfo& this_ = static_cast<const NotiErrInfo&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* ErrInfo::_InternalSerialize(
+        ::uint8_t* NotiErrInfo::_InternalSerialize(
             ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const ErrInfo& this_ = *this;
+          const NotiErrInfo& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:UserAndGameServer.ErrInfo)
+          // @@protoc_insertion_point(serialize_to_array_start:UserAndGameServer.NotiErrInfo)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
@@ -531,7 +542,7 @@ PROTOBUF_NOINLINE void ErrInfo::Clear() {
           if (!this_._internal_err_desc().empty()) {
             const std::string& _s = this_._internal_err_desc();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "UserAndGameServer.ErrInfo.err_desc");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "UserAndGameServer.NotiErrInfo.err_desc");
             target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
@@ -540,18 +551,18 @@ PROTOBUF_NOINLINE void ErrInfo::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:UserAndGameServer.ErrInfo)
+          // @@protoc_insertion_point(serialize_to_array_end:UserAndGameServer.NotiErrInfo)
           return target;
         }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t ErrInfo::ByteSizeLong(const MessageLite& base) {
-          const ErrInfo& this_ = static_cast<const ErrInfo&>(base);
+        ::size_t NotiErrInfo::ByteSizeLong(const MessageLite& base) {
+          const NotiErrInfo& this_ = static_cast<const NotiErrInfo&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t ErrInfo::ByteSizeLong() const {
-          const ErrInfo& this_ = *this;
+        ::size_t NotiErrInfo::ByteSizeLong() const {
+          const NotiErrInfo& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:UserAndGameServer.ErrInfo)
+          // @@protoc_insertion_point(message_byte_size_start:UserAndGameServer.NotiErrInfo)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
@@ -575,10 +586,10 @@ PROTOBUF_NOINLINE void ErrInfo::Clear() {
                                                      &this_._impl_._cached_size_);
         }
 
-void ErrInfo::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<ErrInfo*>(&to_msg);
-  auto& from = static_cast<const ErrInfo&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:UserAndGameServer.ErrInfo)
+void NotiErrInfo::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<NotiErrInfo*>(&to_msg);
+  auto& from = static_cast<const NotiErrInfo&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:UserAndGameServer.NotiErrInfo)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -592,15 +603,15 @@ void ErrInfo::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google:
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ErrInfo::CopyFrom(const ErrInfo& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:UserAndGameServer.ErrInfo)
+void NotiErrInfo::CopyFrom(const NotiErrInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:UserAndGameServer.NotiErrInfo)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void ErrInfo::InternalSwap(ErrInfo* PROTOBUF_RESTRICT other) {
+void NotiErrInfo::InternalSwap(NotiErrInfo* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -609,7 +620,7 @@ void ErrInfo::InternalSwap(ErrInfo* PROTOBUF_RESTRICT other) {
         swap(_impl_.err_no_, other->_impl_.err_no_);
 }
 
-::google::protobuf::Metadata ErrInfo::GetMetadata() const {
+::google::protobuf::Metadata NotiErrInfo::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
