@@ -26,7 +26,7 @@ public:
 	VAL_LOCK(sendLock);
 	queue<SendBufferSptr> sendBuffers;
 protected:
-	NetworkCore* netCore = nullptr;
+	NetworkCoreSptr netCore = nullptr;
 public:
 	void SetSockOpts();
 	bool Bind();
@@ -36,9 +36,12 @@ public:
 	
 	SOCKET Sock();
 public:
-	void SetNetCore(NetworkCore* _core) {
+	void SetNetCore(NetworkCoreSptr _core) {
 		netCore = _core;
 		return ;
+	}
+	NetworkCoreSptr GetNetCore() {
+		return netCore;
 	}
 private:
 	void HandleError(int32_t _err);

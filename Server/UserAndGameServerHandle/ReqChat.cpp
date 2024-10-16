@@ -4,5 +4,12 @@
 
 bool ReqChat(SessionSptr _session, UserAndGameServer::ReqChat& _packet) {
 	
-	return false;
+	auto curNetCore = _session->GetNetCore();
+	if (curNetCore == nullptr) {
+		return false;
+	}
+
+	UserAndGameServer::AnsChat ans;
+
+	return true;
 }

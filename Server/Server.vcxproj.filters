@@ -44,5 +44,8 @@
     <ClInclude Include="UserAndGameServerHandle\UserAndGameServerHandle.h">
       <Filter>Main\UserAndGameServerHandle</Filter>
     </ClInclude>
+    <ClInclude Include="ServerDefines.h">
+      <Filter>Main</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

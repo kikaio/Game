@@ -1,4 +1,5 @@
 #pragma once
+
 class ServerPacketHandler
 {
 private:
@@ -21,7 +22,12 @@ public:
 public:
 	template<typename MSG_TYPE, typename P, typename T> 
 	static SendBufferSptr MakeProtoPacket(MSG_TYPE _msgType, P _protocol, T& _packet);
+
+	DECL_MAKE_PACKET_FUNC(ServerPacketHandler, Ans, Chat);
 };
+
+
+
 
 template<typename MSG_TYPE, typename P, typename T>
 SendBufferSptr ServerPacketHandler::MakeProtoPacket(MSG_TYPE _msgType, P _protocol, T& _packet) {

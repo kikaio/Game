@@ -61,7 +61,7 @@ bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _backlog, UInt32 
 {
 	_listener->SetSockOpts();
 	_listener->SetIocpCore(iocpCore);
-	_listener->SetNetCore(this); 
+	_listener->SetNetCore(GetCoreSptr());
 
 	if(_listener->Bind() == false) {
 		UInt32 err = WSAGetLastError();
@@ -113,7 +113,7 @@ vector<SessionSptr> NetworkCore::StartConnect(string _ip, UInt32 _port, UInt32 _
 		}
 		session->SetSockOpts();
 		session->SetIocpCore(iocpCore);
-		session->SetNetCore(this);
+		session->SetNetCore(GetCoreSptr());
 		iocpCore->RegistToIocp(session->Sock());
 		sessions.push_back(session);
 	}

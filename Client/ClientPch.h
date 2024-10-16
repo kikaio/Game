@@ -7,7 +7,7 @@
 
 #else
 
-#pragma comment(lib, "../Libraries/Libs/Protobuf/Release/libprotoc.lib")
+#pragma comment(lib, "../Libraries/Libs/Protobuf/Release/libprotobuf.lib")
 #pragma comment(lib, "../Libraries/Libs/Common/Release/Common.lib")
 
 #endif

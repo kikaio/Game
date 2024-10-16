@@ -17,6 +17,9 @@
 
 
 #include "CommonPch.h"
+#include "ServerDefines.h"
+
+
 #include "UserSession.h"
 #include "ServerPacketHandler.h"
-#include "UserAndGameServerHandle.h"
+#include "UserAndGameServerHandle/UserAndGameServerHandle.h"

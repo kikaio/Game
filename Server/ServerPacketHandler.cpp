@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "ServerPacketHandler.h"
 
+
+
+
 #define REGIST_PACKET_FUNC(_msgType, _protocol, _func)																\
 {																													\
 	RegistPacketFunc(UserAndGameServer::MsgType::##_msgType, UserAndGameServer::Protocol::##_protocol, _func);		\
@@ -124,3 +127,6 @@ bool ServerPacketHandler::HandlePayload(SessionSptr _session, BYTE* _buf, uint32
 	}
 	return true;
 }
+
+
+IMPL_MAKE_PACKET_FUNC(ServerPacketHandler, Ans, Chat);
