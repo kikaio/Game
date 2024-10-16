@@ -3,7 +3,7 @@
 
 using SessionCreateFunc = std::function<SessionSptr()>;
 
-class NetworkCore
+class NetworkCore : public enable_shared_from_this<NetworkCore>
 {
 public:
 	NetworkCore();
@@ -32,4 +32,7 @@ public:
 	}
 
 	void BroadCast(SendBufferSptr _sendBuffer);
+	NetworkCoreSptr GetCoreSptr() {
+		return shared_from_this();
+	}
 };

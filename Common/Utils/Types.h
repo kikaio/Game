@@ -36,6 +36,7 @@ DCL_REF_USING(WsaReady);
 DCL_REF_USING(IocpObj);
 DCL_REF_USING(SendBuffer);
 DCL_REF_USING(SendBufferChunk);
+DCL_REF_USING(NetworkCore);
 
 
 using WorkFunc = std::function<void()>;

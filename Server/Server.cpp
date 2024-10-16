@@ -7,21 +7,21 @@ void PrintLn(const char* _msg)
     printf("%s\n", _msg);
 }
 
-void DoIocpServer(NetworkCore& netCore) {
+void DoIocpServer(NetworkCoreSptr netCore) {
     UInt32 waitMilliSec = INFINITE;
     while(true) {
-        netCore.Dispatch(waitMilliSec);
+        netCore->Dispatch(waitMilliSec);
     }
 }
 
-void DoBroadCastPing(NetworkCore& _netCore) {
+void DoBroadCastPing(NetworkCoreSptr _netCore) {
     
     UserAndGameServer::ReqTestMsg msg;
     msg.set_msg("hello");
     auto sendBuffer = ServerPacketHandler::MakeProtoPacket(UserAndGameServer::MsgType::Req, UserAndGameServer::Protocol::TestMsg, msg);
     while(true) {
         this_thread::sleep_for(5s);
-        _netCore.BroadCast(sendBuffer);
+        _netCore->BroadCast(sendBuffer);
     }
     
     return ;
@@ -49,13 +49,13 @@ int main()
     netCore.ReadyToAccept(listener, backlog, accepterCnt);
 
     printf("accept ready\n");
-
-    ThreadManager::Get().PushAndStart([&netCore]() {
-        DoIocpServer(netCore);
+    NetworkCoreSptr netCoreSptr = netCore.GetCoreSptr();
+    ThreadManager::Get().PushAndStart([&netCoreSptr]() {
+        DoIocpServer(netCoreSptr);
     });
 
-    ThreadManager::Get().PushAndStart([&netCore]() {
-        DoBroadCastPing(netCore); 
+    ThreadManager::Get().PushAndStart([&netCoreSptr]() {
+        DoBroadCastPing(netCoreSptr);
     });
 
 

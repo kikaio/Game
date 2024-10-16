@@ -1,5 +1,4 @@
 #pragma once
-#include "UserAndGameServerHandle/ReqTestMsg.h"
 
 class BufReader;
 

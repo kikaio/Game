@@ -103,8 +103,58 @@ struct AnsTestMsgDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT AnsTestMsgDefaultTypeInternal _AnsTestMsg_default_instance_;
+constexpr UserProfile::UserProfile(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : session_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , nick_name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct UserProfileDefaultTypeInternal {
+  constexpr UserProfileDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~UserProfileDefaultTypeInternal() {}
+  union {
+    UserProfile _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT UserProfileDefaultTypeInternal _UserProfile_default_instance_;
+constexpr ChatInfo::ChatInfo(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : user_profile_(nullptr)
+  , chat_type_(0){}
+struct ChatInfoDefaultTypeInternal {
+  constexpr ChatInfoDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ChatInfoDefaultTypeInternal() {}
+  union {
+    ChatInfo _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ChatInfoDefaultTypeInternal _ChatInfo_default_instance_;
+constexpr ReqChat::ReqChat(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : chat_info_(nullptr){}
+struct ReqChatDefaultTypeInternal {
+  constexpr ReqChatDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ReqChatDefaultTypeInternal() {}
+  union {
+    ReqChat _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ReqChatDefaultTypeInternal _ReqChat_default_instance_;
+constexpr AnsiChat::AnsiChat(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : chat_info_(nullptr){}
+struct AnsiChatDefaultTypeInternal {
+  constexpr AnsiChatDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~AnsiChatDefaultTypeInternal() {}
+  union {
+    AnsiChat _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT AnsiChatDefaultTypeInternal _AnsiChat_default_instance_;
 }  // namespace UserAndGameServer
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_UserAndGameServer_2eproto[7];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_UserAndGameServer_2eproto[11];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_UserAndGameServer_2eproto[2];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_UserAndGameServer_2eproto = nullptr;
 
@@ -153,6 +203,32 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_UserAndGameServer_2eproto::off
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::UserAndGameServer::AnsTestMsg, msg_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::UserProfile, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::UserProfile, session_id_),
+  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::UserProfile, nick_name_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ChatInfo, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ChatInfo, chat_type_),
+  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ChatInfo, user_profile_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ReqChat, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ReqChat, chat_info_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::AnsiChat, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::AnsiChat, chat_info_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::UserAndGameServer::NotiErrInfo)},
@@ -162,6 +238,10 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 25, -1, sizeof(::UserAndGameServer::AnsConnect)},
   { 32, -1, sizeof(::UserAndGameServer::ReqTestMsg)},
   { 38, -1, sizeof(::UserAndGameServer::AnsTestMsg)},
+  { 44, -1, sizeof(::UserAndGameServer::UserProfile)},
+  { 51, -1, sizeof(::UserAndGameServer::ChatInfo)},
+  { 58, -1, sizeof(::UserAndGameServer::ReqChat)},
+  { 64, -1, sizeof(::UserAndGameServer::AnsiChat)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -172,6 +252,10 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::UserAndGameServer::_AnsConnect_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::UserAndGameServer::_ReqTestMsg_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::UserAndGameServer::_AnsTestMsg_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::UserAndGameServer::_UserProfile_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::UserAndGameServer::_ChatInfo_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::UserAndGameServer::_ReqChat_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::UserAndGameServer::_AnsiChat_default_instance_),
 };
 
 const char descriptor_table_protodef_UserAndGameServer_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -182,16 +266,23 @@ const char descriptor_table_protodef_UserAndGameServer_2eproto[] PROTOBUF_SECTIO
   " \001(\t\"\037\n\nReqConnect\022\021\n\tdevice_id\030\001 \001(\t\"4\n"
   "\nAnsConnect\022\022\n\nis_success\030\001 \001(\010\022\022\n\nsessi"
   "on_id\030\002 \001(\t\"\031\n\nReqTestMsg\022\013\n\003msg\030\001 \001(\t\"\031"
-  "\n\nAnsTestMsg\022\013\n\003msg\030\001 \001(\t*D\n\007MsgType\022\024\n\020"
-  "INVALID_MSG_TYPE\020\000\022\007\n\003Req\020\001\022\007\n\003Ans\020\002\022\010\n\004"
-  "Noti\020\003\022\007\n\003Err\020\004*V\n\010Protocol\022\024\n\020INVALID_P"
-  "ROTOCOL\020\000\022\013\n\007ErrInfo\020\001\022\r\n\tPublicKey\020\002\022\013\n"
-  "\007Connect\020\003\022\013\n\007TestMsg\020\004b\006proto3"
+  "\n\nAnsTestMsg\022\013\n\003msg\030\001 \001(\t\"4\n\013UserProfile"
+  "\022\022\n\nsession_id\030\001 \001(\t\022\021\n\tnick_name\030\002 \001(\t\""
+  "S\n\010ChatInfo\022\021\n\tchat_type\030\001 \001(\005\0224\n\014user_p"
+  "rofile\030\002 \001(\0132\036.UserAndGameServer.UserPro"
+  "file\"9\n\007ReqChat\022.\n\tchat_info\030\001 \001(\0132\033.Use"
+  "rAndGameServer.ChatInfo\":\n\010AnsiChat\022.\n\tc"
+  "hat_info\030\001 \001(\0132\033.UserAndGameServer.ChatI"
+  "nfo*D\n\007MsgType\022\024\n\020INVALID_MSG_TYPE\020\000\022\007\n\003"
+  "Req\020\001\022\007\n\003Ans\020\002\022\010\n\004Noti\020\003\022\007\n\003Err\020\004*`\n\010Pro"
+  "tocol\022\024\n\020INVALID_PROTOCOL\020\000\022\013\n\007ErrInfo\020\001"
+  "\022\r\n\tPublicKey\020\002\022\013\n\007Connect\020\003\022\013\n\007TestMsg\020"
+  "\004\022\010\n\004Char\020\005b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_UserAndGameServer_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_UserAndGameServer_2eproto = {
-  false, false, 471, descriptor_table_protodef_UserAndGameServer_2eproto, "UserAndGameServer.proto", 
-  &descriptor_table_UserAndGameServer_2eproto_once, nullptr, 0, 7,
+  false, false, 739, descriptor_table_protodef_UserAndGameServer_2eproto, "UserAndGameServer.proto", 
+  &descriptor_table_UserAndGameServer_2eproto_once, nullptr, 0, 11,
   schemas, file_default_instances, TableStruct_UserAndGameServer_2eproto::offsets,
   file_level_metadata_UserAndGameServer_2eproto, file_level_enum_descriptors_UserAndGameServer_2eproto, file_level_service_descriptors_UserAndGameServer_2eproto,
 };
@@ -230,6 +321,7 @@ bool Protocol_IsValid(int value) {
     case 2:
     case 3:
     case 4:
+    case 5:
       return true;
     default:
       return false;
@@ -1724,6 +1816,901 @@ void AnsTestMsg::InternalSwap(AnsTestMsg* other) {
       file_level_metadata_UserAndGameServer_2eproto[6]);
 }
 
+// ===================================================================
+
+class UserProfile::_Internal {
+ public:
+};
+
+UserProfile::UserProfile(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:UserAndGameServer.UserProfile)
+}
+UserProfile::UserProfile(const UserProfile& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  session_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_session_id().empty()) {
+    session_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_session_id(), 
+      GetArenaForAllocation());
+  }
+  nick_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_nick_name().empty()) {
+    nick_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_nick_name(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:UserAndGameServer.UserProfile)
+}
+
+void UserProfile::SharedCtor() {
+session_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+nick_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+UserProfile::~UserProfile() {
+  // @@protoc_insertion_point(destructor:UserAndGameServer.UserProfile)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void UserProfile::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  session_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  nick_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void UserProfile::ArenaDtor(void* object) {
+  UserProfile* _this = reinterpret_cast< UserProfile* >(object);
+  (void)_this;
+}
+void UserProfile::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void UserProfile::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void UserProfile::Clear() {
+// @@protoc_insertion_point(message_clear_start:UserAndGameServer.UserProfile)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  session_id_.ClearToEmpty();
+  nick_name_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserProfile::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string session_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_session_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "UserAndGameServer.UserProfile.session_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string nick_name = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_nick_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "UserAndGameServer.UserProfile.nick_name"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* UserProfile::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:UserAndGameServer.UserProfile)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string session_id = 1;
+  if (!this->session_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_session_id().data(), static_cast<int>(this->_internal_session_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "UserAndGameServer.UserProfile.session_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_session_id(), target);
+  }
+
+  // string nick_name = 2;
+  if (!this->nick_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_nick_name().data(), static_cast<int>(this->_internal_nick_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "UserAndGameServer.UserProfile.nick_name");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_nick_name(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:UserAndGameServer.UserProfile)
+  return target;
+}
+
+size_t UserProfile::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:UserAndGameServer.UserProfile)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string session_id = 1;
+  if (!this->session_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_session_id());
+  }
+
+  // string nick_name = 2;
+  if (!this->nick_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_nick_name());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void UserProfile::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:UserAndGameServer.UserProfile)
+  GOOGLE_DCHECK_NE(&from, this);
+  const UserProfile* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<UserProfile>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:UserAndGameServer.UserProfile)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:UserAndGameServer.UserProfile)
+    MergeFrom(*source);
+  }
+}
+
+void UserProfile::MergeFrom(const UserProfile& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:UserAndGameServer.UserProfile)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.session_id().empty()) {
+    _internal_set_session_id(from._internal_session_id());
+  }
+  if (!from.nick_name().empty()) {
+    _internal_set_nick_name(from._internal_nick_name());
+  }
+}
+
+void UserProfile::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:UserAndGameServer.UserProfile)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void UserProfile::CopyFrom(const UserProfile& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:UserAndGameServer.UserProfile)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserProfile::IsInitialized() const {
+  return true;
+}
+
+void UserProfile::InternalSwap(UserProfile* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &session_id_, GetArenaForAllocation(),
+      &other->session_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &nick_name_, GetArenaForAllocation(),
+      &other->nick_name_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserProfile::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_UserAndGameServer_2eproto_getter, &descriptor_table_UserAndGameServer_2eproto_once,
+      file_level_metadata_UserAndGameServer_2eproto[7]);
+}
+
+// ===================================================================
+
+class ChatInfo::_Internal {
+ public:
+  static const ::UserAndGameServer::UserProfile& user_profile(const ChatInfo* msg);
+};
+
+const ::UserAndGameServer::UserProfile&
+ChatInfo::_Internal::user_profile(const ChatInfo* msg) {
+  return *msg->user_profile_;
+}
+ChatInfo::ChatInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:UserAndGameServer.ChatInfo)
+}
+ChatInfo::ChatInfo(const ChatInfo& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_user_profile()) {
+    user_profile_ = new ::UserAndGameServer::UserProfile(*from.user_profile_);
+  } else {
+    user_profile_ = nullptr;
+  }
+  chat_type_ = from.chat_type_;
+  // @@protoc_insertion_point(copy_constructor:UserAndGameServer.ChatInfo)
+}
+
+void ChatInfo::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&user_profile_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&chat_type_) -
+    reinterpret_cast<char*>(&user_profile_)) + sizeof(chat_type_));
+}
+
+ChatInfo::~ChatInfo() {
+  // @@protoc_insertion_point(destructor:UserAndGameServer.ChatInfo)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void ChatInfo::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete user_profile_;
+}
+
+void ChatInfo::ArenaDtor(void* object) {
+  ChatInfo* _this = reinterpret_cast< ChatInfo* >(object);
+  (void)_this;
+}
+void ChatInfo::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void ChatInfo::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ChatInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:UserAndGameServer.ChatInfo)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && user_profile_ != nullptr) {
+    delete user_profile_;
+  }
+  user_profile_ = nullptr;
+  chat_type_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ChatInfo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int32 chat_type = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          chat_type_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .UserAndGameServer.UserProfile user_profile = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_user_profile(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ChatInfo::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:UserAndGameServer.ChatInfo)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 chat_type = 1;
+  if (this->chat_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_chat_type(), target);
+  }
+
+  // .UserAndGameServer.UserProfile user_profile = 2;
+  if (this->has_user_profile()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::user_profile(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:UserAndGameServer.ChatInfo)
+  return target;
+}
+
+size_t ChatInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:UserAndGameServer.ChatInfo)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .UserAndGameServer.UserProfile user_profile = 2;
+  if (this->has_user_profile()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *user_profile_);
+  }
+
+  // int32 chat_type = 1;
+  if (this->chat_type() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_chat_type());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ChatInfo::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:UserAndGameServer.ChatInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ChatInfo* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ChatInfo>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:UserAndGameServer.ChatInfo)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:UserAndGameServer.ChatInfo)
+    MergeFrom(*source);
+  }
+}
+
+void ChatInfo::MergeFrom(const ChatInfo& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:UserAndGameServer.ChatInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_user_profile()) {
+    _internal_mutable_user_profile()->::UserAndGameServer::UserProfile::MergeFrom(from._internal_user_profile());
+  }
+  if (from.chat_type() != 0) {
+    _internal_set_chat_type(from._internal_chat_type());
+  }
+}
+
+void ChatInfo::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:UserAndGameServer.ChatInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ChatInfo::CopyFrom(const ChatInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:UserAndGameServer.ChatInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ChatInfo::IsInitialized() const {
+  return true;
+}
+
+void ChatInfo::InternalSwap(ChatInfo* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ChatInfo, chat_type_)
+      + sizeof(ChatInfo::chat_type_)
+      - PROTOBUF_FIELD_OFFSET(ChatInfo, user_profile_)>(
+          reinterpret_cast<char*>(&user_profile_),
+          reinterpret_cast<char*>(&other->user_profile_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ChatInfo::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_UserAndGameServer_2eproto_getter, &descriptor_table_UserAndGameServer_2eproto_once,
+      file_level_metadata_UserAndGameServer_2eproto[8]);
+}
+
+// ===================================================================
+
+class ReqChat::_Internal {
+ public:
+  static const ::UserAndGameServer::ChatInfo& chat_info(const ReqChat* msg);
+};
+
+const ::UserAndGameServer::ChatInfo&
+ReqChat::_Internal::chat_info(const ReqChat* msg) {
+  return *msg->chat_info_;
+}
+ReqChat::ReqChat(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:UserAndGameServer.ReqChat)
+}
+ReqChat::ReqChat(const ReqChat& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_chat_info()) {
+    chat_info_ = new ::UserAndGameServer::ChatInfo(*from.chat_info_);
+  } else {
+    chat_info_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:UserAndGameServer.ReqChat)
+}
+
+void ReqChat::SharedCtor() {
+chat_info_ = nullptr;
+}
+
+ReqChat::~ReqChat() {
+  // @@protoc_insertion_point(destructor:UserAndGameServer.ReqChat)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void ReqChat::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete chat_info_;
+}
+
+void ReqChat::ArenaDtor(void* object) {
+  ReqChat* _this = reinterpret_cast< ReqChat* >(object);
+  (void)_this;
+}
+void ReqChat::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void ReqChat::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ReqChat::Clear() {
+// @@protoc_insertion_point(message_clear_start:UserAndGameServer.ReqChat)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && chat_info_ != nullptr) {
+    delete chat_info_;
+  }
+  chat_info_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ReqChat::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .UserAndGameServer.ChatInfo chat_info = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_chat_info(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ReqChat::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:UserAndGameServer.ReqChat)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .UserAndGameServer.ChatInfo chat_info = 1;
+  if (this->has_chat_info()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::chat_info(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:UserAndGameServer.ReqChat)
+  return target;
+}
+
+size_t ReqChat::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:UserAndGameServer.ReqChat)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .UserAndGameServer.ChatInfo chat_info = 1;
+  if (this->has_chat_info()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *chat_info_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ReqChat::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:UserAndGameServer.ReqChat)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ReqChat* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ReqChat>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:UserAndGameServer.ReqChat)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:UserAndGameServer.ReqChat)
+    MergeFrom(*source);
+  }
+}
+
+void ReqChat::MergeFrom(const ReqChat& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:UserAndGameServer.ReqChat)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_chat_info()) {
+    _internal_mutable_chat_info()->::UserAndGameServer::ChatInfo::MergeFrom(from._internal_chat_info());
+  }
+}
+
+void ReqChat::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:UserAndGameServer.ReqChat)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ReqChat::CopyFrom(const ReqChat& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:UserAndGameServer.ReqChat)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ReqChat::IsInitialized() const {
+  return true;
+}
+
+void ReqChat::InternalSwap(ReqChat* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(chat_info_, other->chat_info_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ReqChat::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_UserAndGameServer_2eproto_getter, &descriptor_table_UserAndGameServer_2eproto_once,
+      file_level_metadata_UserAndGameServer_2eproto[9]);
+}
+
+// ===================================================================
+
+class AnsiChat::_Internal {
+ public:
+  static const ::UserAndGameServer::ChatInfo& chat_info(const AnsiChat* msg);
+};
+
+const ::UserAndGameServer::ChatInfo&
+AnsiChat::_Internal::chat_info(const AnsiChat* msg) {
+  return *msg->chat_info_;
+}
+AnsiChat::AnsiChat(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:UserAndGameServer.AnsiChat)
+}
+AnsiChat::AnsiChat(const AnsiChat& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_chat_info()) {
+    chat_info_ = new ::UserAndGameServer::ChatInfo(*from.chat_info_);
+  } else {
+    chat_info_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:UserAndGameServer.AnsiChat)
+}
+
+void AnsiChat::SharedCtor() {
+chat_info_ = nullptr;
+}
+
+AnsiChat::~AnsiChat() {
+  // @@protoc_insertion_point(destructor:UserAndGameServer.AnsiChat)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void AnsiChat::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete chat_info_;
+}
+
+void AnsiChat::ArenaDtor(void* object) {
+  AnsiChat* _this = reinterpret_cast< AnsiChat* >(object);
+  (void)_this;
+}
+void AnsiChat::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void AnsiChat::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void AnsiChat::Clear() {
+// @@protoc_insertion_point(message_clear_start:UserAndGameServer.AnsiChat)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && chat_info_ != nullptr) {
+    delete chat_info_;
+  }
+  chat_info_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* AnsiChat::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .UserAndGameServer.ChatInfo chat_info = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_chat_info(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* AnsiChat::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:UserAndGameServer.AnsiChat)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .UserAndGameServer.ChatInfo chat_info = 1;
+  if (this->has_chat_info()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::chat_info(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:UserAndGameServer.AnsiChat)
+  return target;
+}
+
+size_t AnsiChat::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:UserAndGameServer.AnsiChat)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .UserAndGameServer.ChatInfo chat_info = 1;
+  if (this->has_chat_info()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *chat_info_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void AnsiChat::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:UserAndGameServer.AnsiChat)
+  GOOGLE_DCHECK_NE(&from, this);
+  const AnsiChat* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<AnsiChat>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:UserAndGameServer.AnsiChat)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:UserAndGameServer.AnsiChat)
+    MergeFrom(*source);
+  }
+}
+
+void AnsiChat::MergeFrom(const AnsiChat& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:UserAndGameServer.AnsiChat)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_chat_info()) {
+    _internal_mutable_chat_info()->::UserAndGameServer::ChatInfo::MergeFrom(from._internal_chat_info());
+  }
+}
+
+void AnsiChat::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:UserAndGameServer.AnsiChat)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void AnsiChat::CopyFrom(const AnsiChat& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:UserAndGameServer.AnsiChat)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AnsiChat::IsInitialized() const {
+  return true;
+}
+
+void AnsiChat::InternalSwap(AnsiChat* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(chat_info_, other->chat_info_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AnsiChat::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_UserAndGameServer_2eproto_getter, &descriptor_table_UserAndGameServer_2eproto_once,
+      file_level_metadata_UserAndGameServer_2eproto[10]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace UserAndGameServer
 PROTOBUF_NAMESPACE_OPEN
@@ -1747,6 +2734,18 @@ template<> PROTOBUF_NOINLINE ::UserAndGameServer::ReqTestMsg* Arena::CreateMaybe
 }
 template<> PROTOBUF_NOINLINE ::UserAndGameServer::AnsTestMsg* Arena::CreateMaybeMessage< ::UserAndGameServer::AnsTestMsg >(Arena* arena) {
   return Arena::CreateMessageInternal< ::UserAndGameServer::AnsTestMsg >(arena);
+}
+template<> PROTOBUF_NOINLINE ::UserAndGameServer::UserProfile* Arena::CreateMaybeMessage< ::UserAndGameServer::UserProfile >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::UserAndGameServer::UserProfile >(arena);
+}
+template<> PROTOBUF_NOINLINE ::UserAndGameServer::ChatInfo* Arena::CreateMaybeMessage< ::UserAndGameServer::ChatInfo >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::UserAndGameServer::ChatInfo >(arena);
+}
+template<> PROTOBUF_NOINLINE ::UserAndGameServer::ReqChat* Arena::CreateMaybeMessage< ::UserAndGameServer::ReqChat >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::UserAndGameServer::ReqChat >(arena);
+}
+template<> PROTOBUF_NOINLINE ::UserAndGameServer::AnsiChat* Arena::CreateMaybeMessage< ::UserAndGameServer::AnsiChat >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::UserAndGameServer::AnsiChat >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

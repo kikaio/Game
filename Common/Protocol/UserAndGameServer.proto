@@ -16,6 +16,7 @@ enum Protocol {
 	PublicKey = 2;
 	Connect = 3;
 	TestMsg = 4;
+	Char = 5;
 }
 
 
@@ -47,4 +48,22 @@ message ReqTestMsg {
 
 message AnsTestMsg {
 	string msg = 1;
+}
+
+message UserProfile {
+	string session_id = 1;
+	string nick_name = 2;
+}
+
+message ChatInfo {
+	int32 chat_type = 1;
+	UserProfile user_profile = 2;
+}
+
+message ReqChat {
+	ChatInfo chat_info = 1;
+}
+
+message AnsiChat {
+	ChatInfo chat_info = 1;
 }

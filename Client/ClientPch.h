@@ -20,3 +20,4 @@
 #include "DummySession.h"
 
 #include "ClientPacketHandler.h"
+#include "UserAndGameServerHandle/UserAndGameServerHandle.h"

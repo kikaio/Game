@@ -163,7 +163,7 @@
     <ClInclude Include="ClientPch.h" />
     <ClInclude Include="DummySession.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="UserAndGameServerHandle\ReqTestMsg.h" />
+    <ClInclude Include="UserAndGameServerHandle\UserAndGameServerHandle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

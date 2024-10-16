@@ -38,7 +38,7 @@
     <ClInclude Include="ClientPacketHandler.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="UserAndGameServerHandle\ReqTestMsg.h">
+    <ClInclude Include="UserAndGameServerHandle\UserAndGameServerHandle.h">
       <Filter>UserAndGameServerHandle</Filter>
     </ClInclude>
   </ItemGroup>

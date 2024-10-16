@@ -4,6 +4,9 @@
     <Filter Include="Main">
       <UniqueIdentifier>{ef6d8c96-d629-4967-a742-97e50df7bf38}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Main\UserAndGameServerHandle">
+      <UniqueIdentifier>{a77ac2c4-f7ac-48c4-aa02-0929fab6a4e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Server.cpp">
@@ -21,6 +24,9 @@
     <ClCompile Include="ServerPacketHandler.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="UserAndGameServerHandle\ReqChat.cpp">
+      <Filter>Main\UserAndGameServerHandle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ServerPch.h">
@@ -34,6 +40,9 @@
     </ClInclude>
     <ClInclude Include="ServerPacketHandler.h">
       <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="UserAndGameServerHandle\UserAndGameServerHandle.h">
+      <Filter>Main\UserAndGameServerHandle</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
