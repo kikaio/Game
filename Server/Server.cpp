@@ -16,13 +16,14 @@ void DoIocpServer(NetworkCore& netCore) {
 
 void DoBroadCastPing(NetworkCore& _netCore) {
     
-    string msg("test");
-    auto protoPacket = ServerPacketHandler::MakeReqTestMsg(msg);
+    UserAndGameServer::ReqTestMsg msg;
+    msg.set_msg("hello");
+    auto sendBuffer = ServerPacketHandler::MakeProtoPacket(UserAndGameServer::MsgType::Req, UserAndGameServer::Protocol::TestMsg, msg);
     while(true) {
         this_thread::sleep_for(5s);
-        _netCore.BroadCast(protoPacket);
+        _netCore.BroadCast(sendBuffer);
     }
-
+    
     return ;
 }
 

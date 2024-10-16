@@ -1,4 +1,0 @@
-C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/abseil_test_dll.dir/Release/scoped_mock_log.obj
-C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/abseil_test_dll.dir/Release/chi_square.obj
-C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/abseil_test_dll.dir/Release/distribution_test_util.obj
-C:/git/_protobuf/protobuf-main/third_party/abseil-cpp/absl/abseil_test_dll.dir/Release/status_matchers.obj

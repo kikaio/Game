@@ -1,62 +1,102 @@
 #include "pch.h"
 #include "ClientPacketHandler.h"
 
+#define REGIST_PACKET_FUNC(_msgType, _protocol, _func)																\
+{																													\
+	RegistPacketFunc(UserAndGameServer::MsgType::##_msgType, UserAndGameServer::Protocol::##_protocol, _func);		\
+}																													\
+
+
 map<UserAndGameServer::Protocol, PacketFunc*> ClientPacketHandler::userAndGameServerErrMap;  //받은 err를 handle
 map<UserAndGameServer::Protocol, PacketFunc*> ClientPacketHandler::userAndGameServerNotiMap;  //받은 noti를 handle
 map<UserAndGameServer::Protocol, PacketFunc*> ClientPacketHandler::userAndGameServerReqMap;	//받은 req를 handle
 map<UserAndGameServer::Protocol, PacketFunc*> ClientPacketHandler::userAndGameServerAnsMap;  //받은 ans를 handle
 
 
-#define IMPL_CONVERT_USER_AND_GAMESERVER_PACKET(_msgType, _protocolName)																\
-bool ClientPacketHandler::ConverUserAndGameServerPacket##_msgType##_protocolName(SessionSptr _session, BufReader* _brPtr)				\
-{																																		\
-	UserAndGameServer::##_msgType##_protocolName protocolPacket;																		\
-	if (protocolPacket.ParseFromArray(_brPtr->Buffer(), _brPtr->FreeSize()) == false) {													\
-		AbusingRecord(_session, UserAndGameServer::MsgType::##_msgType, UserAndGameServer::Protocol::##_protocolName, _brPtr);			\
-		return false;																													\
-	}																																	\
-	else {																																\
-		return UserAndGameServerHandle::##_msgType##_protocolName(_session, protocolPacket);											\
-	}																																	\
-}																																		\
 
+bool ClientPacketHandler::HandleUserAndGameServerReq(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr)
+{
+	auto finder = userAndGameServerReqMap.find(_protocol);
+	if (finder == userAndGameServerReqMap.end()) {
+		//abusing 기록
+		AbusingRecord(_session, _msgType, _protocol, _brPtr);
+		return false;
+	}
+	return userAndGameServerReqMap[_protocol](_session, _brPtr);
+}
 
+bool ClientPacketHandler::HandleUserAndGameServerAns(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr)
+{
+	auto finder = userAndGameServerAnsMap.find(_protocol);
+	if (finder == userAndGameServerAnsMap.end()) {
+		//abusing 기록
+		AbusingRecord(_session, _msgType, _protocol, _brPtr);
+		return false;
+	}
+	return userAndGameServerAnsMap[_protocol](_session, _brPtr);
+}
 
-#define PROTOCOL_HANDLE(_session, _msgType, _protocol, _brPtr, _handleMap)								\
-{																										\
-	auto _fidner = _handleMap.find(_protocol);															\
-	if(_fidner == _handleMap.end()) {																	\
-		AbusingRecord(_session, _msgType, _protocol, _brPtr);											\
-		return false;																					\
-	}																									\
-	else {																								\
-		_handleMap[_protocol](_session, _brPtr);														\
-		return true;																					\
-	}																									\
-}																										\
+bool ClientPacketHandler::HandleUserAndGameServerNoti(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr)
+{
+	auto finder = userAndGameServerNotiMap.find(_protocol);
+	if (finder == userAndGameServerNotiMap.end()) {
+		//abusing 기록
+		AbusingRecord(_session, _msgType, _protocol, _brPtr);
+		return false;
+	}
+	return userAndGameServerNotiMap[_protocol](_session, _brPtr);
+}
 
-
-#define USER_AND_GAMESERVER_HANDLE_REGIST(_msgType, _protocolName, _map)				\
-{																						\
-	auto _protocol = UserAndGameServer::Protocol::_protocolName;						\
-	_map[_protocol] = ConverUserAndGameServerPacket##_msgType##_protocolName;			\
-}																						\
-
-
-
-IMPL_CONVERT_USER_AND_GAMESERVER_PACKET(Req, TestMsg);
-
-
+bool ClientPacketHandler::HandleUserAndGameServerErr(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr)
+{
+	auto finder = userAndGameServerErrMap.find(_protocol);
+	if (finder == userAndGameServerErrMap.end()) {
+		//abusing 기록
+		AbusingRecord(_session, _msgType, _protocol, _brPtr);
+		return false;
+	}
+	return userAndGameServerErrMap[_protocol](_session, _brPtr);
+}
 
 
 void ClientPacketHandler::AbusingRecord(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _buf)
 {
 }
 
+void ClientPacketHandler::RegistPacketFunc(UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, PacketFunc* _func)
+{
+	switch(_msgType) {
+	case UserAndGameServer::MsgType::Req : {
+		userAndGameServerReqMap[_protocol] = _func;
+		break;
+	}
+	case UserAndGameServer::MsgType::Ans: {
+		userAndGameServerAnsMap[_protocol] = _func;
+		break;
+	}
+	case UserAndGameServer::MsgType::Noti: {
+		userAndGameServerNotiMap[_protocol] = _func;
+		break;
+	}
+	case UserAndGameServer::MsgType::Err: {
+		userAndGameServerErrMap[_protocol] = _func;
+		break;
+	}
+	default: {
+		ASSERT_CRASH("INVALID MSG TYPE RTEGIST");
+		break;
+	}
+	}
+	return ;
+}
+
 void ClientPacketHandler::Init()
 {
-	//Register All Handler.
-	USER_AND_GAMESERVER_HANDLE_REGIST(Req, TestMsg, userAndGameServerReqMap);
+	REGIST_PACKET_FUNC(Req, TestMsg, [](SessionSptr _session, BufReader* _brPtr) {
+		printf("recv ReqTestMsg!\n");
+		return true;
+	});
+	return;
 }
 
 bool ClientPacketHandler::HandlePayload(SessionSptr _session, BYTE* _buf, uint32_t _size)
@@ -70,19 +110,15 @@ bool ClientPacketHandler::HandlePayload(SessionSptr _session, BYTE* _buf, uint32
 
 	switch(msgType) {
 	case UserAndGameServer::MsgType::Err : {
-		PROTOCOL_HANDLE(_session, msgType, protocol, &br, userAndGameServerErrMap);
 		break;
 	}
 	case UserAndGameServer::MsgType::Noti : {
-		PROTOCOL_HANDLE(_session, msgType, protocol, &br, userAndGameServerNotiMap);
 		break;
 	}
 	case UserAndGameServer::MsgType::Req : {
-		PROTOCOL_HANDLE(_session, msgType, protocol, &br, userAndGameServerReqMap);
-		break;
+		return HandleUserAndGameServerReq(_session, msgType, protocol, &br);
 	}
 	case UserAndGameServer::MsgType::Ans : {
-		PROTOCOL_HANDLE(_session, msgType, protocol, &br, userAndGameServerAnsMap);
 		break;
 	}
 	default: {
