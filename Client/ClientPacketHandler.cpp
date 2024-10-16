@@ -10,7 +10,7 @@
 [](SessionSptr _session, BufReader* _brPtr)																				\
 {																														\
 	UserAndGameServer::##_msgType##_protocolName packet;																\
-	packet.ParseFromArray(_brPtr->Buffer(), _brPtr->FreeSize());														\
+	packet.ParseFromArray(_brPtr->Buffer()+_brPtr->ReadSize(), _brPtr->FreeSize());									\
 	_brPtr->Close();																									\
 																														\
 	return UserAndGameServerHandle::##_msgType##_protocolName(_session, packet);										\
