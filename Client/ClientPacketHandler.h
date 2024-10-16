@@ -22,6 +22,33 @@ private:
 public:
 	static void Init();
 	static bool HandlePayload(SessionSptr _session, BYTE* _buf, uint32_t _size);
+public:
+	template<typename MSG_TYPE, typename P, typename T>
+	static SendBufferSptr MakeProtoPacket(MSG_TYPE _msgType, P _protocol, T& _packet);
 };
+
+template<typename MSG_TYPE, typename P, typename T>
+SendBufferSptr ClientPacketHandler::MakeProtoPacket(MSG_TYPE _msgType, P _protocol, T& _packet) {
+
+	uint16_t byteLen = _packet.ByteSizeLong();
+	uint32_t headerVal = sizeof(MSG_TYPE) + sizeof(P) + byteLen;
+	uint16_t packetSize = sizeof(PacketHeader) + headerVal;
+	SendBufferSptr sendBuffer = SendBufferManager::Get().Open(packetSize);
+
+	PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->Buffer());
+	*header = headerVal;
+
+	MSG_TYPE* msgType = reinterpret_cast<MSG_TYPE*>(&header[1]);
+	*msgType = _msgType;
+
+	P* _protocolPtr = reinterpret_cast<P*>(&msgType[1]);
+	*_protocolPtr = _protocol;
+
+	ASSERT_CRASH(_packet.SerializeToArray(&_protocolPtr[1], byteLen));
+	sendBuffer->Close(packetSize);
+	return sendBuffer;
+}
+
+
 
 

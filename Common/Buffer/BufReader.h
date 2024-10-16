@@ -21,6 +21,9 @@ public:
 	uint32_t Size() { return size;}
 	uint32_t ReadSize() { return pos; }
 	uint32_t FreeSize() { return size-pos; }
+
+	void Close() { pos = size; }
+
 	template<typename T> 
 	bool Peek(T* _dest) { return Peek(_dest, sizeof(T)); }
 	bool Peek(void* _dest, uint32_t _len);

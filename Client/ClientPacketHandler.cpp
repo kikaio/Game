@@ -6,11 +6,27 @@
 	RegistPacketFunc(UserAndGameServer::MsgType::##_msgType, UserAndGameServer::Protocol::##_protocol, _func);		\
 }																													\
 
+#define DECL_PACKET_HANDLE_FUNC(_msgType, _protocolName)																\
+[](SessionSptr _session, BufReader* _brPtr)																				\
+{																														\
+	UserAndGameServer::##_msgType##_protocolName packet;																\
+	packet.ParseFromArray(_brPtr->Buffer(), _brPtr->FreeSize());														\
+	_brPtr->Close();																									\
+																														\
+	return UserAndGameServerHandle::##_msgType##_protocolName(_session, packet);										\
+};																														\
 
-map<UserAndGameServer::Protocol, PacketFunc*> ClientPacketHandler::userAndGameServerErrMap;  //받은 err를 handle
-map<UserAndGameServer::Protocol, PacketFunc*> ClientPacketHandler::userAndGameServerNotiMap;  //받은 noti를 handle
+#define REGIST_USER_AND_GAMESERVER_FUNC(_msgType, _protocolName)																	\
+{																																	\
+	userAndGameServerReqMap[UserAndGameServer::Protocol::##_protocolName] = DECL_PACKET_HANDLE_FUNC(_msgType, _protocolName);		\
+}																																	\
+
+
+
 map<UserAndGameServer::Protocol, PacketFunc*> ClientPacketHandler::userAndGameServerReqMap;	//받은 req를 handle
 map<UserAndGameServer::Protocol, PacketFunc*> ClientPacketHandler::userAndGameServerAnsMap;  //받은 ans를 handle
+map<UserAndGameServer::Protocol, PacketFunc*> ClientPacketHandler::userAndGameServerNotiMap;  //받은 noti를 handle
+map<UserAndGameServer::Protocol, PacketFunc*> ClientPacketHandler::userAndGameServerErrMap;  //받은 err를 handle
 
 
 
@@ -92,10 +108,8 @@ void ClientPacketHandler::RegistPacketFunc(UserAndGameServer::MsgType _msgType, 
 
 void ClientPacketHandler::Init()
 {
-	REGIST_PACKET_FUNC(Req, TestMsg, [](SessionSptr _session, BufReader* _brPtr) {
-		printf("recv ReqTestMsg!\n");
-		return true;
-	});
+	// msgType, protocolName을 처리하는 function을 각각의 map에 연결해준다.
+	REGIST_USER_AND_GAMESERVER_FUNC(Req, TestMsg);
 	return;
 }
 

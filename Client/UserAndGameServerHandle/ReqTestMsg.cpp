@@ -2,5 +2,6 @@
 #include "ReqTestMsg.h"
 
 bool UserAndGameServerHandle::ReqTestMsg(SessionSptr _session, UserAndGameServer::ReqTestMsg& _packet) {
-	return false;
+	printf("UserAndGameServerHandle::ReqTestMsg - test msg : %s\n", _packet.msg().c_str());
+	return true;
 }
