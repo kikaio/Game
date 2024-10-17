@@ -17,6 +17,8 @@
 
 
 #include "CommonPch.h"
+#include "ClientDefine.h"
+
 #include "DummySession.h"
 
 #include "ClientPacketHandler.h"

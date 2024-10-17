@@ -7,6 +7,9 @@
     <Filter Include="UserAndGameServerHandle">
       <UniqueIdentifier>{54844700-9656-4f37-95ba-67f4161561e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Dummy">
+      <UniqueIdentifier>{7215d8e1-a7d1-4d4f-9cd4-de34f37bb54c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -22,6 +25,9 @@
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="UserAndGameServerHandle\ReqTestMsg.cpp">
+      <Filter>UserAndGameServerHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="UserAndGameServerHandle\AnsChat.cpp">
       <Filter>UserAndGameServerHandle</Filter>
     </ClCompile>
   </ItemGroup>
@@ -40,6 +46,9 @@
     </ClInclude>
     <ClInclude Include="UserAndGameServerHandle\UserAndGameServerHandle.h">
       <Filter>UserAndGameServerHandle</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientDefine.h">
+      <Filter>Main</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

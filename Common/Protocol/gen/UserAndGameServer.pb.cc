@@ -118,7 +118,8 @@ struct UserProfileDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT UserProfileDefaultTypeInternal _UserProfile_default_instance_;
 constexpr ChatInfo::ChatInfo(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : user_profile_(nullptr)
+  : msg_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , user_profile_(nullptr)
   , chat_type_(0){}
 struct ChatInfoDefaultTypeInternal {
   constexpr ChatInfoDefaultTypeInternal()
@@ -217,6 +218,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_UserAndGameServer_2eproto::off
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ChatInfo, chat_type_),
   PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ChatInfo, user_profile_),
+  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ChatInfo, msg_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ReqChat, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -240,8 +242,8 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 38, -1, sizeof(::UserAndGameServer::AnsTestMsg)},
   { 44, -1, sizeof(::UserAndGameServer::UserProfile)},
   { 51, -1, sizeof(::UserAndGameServer::ChatInfo)},
-  { 58, -1, sizeof(::UserAndGameServer::ReqChat)},
-  { 64, -1, sizeof(::UserAndGameServer::AnsChat)},
+  { 59, -1, sizeof(::UserAndGameServer::ReqChat)},
+  { 65, -1, sizeof(::UserAndGameServer::AnsChat)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -268,20 +270,20 @@ const char descriptor_table_protodef_UserAndGameServer_2eproto[] PROTOBUF_SECTIO
   "on_id\030\002 \001(\t\"\031\n\nReqTestMsg\022\013\n\003msg\030\001 \001(\t\"\031"
   "\n\nAnsTestMsg\022\013\n\003msg\030\001 \001(\t\"4\n\013UserProfile"
   "\022\022\n\nsession_id\030\001 \001(\t\022\021\n\tnick_name\030\002 \001(\t\""
-  "S\n\010ChatInfo\022\021\n\tchat_type\030\001 \001(\005\0224\n\014user_p"
+  "`\n\010ChatInfo\022\021\n\tchat_type\030\001 \001(\005\0224\n\014user_p"
   "rofile\030\002 \001(\0132\036.UserAndGameServer.UserPro"
-  "file\"9\n\007ReqChat\022.\n\tchat_info\030\001 \001(\0132\033.Use"
-  "rAndGameServer.ChatInfo\"9\n\007AnsChat\022.\n\tch"
-  "at_info\030\001 \001(\0132\033.UserAndGameServer.ChatIn"
-  "fo*D\n\007MsgType\022\024\n\020INVALID_MSG_TYPE\020\000\022\007\n\003R"
-  "eq\020\001\022\007\n\003Ans\020\002\022\010\n\004Noti\020\003\022\007\n\003Err\020\004*`\n\010Prot"
-  "ocol\022\024\n\020INVALID_PROTOCOL\020\000\022\013\n\007ErrInfo\020\001\022"
-  "\r\n\tPublicKey\020\002\022\013\n\007Connect\020\003\022\013\n\007TestMsg\020\004"
-  "\022\010\n\004Chat\020\005b\006proto3"
+  "file\022\013\n\003msg\030\003 \001(\t\"9\n\007ReqChat\022.\n\tchat_inf"
+  "o\030\001 \001(\0132\033.UserAndGameServer.ChatInfo\"9\n\007"
+  "AnsChat\022.\n\tchat_info\030\001 \001(\0132\033.UserAndGame"
+  "Server.ChatInfo*D\n\007MsgType\022\024\n\020INVALID_MS"
+  "G_TYPE\020\000\022\007\n\003Req\020\001\022\007\n\003Ans\020\002\022\010\n\004Noti\020\003\022\007\n\003"
+  "Err\020\004*`\n\010Protocol\022\024\n\020INVALID_PROTOCOL\020\000\022"
+  "\013\n\007ErrInfo\020\001\022\r\n\tPublicKey\020\002\022\013\n\007Connect\020\003"
+  "\022\013\n\007TestMsg\020\004\022\010\n\004Chat\020\005b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_UserAndGameServer_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_UserAndGameServer_2eproto = {
-  false, false, 738, descriptor_table_protodef_UserAndGameServer_2eproto, "UserAndGameServer.proto", 
+  false, false, 751, descriptor_table_protodef_UserAndGameServer_2eproto, "UserAndGameServer.proto", 
   &descriptor_table_UserAndGameServer_2eproto_once, nullptr, 0, 11,
   schemas, file_default_instances, TableStruct_UserAndGameServer_2eproto::offsets,
   file_level_metadata_UserAndGameServer_2eproto, file_level_enum_descriptors_UserAndGameServer_2eproto, file_level_service_descriptors_UserAndGameServer_2eproto,
@@ -2046,6 +2048,11 @@ ChatInfo::ChatInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 ChatInfo::ChatInfo(const ChatInfo& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  msg_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_msg().empty()) {
+    msg_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_msg(), 
+      GetArenaForAllocation());
+  }
   if (from._internal_has_user_profile()) {
     user_profile_ = new ::UserAndGameServer::UserProfile(*from.user_profile_);
   } else {
@@ -2056,6 +2063,7 @@ ChatInfo::ChatInfo(const ChatInfo& from)
 }
 
 inline void ChatInfo::SharedCtor() {
+msg_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&user_profile_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&chat_type_) -
@@ -2071,6 +2079,7 @@ ChatInfo::~ChatInfo() {
 
 inline void ChatInfo::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  msg_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete user_profile_;
 }
 
@@ -2090,6 +2099,7 @@ void ChatInfo::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  msg_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && user_profile_ != nullptr) {
     delete user_profile_;
   }
@@ -2115,6 +2125,15 @@ const char* ChatInfo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_user_profile(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string msg = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_msg();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "UserAndGameServer.ChatInfo.msg"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -2161,6 +2180,16 @@ failure:
         2, _Internal::user_profile(this), target, stream);
   }
 
+  // string msg = 3;
+  if (!this->_internal_msg().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_msg().data(), static_cast<int>(this->_internal_msg().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "UserAndGameServer.ChatInfo.msg");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_msg(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2176,6 +2205,13 @@ size_t ChatInfo::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // string msg = 3;
+  if (!this->_internal_msg().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_msg());
+  }
 
   // .UserAndGameServer.UserProfile user_profile = 2;
   if (this->_internal_has_user_profile()) {
@@ -2219,6 +2255,9 @@ void ChatInfo::MergeFrom(const ChatInfo& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (!from._internal_msg().empty()) {
+    _internal_set_msg(from._internal_msg());
+  }
   if (from._internal_has_user_profile()) {
     _internal_mutable_user_profile()->::UserAndGameServer::UserProfile::MergeFrom(from._internal_user_profile());
   }
@@ -2242,6 +2281,11 @@ bool ChatInfo::IsInitialized() const {
 void ChatInfo::InternalSwap(ChatInfo* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &msg_, GetArenaForAllocation(),
+      &other->msg_, other->GetArenaForAllocation()
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(ChatInfo, chat_type_)
       + sizeof(ChatInfo::chat_type_)

@@ -1468,9 +1468,24 @@ class ChatInfo final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kMsgFieldNumber = 3,
     kUserProfileFieldNumber = 2,
     kChatTypeFieldNumber = 1,
   };
+  // string msg = 3;
+  void clear_msg();
+  const std::string& msg() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_msg(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_msg();
+  PROTOBUF_MUST_USE_RESULT std::string* release_msg();
+  void set_allocated_msg(std::string* msg);
+  private:
+  const std::string& _internal_msg() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_msg(const std::string& value);
+  std::string* _internal_mutable_msg();
+  public:
+
   // .UserAndGameServer.UserProfile user_profile = 2;
   bool has_user_profile() const;
   private:
@@ -1505,6 +1520,7 @@ class ChatInfo final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr msg_;
   ::UserAndGameServer::UserProfile* user_profile_;
   ::PROTOBUF_NAMESPACE_ID::int32 chat_type_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -2411,6 +2427,52 @@ inline void ChatInfo::set_allocated_user_profile(::UserAndGameServer::UserProfil
   }
   user_profile_ = user_profile;
   // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.ChatInfo.user_profile)
+}
+
+// string msg = 3;
+inline void ChatInfo::clear_msg() {
+  msg_.ClearToEmpty();
+}
+inline const std::string& ChatInfo::msg() const {
+  // @@protoc_insertion_point(field_get:UserAndGameServer.ChatInfo.msg)
+  return _internal_msg();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ChatInfo::set_msg(ArgT0&& arg0, ArgT... args) {
+ 
+ msg_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:UserAndGameServer.ChatInfo.msg)
+}
+inline std::string* ChatInfo::mutable_msg() {
+  std::string* _s = _internal_mutable_msg();
+  // @@protoc_insertion_point(field_mutable:UserAndGameServer.ChatInfo.msg)
+  return _s;
+}
+inline const std::string& ChatInfo::_internal_msg() const {
+  return msg_.Get();
+}
+inline void ChatInfo::_internal_set_msg(const std::string& value) {
+  
+  msg_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* ChatInfo::_internal_mutable_msg() {
+  
+  return msg_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* ChatInfo::release_msg() {
+  // @@protoc_insertion_point(field_release:UserAndGameServer.ChatInfo.msg)
+  return msg_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void ChatInfo::set_allocated_msg(std::string* msg) {
+  if (msg != nullptr) {
+    
+  } else {
+    
+  }
+  msg_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), msg,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.ChatInfo.msg)
 }
 
 // -------------------------------------------------------------------

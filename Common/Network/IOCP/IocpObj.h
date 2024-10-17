@@ -61,7 +61,7 @@ public:
 	virtual void TryDisconnect(const char* _msg);
 	virtual void OnDisconnect();
 
-	virtual void TrySend(SendBufferSptr _sendBuffer);
+	virtual bool TrySend(SendBufferSptr _sendBuffer);
 	virtual void OnSended(UInt32 _bytes);
 
 	virtual void TryRecv();

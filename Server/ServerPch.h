@@ -17,7 +17,7 @@
 
 #include "CommonPch.h"
 #include "ServerDefines.h"
-
+#include "ServerTypes.h"
 
 #include "UserSession.h"
 #include "ServerPacketHandler.h"

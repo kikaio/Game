@@ -7,6 +7,7 @@ void PrintLn(const char* _msg) {
 	printf("%s\n", _msg);
 }
 
+
 void DoIocpClient() {
 
 	string ip = "127.0.0.1";
@@ -39,6 +40,15 @@ void DoIocpClient() {
 	}
 }
 
+void DoSendChat() {
+
+	UserAndGameServer::ReqChat reqChat;
+
+
+	while (true) {
+		this_thread::sleep_for(5s);
+	}
+}
 
 int main()
 {
@@ -49,7 +59,11 @@ int main()
 	ThreadManager::Get().PushThread(
 		DoIocpClient, "DoIocpDispatch", "iocp port dispatch while shutdown"
 	);
-	
+
+	ThreadManager::Get().PushThread(
+		DoSendChat, "DoIocpDispatch", "iocp port dispatch while shutdown"
+	);
+
 
 	ThreadManager::Get().StartAll();
 	

@@ -258,10 +258,10 @@ void IocpObj::OnDisconnect()
 	AfterDisconnected();
 }
 
-void IocpObj::TrySend(SendBufferSptr _sendBuffer)
+bool IocpObj::TrySend(SendBufferSptr _sendBuffer)
 {
 	if (isConnected.load() == false) {
-		return;
+		return false;
 	}
 	bool doSend = false;
 	{
@@ -274,6 +274,7 @@ void IocpObj::TrySend(SendBufferSptr _sendBuffer)
 	if (doSend) {
 		DoSend();
 	}
+	return true;
 }
 
 void IocpObj::OnSended(UInt32 _bytes)

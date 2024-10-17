@@ -58,6 +58,7 @@ message UserProfile {
 message ChatInfo {
 	int32 chat_type = 1;
 	UserProfile user_profile = 2;
+	string msg = 3;
 }
 
 message ReqChat {

@@ -71,16 +71,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -156,9 +156,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="UserAndGameServerHandle\AnsChat.cpp" />
     <ClCompile Include="UserAndGameServerHandle\ReqTestMsg.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ClientDefine.h" />
     <ClInclude Include="ClientPacketHandler.h" />
     <ClInclude Include="ClientPch.h" />
     <ClInclude Include="DummySession.h" />

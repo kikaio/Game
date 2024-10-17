@@ -14,16 +14,6 @@ void DoIocpServer(NetworkCoreSptr netCore) {
     }
 }
 
-void DoBroadCastPing(NetworkCoreSptr _netCore) {
-    
-    while(true) {
-        this_thread::sleep_for(5s);
-    }
-    
-    return ;
-}
-
-
 int main()
 {
     int accepterCnt = 1;
@@ -49,12 +39,6 @@ int main()
     ThreadManager::Get().PushAndStart([&netCoreSptr]() {
         DoIocpServer(netCoreSptr);
     });
-
-    ThreadManager::Get().PushAndStart([&netCoreSptr]() {
-        DoBroadCastPing(netCoreSptr);
-    });
-
-
     
     this_thread::sleep_for(10s);
 

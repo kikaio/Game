@@ -110,6 +110,7 @@ void ClientPacketHandler::Init()
 {
 	// msgType, protocolName을 처리하는 function을 각각의 map에 연결해준다.
 	REGIST_USER_AND_GAMESERVER_FUNC(Req, TestMsg);
+	REGIST_USER_AND_GAMESERVER_FUNC(Ans, Chat);
 	return;
 }
 
@@ -123,16 +124,19 @@ bool ClientPacketHandler::HandlePayload(SessionSptr _session, BYTE* _buf, uint32
 	br >> protocol;
 
 	switch(msgType) {
-	case UserAndGameServer::MsgType::Err : {
+	case UserAndGameServer::MsgType::Req: {
+		return HandleUserAndGameServerReq(_session, msgType, protocol, &br);
+	}
+	case UserAndGameServer::MsgType::Ans: {
+		return HandleUserAndGameServerAns(_session, msgType, protocol, &br);
 		break;
 	}
 	case UserAndGameServer::MsgType::Noti : {
+		return HandleUserAndGameServerNoti(_session, msgType, protocol, &br);
 		break;
 	}
-	case UserAndGameServer::MsgType::Req : {
-		return HandleUserAndGameServerReq(_session, msgType, protocol, &br);
-	}
-	case UserAndGameServer::MsgType::Ans : {
+	case UserAndGameServer::MsgType::Err: {
+		return HandleUserAndGameServerErr(_session, msgType, protocol, &br);
 		break;
 	}
 	default: {

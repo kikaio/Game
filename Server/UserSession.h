@@ -8,4 +8,6 @@ protected:
 	//virtual void AfterSended(UInt32 _bytes) {
 	//	printf("send bytes : %d\n", _bytes);
 	//}
+public:
+	DECL_USER_SESSION_SEND_PACKET(Ans, Chat);
 };

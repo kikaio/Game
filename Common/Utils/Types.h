@@ -25,18 +25,18 @@ using Atomic = std::atomic<T>;
 
 using Mutex = std::mutex;
 
-#define DCL_REF_USING(cName)				using cName##Sptr = std::shared_ptr<class cName>
+#define DECL_REF_USING(cName)				using cName##Sptr = std::shared_ptr<class cName>
 
-DCL_REF_USING(Thread);
-DCL_REF_USING(NetAddr);
-DCL_REF_USING(Listener);
-DCL_REF_USING(Session);
-DCL_REF_USING(IocpCore);
-DCL_REF_USING(WsaReady);
-DCL_REF_USING(IocpObj);
-DCL_REF_USING(SendBuffer);
-DCL_REF_USING(SendBufferChunk);
-DCL_REF_USING(NetworkCore);
+DECL_REF_USING(Thread);
+DECL_REF_USING(NetAddr);
+DECL_REF_USING(Listener);
+DECL_REF_USING(Session);
+DECL_REF_USING(IocpCore);
+DECL_REF_USING(WsaReady);
+DECL_REF_USING(IocpObj);
+DECL_REF_USING(SendBuffer);
+DECL_REF_USING(SendBufferChunk);
+DECL_REF_USING(NetworkCore);
 
 
 using WorkFunc = std::function<void()>;
