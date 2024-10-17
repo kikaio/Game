@@ -105,8 +105,7 @@ struct AnsTestMsgDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT AnsTestMsgDefaultTypeInternal _AnsTestMsg_default_instance_;
 constexpr UserProfile::UserProfile(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : session_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , nick_name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+  : nick_name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
 struct UserProfileDefaultTypeInternal {
   constexpr UserProfileDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -209,7 +208,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_UserAndGameServer_2eproto::off
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::UserProfile, session_id_),
   PROTOBUF_FIELD_OFFSET(::UserAndGameServer::UserProfile, nick_name_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ChatInfo, _internal_metadata_),
@@ -241,9 +239,9 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 32, -1, sizeof(::UserAndGameServer::ReqTestMsg)},
   { 38, -1, sizeof(::UserAndGameServer::AnsTestMsg)},
   { 44, -1, sizeof(::UserAndGameServer::UserProfile)},
-  { 51, -1, sizeof(::UserAndGameServer::ChatInfo)},
-  { 59, -1, sizeof(::UserAndGameServer::ReqChat)},
-  { 65, -1, sizeof(::UserAndGameServer::AnsChat)},
+  { 50, -1, sizeof(::UserAndGameServer::ChatInfo)},
+  { 58, -1, sizeof(::UserAndGameServer::ReqChat)},
+  { 64, -1, sizeof(::UserAndGameServer::AnsChat)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -268,22 +266,22 @@ const char descriptor_table_protodef_UserAndGameServer_2eproto[] PROTOBUF_SECTIO
   " \001(\t\"\037\n\nReqConnect\022\021\n\tdevice_id\030\001 \001(\t\"4\n"
   "\nAnsConnect\022\022\n\nis_success\030\001 \001(\010\022\022\n\nsessi"
   "on_id\030\002 \001(\t\"\031\n\nReqTestMsg\022\013\n\003msg\030\001 \001(\t\"\031"
-  "\n\nAnsTestMsg\022\013\n\003msg\030\001 \001(\t\"4\n\013UserProfile"
-  "\022\022\n\nsession_id\030\001 \001(\t\022\021\n\tnick_name\030\002 \001(\t\""
-  "`\n\010ChatInfo\022\021\n\tchat_type\030\001 \001(\005\0224\n\014user_p"
-  "rofile\030\002 \001(\0132\036.UserAndGameServer.UserPro"
-  "file\022\013\n\003msg\030\003 \001(\t\"9\n\007ReqChat\022.\n\tchat_inf"
-  "o\030\001 \001(\0132\033.UserAndGameServer.ChatInfo\"9\n\007"
-  "AnsChat\022.\n\tchat_info\030\001 \001(\0132\033.UserAndGame"
-  "Server.ChatInfo*D\n\007MsgType\022\024\n\020INVALID_MS"
-  "G_TYPE\020\000\022\007\n\003Req\020\001\022\007\n\003Ans\020\002\022\010\n\004Noti\020\003\022\007\n\003"
-  "Err\020\004*`\n\010Protocol\022\024\n\020INVALID_PROTOCOL\020\000\022"
-  "\013\n\007ErrInfo\020\001\022\r\n\tPublicKey\020\002\022\013\n\007Connect\020\003"
-  "\022\013\n\007TestMsg\020\004\022\010\n\004Chat\020\005b\006proto3"
+  "\n\nAnsTestMsg\022\013\n\003msg\030\001 \001(\t\" \n\013UserProfile"
+  "\022\021\n\tnick_name\030\001 \001(\t\"`\n\010ChatInfo\022\021\n\tchat_"
+  "type\030\001 \001(\005\0224\n\014user_profile\030\002 \001(\0132\036.UserA"
+  "ndGameServer.UserProfile\022\013\n\003msg\030\003 \001(\t\"9\n"
+  "\007ReqChat\022.\n\tchat_info\030\001 \001(\0132\033.UserAndGam"
+  "eServer.ChatInfo\"9\n\007AnsChat\022.\n\tchat_info"
+  "\030\001 \001(\0132\033.UserAndGameServer.ChatInfo*D\n\007M"
+  "sgType\022\024\n\020INVALID_MSG_TYPE\020\000\022\007\n\003Req\020\001\022\007\n"
+  "\003Ans\020\002\022\010\n\004Noti\020\003\022\007\n\003Err\020\004*`\n\010Protocol\022\024\n"
+  "\020INVALID_PROTOCOL\020\000\022\013\n\007ErrInfo\020\001\022\r\n\tPubl"
+  "icKey\020\002\022\013\n\007Connect\020\003\022\013\n\007TestMsg\020\004\022\010\n\004Cha"
+  "t\020\005b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_UserAndGameServer_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_UserAndGameServer_2eproto = {
-  false, false, 751, descriptor_table_protodef_UserAndGameServer_2eproto, "UserAndGameServer.proto", 
+  false, false, 731, descriptor_table_protodef_UserAndGameServer_2eproto, "UserAndGameServer.proto", 
   &descriptor_table_UserAndGameServer_2eproto_once, nullptr, 0, 11,
   schemas, file_default_instances, TableStruct_UserAndGameServer_2eproto::offsets,
   file_level_metadata_UserAndGameServer_2eproto, file_level_enum_descriptors_UserAndGameServer_2eproto, file_level_service_descriptors_UserAndGameServer_2eproto,
@@ -1801,11 +1799,6 @@ UserProfile::UserProfile(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 UserProfile::UserProfile(const UserProfile& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  session_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_session_id().empty()) {
-    session_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_session_id(), 
-      GetArenaForAllocation());
-  }
   nick_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_nick_name().empty()) {
     nick_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_nick_name(), 
@@ -1815,7 +1808,6 @@ UserProfile::UserProfile(const UserProfile& from)
 }
 
 inline void UserProfile::SharedCtor() {
-session_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 nick_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
@@ -1828,7 +1820,6 @@ UserProfile::~UserProfile() {
 
 inline void UserProfile::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  session_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   nick_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
@@ -1848,7 +1839,6 @@ void UserProfile::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  session_id_.ClearToEmpty();
   nick_name_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -1859,18 +1849,9 @@ const char* UserProfile::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // string session_id = 1;
+      // string nick_name = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          auto str = _internal_mutable_session_id();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "UserAndGameServer.UserProfile.session_id"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // string nick_name = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           auto str = _internal_mutable_nick_name();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "UserAndGameServer.UserProfile.nick_name"));
@@ -1906,24 +1887,14 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string session_id = 1;
-  if (!this->_internal_session_id().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_session_id().data(), static_cast<int>(this->_internal_session_id().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "UserAndGameServer.UserProfile.session_id");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_session_id(), target);
-  }
-
-  // string nick_name = 2;
+  // string nick_name = 1;
   if (!this->_internal_nick_name().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_nick_name().data(), static_cast<int>(this->_internal_nick_name().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "UserAndGameServer.UserProfile.nick_name");
     target = stream->WriteStringMaybeAliased(
-        2, this->_internal_nick_name(), target);
+        1, this->_internal_nick_name(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1942,14 +1913,7 @@ size_t UserProfile::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string session_id = 1;
-  if (!this->_internal_session_id().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_session_id());
-  }
-
-  // string nick_name = 2;
+  // string nick_name = 1;
   if (!this->_internal_nick_name().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
@@ -1984,9 +1948,6 @@ void UserProfile::MergeFrom(const UserProfile& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_session_id().empty()) {
-    _internal_set_session_id(from._internal_session_id());
-  }
   if (!from._internal_nick_name().empty()) {
     _internal_set_nick_name(from._internal_nick_name());
   }
@@ -2007,11 +1968,6 @@ bool UserProfile::IsInitialized() const {
 void UserProfile::InternalSwap(UserProfile* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &session_id_, GetArenaForAllocation(),
-      &other->session_id_, other->GetArenaForAllocation()
-  );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       &nick_name_, GetArenaForAllocation(),

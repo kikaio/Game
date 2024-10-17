@@ -1308,24 +1308,9 @@ class UserProfile final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kSessionIdFieldNumber = 1,
-    kNickNameFieldNumber = 2,
+    kNickNameFieldNumber = 1,
   };
-  // string session_id = 1;
-  void clear_session_id();
-  const std::string& session_id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_session_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_session_id();
-  PROTOBUF_MUST_USE_RESULT std::string* release_session_id();
-  void set_allocated_session_id(std::string* session_id);
-  private:
-  const std::string& _internal_session_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_session_id(const std::string& value);
-  std::string* _internal_mutable_session_id();
-  public:
-
-  // string nick_name = 2;
+  // string nick_name = 1;
   void clear_nick_name();
   const std::string& nick_name() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -1346,7 +1331,6 @@ class UserProfile final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr session_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr nick_name_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_UserAndGameServer_2eproto;
@@ -2223,53 +2207,7 @@ inline void AnsTestMsg::set_allocated_msg(std::string* msg) {
 
 // UserProfile
 
-// string session_id = 1;
-inline void UserProfile::clear_session_id() {
-  session_id_.ClearToEmpty();
-}
-inline const std::string& UserProfile::session_id() const {
-  // @@protoc_insertion_point(field_get:UserAndGameServer.UserProfile.session_id)
-  return _internal_session_id();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void UserProfile::set_session_id(ArgT0&& arg0, ArgT... args) {
- 
- session_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:UserAndGameServer.UserProfile.session_id)
-}
-inline std::string* UserProfile::mutable_session_id() {
-  std::string* _s = _internal_mutable_session_id();
-  // @@protoc_insertion_point(field_mutable:UserAndGameServer.UserProfile.session_id)
-  return _s;
-}
-inline const std::string& UserProfile::_internal_session_id() const {
-  return session_id_.Get();
-}
-inline void UserProfile::_internal_set_session_id(const std::string& value) {
-  
-  session_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* UserProfile::_internal_mutable_session_id() {
-  
-  return session_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* UserProfile::release_session_id() {
-  // @@protoc_insertion_point(field_release:UserAndGameServer.UserProfile.session_id)
-  return session_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void UserProfile::set_allocated_session_id(std::string* session_id) {
-  if (session_id != nullptr) {
-    
-  } else {
-    
-  }
-  session_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), session_id,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.UserProfile.session_id)
-}
-
-// string nick_name = 2;
+// string nick_name = 1;
 inline void UserProfile::clear_nick_name() {
   nick_name_.ClearToEmpty();
 }

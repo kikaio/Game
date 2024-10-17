@@ -18,8 +18,12 @@
 
 #include "CommonPch.h"
 #include "ClientDefine.h"
+#include "ClientType.h"
 
 #include "DummySession.h"
-
 #include "ClientPacketHandler.h"
-#include "UserAndGameServerHandle/UserAndGameServerHandle.h"
+#include "UserAndGameServerHandle.h"
+
+#include "dummyProfile.h"
+#include "DummyUser.h"
+#include "DummyUserManager.h"

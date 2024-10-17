@@ -8,3 +8,9 @@ bool DummySession::OnPacketRecved(BYTE* _payloadPtr, uint32_t _payloadLen)
 	}
 	return true;
 }
+
+bool DummySession::SendPacketReqChat(UserAndGameServer::ReqChat& _packet)
+{
+	SendBufferSptr sendBuff = ClientPacketHandler::MakeSendBufferFromPacket(_packet);
+	return TrySend(sendBuff);
+}

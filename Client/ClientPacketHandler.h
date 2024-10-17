@@ -2,6 +2,13 @@
 
 class BufReader;
 
+#define DECL_MAKE_SENDBUF_FROM_PACKET(_msgType, _protocolName) \
+static SendBufferSptr MakeSendBufferFromPacket(UserAndGameServer::##_msgType##_protocolName& _packet)																		\
+{																																								\
+	return MakeProtoPacket(UserAndGameServer::MsgType::##_msgType, UserAndGameServer::Protocol::##_protocolName, _packet);										\
+}																																								\
+
+
 
 class ClientPacketHandler
 {
@@ -24,6 +31,7 @@ public:
 public:
 	template<typename MSG_TYPE, typename P, typename T>
 	static SendBufferSptr MakeProtoPacket(MSG_TYPE _msgType, P _protocol, T& _packet);
+	DECL_MAKE_SENDBUF_FROM_PACKET(Req, Chat);
 };
 
 template<typename MSG_TYPE, typename P, typename T>

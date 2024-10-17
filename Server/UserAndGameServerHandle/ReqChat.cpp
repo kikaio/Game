@@ -8,7 +8,6 @@ namespace UserAndGameServerHandler {
 		auto* userProfile = chatInfo->mutable_user_profile();
 
 		chatInfo->set_chat_type(_req.chat_info().chat_type());
-		userProfile->set_session_id(_req.chat_info().user_profile().session_id());
 		userProfile->set_nick_name(_req.chat_info().user_profile().nick_name());
 		return;
 	}

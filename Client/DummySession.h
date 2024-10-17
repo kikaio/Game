@@ -18,6 +18,7 @@ protected:
 	//}
 protected:
 	virtual bool OnPacketRecved(BYTE* _payloadPtr, uint32_t payloadBytes);
-
+public:
+	bool SendPacketReqChat(UserAndGameServer::ReqChat& _packet);
 
 };

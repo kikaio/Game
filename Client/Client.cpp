@@ -26,8 +26,12 @@ void DoIocpClient() {
 	}
 
 	this_thread::sleep_for(3s);
+	//dummyUser 제어를 위해 Manager에서 관리한다.
 	netCore.CreateSessionFactory = [] {
 		auto dumSession = MakeShared<DummySession>();
+		auto dummyUser = MakeShared<DummyUser>();
+		dummyUser->SetDummySession(dumSession);
+		DummyUserManager::Get().PushDummyUser(dummyUser);
 		return dumSession;
 	};
 	NetAddrSptr net = MakeShared<NetAddr>();
@@ -43,11 +47,14 @@ void DoIocpClient() {
 void DoSendChat() {
 
 	UserAndGameServer::ReqChat reqChat;
-
-
-	while (true) {
-		this_thread::sleep_for(5s);
+	auto dummyUser = DummyUserManager::Get().PeekDummyUser(0);
+	if(dummyUser != nullptr) {
+		while (true) {
+			this_thread::sleep_for(5s);
+			dummyUser->SendChatMsg("this is dummy chat");
+		}
 	}
+	
 }
 
 int main()

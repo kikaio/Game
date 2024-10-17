@@ -30,6 +30,15 @@
     <ClCompile Include="UserAndGameServerHandle\AnsChat.cpp">
       <Filter>UserAndGameServerHandle</Filter>
     </ClCompile>
+    <ClCompile Include="Dummy\DummyUser.cpp">
+      <Filter>Dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="Dummy\DummyUserManager.cpp">
+      <Filter>Dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="Dummy\DummyProfile.cpp">
+      <Filter>Dummy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClientPch.h">
@@ -49,6 +58,18 @@
     </ClInclude>
     <ClInclude Include="ClientDefine.h">
       <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientType.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Dummy\DummyUser.h">
+      <Filter>Dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="Dummy\DummyUserManager.h">
+      <Filter>Dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="Dummy\DummyProfile.h">
+      <Filter>Dummy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
