@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "UserAndGameServerHandle.h"
 
-namespace UserAndGameServerHandler {
+namespace UserAndGameServerHandle {
 
 	void SetAnsChatPacket(UserAndGameServer::ReqChat& _req, UserAndGameServer::AnsChat& _ans) {
 		auto* chatInfo = _ans.mutable_chat_info();
@@ -12,10 +12,9 @@ namespace UserAndGameServerHandler {
 		return;
 	}
 
-	bool ReqChat(SessionSptr _session, UserAndGameServer::ReqChat& _packet) {
+	bool ReqChat(UserSessionSptr _session, UserAndGameServer::ReqChat& _packet) {
 
 		auto curNetCore = _session->GetNetCore();
-		UserSessionSptr _userSession = static_pointer_cast<UserSession>(_session);
 		if (curNetCore == nullptr) {
 			return false;
 		}

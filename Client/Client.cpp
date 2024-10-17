@@ -14,20 +14,20 @@ void DoIocpClient() {
 	int port = 7777;
 	int clientCnt = 1;
 
-	NetworkCore netCore;
+	NetworkCoreSptr netCore = MakeShared<NetworkCore>();
 	
-	ASSERT_CRASH(netCore.Ready());
+	ASSERT_CRASH(netCore->Ready());
 	
 	printf("wsa standby.\n");
 
-	if (netCore.ReadyToConnect() == false) {
+	if (netCore->ReadyToConnect() == false) {
 		printf("ReadyToConnect failed\n");
 		return ;
 	}
 
 	this_thread::sleep_for(3s);
 	//dummyUser 제어를 위해 Manager에서 관리한다.
-	netCore.CreateSessionFactory = [] {
+	netCore->CreateSessionFactory = [] {
 		auto dumSession = MakeShared<DummySession>();
 		auto dummyUser = MakeShared<DummyUser>();
 		dummyUser->SetDummySession(dumSession);
@@ -36,16 +36,17 @@ void DoIocpClient() {
 	};
 	NetAddrSptr net = MakeShared<NetAddr>();
 
-	netCore.StartConnect(ip, port, clientCnt);
+	netCore->StartConnect(ip, port, clientCnt);
 
 	UInt32 waitMilliSec = INFINITE;
 	while (true) {
-		netCore.Dispatch(waitMilliSec);
+		netCore->Dispatch(waitMilliSec);
 	}
 }
 
 void DoSendChat() {
 
+	this_thread::sleep_for(5s);
 	UserAndGameServer::ReqChat reqChat;
 	auto dummyUser = DummyUserManager::Get().PeekDummyUser(0);
 	if(dummyUser != nullptr) {

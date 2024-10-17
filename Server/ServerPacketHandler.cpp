@@ -70,6 +70,12 @@ void ServerPacketHandler::Init()
 		printf("handle for AnsTestMsg.\n");
 		return false;
 	});
+	REGIST_PACKET_FUNC(Req, Chat, [](SessionSptr _session, BufReader* _brPtr){
+		UserAndGameServer::ReqChat packet;
+		packet.ParseFromArray(_brPtr->Buffer() + _brPtr->ReadSize(), _brPtr->FreeSize());
+		_brPtr->Close();
+		return UserAndGameServerHandle::ReqChat(static_pointer_cast<UserSession>(_session), packet);
+	});
 }
 
 void ServerPacketHandler::RegistPacketFunc(UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, PacketFunc* _packetHandle)

@@ -21,16 +21,16 @@ public:
 	static bool HandlePayload(SessionSptr _session, BYTE* _buf, uint32_t _size);
 public:
 	template<typename MSG_TYPE, typename P, typename T> 
-	static SendBufferSptr MakeProtoPacket(MSG_TYPE _msgType, P _protocol, T& _packet);
+	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet);
 public:
-	DECL_MAKE_PACKET_FUNC(ServerPacketHandler, Ans, Chat);
+	DECL_MAKE_SENDBUF_FROM_PACKET(ServerPacketHandler, Ans, Chat);
 };
 
 
 
 
 template<typename MSG_TYPE, typename P, typename T>
-SendBufferSptr ServerPacketHandler::MakeProtoPacket(MSG_TYPE _msgType, P _protocol, T& _packet) {
+SendBufferSptr ServerPacketHandler::MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet) {
 
 	uint16_t byteLen = _packet.ByteSizeLong();
 	uint32_t headerVal = sizeof(MSG_TYPE) + sizeof(P) + byteLen;
