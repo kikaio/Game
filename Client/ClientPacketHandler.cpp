@@ -16,12 +16,31 @@
 	return UserAndGameServerHandle::##_msgType##_protocolName(_session, packet);										\
 };																														\
 
-#define REGIST_USER_AND_GAMESERVER_FUNC(_msgType, _protocolName)																	\
-{																																	\
-	userAndGameServerReqMap[UserAndGameServer::Protocol::##_protocolName] = DECL_PACKET_HANDLE_FUNC(_msgType, _protocolName);		\
-}																																	\
+#define REGIST_USER_AND_GAMESERVER_HANDLE(_map, _msgType, _protocolName)											\
+{																												\
+	_map[UserAndGameServer::Protocol::##_protocolName] = DECL_PACKET_HANDLE_FUNC(_msgType, _protocolName);		\
+}																												\
+
+#define REGIST_USER_AND_GAMESERVER_HANDLE_REQ(_protocolName)																\
+{																															\
+	userAndGameServerReqMap[UserAndGameServer::Protocol::##_protocolName] = DECL_PACKET_HANDLE_FUNC(Req, _protocolName);	\
+}																															\
+
+#define REGIST_USER_AND_GAMESERVER_HANDLE_ANS(_protocolName)																\
+{																															\
+	userAndGameServerAnsMap[UserAndGameServer::Protocol::##_protocolName] = DECL_PACKET_HANDLE_FUNC(Ans, _protocolName);	\
+}																															\
 
 
+#define REGIST_USER_AND_GAMESERVER_HANDLE_NOTI(_protocolName)																\
+{																															\
+	userAndGameServerNotiMap[UserAndGameServer::Protocol::##_protocolName] = DECL_PACKET_HANDLE_FUNC(Noti, _protocolName);	\
+}																															\
+
+#define REGIST_USER_AND_GAMESERVER_HANDLE_ERR(_protocolName)																\
+{																															\
+	userAndGameServerErrMap[UserAndGameServer::Protocol::##_protocolName] = DECL_PACKET_HANDLE_FUNC(Err, _protocolName);	\
+}																															\
 
 map<UserAndGameServer::Protocol, PacketFunc*> ClientPacketHandler::userAndGameServerReqMap;	//받은 req를 handle
 map<UserAndGameServer::Protocol, PacketFunc*> ClientPacketHandler::userAndGameServerAnsMap;  //받은 ans를 handle
@@ -109,8 +128,8 @@ void ClientPacketHandler::RegistPacketFunc(UserAndGameServer::MsgType _msgType, 
 void ClientPacketHandler::Init()
 {
 	// msgType, protocolName을 처리하는 function을 각각의 map에 연결해준다.
-	REGIST_USER_AND_GAMESERVER_FUNC(Req, TestMsg);
-	REGIST_USER_AND_GAMESERVER_FUNC(Ans, Chat);
+	REGIST_USER_AND_GAMESERVER_HANDLE_REQ(TestMsg);
+	REGIST_USER_AND_GAMESERVER_HANDLE_ANS(Chat);
 	return;
 }
 

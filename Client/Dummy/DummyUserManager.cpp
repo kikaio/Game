@@ -5,7 +5,7 @@ void DummyUserManager::PushDummyUser(DummyUserSptr _user)
 {
 	LOCK_GUARDDING(dummyUserMapLock);
 	dummyUserMap[dummyUserIdx] = _user;
-	string nickname = "dummy_"+ dummyUserIdx;
+	string nickname = "dummy_"+ to_string(dummyUserIdx);
 	dummyUserIdx++;
 	_user->SetNickname(nickname);
 }

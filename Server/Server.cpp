@@ -19,6 +19,7 @@ int main()
     int accepterCnt = 1;
     int backlog = 100;
     int port = 7777;
+    ServerPacketHandler::Init();
     NetworkCoreSptr netCore = MakeShared<NetworkCore>();
     if (netCore->Ready() == false) {
         return 0;

@@ -9,6 +9,7 @@ namespace UserAndGameServerHandle {
 
 		chatInfo->set_chat_type(_req.chat_info().chat_type());
 		userProfile->set_nick_name(_req.chat_info().user_profile().nick_name());
+		chatInfo->set_msg(_req.chat_info().msg());
 		return;
 	}
 
