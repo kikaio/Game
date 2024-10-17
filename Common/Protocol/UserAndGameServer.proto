@@ -16,12 +16,12 @@ enum Protocol {
 	PublicKey = 2;
 	Connect = 3;
 	TestMsg = 4;
-	Char = 5;
+	Chat = 5;
 }
 
 
 message NotiErrInfo {
-	uint64 err_no = 1;
+	int32 err_no = 1;
 	string err_desc = 2;
 }
 
@@ -64,6 +64,6 @@ message ReqChat {
 	ChatInfo chat_info = 1;
 }
 
-message AnsiChat {
+message AnsChat {
 	ChatInfo chat_info = 1;
 }
