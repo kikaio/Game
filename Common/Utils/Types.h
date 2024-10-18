@@ -37,9 +37,12 @@ DECL_REF_USING(IocpObj);
 DECL_REF_USING(SendBuffer);
 DECL_REF_USING(SendBufferChunk);
 DECL_REF_USING(NetworkCore);
+DECL_REF_USING(Job);
 
 
 using WorkFunc = std::function<void()>;
 
 using PacketFunc = bool(SessionSptr _session, class BufReader* _br);
 using PacketHeader = uint32_t;
+
+using CallBackType = std::function<void()>;

@@ -155,47 +155,49 @@ void LockManager::Dfs(int32_t _curLockId)
 
 void LockManager::Push(Lock* _lock)
 {
+	Push(_lock->LockId(), _lock->GetName());
+	return ;
+}
+
+void LockManager::Push(LockId _lockId, string _lockName)
+{
 	lock_guard<mutex> lg(mgrLock);
 
-	string lockName = _lock->GetName();
-	LockId lockId = _lock->LockId();
-
-	nameToLockId[lockName] = lockId ;
-	lockIdToName[lockId] = lockName;
+	nameToLockId[_lockName] = _lockId;
+	lockIdToName[_lockId] = _lockName;
 
 	//해당 스레드가 잡고있는 lock 이 있었다면
-	if(LLockStack.empty() == false) {
+	if (LLockStack.empty() == false) {
 		//기존의 발견되지 않았던 lock이라면 데드락 여부 체크.
 		LockId prevLockId = LLockStack.back();
-		if(lockId != prevLockId) {
+		if (_lockId != prevLockId) {
 			set<LockId>& history = lockHistory[prevLockId];
-			if(history.find(lockId) == history.end()) {
-				history.insert(lockId);
-				CheckCycle(lockId);
+			if (history.find(_lockId) == history.end()) {
+				history.insert(_lockId);
+				CheckCycle(_lockId);
 			}
 		}
 	}
 
-	LLockStack.push_back(lockId);
+	LLockStack.push_back(_lockId);
 
-	return ;
+	return;
 }
 
 void LockManager::Pop(Lock* _lock)
 {
+	Pop(_lock->LockId());
+}
+
+void LockManager::Pop(LockId _lockId)
+{
 	lock_guard<mutex> lg(mgrLock);
 
-	//ASSERT_CRASH(LLockStack.empty() == false);
-	//ASSERT_CRASH(_lock->LockId() == LLockStack.top());
-	//
-	//pushedLockIds.pop_back();
-	//LLockStack.pop();
-
 	ASSERT_CRASH(LLockStack.empty() == false);
-	ASSERT_CRASH(_lock->LockId() == LLockStack.back());
-	
+	ASSERT_CRASH(_lockId == LLockStack.back());
+
 	LLockStack.pop_back();
-	return ;
+	return;
 }
 
 LockId LockManager::GenLockId()

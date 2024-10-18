@@ -15,9 +15,13 @@ private:
 	atomic<UInt32> lockFlag = 0;
 	string name;
 	UInt16 curWriteCnt = 0;
+	LockId lockId = 0;
 public:
-	string GetName() {
+	string LockName() {
 		return name;
+	}
+	LockId LockId() {
+		return lockId;
 	}
 	void ReadLock();
 	void ReadUnlock();
@@ -25,3 +29,24 @@ public:
 	void WriteUnlock();
 };
 
+class ReadLockGuard
+{
+public:
+	ReadLockGuard(ReadWriteLock& _lock, const char* _fileName, const int _lineNo);
+	~ReadLockGuard();
+private:
+	ReadWriteLock& lock;
+	const char* fileName;
+	int lineNo = INVALID_LINE_NO;
+};
+
+class WriteLockGuard
+{
+public:
+	WriteLockGuard(ReadWriteLock& _lock, const char* _fileName, const int _lineNo);
+	~WriteLockGuard();
+private:
+	ReadWriteLock& lock;
+	const char* fileName;
+	int lineNo = INVALID_LINE_NO;
+};

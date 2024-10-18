@@ -4,6 +4,7 @@
 ReadWriteLock::ReadWriteLock(const char* _name)
 	: name(_name)
 {
+	lockId = LockManager::Get().GenLockId();
 }
 
 void ReadWriteLock::ReadLock()
@@ -78,4 +79,50 @@ void ReadWriteLock::WriteUnlock()
 		curWriteCnt--;
 	}
 	return ;
+}
+
+ReadLockGuard::ReadLockGuard(ReadWriteLock& _lock, const char* _fileName, const int _lineNo)
+ : lock(_lock), fileName(_fileName), lineNo(_lineNo)
+{
+#if _DEBUG
+	LOCK_MGR().Push(lock.LockId(), lock.LockName());
+#endif
+#if DO_LOCK_TRACKING_LOG
+
+#endif
+	lock.ReadLock();
+}
+
+ReadLockGuard::~ReadLockGuard()
+{
+#if _DEBUG
+	LOCK_MGR().Pop(lock.LockId());
+#endif
+#if DO_LOCK_TRACKING_LOG
+
+#endif
+	lock.ReadUnlock();
+}
+
+WriteLockGuard::WriteLockGuard(ReadWriteLock& _lock, const char* _fileName, const int _lineNo)
+	: lock(_lock), fileName(_fileName), lineNo(_lineNo)
+{
+#if _DEBUG
+	LOCK_MGR().Push(lock.LockId(), lock.LockName());
+#endif
+#if DO_LOCK_TRACKING_LOG
+
+#endif
+	lock.WriteLock();
+}
+
+WriteLockGuard::~WriteLockGuard()
+{
+#if _DEBUG
+	LOCK_MGR().Pop(lock.LockId());
+#endif
+#if DO_LOCK_TRACKING_LOG
+
+#endif
+	lock.WriteUnlock();
 }

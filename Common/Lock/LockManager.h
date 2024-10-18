@@ -27,7 +27,9 @@ private:
 	void Dfs(int32_t idx);
 public:
 	void Push(Lock* _lock);
+	void Push(LockId _lockId, string _lockName);
 	void Pop(Lock* _lock);
+	void Pop(LockId _lockId);
 public:
 	LockId GenLockId();
 };

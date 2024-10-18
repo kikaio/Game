@@ -13,7 +13,8 @@
 #define LOCK_GUARDDING(_targetObj)						LockGuard guardFor##_targetObj(_targetObj, __FILE__, __LINE__)
 
 #define VAL_RW_LOCK(lockName)							ReadWriteLock lockName = (#lockName)
-
+#define READ_LOCK_GUARDDING(_targetObj)					ReadLockGuard rgFor##_targetObj(_targetObj, __FILE__, __LINE__)
+#define WRITE_LOCK_GUARDDING(_targetObj)				WriteLockGuard wgFor##_targetObj(_targetObj, __FILE__, __LINE__)
 
 #define USE_STOMP_ALLOC false
 #if USE_STOMP_ALLOC

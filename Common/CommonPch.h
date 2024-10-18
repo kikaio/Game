@@ -78,3 +78,7 @@ using namespace std;
 
 
 #include "CommonProtocol.h"
+
+#include "Job.h"
+#include "LockQueue.h"
+#include "JobSerializer.h"
