@@ -81,5 +81,6 @@ using namespace std;
 
 #include "Job.h"
 #include "LockQueue.h"
+#include "JobTimer.h"
 #include "JobQueue.h"
 #include "GlobalQueue.h"
