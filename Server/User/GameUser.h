@@ -8,6 +8,7 @@ private:
 	UserSessionSptr session;
 public:
 	UserSessionSptr GetSession();
+
 };
 
 
