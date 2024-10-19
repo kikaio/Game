@@ -18,6 +18,7 @@ public:
 	void RenderThreadsInfo();
 public:
 	void DoGlobalQueueWork();
+	void DoDitributeJob();
 };
 
 

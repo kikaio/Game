@@ -1,13 +1,13 @@
 ﻿#include "pch.h"
 #include "JobQueue.h"
 
-void JobQueue::Push(JobSptr&& _job)
+void JobQueue::Push(JobSptr _job, bool _pushOnly)
 {
 	const int32_t prevCnt = jobCnt.fetch_add(1);
 	jobs.Push(_job);
 	
 	if (prevCnt == 0) {
-		if (LCurrentJobQueue == nullptr) {
+		if (LCurrentJobQueue == nullptr && _pushOnly == false) {
 			Execute();
 		}
 		else {

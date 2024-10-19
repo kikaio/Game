@@ -164,6 +164,7 @@
     <ClInclude Include="CommonProtocol.h" />
     <ClInclude Include="Job\GlobalQueue.h" />
     <ClInclude Include="Job\Job.h" />
+    <ClInclude Include="Job\JobTimer.h" />
     <ClInclude Include="Job\LockQueue.h" />
     <ClInclude Include="Job\JobQueue.h" />
     <ClInclude Include="Lock\Lock.h" />
@@ -204,6 +205,7 @@
     <ClCompile Include="CommonTLS.cpp" />
     <ClCompile Include="Job\GlobalQueue.cpp" />
     <ClCompile Include="Job\Job.cpp" />
+    <ClCompile Include="Job\JobTimer.cpp" />
     <ClCompile Include="Job\LockQueue.cpp" />
     <ClCompile Include="Job\JobQueue.cpp" />
     <ClCompile Include="Lock\Lock.cpp" />

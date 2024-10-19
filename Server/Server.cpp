@@ -15,6 +15,7 @@ void DoIocpGameService(NetworkCoreSptr netCore) {
         LEndTickCount = ::GetTickCount64() + workerTick;
         netCore->Dispatch(waitMilliSec);
         ThreadManager::Get().DoGlobalQueueWork();
+        ThreadManager::Get().DoDitributeJob();
     }
 }
 

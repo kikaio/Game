@@ -159,6 +159,9 @@
     <ClInclude Include="Job\GlobalQueue.h">
       <Filter>Job</Filter>
     </ClInclude>
+    <ClInclude Include="Job\JobTimer.h">
+      <Filter>Job</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -261,6 +264,9 @@
       <Filter>Job</Filter>
     </ClCompile>
     <ClCompile Include="Job\GlobalQueue.cpp">
+      <Filter>Job</Filter>
+    </ClCompile>
+    <ClCompile Include="Job\JobTimer.cpp">
       <Filter>Job</Filter>
     </ClCompile>
   </ItemGroup>

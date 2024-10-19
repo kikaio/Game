@@ -60,3 +60,9 @@ void ThreadManager::DoGlobalQueueWork()
 	}
 }
 
+void ThreadManager::DoDitributeJob()
+{
+	const uint64_t now = ::GetTickCount64();
+	JobTimer::Get().Distribute(now);
+}
+
