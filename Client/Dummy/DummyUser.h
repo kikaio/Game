@@ -2,26 +2,37 @@
 
 class DummyUser: public enable_shared_from_this<DummyUser>
 {
+public:
+	DummyUserSptr GetSptr();
+private:
+	bool dummyUserRecycle = false; //dummy user를 계속 재활용할지 여부.
 private:
 	DummySessionSptr session;
 	DummyProfile profile;
+	int32_t dummyIdx = 0;
 public:
-	DummyUserSptr GetSptr();
+	void ClearUser();
+	bool IsConnected();
+public:
 	void SetDummySession(DummySessionSptr _dummySession);
-public:
 	string GetNickname() {
-		return profile.nickname;
+		return profile.Nickname();
 	}
 	string GetGreetingMent() {
-		return profile.greetingMent;
+		return profile.GreetingMent();
 	}
-	void SetNickname(string _name) {
-		profile.nickname = _name;
+	void SetDummyUserIdx(int32_t _idx) {
+		dummyIdx = _idx;
 	}
-	void SetGreetingMent(string _ment) {
-		profile.greetingMent = _ment;
+	bool SetNickname(string _name) {
+		return profile.ChangeNickname(_name);
 	}
+	bool SetGreetingMent(string _ment) {
+		return profile.ChangeGreetingMent(_ment);
+	}
+
 public:
 	void SendChatMsg(string _msg);
-
+public:
+	void OnSessionDisconnected();
 };

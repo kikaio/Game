@@ -24,6 +24,6 @@
 #include "ClientPacketHandler.h"
 #include "UserAndGameServerHandle.h"
 
-#include "dummyProfile.h"
+#include "DummyProfile.h"
 #include "DummyUser.h"
 #include "DummyUserManager.h"

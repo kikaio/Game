@@ -47,3 +47,5 @@ using PacketFunc = bool(SessionSptr _session, class BufReader* _br);
 using PacketHeader = uint32_t;
 
 using CallBackType = std::function<void()>;
+
+using AccountId_t = uint64_t;

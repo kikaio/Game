@@ -51,10 +51,16 @@ void Session::AfterConnected()
 void Session::AfterDisconnected()
 {
 	netCore->GetSessionMgr().PopSession(GetSession());
+	onSessionDisconenctedFunc();
 }
 
 bool Session::OnPacketRecved(BYTE* _payloadPtr, uint32_t _payloadBytes)
 {
 	printf("payloadBytes = %d\n", _payloadBytes);
 	return true;
+}
+
+void Session::SetOnSessionDisconnectedFunc(OnSessionDisconnectedFunc _func)
+{
+	onSessionDisconenctedFunc = _func;
 }

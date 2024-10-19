@@ -1,5 +1,20 @@
 #include "pch.h"
 #include "DummyUser.h"
+#include "DummyUserManager.h"
+
+void DummyUser::ClearUser()
+{
+	session = nullptr;
+
+}
+
+bool DummyUser::IsConnected()
+{
+	if(session == nullptr || session->IsConnected() == false) {
+		return false;
+	}
+	return true;
+}
 
 DummyUserSptr DummyUser::GetSptr()
 {
@@ -13,6 +28,10 @@ void DummyUser::SetDummySession(DummySessionSptr _dummySession)
 
 void DummyUser::SendChatMsg(string _msg)
 {
+	if(IsConnected() == false) {
+		return ;
+	}
+
 	UserAndGameServer::ReqChat packet;
 
 	auto* chatInfo = packet.mutable_chat_info();
@@ -21,5 +40,15 @@ void DummyUser::SendChatMsg(string _msg)
 	chatInfo->set_msg(_msg);
 	if(session->SendPacketReqChat(packet) == false) {
 		//todo : logging
+	}
+}
+
+void DummyUser::OnSessionDisconnected()
+{
+	//todo : 기존 session 참조를 nullptr로
+	session = nullptr;
+	profile.Clear();
+	if(dummyUserRecycle == false) {
+		DummyUserManager::Get().PopDummyUser(dummyIdx);
 	}
 }
