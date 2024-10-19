@@ -22,3 +22,6 @@
 #include "UserSession.h"
 #include "ServerPacketHandler.h"
 #include "UserAndGameServerHandle.h"
+
+#include "GameUser.h"
+#include "GameProfile.h"

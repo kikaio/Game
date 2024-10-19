@@ -71,19 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)UGameUser;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Configuration)\Server\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)UGameUser;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Configuration)\Server\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)UGameUser;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Configuration)\Server\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)UGameUser;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Configuration)\Server\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -166,6 +166,7 @@
     <ClCompile Include="ServerPch.cpp" />
     <ClCompile Include="UserAndGameServerHandle\ReqChat.cpp" />
     <ClCompile Include="UserSession.cpp" />
+    <ClCompile Include="User\GameUser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -175,6 +176,7 @@
     <ClInclude Include="ServerTypes.h" />
     <ClInclude Include="UserAndGameServerHandle\UserAndGameServerHandle.h" />
     <ClInclude Include="UserSession.h" />
+    <ClInclude Include="User\GameUser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
