@@ -162,9 +162,10 @@
     <ClInclude Include="Buffer\SendBuffer.h" />
     <ClInclude Include="CommonPch.h" />
     <ClInclude Include="CommonProtocol.h" />
+    <ClInclude Include="Job\GlobalQueue.h" />
     <ClInclude Include="Job\Job.h" />
     <ClInclude Include="Job\LockQueue.h" />
-    <ClInclude Include="Job\JobSerializer.h" />
+    <ClInclude Include="Job\JobQueue.h" />
     <ClInclude Include="Lock\Lock.h" />
     <ClInclude Include="Lock\LockManager.h" />
     <ClInclude Include="Lock\ReadWriteLock.h" />
@@ -201,9 +202,10 @@
     <ClCompile Include="Buffer\SendBuffer.cpp" />
     <ClCompile Include="CommonPch.cpp" />
     <ClCompile Include="CommonTLS.cpp" />
+    <ClCompile Include="Job\GlobalQueue.cpp" />
     <ClCompile Include="Job\Job.cpp" />
     <ClCompile Include="Job\LockQueue.cpp" />
-    <ClCompile Include="Job\JobSerializer.cpp" />
+    <ClCompile Include="Job\JobQueue.cpp" />
     <ClCompile Include="Lock\Lock.cpp" />
     <ClCompile Include="Lock\LockManager.cpp" />
     <ClCompile Include="Lock\ReadWriteLock.cpp" />

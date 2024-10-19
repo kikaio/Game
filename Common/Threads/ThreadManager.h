@@ -16,6 +16,8 @@ public:
 	void StartAll();
 	void JoinAll();
 	void RenderThreadsInfo();
+public:
+	void DoGlobalQueueWork();
 };
 
 

@@ -150,7 +150,10 @@
     <ClInclude Include="Job\Job.h">
       <Filter>Job</Filter>
     </ClInclude>
-    <ClInclude Include="Job\JobSerializer.h">
+    <ClInclude Include="Job\JobQueue.h">
+      <Filter>Job</Filter>
+    </ClInclude>
+    <ClInclude Include="Job\GlobalQueue.h">
       <Filter>Job</Filter>
     </ClInclude>
   </ItemGroup>
@@ -251,7 +254,10 @@
     <ClCompile Include="Job\LockQueue.cpp">
       <Filter>Job</Filter>
     </ClCompile>
-    <ClCompile Include="Job\JobSerializer.cpp">
+    <ClCompile Include="Job\JobQueue.cpp">
+      <Filter>Job</Filter>
+    </ClCompile>
+    <ClCompile Include="Job\GlobalQueue.cpp">
       <Filter>Job</Filter>
     </ClCompile>
   </ItemGroup>

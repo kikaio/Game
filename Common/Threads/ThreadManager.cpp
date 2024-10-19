@@ -45,3 +45,18 @@ void ThreadManager::RenderThreadsInfo()
 	}
 }
 
+void ThreadManager::DoGlobalQueueWork()
+{
+	while (true) {
+		uint64_t now = ::GetTickCount64();
+		if (now > LEndTickCount) {
+			break;;
+		}
+		JobQueueSptr jobQueueSptr = GlobalQueue::Get().Pop();
+		if (jobQueueSptr == nullptr) {
+			break;
+		}
+		jobQueueSptr->Execute();
+	}
+}
+

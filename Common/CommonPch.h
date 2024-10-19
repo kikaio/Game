@@ -81,4 +81,5 @@ using namespace std;
 
 #include "Job.h"
 #include "LockQueue.h"
-#include "JobSerializer.h"
+#include "JobQueue.h"
+#include "GlobalQueue.h"

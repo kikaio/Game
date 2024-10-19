@@ -38,6 +38,7 @@ DECL_REF_USING(SendBuffer);
 DECL_REF_USING(SendBufferChunk);
 DECL_REF_USING(NetworkCore);
 DECL_REF_USING(Job);
+DECL_REF_USING(JobQueue);
 
 
 using WorkFunc = std::function<void()>;

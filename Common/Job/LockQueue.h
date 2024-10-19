@@ -16,10 +16,24 @@ public:
 	T Pop()
 	{
 		WRITE_LOCK_GUARDDING(rwLock);
+		if (items.empty()) {
+			return T();
+		}
 		T ret = items.front();
 		items.pop();
 		return ret;
 	}
+
+	void PopAll(OUT Vector<T>& _vect) {
+		WRITE_LOCK_GUARDDING(rwLock);
+		while (items.empty() == false) {
+			auto item = items.front();
+			items.pop();
+			_vect.push_back(item);
+		}
+		return;
+	}
+
 public:
 	void Clear()
 	{
