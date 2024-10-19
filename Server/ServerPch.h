@@ -24,4 +24,3 @@
 #include "UserAndGameServerHandle.h"
 
 #include "GameUser.h"
-#include "GameProfile.h"

@@ -7,7 +7,7 @@ void PrintLn(const char* _msg)
     printf("%s\n", _msg);
 }
 
-void DoIocpServer(NetworkCoreSptr netCore) {
+void DoIocpGameService(NetworkCoreSptr netCore) {
     UInt32 waitMilliSec = INFINITE;
     while(true) {
         netCore->Dispatch(waitMilliSec);
@@ -20,25 +20,25 @@ int main()
     int backlog = 100;
     int port = 7777;
     ServerPacketHandler::Init();
-    NetworkCoreSptr netCore = MakeShared<NetworkCore>();
-    if (netCore->Ready() == false) {
+    NetworkCoreSptr gameServiceNetCore = MakeShared<NetworkCore>();
+    if (gameServiceNetCore->Ready() == false) {
         return 0;
     }
     printf("wsa standby.\n");
 
-    netCore->CreateSessionFactory = [] {
+    gameServiceNetCore->CreateSessionFactory = [] {
         //sid는 accept, connect 완료 시 자동 할당한다. => After 함수들 참고.
         auto user = MakeShared<UserSession>();
+        //GameUser와의 연결은 GameService에서 특정 RPC를 통해 계정 로그인 후에 부여한다.
         return user;
         };
 
     ListenerSptr listener = MakeShared<Listener>(port);
-    netCore->ReadyToAccept(listener, backlog, accepterCnt);
+    gameServiceNetCore->ReadyToAccept(listener, backlog, accepterCnt);
 
     printf("accept ready\n");
-    NetworkCoreSptr netCoreSptr = netCore->GetCoreSptr();
-    ThreadManager::Get().PushAndStart([&netCoreSptr]() {
-        DoIocpServer(netCoreSptr);
+    ThreadManager::Get().PushAndStart([&gameServiceNetCore]() {
+        DoIocpGameService(gameServiceNetCore);
     });
     
     this_thread::sleep_for(10s);
