@@ -8,9 +8,13 @@ void PrintLn(const char* _msg)
 }
 
 void DoIocpGameService(NetworkCoreSptr netCore) {
-    UInt32 waitMilliSec = INFINITE;
+//    UInt32 waitMilliSec = INFINITE;
+    UInt32 waitMilliSec = 10;
+    uint64_t workerTick = 10000;
     while(true) {
+        LEndTickCount = ::GetTickCount64() + workerTick;
         netCore->Dispatch(waitMilliSec);
+        ThreadManager::Get().DoGlobalQueueWork();
     }
 }
 
