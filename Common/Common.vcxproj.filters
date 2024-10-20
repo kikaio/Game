@@ -40,6 +40,9 @@
     <Filter Include="Job">
       <UniqueIdentifier>{0610ef0c-ff5b-410a-9834-92050ce534f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DB">
+      <UniqueIdentifier>{de3980c3-c987-43a2-aaf5-fa9f63923f81}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -156,6 +159,12 @@
     <ClInclude Include="Job\GlobalQueue.h">
       <Filter>Job</Filter>
     </ClInclude>
+    <ClInclude Include="DB\DBConnection.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="DB\DBConnectionPool.h">
+      <Filter>DB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -259,6 +268,12 @@
     </ClCompile>
     <ClCompile Include="Job\GlobalQueue.cpp">
       <Filter>Job</Filter>
+    </ClCompile>
+    <ClCompile Include="DB\DBConnectionPool.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="DB\DBConnection.cpp">
+      <Filter>DB</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -83,3 +83,6 @@ using namespace std;
 #include "LockQueue.h"
 #include "JobQueue.h"
 #include "GlobalQueue.h"
+
+#include "DBConnection.h"
+#include "DBConnectionPool.h"
