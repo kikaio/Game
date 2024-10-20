@@ -84,5 +84,3 @@ using namespace std;
 #include "JobQueue.h"
 #include "GlobalQueue.h"
 
-#include "DBConnection.h"
-#include "DBConnectionPool.h"

@@ -159,12 +159,6 @@
     <ClInclude Include="Job\GlobalQueue.h">
       <Filter>Job</Filter>
     </ClInclude>
-    <ClInclude Include="DB\DBConnection.h">
-      <Filter>DB</Filter>
-    </ClInclude>
-    <ClInclude Include="DB\DBConnectionPool.h">
-      <Filter>DB</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -268,12 +262,6 @@
     </ClCompile>
     <ClCompile Include="Job\GlobalQueue.cpp">
       <Filter>Job</Filter>
-    </ClCompile>
-    <ClCompile Include="DB\DBConnectionPool.cpp">
-      <Filter>DB</Filter>
-    </ClCompile>
-    <ClCompile Include="DB\DBConnection.cpp">
-      <Filter>DB</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
