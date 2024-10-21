@@ -14,6 +14,8 @@
 
 #endif
 
+#pragma comment(lib, "../Libraries/Libs/mysql-connector9-cpp/mysqlcppconnx-static.lib")
+
 
 #include "CommonPch.h"
 #include "ServerDefines.h"

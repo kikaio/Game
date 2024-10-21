@@ -162,6 +162,9 @@
     <ClInclude Include="Job\JobTimer.h">
       <Filter>Job</Filter>
     </ClInclude>
+    <ClInclude Include="DB\DBManager.h">
+      <Filter>DB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -268,6 +271,9 @@
     </ClCompile>
     <ClCompile Include="Job\JobTimer.cpp">
       <Filter>Job</Filter>
+    </ClCompile>
+    <ClCompile Include="DB\DBManager.cpp">
+      <Filter>DB</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

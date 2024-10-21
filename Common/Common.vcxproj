@@ -71,19 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(SolutionDir)..\boost_1_86_0;$(SolutionDir)Libraries\include\MySQL-Connector-C++-9.1;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(SolutionDir)..\boost_1_86_0;$(SolutionDir)Libraries\include\MySQL-Connector-C++-9.1;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(SolutionDir)..\boost_1_86_0;$(SolutionDir)Libraries\include\MySQL-Connector-C++-9.1;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(SolutionDir)..\boost_1_86_0;$(SolutionDir)Libraries\include\MySQL-Connector-C++-9.1;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -95,6 +95,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -113,6 +114,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -131,6 +133,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -149,6 +152,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -166,6 +170,7 @@
     <ClInclude Include="Buffer\SendBuffer.h" />
     <ClInclude Include="CommonPch.h" />
     <ClInclude Include="CommonProtocol.h" />
+    <ClInclude Include="DB\DBManager.h" />
     <ClInclude Include="Job\GlobalQueue.h" />
     <ClInclude Include="Job\Job.h" />
     <ClInclude Include="Job\JobTimer.h" />
@@ -207,6 +212,7 @@
     <ClCompile Include="Buffer\SendBuffer.cpp" />
     <ClCompile Include="CommonPch.cpp" />
     <ClCompile Include="CommonTLS.cpp" />
+    <ClCompile Include="DB\DBManager.cpp" />
     <ClCompile Include="Job\GlobalQueue.cpp" />
     <ClCompile Include="Job\Job.cpp" />
     <ClCompile Include="Job\JobTimer.cpp" />

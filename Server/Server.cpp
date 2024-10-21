@@ -19,6 +19,10 @@ void DoIocpGameService(NetworkCoreSptr netCore) {
     }
 }
 
+void DoDatabaseConn() {
+    DBManager::Get().Test();
+}
+
 int main()
 {
     int accepterCnt = 1;
