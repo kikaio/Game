@@ -1,0 +1,10 @@
+.vs/
+Client/x64/Debug/
+Common/x64/Debug/
+Common/x64/Release/
+Debug/Client/Client.exe
+Debug/Client/Client.pdb
+Debug/Server/Server.exe
+Debug/Server/Server.pdb
+Server/x64/Debug/
+Server/x64/Release/
