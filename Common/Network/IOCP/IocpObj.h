@@ -35,6 +35,10 @@ public:
 	NetAddrSptr Net();
 	
 	SOCKET Sock();
+	
+	bool IsConnected() {
+		return isConnected.load();
+	}
 public:
 	void SetNetCore(NetworkCoreSptr _core) {
 		netCore = _core;
