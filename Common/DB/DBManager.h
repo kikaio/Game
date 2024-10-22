@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include <mysqlx/xdevapi.h>
+//#include <mysqlx/xdevapi.h>
 
 class DBManager : public Singleton<DBManager>
 {

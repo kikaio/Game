@@ -20,7 +20,7 @@ void DoIocpGameService(NetworkCoreSptr netCore) {
 }
 
 void DoDatabaseConn() {
-    DBManager::Get().Test();
+//    DBManager::Get().Test();
 }
 
 int main()

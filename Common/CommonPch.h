@@ -6,7 +6,8 @@
 #pragma comment(lib,"mswsock.lib") //AcceptEx 사용 용도
 
 #pragma comment(lib,"mswsock.lib") //AcceptEx 사용 용도
-#pragma comment(lib, "../Libraries/Libs/mysql-connector9-cpp/mysqlcppconnx-static.lib")
+
+
 
 #include <iostream>
 #include <stdio.h>

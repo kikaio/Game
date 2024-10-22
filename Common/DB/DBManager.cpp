@@ -2,7 +2,7 @@
 #include "DBManager.h"
 
 void DBManager::Test()
-{
+{/*
 	mysqlx::Session session(mysqlx::SessionOption::HOST, "localhost"
 		, mysqlx::SessionOption::PORT, 33306
 		, mysqlx::SessionOption::USER, "gameuser"
@@ -10,5 +10,5 @@ void DBManager::Test()
 	);
 
 	mysqlx::Schema myDb = session.getSchema("testDB");
-	mysqlx::Table mytable = myDb.getTable("testTable");
+	mysqlx::Table mytable = myDb.getTable("testTable");*/
 }
