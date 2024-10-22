@@ -4,12 +4,10 @@
 
 #if _DEBUG
 
-//#pragma comment(lib, "../Libraries/Libs/Protobuf/Debug/libprotobufd.lib")
 #pragma comment(lib, "../Libraries/Libs/Common/Debug/Common.lib")
 
 #else
 
-//#pragma comment(lib, "../Libraries/Libs/Protobuf/Release/libprotobuf.lib")
 #pragma comment(lib, "../Libraries/Libs/Common/Release/Common.lib")
 
 #endif

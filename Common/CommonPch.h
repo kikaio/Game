@@ -5,9 +5,13 @@
 #pragma comment (lib, "ws2_32")
 #pragma comment(lib,"mswsock.lib") //AcceptEx 사용 용도
 
-#pragma comment(lib,"mswsock.lib") //AcceptEx 사용 용도
 
 
+#if _DEBUG
+#pragma comment(lib, "../Libraries/Libs/Protobuf/Debug/libprotobufd.lib")
+#else
+#pragma comment(lib, "../Libraries/Libs/Protobuf/Release/libprotobuf.lib")
+#endif
 
 #include <iostream>
 #include <stdio.h>

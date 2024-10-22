@@ -71,19 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(SolutionDir)Libraries\include￦mysql-connector-9;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(SolutionDir)Libraries\include￦mysql-connector-9;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(SolutionDir)Libraries\include￦mysql-connector-9;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(SolutionDir)Libraries\include￦mysql-connector-9;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
