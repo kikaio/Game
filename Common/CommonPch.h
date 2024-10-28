@@ -94,4 +94,7 @@ using namespace std;
 #include "JobQueue.h"
 #include "GlobalQueue.h"
 
+#include "DBProfile.h"
 #include "DBManager.h"
+#include "DBLink.h";
+#include "DBResultSet.h"

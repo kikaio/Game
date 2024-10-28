@@ -170,7 +170,10 @@
     <ClInclude Include="Buffer\SendBuffer.h" />
     <ClInclude Include="CommonPch.h" />
     <ClInclude Include="CommonProtocol.h" />
+    <ClInclude Include="DB\DBLink.h" />
     <ClInclude Include="DB\DBManager.h" />
+    <ClInclude Include="DB\DBProfile.h" />
+    <ClInclude Include="DB\DBResultSet.h" />
     <ClInclude Include="Job\GlobalQueue.h" />
     <ClInclude Include="Job\Job.h" />
     <ClInclude Include="Job\JobTimer.h" />
@@ -212,7 +215,10 @@
     <ClCompile Include="Buffer\SendBuffer.cpp" />
     <ClCompile Include="CommonPch.cpp" />
     <ClCompile Include="CommonTLS.cpp" />
+    <ClCompile Include="DB\DBLink.cpp" />
     <ClCompile Include="DB\DBManager.cpp" />
+    <ClCompile Include="DB\DBProfile.cpp" />
+    <ClCompile Include="DB\DBResultSet.cpp" />
     <ClCompile Include="Job\GlobalQueue.cpp" />
     <ClCompile Include="Job\Job.cpp" />
     <ClCompile Include="Job\JobTimer.cpp" />

@@ -165,6 +165,15 @@
     <ClInclude Include="DB\DBManager.h">
       <Filter>DB</Filter>
     </ClInclude>
+    <ClInclude Include="DB\DBProfile.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="DB\DBLink.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="DB\DBResultSet.h">
+      <Filter>DB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -273,6 +282,15 @@
       <Filter>Job</Filter>
     </ClCompile>
     <ClCompile Include="DB\DBManager.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="DB\DBProfile.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="DB\DBLink.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="DB\DBResultSet.cpp">
       <Filter>DB</Filter>
     </ClCompile>
   </ItemGroup>
