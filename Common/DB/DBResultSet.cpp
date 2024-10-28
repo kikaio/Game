@@ -16,50 +16,58 @@ void DBResultSet::SetResultSet(sql::ResultSet* _ret)
 
 bool DBResultSet::HasNext()
 {
-	return ;
+	return retSet->next();
 }
 
 string DBResultSet::GetStr(const char* _col)
 {
-	return string();
+	return retSet->getString(_col);
 }
 
 float DBResultSet::GetFloat(const char* _col)
 {
-	return 0.0f;
+	return static_cast<float>(retSet->getDouble(_col));
 }
 
 double DBResultSet::GetDouble(const char* _col)
 {
-	return 0.0;
+	return retSet->getDouble(_col);
 }
 
 uint64_t DBResultSet::GetUint64(const char* _col)
 {
-	return 0;
+	return retSet->getUInt64(_col);
 }
 
 uint32_t DBResultSet::GetUint32(const char* _col)
 {
-	return 0;
+	return retSet->getUInt(_col);
 }
 
 int64_t DBResultSet::GetInt64(const char* _col)
 {
-	return 0;
+	return retSet->getInt64(_col);
 }
 
 int32_t DBResultSet::GetInt32(const char* _col)
 {
-	return 0;
+	return retSet->getInt(_col);
 }
 
 time_t DBResultSet::GetTime(const char* _col)
 {
-	return time_t();
+	return retSet->getInt64(_col);
 }
 
 tm DBResultSet::GetTM(const char* _col)
 {
-	return tm();
+	auto timeT = GetTime(_col);
+	tm curTm;
+	localtime_s(&curTm, &timeT);
+	return curTm;
+}
+
+bool DBResultSet::GetBool(const char* _col)
+{
+	return retSet->getBoolean(_col);
 }
