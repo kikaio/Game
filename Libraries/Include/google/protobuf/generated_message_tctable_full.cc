@@ -28,25 +28,26 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include <google/protobuf/field_access_listener.h>
+#include <cstdint>
 
-#include <google/protobuf/stubs/once.h>
+#include <google/protobuf/parse_context.h>
+#include <google/protobuf/extension_set.h>
+#include <google/protobuf/generated_message_tctable_impl.h>
+#include <google/protobuf/message.h>
+#include <google/protobuf/unknown_field_set.h>
+
+// clang-format off
+#include <google/protobuf/port_def.inc>
+// clang-format on
 
 namespace google {
 namespace protobuf {
+namespace internal {
 
-internal::once_flag FieldAccessListener::register_once_ = {};
-FieldAccessListener* FieldAccessListener::field_listener_ = nullptr;
-
-FieldAccessListener* FieldAccessListener::GetListener() {
-  return field_listener_;
+const char* TcParser::GenericFallback(PROTOBUF_TC_PARAM_DECL) {
+  return GenericFallbackImpl<Message, UnknownFieldSet>(PROTOBUF_TC_PARAM_PASS);
 }
 
-void FieldAccessListener::RegisterListener(FieldAccessListener* listener) {
-  // TODO(danilak): Add a GOOGLE_DCHECK for message_injector_ to be nullptr and update
-  // tests.
-  internal::call_once(register_once_, [&] { field_listener_ = listener; });
-}
-
+}  // namespace internal
 }  // namespace protobuf
 }  // namespace google
