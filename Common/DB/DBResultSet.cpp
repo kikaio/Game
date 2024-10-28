@@ -14,7 +14,7 @@ void DBResultSet::SetResultSet(sql::ResultSet* _ret)
 	retSet = _ret;
 }
 
-bool DBResultSet::HasNext()
+bool DBResultSet::Next()
 {
 	return retSet->next();
 }

@@ -10,7 +10,7 @@ private:
 	sql::ResultSet* retSet = nullptr;
 public:
 	void SetResultSet(sql::ResultSet* _ret);
-	bool HasNext();
+	bool Next();
 public:
 	string GetStr(const char* _col);
 	float GetFloat(const char* _col);
@@ -21,5 +21,6 @@ public:
 	int32_t GetInt32(const char* _col);
 	time_t GetTime(const char* _col);
 	tm GetTM(const char* _col);
+	bool GetBool(const char* _col);
 	
 };
