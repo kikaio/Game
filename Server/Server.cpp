@@ -2,6 +2,7 @@
 #include "ServerPch.h"
 #include "Session.h"
 
+
 void PrintLn(const char* _msg)
 {
     printf("%s\n", _msg);
@@ -20,7 +21,7 @@ void DoIocpGameService(NetworkCoreSptr netCore) {
 }
 
 void DoDatabaseConn() {
-//    DBManager::Get().Test();
+    DBManager::Get().Test();
 }
 
 int main()
