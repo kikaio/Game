@@ -6,11 +6,12 @@
 #pragma comment(lib,"mswsock.lib") //AcceptEx 사용 용도
 
 
-
 #if _DEBUG
 #pragma comment(lib, "../Libraries/Libs/Protobuf/Debug/libprotobufd.lib")
+#pragma comment(lib, "../Libraries/Libs/mysql_connector_9/Debug/mysqlcppconn-d.lib")
 #else
 #pragma comment(lib, "../Libraries/Libs/Protobuf/Release/libprotobuf.lib")
+#pragma comment(lib, "../Libraries/Libs/mysql_connector_9/Release/mysqlcppconn.lib")
 #endif
 
 #include <iostream>
