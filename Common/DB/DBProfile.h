@@ -46,41 +46,26 @@ public:
 private:
 	tuple<uint8_t, uint8_t, uint16_t> dbKey;
 public:
-	uint32_t GetKey() {
+	uint32_t GetKey() const {
 		return std::get<0>(dbKey) << 16 | std::get<1>(dbKey) << 8 | std::get<2>(dbKey);
 	}
 
-	uint8_t GetTagNo() {
+	uint8_t GetTagNo() const {
 		return std::get<0>(dbKey);
 	}
 
-	uint8_t GetDbNameType() {
+	uint8_t GetDbNameType() const {
 		return std::get<1>(dbKey);
 	}
-	uint16_t GetRWType() {
+	uint16_t GetRWType() const {
 		return std::get<2>(dbKey);
 	}
 };
 
-class DBConn 
+struct DBConnHasher
 {
 public:
-	DBConn(const DBProfile& _profile) : profile(_profile) {
+	uint32_t operator() (const DBConnKey& _key) const {
+		return _key.GetKey();
 	}
-private:
-	const DBProfile& profile;
-private:
-	sql::Connection* conn = nullptr;
-	DBConnKey connKey;
-public:
-	sql::Connection* GetConn() {
-		return conn;
-	}
-	DBConnKey GetConnKey () {
-		return connKey;
-	}
-public:
-	bool DoConn();
-	void KeepAlive();
-	void Close();
 };

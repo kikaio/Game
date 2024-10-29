@@ -11,6 +11,7 @@ public:
 	DBLink(DBConn& _conn, ECommitType _commitType = ECommitType::AUTO) : conn(_conn) , commitType(_commitType){
 		Init();
 	}
+	DBLink(const DBLink& _other) = delete;
 	~DBLink();
 private:
 	DBConn& conn;

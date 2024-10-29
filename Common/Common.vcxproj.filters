@@ -174,6 +174,12 @@
     <ClInclude Include="DB\DBResultSet.h">
       <Filter>DB</Filter>
     </ClInclude>
+    <ClInclude Include="DB\DBConn.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\TLSSingleton.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -291,6 +297,9 @@
       <Filter>DB</Filter>
     </ClCompile>
     <ClCompile Include="DB\DBResultSet.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="DB\DBConn.cpp">
       <Filter>DB</Filter>
     </ClCompile>
   </ItemGroup>

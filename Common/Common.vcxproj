@@ -170,6 +170,7 @@
     <ClInclude Include="Buffer\SendBuffer.h" />
     <ClInclude Include="CommonPch.h" />
     <ClInclude Include="CommonProtocol.h" />
+    <ClInclude Include="DB\DBConn.h" />
     <ClInclude Include="DB\DBLink.h" />
     <ClInclude Include="DB\DBManager.h" />
     <ClInclude Include="DB\DBProfile.h" />
@@ -205,6 +206,7 @@
     <ClInclude Include="Utils\CommonMacro.h" />
     <ClInclude Include="Utils\CommonTLS.h" />
     <ClInclude Include="Utils\Singleton.h" />
+    <ClInclude Include="Utils\TLSSingleton.h" />
     <ClInclude Include="Utils\Types.h" />
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +217,7 @@
     <ClCompile Include="Buffer\SendBuffer.cpp" />
     <ClCompile Include="CommonPch.cpp" />
     <ClCompile Include="CommonTLS.cpp" />
+    <ClCompile Include="DB\DBConn.cpp" />
     <ClCompile Include="DB\DBLink.cpp" />
     <ClCompile Include="DB\DBManager.cpp" />
     <ClCompile Include="DB\DBProfile.cpp" />

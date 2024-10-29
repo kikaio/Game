@@ -51,6 +51,7 @@ using namespace std;
 #include "CommonMacro.h"
 #include "CommonTLS.h"
 #include "Singleton.h"
+#include "TLSSingleton.h"
 #include "ClockUtil.h"
 
 
@@ -95,6 +96,8 @@ using namespace std;
 #include "GlobalQueue.h"
 
 #include "DBProfile.h"
+#include "DBConn.h"
 #include "DBManager.h"
-#include "DBLink.h";
+#include "DBLink.h"
+#include "DBQuery.h"
 #include "DBResultSet.h"
