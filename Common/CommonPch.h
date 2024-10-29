@@ -101,3 +101,5 @@ using namespace std;
 #include "DBLink.h"
 #include "DBQuery.h"
 #include "DBResultSet.h"
+
+#include "JsonParser.h"

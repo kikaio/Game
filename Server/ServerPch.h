@@ -23,4 +23,4 @@
 #include "UserAndGameServerHandle.h"
 
 #include "GameUser.h"
-
+#include "DBConfig.h"

@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\Include\;$(SolutionDir)Libraries\Include\mysql_connector_9\;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\Include\;$(SolutionDir)Libraries\Include\mysql_connector_9\;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -79,7 +79,7 @@
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\Include\;$(SolutionDir)Libraries\Include\mysql_connector_9\;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\Include\;$(SolutionDir)Libraries\Include\mysql_connector_9\;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -206,6 +206,7 @@
     <ClInclude Include="Utils\CommonDefines.h" />
     <ClInclude Include="Utils\CommonMacro.h" />
     <ClInclude Include="Utils\CommonTLS.h" />
+    <ClInclude Include="Utils\JsonParser.h" />
     <ClInclude Include="Utils\Singleton.h" />
     <ClInclude Include="Utils\TLSSingleton.h" />
     <ClInclude Include="Utils\Types.h" />
@@ -262,6 +263,7 @@
     <ClCompile Include="Threads\ThreadManager.cpp" />
     <ClCompile Include="Utils\ClockUtil.cpp" />
     <ClCompile Include="Utils\CommonMacro.cpp" />
+    <ClCompile Include="Utils\JsonParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Protocol\UserAndGameServer.proto" />

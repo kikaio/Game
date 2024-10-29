@@ -183,6 +183,9 @@
     <ClInclude Include="DB\DBQuery.h">
       <Filter>DB</Filter>
     </ClInclude>
+    <ClInclude Include="Utils\JsonParser.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -307,6 +310,9 @@
     </ClCompile>
     <ClCompile Include="DB\DBQuery.cpp">
       <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\JsonParser.cpp">
+      <Filter>Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

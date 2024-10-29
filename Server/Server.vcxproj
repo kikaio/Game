@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\Include\mysql_connector_9\;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(SolutionDir)Common\DB;$(SolutionDir)Libraries\Include;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)User;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\Include\mysql_connector_9\;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(SolutionDir)Common\DB;$(SolutionDir)Libraries\Include;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)User;$(ProjectDir)ConfigClass;$(SolutionDir)Libraries\Include\rapidjson;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Configuration)\Server\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -79,7 +79,7 @@
     <OutDir>$(SolutionDir)$(Configuration)\Server\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\Include\mysql_connector_9\;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(SolutionDir)Common\DB;$(SolutionDir)Libraries\Include;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)User;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\Include\mysql_connector_9\;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(SolutionDir)Common\DB;$(SolutionDir)Libraries\Include;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)User;$(ProjectDir)ConfigClass;$(SolutionDir)Libraries\Include\rapidjson;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Configuration)\Server\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ConfigClass\DBConfig.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -174,6 +175,7 @@
     <ClCompile Include="User\GameUser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConfigClass\DBConfig.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ServerDefines.h" />
     <ClInclude Include="ServerPacketHandler.h" />
@@ -183,6 +185,9 @@
     <ClInclude Include="UserSession.h" />
     <ClInclude Include="User\GameProfile.h" />
     <ClInclude Include="User\GameUser.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configs\ServerConfig.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
