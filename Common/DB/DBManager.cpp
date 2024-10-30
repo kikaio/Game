@@ -24,6 +24,5 @@ void DBManager::MakeDBConnPool(int _cnt, DBProfile _profile, DBNameType _nameTyp
 	for (uint8_t idx = 0; idx < _cnt; idx++) {
 		DBConnKey connKey(idx, (uint8_t)_nameType, (uint16_t)_rwType);
 		DBConn conn(_profile);
-		keyPerConnMap.insert(connKey, );
 	}
 }

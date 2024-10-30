@@ -8,24 +8,24 @@ void PrintLn(const char* _msg)
     printf("%s\n", _msg);
 }
 
-void DoIocpGameService(NetworkCoreSptr netCore) {
-//    UInt32 waitMilliSec = INFINITE;
-    UInt32 waitMilliSec = 10;
-    uint64_t workerTick = 10000;
-    while(true) {
-        LEndTickCount = ::GetTickCount64() + workerTick;
-        netCore->Dispatch(waitMilliSec);
-        ThreadManager::Get().DoGlobalQueueWork();
-        ThreadManager::Get().DoDitributeJob();
-    }
-}
-
-void DoDatabaseConn() {
-    DBManager::Get().Test();
-}
+void DoIocpGameService(NetworkCoreSptr netCore);
+int32_t DoServerLogic();
+int32_t DoTest();
 
 int main()
 {
+    //return DoServerLogic();
+    return DoTest();
+}
+
+
+int32_t DoTest() {
+    return 0;
+}
+
+
+
+int32_t DoServerLogic() {
     int accepterCnt = 1;
     int backlog = 100;
     int port = 7777;
@@ -49,10 +49,22 @@ int main()
     printf("accept ready\n");
     ThreadManager::Get().PushAndStart([&gameServiceNetCore]() {
         DoIocpGameService(gameServiceNetCore);
-    });
-    
+        });
+
     this_thread::sleep_for(10s);
 
     ThreadManager::Get().JoinAll();
-    return 0;
 }
+
+void DoIocpGameService(NetworkCoreSptr netCore) {
+    //    UInt32 waitMilliSec = INFINITE;
+    UInt32 waitMilliSec = 10;
+    uint64_t workerTick = 10000;
+    while (true) {
+        LEndTickCount = ::GetTickCount64() + workerTick;
+        netCore->Dispatch(waitMilliSec);
+        ThreadManager::Get().DoGlobalQueueWork();
+        ThreadManager::Get().DoDitributeJob();
+    }
+}
+

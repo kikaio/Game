@@ -1,24 +1,19 @@
 #pragma once
 
-#include "rapidjson/document.h"
-#include "rapidjson/writer.h"
-#include "rapidjson/stringbuffer.h"
-#include "rapidjson/filereadstream.h"
-
-
-class DBConfig 
+class DBConfig
 {
 public:
 	DBConfig();
 	~DBConfig();
-	DBConfig(const DBConfig& _other) = delete;
-	DBConfig(DBConfig&& _other) = delete;
+	DBConfig(const DBConfig& _other);
 public:
-	string dbName;
-	string user;
-	string pw;
-	string rwType;
-	int8_t poolCnt;
+	string dbNameStr = "NONE";
+	string hostStr = "NONE";
+	string userStr = "NONE";
+	string pwStr = "NONE";
+	string rwTypeStr = "NONE";
+	int32_t poolCnt = 0;
 public:
-	void Init(rapidjson::Document& _doc);
+	void Init(rapidjson::Value& _doc);
+	void Render();
 };

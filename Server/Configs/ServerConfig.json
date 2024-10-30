@@ -1,25 +1,28 @@
 {
-	"db_config" : {
-		"common_db" : {
-			"host": "localhost"
-			, "user" : "gameuser"
-			, "pw" : "gameuser"
-			, "rw_type" : "read_and_write"
-			, "pool_cnt" : 1
+	"db_configs": [
+		{
+			"name": "CommonDB",
+			"host": "localhost",
+			"user": "gameuser",
+			"pw": "gameuser",
+			"rw_type": "read_and_write",
+			"pool_cnt": 1
 		}
-		, "game_db" : {
-			"host" : "localhost"
-			, "user" : "gameuser"
-			, "pw" : "gameuser"
-			, "rw_type" : "read_and_write"
-			, "pool_cnt" : 10
+		, {
+			"name": "GameDB",
+			"host": "localhost",
+			"user": "gameuser",
+			"pw": "gameuser",
+			"rw_type": "read_and_write",
+			"pool_cnt": 10
 		}
-		, "game_db_read" : {
-			"host" : "localhost"
-			, "user" : "gameuser"
-			, "pw" : "gameuser"
-			, "rw_type" : "read"
-			, "pool_cnt" : 10
+		, {
+			"name": "GameDB",
+			"host": "localhost",
+			"user": "gameuser",
+			"pw": "gameuser",
+			"rw_type": "read",
+			"pool_cnt": 10
 		}
-	}
+	]
 }
