@@ -186,6 +186,12 @@
     <ClInclude Include="Utils\JsonParser.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Utils\JsonWriter.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\JsonReader.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -312,6 +318,12 @@
       <Filter>DB</Filter>
     </ClCompile>
     <ClCompile Include="Utils\JsonParser.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\JsonWriter.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\JsonReader.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
   </ItemGroup>

@@ -103,3 +103,5 @@ using namespace std;
 #include "DBResultSet.h"
 
 #include "JsonParser.h"
+#include "JsonWriter.h"
+#include "JsonReader.h"
