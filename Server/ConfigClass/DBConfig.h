@@ -12,6 +12,7 @@ public:
 	string userStr = "NONE";
 	string pwStr = "NONE";
 	string rwTypeStr = "NONE";
+	int32_t port = 0;
 	int32_t poolCnt = 0;
 public:
 	void Init(rapidjson::Value& _doc);

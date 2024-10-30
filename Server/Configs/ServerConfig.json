@@ -5,24 +5,10 @@
 			"host": "localhost",
 			"user": "gameuser",
 			"pw": "gameuser",
+			"port": 3306,
 			"rw_type": "read_and_write",
-			"pool_cnt": 1
-		}
-		, {
-			"name": "GameDB",
-			"host": "localhost",
-			"user": "gameuser",
-			"pw": "gameuser",
-			"rw_type": "read_and_write",
-			"pool_cnt": 10
-		}
-		, {
-			"name": "GameDB",
-			"host": "localhost",
-			"user": "gameuser",
-			"pw": "gameuser",
-			"rw_type": "read",
-			"pool_cnt": 10
+			"pool_cnt": 1, 
+			"desc" : "현재 mariaDB port가 3306임"
 		}
 	]
 }

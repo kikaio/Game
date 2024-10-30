@@ -33,6 +33,7 @@ void DBConfig::Init(rapidjson::Value& _val)
 	int32_t _poolCnt = 0;
 	ASSERT_CRASH(reader.GetInt32("pool_cnt", OUT _poolCnt));
 	poolCnt = static_cast<int8_t>(_poolCnt);
+	ASSERT_CRASH(reader.GetInt32("port", OUT port));
 }
 
 void DBConfig::Render()
@@ -42,6 +43,7 @@ void DBConfig::Render()
 	printf("Host : %s\n", hostStr.c_str());
 	printf("User : %s\n", userStr.c_str());
 	printf("Pw : %s\n", pwStr.c_str());
+	printf("Port : %d\n", port);
 	printf("RW_Type : %s\n", rwTypeStr.c_str());
 	printf("PoolCnt : %d\n", poolCnt);
 	printf("=============================\n");
