@@ -7,9 +7,11 @@ public:
 	DBResultSet();
 	~DBResultSet();
 private:
+	sql::Connection* conn = nullptr;
 	sql::ResultSet* retSet = nullptr;
 public:
 	void SetResultSet(sql::ResultSet* _ret);
+	void SetConn(sql::Connection* _conn);
 	bool Next();
 public:
 	string GetStr(const char* _col);

@@ -99,8 +99,8 @@ using namespace std;
 #include "DBConn.h"
 #include "DBManager.h"
 #include "DBLink.h"
-#include "DBQuery.h"
 #include "DBResultSet.h"
+#include "DBQuery.h"
 
 #include "JsonParser.h"
 #include "JsonWriter.h"

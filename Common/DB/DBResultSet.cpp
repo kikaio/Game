@@ -14,6 +14,11 @@ void DBResultSet::SetResultSet(sql::ResultSet* _ret)
 	retSet = _ret;
 }
 
+void DBResultSet::SetConn(sql::Connection* _conn)
+{
+	conn = _conn;
+}
+
 bool DBResultSet::Next()
 {
 	return retSet->next();
