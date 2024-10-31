@@ -18,11 +18,9 @@ int main()
     return DoTest();
 }
 
-
 int32_t DoTest() {
     return 0;
 }
-
 
 
 int32_t DoServerLogic() {

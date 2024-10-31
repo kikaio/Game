@@ -11,16 +11,16 @@
 #include <cppconn/exception.h>
 #include <cppconn/prepared_statement.h>
 
-class DBConn;
-
 class DBProfile
 {
-	friend class DBConn;
+public:
+	static DBProfile dummyProfile;
 public:
 	DBProfile() {
 	}
-	DBProfile(string _host, string _user, string _pw, string _database) 
-		: host(_host), user(_user), pw(_pw), database(_database)
+	DBProfile(string _host, int32_t _port, string _user, string _pw, string _database, int32_t _connTimeOut = 10, int32_t _readTimeOut = 3, int32_t _writeTimeOut = 3) 
+		: host(_host), port(_port), user(_user), pw(_pw), database(_database)
+		, connTimeoutSec(_connTimeOut), readTimeoutSec(_readTimeOut), writeTimeoutSec(_writeTimeOut)
 	{
 	}
 private:
@@ -29,43 +29,25 @@ private:
 	string pw = "";
 	string database = "";
 	string rwType = "";
-
+	int32_t port = 0;
+public:
 	int32_t connTimeoutSec = 10;
 	int32_t readTimeoutSec = 3;
 	int32_t writeTimeoutSec = 3;
-};
-
-class DBConnKey 
-{
 public:
-	DBConnKey() : dbKey(0, 0, 0){
-		
+	string Host() const {
+		return host;
 	}
-	DBConnKey(uint8_t _tagNo, uint8_t _dbNameType, uint16_t _rwType) : dbKey(_tagNo, _dbNameType, _rwType) {
+	string User() const{
+		return user;
 	}
-private:
-	tuple<uint8_t, uint8_t, uint16_t> dbKey;
-public:
-	uint32_t GetKey() const {
-		return std::get<0>(dbKey) << 16 | std::get<1>(dbKey) << 8 | std::get<2>(dbKey);
+	string Pw() const {
+		return pw;
 	}
-
-	uint8_t GetTagNo() const {
-		return std::get<0>(dbKey);
+	string Database() const {
+		return database;
 	}
-
-	uint8_t GetDbNameType() const {
-		return std::get<1>(dbKey);
-	}
-	uint16_t GetRWType() const {
-		return std::get<2>(dbKey);
-	}
-};
-
-struct DBConnHasher
-{
-public:
-	uint32_t operator() (const DBConnKey& _key) const {
-		return _key.GetKey();
+	int32_t Port() const {
+		return port;
 	}
 };

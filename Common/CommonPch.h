@@ -95,6 +95,7 @@ using namespace std;
 #include "JobQueue.h"
 #include "GlobalQueue.h"
 
+#include "DBEnums.h"
 #include "DBProfile.h"
 #include "DBConn.h"
 #include "DBManager.h"

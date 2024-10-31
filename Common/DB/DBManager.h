@@ -18,12 +18,10 @@ public:
 	~DBManager();
 private:
 	sql::Driver* driver= nullptr;
-	unordered_map < DBConnKey, DBConn, DBConnHasher> keyPerConnMap;
 private:
 	void Clear();
 public:
 	sql::Driver* Driver() {
 		return driver;
 	}
-	void MakeDBConnPool(int _cnt, DBProfile _profile, DBNameType _nameType, DBRWType _rwType);
 };
