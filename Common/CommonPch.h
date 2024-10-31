@@ -57,6 +57,11 @@ using namespace std;
 
 //-----------------------------
 
+//---------------magic enum---------
+#include <magic_enum/magic_enum.hpp>
+#include <magic_enum/magic_enum_iostream.hpp>
+//-------------------------------
+
 #include "Types.h"
 #include "CommonDefines.h"
 #include "Memory.h"
