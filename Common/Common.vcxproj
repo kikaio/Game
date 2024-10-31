@@ -171,6 +171,7 @@
     <ClInclude Include="CommonPch.h" />
     <ClInclude Include="CommonProtocol.h" />
     <ClInclude Include="DB\DBConn.h" />
+    <ClInclude Include="DB\DBEnums.h" />
     <ClInclude Include="DB\DBLink.h" />
     <ClInclude Include="DB\DBManager.h" />
     <ClInclude Include="DB\DBProfile.h" />

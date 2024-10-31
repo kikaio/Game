@@ -192,6 +192,9 @@
     <ClInclude Include="Utils\JsonReader.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="DB\DBEnums.h">
+      <Filter>DB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">

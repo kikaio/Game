@@ -1,15 +1,6 @@
 ﻿#pragma once
 //#include <mysqlx/xdevapi.h>
 
-#include "mysql_connection.h"
-#include "mysql_driver.h"
-#include "mysql_error.h"
-
-#include <cppconn/driver.h>
-#include <cppconn/resultset.h>
-#include <cppconn/statement.h>
-#include <cppconn/exception.h>
-#include <cppconn/prepared_statement.h>
 
 class DBProfile
 {
@@ -30,7 +21,7 @@ private:
 	string database = "";
 	string rwType = "";
 	int32_t port = 0;
-public:
+private:
 	int32_t connTimeoutSec = 10;
 	int32_t readTimeoutSec = 3;
 	int32_t writeTimeoutSec = 3;
@@ -49,5 +40,17 @@ public:
 	}
 	int32_t Port() const {
 		return port;
+	}
+	RWType RwType() const {
+		if(rwType == "r" || rwType == "read") {
+			return RWType::READ;
+		}
+		if(rwType == "w" || rwType == "write") {
+			return RWType::WRITE;
+		}
+		if(rwType == "rw" || rwType == "wr") {
+			return RWType::READ_WRITE;
+		}
+		return RWType::NONE;;
 	}
 };
