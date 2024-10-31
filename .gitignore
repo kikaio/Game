@@ -9,3 +9,4 @@ Debug/Client/Client.exe
 Debug/Client/Client.pdb
 Debug/Server/Server.exe
 Debug/Server/Server.pdb
+Server/Configs/ServerConfig_local.json
