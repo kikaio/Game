@@ -53,4 +53,23 @@ public:
 		}
 		return RWType::NONE;;
 	}
+
+	int8_t RwTypeVal() {
+		auto ret = magic_enum::enum_integer(RwType());
+		return ret;
+	}
+};
+
+
+class DBPoolKey
+{
+public:
+	DBPoolKey(uint8_t _dbType, uint8_t _rwType);
+private:
+	uint8_t dbType = 0;
+	uint8_t rwType = 0;
+public:
+	uint16_t GetKey() {
+		return dbType<<8 | rwType;
+	}
 };
