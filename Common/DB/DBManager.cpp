@@ -24,3 +24,10 @@ void DBManager::ReadyConnectionPool(uint32_t _poolCnt, uint8_t _nameVal, uint8_t
 	keyToConnPool[keyVal] = DBConnPool(_profile);
 	keyToConnPool[keyVal].ReadyConnections(_poolCnt);
 }
+
+DBConn& DBManager::GetConnect(const DBPoolKey& _poolKey)
+{
+	auto finder = keyToConnPool.find(_poolKey.GetKey());
+	ASSERT_CRASH(finder != keyToConnPool.end());
+	return finder->second.GetConnect(false);
+}

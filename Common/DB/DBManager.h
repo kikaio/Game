@@ -27,4 +27,5 @@ public:
 	}
 public:
 	void ReadyConnectionPool(uint32_t _poolCnt, uint8_t _nameVal, uint8_t _rwVal, DBProfile& _profile);
+	DBConn& GetConnect(const DBPoolKey& _poolKey);
 };
