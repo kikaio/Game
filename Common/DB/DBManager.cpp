@@ -11,6 +11,14 @@ DBManager::~DBManager()
 	Clear();
 }
 
+bool DBManager::CheckConnect(DBPoolKey _poolKey)
+{
+	auto finder = keyToConnPool.find(_poolKey.GetKey());
+	ASSERT_CRASH(finder != keyToConnPool.end());
+	finder->second.CheckConnect();
+	return false;
+}
+
 void DBManager::Clear()
 {
 }
@@ -25,9 +33,23 @@ void DBManager::ReadyConnectionPool(uint32_t _poolCnt, uint8_t _nameVal, uint8_t
 	keyToConnPool[keyVal].ReadyConnections(_poolCnt);
 }
 
+void DBManager::TryConnect()
+{
+	for(auto& _pair : keyToConnPool) {
+		CheckConnect(_pair.first);
+	}
+}
+
 DBConn& DBManager::GetConnect(const DBPoolKey& _poolKey)
 {
 	auto finder = keyToConnPool.find(_poolKey.GetKey());
 	ASSERT_CRASH(finder != keyToConnPool.end());
 	return finder->second.GetConnect(false);
+}
+
+void DBManager::KeepAlive()
+{
+	for(auto& _pair : keyToConnPool) {
+		_pair.second.KeepAlive();
+	}
 }

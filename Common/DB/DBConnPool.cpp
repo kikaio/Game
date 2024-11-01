@@ -33,3 +33,17 @@ const DBProfile& DBConnPool::Profile()
 {
 	return dbProfile;
 }
+
+void DBConnPool::CheckConnect()
+{
+	for(auto& _conn : connections) {
+		_conn.CheckConnect();
+	}
+}
+
+void DBConnPool::KeepAlive()
+{
+	for(auto& _conn : connections) {
+		_conn.KeepAlive();
+	}
+}

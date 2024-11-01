@@ -59,6 +59,17 @@ void DBWrapper::DatabaseAddFromJsonToManager(const rapidjson::Value& _valArr)
 	return ;
 }
 
+bool DBWrapper::TryConnectToDB()
+{	
+	try {
+		DBManager::Get().TryConnect();
+	}
+	catch(sql::SQLException e) {
+		return false;
+	}
+	return true;
+}
+
 DBConn& DBWrapper::GetCommonDBConn(RWType _rwType)
 {
 	DBPoolKey poolKey((uint8_t)DBNameType::CommonDB, (uint8_t)_rwType);

@@ -20,6 +20,7 @@ private:
 	sql::Driver* driver= nullptr;
 	map<uint16_t, DBConnPool> keyToConnPool;
 private:
+	bool CheckConnect(DBPoolKey _poolKey);
 	void Clear();
 public:
 	sql::Driver* Driver() {
@@ -27,5 +28,7 @@ public:
 	}
 public:
 	void ReadyConnectionPool(uint32_t _poolCnt, uint8_t _nameVal, uint8_t _rwVal, DBProfile& _profile);
+	void TryConnect();
 	DBConn& GetConnect(const DBPoolKey& _poolKey);
+	void KeepAlive();
 };

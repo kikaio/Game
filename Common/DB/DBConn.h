@@ -20,11 +20,18 @@ public:
 
 private:
 	sql::Connection* conn = nullptr;
+	DBProfile profile;
+	bool connected = false;
+	int32_t connectTryCnt = 0;
 public:
 	sql::Connection* GetConn() {
 		return conn;
 	}
+	bool Connected() {
+		return connected;
+	}
 public:
+	bool CheckConnect();
 	void KeepAlive();
 	void Close();
 };

@@ -7,5 +7,8 @@ private:
 public:
 	static void DatabaseAddFromJsonToManager(const rapidjson::Value& _valArr);
 public:
+	static bool TryConnectToDB();
+public:
 	static DBConn& GetCommonDBConn(RWType _rwType = RWType::READ_WRITE);
+
 };

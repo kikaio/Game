@@ -68,12 +68,26 @@ public:
 		auto ret = ENUM_TO_INT(RwType());
 		return ret;
 	}
+
+	int32_t ConnectTimeoutSec() {
+		return connTimeoutSec;
+	}
+	int32_t ReadTimeoutSec() {
+		return readTimeoutSec;
+	}
+	int32_t WriteTimeout() {
+		return writeTimeoutSec;
+	}
 };
 
 
 class DBPoolKey
 {
 public:
+	DBPoolKey(uint16_t _val) {
+		dbNameVal = _val>>8;
+		rwType = 0x00FF & _val;
+	}
 	DBPoolKey(uint8_t _dbNameVal, uint8_t _rwType) 
 		: dbNameVal(_dbNameVal), rwType(_rwType)
 	{

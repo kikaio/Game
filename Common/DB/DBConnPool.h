@@ -19,5 +19,7 @@ public:
 public:
 	DBConn& GetConnect(bool _isRand = false);
 	const DBProfile& Profile();
+	void CheckConnect();
+	void KeepAlive();
 };
 
