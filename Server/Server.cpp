@@ -28,7 +28,9 @@ int32_t DoSetConfigs() {
     ASSERT_CRASH(dbVals.IsArray());
     DBWrapper::DatabaseAddFromJsonToManager(dbVals);
 
-
+    if(DBWrapper::TryConnectToDB() == false) {
+        //todo logging
+    }
     return 0;
 }
 

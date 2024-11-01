@@ -11,12 +11,13 @@ DBManager::~DBManager()
 	Clear();
 }
 
+//todo : check connect logic이 현재 논리적으로 이상함.
 bool DBManager::CheckConnect(DBPoolKey _poolKey)
 {
 	auto finder = keyToConnPool.find(_poolKey.GetKey());
 	ASSERT_CRASH(finder != keyToConnPool.end());
 	finder->second.CheckConnect();
-	return false;
+	return true;
 }
 
 void DBManager::Clear()

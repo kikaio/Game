@@ -44,8 +44,14 @@ bool DBConn::CheckConnect()
 		}
 	}
 	catch (sql::SQLException e) {
+		printf("Check connected throw error. e[%d] : %s\n", e.getErrorCode(), e.getSQLStateCStr());
+		return false;
 	}
-	return false;
+	catch(exception e) {
+		printf("Check connected throw error\n");
+		return false;
+	}
+	return true;
 }
 
 void DBConn::KeepAlive()

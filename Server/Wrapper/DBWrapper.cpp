@@ -42,7 +42,7 @@ void DBWrapper::ReadyDatabasePool(JsonReader& _dbReader)
 	uint8_t dbNameTypeVal = (uint8_t)magicEnumDbNameType.value();
 
 	auto rWTypeVal = ENUM_TO_INT(rwType);
-
+	DBManager::Get().
 	DBManager::Get().ReadyConnectionPool(poolCnt, dbNameTypeVal, rWTypeVal, profile);
 
 }
@@ -73,5 +73,5 @@ bool DBWrapper::TryConnectToDB()
 DBConn& DBWrapper::GetCommonDBConn(RWType _rwType)
 {
 	DBPoolKey poolKey((uint8_t)DBNameType::CommonDB, (uint8_t)_rwType);
-	DBManager::Get().GetConnect(poolKey);
+	return DBManager::Get().GetConnect(poolKey);
 }
