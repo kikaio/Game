@@ -10,15 +10,25 @@ void PrintLn(const char* _msg)
 
 void DoIocpGameService(NetworkCoreSptr netCore);
 int32_t DoServerLogic();
-int32_t DoTest();
+int32_t DoSetConfigs();
 
 int main()
 {
     //return DoServerLogic();
-    return DoTest();
+    return DoSetConfigs();
 }
 
-int32_t DoTest() {
+int32_t DoSetConfigs() {
+
+    string path = "./Configs/ServerConfig.json";
+    JsonReader reader;
+    reader.ReadFile(path);
+    rapidjson::Value dbVals(kArrayType);
+    ASSERT_CRASH(reader.GetArray("db_configs", OUT dbVals));
+    ASSERT_CRASH(dbVals.IsArray());
+    DBWrapper::DatabaseAddFromJsonToManager(dbVals);
+
+
     return 0;
 }
 

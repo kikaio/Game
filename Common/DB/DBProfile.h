@@ -9,9 +9,19 @@ public:
 public:
 	DBProfile() {
 	}
-	DBProfile(string _host, int32_t _port, string _user, string _pw, string _database, int32_t _connTimeOut = 10, int32_t _readTimeOut = 3, int32_t _writeTimeOut = 3) 
-		: host(_host), port(_port), user(_user), pw(_pw), database(_database)
+	DBProfile(string _host, int32_t _port, string _user, string _pw, string _database
+	, string _rwType
+	, int32_t _connTimeOut = 10, int32_t _readTimeOut = 3, int32_t _writeTimeOut = 3
+	) 
+		: host(_host), port(_port), user(_user), pw(_pw), database(_database), rwTypeStr(_rwType)
 		, connTimeoutSec(_connTimeOut), readTimeoutSec(_readTimeOut), writeTimeoutSec(_writeTimeOut)
+	{
+	}
+	DBProfile(const DBProfile& _other)
+		: host(_other.host), port(_other.port), user(_other.user), pw(_other.pw), database(_other.database)
+		, connTimeoutSec(_other.connTimeoutSec)
+		, readTimeoutSec(_other.readTimeoutSec)
+		, writeTimeoutSec(_other.writeTimeoutSec)
 	{
 	}
 private:
@@ -19,7 +29,7 @@ private:
 	string user = "";
 	string pw = "";
 	string database = "";
-	string rwType = "";
+	string rwTypeStr = "";
 	int32_t port = 0;
 private:
 	int32_t connTimeoutSec = 10;
@@ -42,20 +52,20 @@ public:
 		return port;
 	}
 	RWType RwType() const {
-		if(rwType == "r" || rwType == "read") {
+		if(rwTypeStr == "r" || rwTypeStr == "read") {
 			return RWType::READ;
 		}
-		if(rwType == "w" || rwType == "write") {
+		if(rwTypeStr == "w" || rwTypeStr == "write") {
 			return RWType::WRITE;
 		}
-		if(rwType == "rw" || rwType == "wr") {
+		if(rwTypeStr == "rw" || rwTypeStr == "wr") {
 			return RWType::READ_WRITE;
 		}
 		return RWType::NONE;;
 	}
 
-	int8_t RwTypeVal() {
-		auto ret = magic_enum::enum_integer(RwType());
+	uint8_t RwTypeVal() {
+		auto ret = ENUM_TO_INT(RwType());
 		return ret;
 	}
 };
@@ -64,12 +74,15 @@ public:
 class DBPoolKey
 {
 public:
-	DBPoolKey(uint8_t _dbType, uint8_t _rwType);
+	DBPoolKey(uint8_t _dbNameVal, uint8_t _rwType) 
+		: dbNameVal(_dbNameVal), rwType(_rwType)
+	{
+	}
 private:
-	uint8_t dbType = 0;
+	uint8_t dbNameVal = 0;
 	uint8_t rwType = 0;
 public:
-	uint16_t GetKey() {
-		return dbType<<8 | rwType;
+	uint16_t GetKey() const {
+		return dbNameVal <<8 | rwType;
 	}
 };

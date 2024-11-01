@@ -15,3 +15,12 @@ void DBManager::Clear()
 {
 }
 
+void DBManager::ReadyConnectionPool(uint32_t _poolCnt, uint8_t _nameVal, uint8_t _rwVal, DBProfile& _profile)
+{
+	DBPoolKey poolKey(_nameVal, _rwVal);
+	uint16_t keyVal = poolKey.GetKey();
+	auto finder = keyToConnPool.find(keyVal);
+	ASSERT_CRASH(finder == keyToConnPool.end());
+	keyToConnPool[keyVal] = DBConnPool(_profile);
+	keyToConnPool[keyVal].ReadyConnections(_poolCnt);
+}

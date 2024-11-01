@@ -115,6 +115,7 @@ using namespace std;
 #include "DBEnums.h"
 #include "DBProfile.h"
 #include "DBConn.h"
+#include "DBConnPool.h"
 #include "DBManager.h"
 #include "DBLink.h"
 #include "DBResultSet.h"

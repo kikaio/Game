@@ -17,8 +17,6 @@ class DBConn
 public:
 	DBConn();
 	DBConn(const DBProfile& _profile, uint8_t _tagNo = 0);
-	DBConn(const DBConn& _other) = delete;
-	DBConn(DBConn&& _other) = delete;
 
 private:
 	sql::Connection* conn = nullptr;

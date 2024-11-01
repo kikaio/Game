@@ -17,6 +17,7 @@
 #include "CommonPch.h"
 #include "ServerDefines.h"
 #include "ServerTypes.h"
+#include "ServerEnums.h"
 
 #include "UserSession.h"
 #include "ServerPacketHandler.h"
@@ -24,3 +25,5 @@
 
 #include "GameUser.h"
 #include "DBConfig.h"
+
+#include "DBWrapper.h"

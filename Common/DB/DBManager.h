@@ -18,10 +18,13 @@ public:
 	~DBManager();
 private:
 	sql::Driver* driver= nullptr;
+	map<uint16_t, DBConnPool> keyToConnPool;
 private:
 	void Clear();
 public:
 	sql::Driver* Driver() {
 		return driver;
 	}
+public:
+	void ReadyConnectionPool(uint32_t _poolCnt, uint8_t _nameVal, uint8_t _rwVal, DBProfile& _profile);
 };

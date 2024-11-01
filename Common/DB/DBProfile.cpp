@@ -2,3 +2,4 @@
 #include "DBProfile.h"
 
 
+DBProfile DBProfile::dummyProfile;

@@ -195,6 +195,9 @@
     <ClInclude Include="DB\DBEnums.h">
       <Filter>DB</Filter>
     </ClInclude>
+    <ClInclude Include="DB\DBConnPool.h">
+      <Filter>DB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -328,6 +331,9 @@
     </ClCompile>
     <ClCompile Include="Utils\JsonReader.cpp">
       <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="DB\DBConnPool.cpp">
+      <Filter>DB</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
