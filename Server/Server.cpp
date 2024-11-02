@@ -12,10 +12,42 @@ void DoIocpGameService(NetworkCoreSptr netCore);
 int32_t DoServerLogic();
 int32_t DoSetConfigs();
 
+int32_t test() {
+    try{
+        sql::Driver* driver = nullptr;
+        sql::Connection* conn = nullptr;
+
+        driver = get_driver_instance();
+        conn = driver->connect("tcp://localhost:33306", "gameuser", "gameuser");
+        conn->setSchema("CommonDB");
+        if(conn->isValid() == false || conn->isClosed()) {
+            conn->close();
+            return 0;
+        }
+        sql::Statement* statement = nullptr;
+        statement = conn->createStatement();
+        sql::ResultSet* ret = statement->executeQuery("SELECT id, name FROM test");
+        while(ret != nullptr && ret->next()) {
+            int32_t id = ret->getInt(1);
+            //printf("id : %d, name : %s\n", id, ret->getString(2).c_str());
+            printf("id : %d\n", id);
+        }
+        conn->close();
+    }
+    catch(sql::SQLException e) {
+        printf("e[%d] : %s\n state : %s\n", e.getErrorCode(), e.what(), e.getSQLStateCStr());
+    }
+    catch(exception e) {
+        printf("e : %s\n", e.what());
+    }
+    return 0;
+}
+
 int main()
 {
     //return DoServerLogic();
-    return DoSetConfigs();
+    //return DoSetConfigs();
+    return test();
 }
 
 int32_t DoSetConfigs() {
