@@ -8,10 +8,8 @@
 
 #if _DEBUG
 #pragma comment(lib, "../Libraries/Libs/Protobuf/Debug/libprotobufd.lib")
-#pragma comment(lib, "../Libraries/Libs/mysql_connector_9/Debug/mysqlcppconn-d.lib")
 #else
 #pragma comment(lib, "../Libraries/Libs/Protobuf/Release/libprotobuf.lib")
-#pragma comment(lib, "../Libraries/Libs/mysql_connector_9/Release/mysqlcppconn.lib")
 #endif
 
 #include <iostream>
@@ -43,20 +41,6 @@
 #include <MSWSock.h>
 using namespace std;
 //---------------------------------------------
-
-// mysql connector 관련
-#include "mysql_connection.h"
-#include "mysql_driver.h"
-#include "mysql_error.h"
-
-#include <cppconn/driver.h>
-#include <cppconn/resultset.h>
-#include <cppconn/statement.h>
-#include <cppconn/exception.h>
-#include <cppconn/prepared_statement.h>
-
-//-----------------------------
-
 //---------------magic enum---------
 #include <magic_enum/magic_enum.hpp>
 #include <magic_enum/magic_enum_iostream.hpp>
@@ -111,15 +95,6 @@ using namespace std;
 #include "JobTimer.h"
 #include "JobQueue.h"
 #include "GlobalQueue.h"
-
-#include "DBEnums.h"
-#include "DBProfile.h"
-#include "DBConn.h"
-#include "DBConnPool.h"
-#include "DBManager.h"
-#include "DBLink.h"
-#include "DBResultSet.h"
-#include "DBQuery.h"
 
 #include "JsonParser.h"
 #include "JsonWriter.h"

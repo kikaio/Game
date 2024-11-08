@@ -40,9 +40,6 @@
     <Filter Include="Job">
       <UniqueIdentifier>{0610ef0c-ff5b-410a-9834-92050ce534f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DB">
-      <UniqueIdentifier>{de3980c3-c987-43a2-aaf5-fa9f63923f81}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -162,26 +159,8 @@
     <ClInclude Include="Job\JobTimer.h">
       <Filter>Job</Filter>
     </ClInclude>
-    <ClInclude Include="DB\DBManager.h">
-      <Filter>DB</Filter>
-    </ClInclude>
-    <ClInclude Include="DB\DBProfile.h">
-      <Filter>DB</Filter>
-    </ClInclude>
-    <ClInclude Include="DB\DBLink.h">
-      <Filter>DB</Filter>
-    </ClInclude>
-    <ClInclude Include="DB\DBResultSet.h">
-      <Filter>DB</Filter>
-    </ClInclude>
-    <ClInclude Include="DB\DBConn.h">
-      <Filter>DB</Filter>
-    </ClInclude>
     <ClInclude Include="Utils\TLSSingleton.h">
       <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="DB\DBQuery.h">
-      <Filter>DB</Filter>
     </ClInclude>
     <ClInclude Include="Utils\JsonParser.h">
       <Filter>Utils</Filter>
@@ -191,12 +170,6 @@
     </ClInclude>
     <ClInclude Include="Utils\JsonReader.h">
       <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="DB\DBEnums.h">
-      <Filter>DB</Filter>
-    </ClInclude>
-    <ClInclude Include="DB\DBConnPool.h">
-      <Filter>DB</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -305,24 +278,6 @@
     <ClCompile Include="Job\JobTimer.cpp">
       <Filter>Job</Filter>
     </ClCompile>
-    <ClCompile Include="DB\DBManager.cpp">
-      <Filter>DB</Filter>
-    </ClCompile>
-    <ClCompile Include="DB\DBProfile.cpp">
-      <Filter>DB</Filter>
-    </ClCompile>
-    <ClCompile Include="DB\DBLink.cpp">
-      <Filter>DB</Filter>
-    </ClCompile>
-    <ClCompile Include="DB\DBResultSet.cpp">
-      <Filter>DB</Filter>
-    </ClCompile>
-    <ClCompile Include="DB\DBConn.cpp">
-      <Filter>DB</Filter>
-    </ClCompile>
-    <ClCompile Include="DB\DBQuery.cpp">
-      <Filter>DB</Filter>
-    </ClCompile>
     <ClCompile Include="Utils\JsonParser.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
@@ -331,9 +286,6 @@
     </ClCompile>
     <ClCompile Include="Utils\JsonReader.cpp">
       <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="DB\DBConnPool.cpp">
-      <Filter>DB</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

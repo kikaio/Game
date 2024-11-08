@@ -173,7 +173,6 @@
     <ClCompile Include="UserSession.cpp" />
     <ClCompile Include="User\GameProfile.cpp" />
     <ClCompile Include="User\GameUser.cpp" />
-    <ClCompile Include="Wrapper\DBWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConfigClass\DBConfig.h" />
@@ -187,7 +186,6 @@
     <ClInclude Include="UserSession.h" />
     <ClInclude Include="User\GameProfile.h" />
     <ClInclude Include="User\GameUser.h" />
-    <ClInclude Include="Wrapper\DBWrapper.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Configs\ServerConfig.json" />
