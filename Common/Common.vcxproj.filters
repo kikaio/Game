@@ -40,6 +40,9 @@
     <Filter Include="Job">
       <UniqueIdentifier>{0610ef0c-ff5b-410a-9834-92050ce534f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DB">
+      <UniqueIdentifier>{c6331a58-c487-49ea-835d-27d8b379ff3a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -171,6 +174,12 @@
     <ClInclude Include="Utils\JsonReader.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="DB\DBConnection.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="DB\DBConnectionPool.h">
+      <Filter>DB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -286,6 +295,12 @@
     </ClCompile>
     <ClCompile Include="Utils\JsonReader.cpp">
       <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="DB\DBConnection.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="DB\DBConnectionPool.cpp">
+      <Filter>DB</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

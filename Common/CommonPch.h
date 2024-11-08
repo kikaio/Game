@@ -99,3 +99,9 @@ using namespace std;
 #include "JsonParser.h"
 #include "JsonWriter.h"
 #include "JsonReader.h"
+
+#include <sql.h>
+#include <sqlext.h>
+
+#include "DBConnection.h"
+#include "DBConnectionPool.h"
