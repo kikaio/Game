@@ -2,7 +2,7 @@
 
 class DBConnection;
 
-class DBConnectionPool
+class DBConnectionPool : public Singleton<DBConnection>
 {
 public:
 	DBConnectionPool();

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class DBConnection 
+class DBConnection
 {
 private:
 	SQLHDBC conn = SQL_NULL_HANDLE;
@@ -17,6 +17,6 @@ public:
 	bool BindParam(SQLUSMALLINT _paramIdx, SQLSMALLINT _cType, SQLSMALLINT _sqlType
 		, SQLULEN _len, SQLPOINTER _ptr, SQLLEN* _idx
 	);
-	bool BindCol(SQLUSMALLINT _conIdx, SQLSMALLINT _cType, SQLPOINTER _val, SQLLEN* _idx);
+	bool BindCol(SQLUSMALLINT _conIdx, SQLSMALLINT _cType, SQLULEN len, SQLPOINTER _val, SQLLEN* _idx);
 	void HandleError(SQLRETURN _ret);
 };
