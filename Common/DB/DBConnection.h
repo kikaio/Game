@@ -4,10 +4,11 @@
 class DBConnection
 {
 private:
-	SQLHDBC conn = SQL_NULL_HANDLE;
+	SQLHDBC hdbc = SQL_NULL_HANDLE;
 	SQLHSTMT statement = SQL_NULL_HANDLE;
 public:
 	bool Connect(SQLHENV _henv, const char* _connStr);
+	bool Connect(SQLHENV _henv, string _odbcName, string _host, string _user, string _pwd, int32_t dbNameVal, int32_t rwVal);
 	void Clear();
 	bool Execute(const char* _sql);
 	bool Fetch();

@@ -3,32 +3,61 @@
 
 bool DBConnection::Connect(SQLHENV _henv, const char* _connStr)
 {
-	if(SQLAllocHandle(SQL_HANDLE_DBC, _henv, &conn) != SQL_SUCCESS) {
+	if(SQLAllocHandle(SQL_HANDLE_DBC, _henv, &hdbc) != SQL_SUCCESS) {
 		return false;
 	}
 
 	array<char, MAX_PATH> strBuf = {0, };
-	std::strncpy(strBuf.data(), _connStr, strBuf.size());
+	int len = strlen(_connStr);
+	strncpy_s(strBuf.data(), strBuf.size(), _connStr, len);
 
 	array<char, MAX_PATH> retStr = {0, };
 	SQLSMALLINT retLen = 0;
-	SQLRETURN ret = SQLDriverConnectA(conn, NULL, reinterpret_cast<SQLCHAR*>(strBuf.data()), strBuf.size()
+	SQLRETURN ret = SQLDriverConnectA(hdbc, NULL, reinterpret_cast<SQLCHAR*>(strBuf.data()), strBuf.size()
 		, OUT reinterpret_cast<SQLCHAR*>(retStr.data()), retStr.size()
 		, OUT &retLen,  SQL_DRIVER_NOPROMPT
 	);
 
-	if(SQLAllocHandle(SQL_HANDLE_STMT, conn, &statement) != SQL_SUCCESS) {
+	if(SQLAllocHandle(SQL_HANDLE_STMT, hdbc, &statement) != SQL_SUCCESS) {
 		return false;
 	}
 
 	return (ret == SQL_SUCCESS || ret == SQL_SUCCESS_WITH_INFO);
 }
 
+bool DBConnection::Connect(SQLHENV _henv, string _odbcName, string _host, string _user, string _pwd, int32_t dbNameVal, int32_t rwVal)
+{
+	SQLSMALLINT retLen = 0;
+
+	SQLRETURN ret = SQLAllocHandle(SQL_HANDLE_DBC, _henv, &hdbc);
+	if (ret != SQL_SUCCESS && ret != SQL_SUCCESS_WITH_INFO) {
+		printf("SQL Return : %d\n", ret);
+		return false;
+	}
+
+	ret = SQLConnectA(hdbc, (SQLCHAR*)_odbcName.c_str(), SQL_NTS
+		, (SQLCHAR*)_user.c_str(), SQL_NTS
+		, (SQLCHAR*)_pwd.c_str(), SQL_NTS
+	);
+	if (ret != SQL_SUCCESS && ret == SQL_SUCCESS_WITH_INFO) {
+		HandleError(ret);
+		printf("SQL Return : %d\n", ret);
+		return false;
+	}
+	ret = SQLAllocHandle(SQL_HANDLE_STMT, hdbc, &statement);
+	if (ret != SQL_SUCCESS && ret == SQL_SUCCESS_WITH_INFO) {
+		HandleError(ret);
+		printf("SQL Return : %d\n", ret);
+		return false;
+	}
+	return true;
+}
+
 void DBConnection::Clear()
 {
-	if(conn != SQL_NULL_HANDLE) {
-		SQLFreeHandle(SQL_HANDLE_DBC, conn) ;
-		conn = SQL_NULL_HANDLE;
+	if(hdbc != SQL_NULL_HANDLE) {
+		SQLFreeHandle(SQL_HANDLE_DBC, hdbc) ;
+		hdbc = SQL_NULL_HANDLE;
 	}
 	
 	if (statement != SQL_NULL_HANDLE) {

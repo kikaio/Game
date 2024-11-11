@@ -13,16 +13,43 @@ DBConnectionPool::~DBConnectionPool()
 bool DBConnectionPool::Connect(int32_t _connCnt, const char* _connStr)
 {
 	LOCK_GUARDDING(dbPoolLock);
-	if(SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &env) != SQL_SUCCESS) {
+	SQLRETURN sqlRet = SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &env);
+	if (sqlRet != SQL_SUCCESS) {
+		printf("SQL Return : %d\n", sqlRet);
 		return false;
 	}
-	if(SQLSetEnvAttr(env, SQL_ATTR_ODBC_VERSION, reinterpret_cast<SQLPOINTER>(SQL_OV_ODBC3), 0) != SQL_SUCCESS) {
+	sqlRet = SQLSetEnvAttr(env, SQL_ATTR_ODBC_VERSION, reinterpret_cast<SQLPOINTER>(SQL_OV_ODBC3), 0);
+	if (sqlRet != SQL_SUCCESS) {
+		printf("SQL Return : %d\n", sqlRet);
 		return false;
 	}
 
-	for(int32_t idx = 0; idx < _connCnt; idx++) {
+	for (int32_t idx = 0; idx < _connCnt; idx++) {
 		DBConnection* conn = new DBConnection();
-		if(conn->~DBConnection(env, _connStr) == false) {
+		if (conn->Connect(env, _connStr) == false) {
+			return false;
+		}
+	}
+	return true;
+}
+
+bool DBConnectionPool::Connect(int32_t _connCnt, string _odbcName, string _host, string _user, string _pwd, int32_t _dbNameVal, int32_t _rwVal)
+{
+	LOCK_GUARDDING(dbPoolLock);
+	SQLRETURN sqlRet = SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &env);
+	if (sqlRet != SQL_SUCCESS && sqlRet != SQL_SUCCESS_WITH_INFO) {
+		printf("SQL Return : %d\n", sqlRet);
+		return false;
+	}
+
+	sqlRet = SQLSetEnvAttr(env, SQL_ATTR_ODBC_VERSION, reinterpret_cast<SQLPOINTER>(SQL_OV_ODBC3), 0);
+	if (sqlRet != SQL_SUCCESS && sqlRet != SQL_SUCCESS_WITH_INFO) {
+		printf("SQL Return : %d\n", sqlRet);
+		return false;
+	}
+	for(int32_t idx = 0; idx < _connCnt; idx++) {
+		DBConnection* _conn = new DBConnection();
+		if(_conn->Connect(env, _odbcName, _host, _user, _pwd, _dbNameVal, _rwVal) == false) {
 			return false;
 		}
 	}
@@ -34,8 +61,10 @@ void DBConnectionPool::Clear()
 {
 	LOCK_GUARDDING(dbPoolLock);
 	if(env != SQL_NULL_HANDLE) {
+
 		SQLFreeHandle(SQL_HANDLE_ENV, env);
 		env = SQL_NULL_HANDLE;
+		
 	}
 
 	for(auto _dbConn : connections) {
