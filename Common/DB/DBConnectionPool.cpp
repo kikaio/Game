@@ -10,29 +10,6 @@ DBConnectionPool::~DBConnectionPool()
 	Clear();
 }
 
-bool DBConnectionPool::Connect(int32_t _connCnt, const char* _connStr)
-{
-	LOCK_GUARDDING(dbPoolLock);
-	SQLRETURN sqlRet = SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &env);
-	if (sqlRet != SQL_SUCCESS) {
-		printf("SQL Return : %d\n", sqlRet);
-		return false;
-	}
-	sqlRet = SQLSetEnvAttr(env, SQL_ATTR_ODBC_VERSION, reinterpret_cast<SQLPOINTER>(SQL_OV_ODBC3), 0);
-	if (sqlRet != SQL_SUCCESS) {
-		printf("SQL Return : %d\n", sqlRet);
-		return false;
-	}
-
-	for (int32_t idx = 0; idx < _connCnt; idx++) {
-		DBConnection* conn = new DBConnection();
-		if (conn->Connect(env, _connStr) == false) {
-			return false;
-		}
-	}
-	return true;
-}
-
 bool DBConnectionPool::Connect(int32_t _connCnt, string _odbcName, string _host, string _user, string _pwd, int32_t _dbNameVal, int32_t _rwVal)
 {
 	LOCK_GUARDDING(dbPoolLock);
@@ -52,6 +29,7 @@ bool DBConnectionPool::Connect(int32_t _connCnt, string _odbcName, string _host,
 		if(_conn->Connect(env, _odbcName, _host, _user, _pwd, _dbNameVal, _rwVal) == false) {
 			return false;
 		}
+		connections.push_back(_conn);
 	}
 
 	return true;
@@ -59,6 +37,9 @@ bool DBConnectionPool::Connect(int32_t _connCnt, string _odbcName, string _host,
 
 void DBConnectionPool::Clear()
 {
+	if (isCleared.exchange(true) == true) {
+		return ;	
+	}
 	LOCK_GUARDDING(dbPoolLock);
 	if(env != SQL_NULL_HANDLE) {
 

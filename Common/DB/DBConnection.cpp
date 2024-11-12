@@ -39,13 +39,13 @@ bool DBConnection::Connect(SQLHENV _henv, string _odbcName, string _host, string
 		, (SQLCHAR*)_user.c_str(), SQL_NTS
 		, (SQLCHAR*)_pwd.c_str(), SQL_NTS
 	);
-	if (ret != SQL_SUCCESS && ret == SQL_SUCCESS_WITH_INFO) {
+	if (ret != SQL_SUCCESS && ret != SQL_SUCCESS_WITH_INFO) {
 		HandleError(ret);
 		printf("SQL Return : %d\n", ret);
 		return false;
 	}
 	ret = SQLAllocHandle(SQL_HANDLE_STMT, hdbc, &statement);
-	if (ret != SQL_SUCCESS && ret == SQL_SUCCESS_WITH_INFO) {
+	if (ret != SQL_SUCCESS && ret != SQL_SUCCESS_WITH_INFO) {
 		HandleError(ret);
 		printf("SQL Return : %d\n", ret);
 		return false;
@@ -70,11 +70,11 @@ void DBConnection::Clear()
 bool DBConnection::Execute(const char* _sql)
 {
 	SQLRETURN ret = SQLExecDirectA(statement, (SQLCHAR*)_sql, SQL_NTSL);
-	if(ret == SQL_SUCCESS || ret == SQL_SUCCESS_WITH_INFO) {
-		return true;
-	}
-	HandleError(ret);
-	return false;
+	if(ret != SQL_SUCCESS && ret != SQL_SUCCESS_WITH_INFO) {
+		HandleError(ret);
+		return false;
+	} 
+	return true;
 }
 
 bool DBConnection::Fetch()
@@ -139,7 +139,7 @@ bool DBConnection::BindCol(SQLUSMALLINT _columnIdx, SQLSMALLINT _cType, SQLULEN 
 
 void DBConnection::HandleError(SQLRETURN _ret)
 {
-	if(_ret == SQL_SUCCESS) {
+	if(_ret == SQL_SUCCESS || _ret == SQL_SUCCESS_WITH_INFO) {
 		return ;
 	}
 
@@ -162,7 +162,7 @@ void DBConnection::HandleError(SQLRETURN _ret)
 			break;
 		}
 
-		if(errRet != SQL_SUCCESS && errRet != SQL_SUCCESS_WITH_INFO) {
+		if(errRet != SQL_SUCCESS) {
 			break;
 		}
 

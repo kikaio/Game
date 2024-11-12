@@ -48,22 +48,28 @@ int32_t DoDatabaseTest()
         DBNameType dbNameType = dbNameCastRet.value();
         array<char, MAX_PATH> connStrArr = {0, };
 
-        sprintf_s(connStrArr.data(), connStrArr.size(), "Driver={MySQL ODBC 9.1 ANSI Driver};Server=%s, %d Database=%s; Uid=%s; Pwd=%d"
-            , host.c_str(), port, user.c_str(), pw.c_str()
-        );
         string odbcName = "MysqlODBC";
         ASSERT_CRASH(DBConnectionPool::Get().Connect(1, odbcName, host, user, pw, (int32_t)dbNameType, (int32_t)rwType));
         continue;
     }
+    
+    auto sql = "DROP TABLE IF EXISTS `Gold`";
+    auto sql2 = "CREATE TABLE `Gold`                    \
+    (                                                   \
+        `id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,   \
+        `gold` INT NOT NULL DEFAULT 0                   \
+    );                                                  \
+    ";
 
-    auto sql = "DROP TABLE IF EXISTS [dbo].[Gold];  \
-    CREATE TABLE [dbo].[Gold]                       \
-    (                                               \
-        [id] INT NOT NULL PRIMARY KEY IDENTITY,     \
-        [gold] INT NOT NULL DEFAULT 0               \
-    );                                              \
-    ";DBConnection* conn = DBConnectionPool::Get().Pop();
+
+    DBConnection* conn = DBConnectionPool::Get().Pop();
+    ASSERT_CRASH(conn != nullptr);
     ASSERT_CRASH(conn->Execute(sql));
+    conn->Unbind();
+    ASSERT_CRASH(conn->Execute(sql2));
+    conn->Unbind();
+    DBConnectionPool::Get().Push(conn);
+
 
     for(int32_t idx = 0; idx < 3; idx++) {
         DBConnection* conn = DBConnectionPool::Get().Pop();
@@ -74,10 +80,9 @@ int32_t DoDatabaseTest()
 
         conn->BindParam(1, SQL_C_LONG, SQL_INTEGER, sizeof(gold), &gold, &len);
 
-        ASSERT_CRASH(conn->Execute("INSERT INTO [dbo].[Gold]([gold] VALUES (?))"));
+        ASSERT_CRASH(conn->Execute("INSERT INTO `gold` (`gold`) VALUES (?);"));
         DBConnectionPool::Get().Push(conn);
     }
-
 
     {
         DBConnection* conn = DBConnectionPool::Get().Pop();
@@ -96,13 +101,15 @@ int32_t DoDatabaseTest()
         ASSERT_CRASH(conn->BindCol(1, SQL_C_LONG, sizeof(outId), &outId, &outIdLen));
         ASSERT_CRASH(conn->BindCol(2, SQL_C_LONG, sizeof(outGold), &outGold, &outGoldLen));
 
-        ASSERT_CRASH(conn->Execute("SELECT id, gold FROM [dbo].[Gold] WHERE id = (?)"));
+        ASSERT_CRASH(conn->Execute("SELECT id, gold FROM `gold` WHERE id = (?);"));
             
         while(conn->Fetch()) {
             printf("cur Id : %d, gold : %d\n", outId, outGold);
         }
         DBConnectionPool::Get().Push(conn);
     }
+
+    DBConnectionPool::Get().Clear();
 
     return 0;
 }
