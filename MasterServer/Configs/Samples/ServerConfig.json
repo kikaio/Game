@@ -1,0 +1,14 @@
+{
+	"db_configs": [
+		{
+			"name": "CommonDB",
+			"host": "localhost",
+			"user": "gameuser",
+			"pw": "gameuser",
+			"port": 3306,
+			"rw_type": "read_and_write",
+			"pool_cnt": 1, 
+			"desc" : "mysqlDB port : 3306"
+		}
+	]
+}
