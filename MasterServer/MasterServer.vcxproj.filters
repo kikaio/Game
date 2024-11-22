@@ -17,5 +17,8 @@
     <ClInclude Include="pch.h">
       <Filter>Main</Filter>
     </ClInclude>
+    <ClInclude Include="MasterServerPch.h">
+      <Filter>Main</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
