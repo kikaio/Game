@@ -196,6 +196,7 @@
     <ClInclude Include="Network\SocketUtil.h" />
     <ClInclude Include="Network\WsaReady.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Protocol\gen\MasterAndGameServer.pb.h" />
     <ClInclude Include="Protocol\gen\UserAndGameServer.pb.h" />
     <ClInclude Include="Threads\Thread.h" />
     <ClInclude Include="Threads\ThreadManager.h" />
@@ -249,6 +250,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Protocol\gen\MasterAndGameServer.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Protocol\gen\UserAndGameServer.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -264,6 +271,7 @@
     <ClCompile Include="Utils\JsonWriter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Protocol\MasterAndGameServer.proto" />
     <None Include="Protocol\UserAndGameServer.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
