@@ -103,6 +103,7 @@ using namespace std;
 #include <sql.h>
 #include <sqlext.h>
 
+#include "DBEnums.h"
 #include "DBConnection.h"
 #include "DBConnectionPool.h"
 #include "DBBind.h"

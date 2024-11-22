@@ -19,3 +19,5 @@
 #include "stdio.h"
 
 #include "CommonPch.h"
+
+#include "DBWrapper.h"

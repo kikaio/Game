@@ -14,7 +14,7 @@ private:
 	SQLHENV env = SQL_NULL_HANDLE;
 	vector<DBConnection*> connections;
 public:
-	bool Connect(int32_t _connCnt, string _odbcName, string _host, string _user, string _pwd, int32_t _dbNameVal, int32_t _rwVal);
+	bool Connect(int32_t _connCnt, string _odbcName, string _host, string _user, string _pwd, DBNameType _dbNameType, RWType _rwType);
 	void Clear();
 public:
 	DBConnection* Pop();

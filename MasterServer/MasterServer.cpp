@@ -4,6 +4,7 @@
 
 int main()
 {
-	printf("wow");
+	ASSERT_CRASH(DBWrapper::ReadDBConfigFile());
+
 	return 0;
 }

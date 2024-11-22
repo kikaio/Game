@@ -173,6 +173,7 @@
     <ClInclude Include="DBBind.h" />
     <ClInclude Include="DB\DBConnection.h" />
     <ClInclude Include="DB\DBConnectionPool.h" />
+    <ClInclude Include="DB\DBEnums.h" />
     <ClInclude Include="Job\GlobalQueue.h" />
     <ClInclude Include="Job\Job.h" />
     <ClInclude Include="Job\JobTimer.h" />

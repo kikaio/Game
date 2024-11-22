@@ -30,7 +30,7 @@ bool DBWrapper::TryConnectToDatabases()
         array<char, MAX_PATH> connStrArr = { 0, };
 
         string odbcName = "MysqlODBC";
-        ASSERT_CRASH(DBConnectionPool::Get().Connect(1, odbcName, host, user, pw, (int32_t)dbNameType, (int32_t)rwType));
+        ASSERT_CRASH(DBConnectionPool::Get().Connect(poolCnt, odbcName, host, user, pw, dbNameType, rwType));
         continue;
     }
 

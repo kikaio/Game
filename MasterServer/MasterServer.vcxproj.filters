@@ -4,6 +4,12 @@
     <Filter Include="Main">
       <UniqueIdentifier>{92a9e0ca-d1f7-4265-9f91-179e6d851e1f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Configs">
+      <UniqueIdentifier>{19da33dc-aad5-4523-adb6-ac05a1334118}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DBWrapper">
+      <UniqueIdentifier>{5a2cf114-e0e9-45fb-b86a-6c3ee542f674}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MasterServer.cpp">
@@ -11,6 +17,9 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="DBWrapper\DBWrapper.cpp">
+      <Filter>DBWrapper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -20,5 +29,13 @@
     <ClInclude Include="MasterServerPch.h">
       <Filter>Main</Filter>
     </ClInclude>
+    <ClInclude Include="DBWrapper\DBWrapper.h">
+      <Filter>DBWrapper</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configs\ServerConfig.json">
+      <Filter>Configs</Filter>
+    </None>
   </ItemGroup>
 </Project>

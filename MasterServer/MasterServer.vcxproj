@@ -72,19 +72,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\MasterServer\</OutDir>
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\DB;$(SolutionDir)Common\Job;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Libraries\Include\;$(SolutionDir)Libraries\Include\magic_enum;$(SolutionDir)Libraries\Include\rapidjson;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\DB;$(SolutionDir)Common\Job;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Libraries\Include\;$(SolutionDir)Libraries\Include\magic_enum;$(SolutionDir)Libraries\Include\rapidjson;$(ProjectDir)DBWrapper;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Configuration)\MasterServer\</OutDir>
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\DB;$(SolutionDir)Common\Job;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Libraries\Include\;$(SolutionDir)Libraries\Include\magic_enum;$(SolutionDir)Libraries\Include\rapidjson;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\DB;$(SolutionDir)Common\Job;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Libraries\Include\;$(SolutionDir)Libraries\Include\magic_enum;$(SolutionDir)Libraries\Include\rapidjson;$(ProjectDir)DBWrapper;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\MasterServer\</OutDir>
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\DB;$(SolutionDir)Common\Job;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Libraries\Include\;$(SolutionDir)Libraries\Include\magic_enum;$(SolutionDir)Libraries\Include\rapidjson;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\DB;$(SolutionDir)Common\Job;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Libraries\Include\;$(SolutionDir)Libraries\Include\magic_enum;$(SolutionDir)Libraries\Include\rapidjson;$(ProjectDir)DBWrapper;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)$(Configuration)\MasterServer\</OutDir>
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\DB;$(SolutionDir)Common\Job;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Libraries\Include\;$(SolutionDir)Libraries\Include\magic_enum;$(SolutionDir)Libraries\Include\rapidjson;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\DB;$(SolutionDir)Common\Job;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Libraries\Include\;$(SolutionDir)Libraries\Include\magic_enum;$(SolutionDir)Libraries\Include\rapidjson;$(ProjectDir)DBWrapper;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DBWrapper\DBWrapper.cpp" />
     <ClCompile Include="MasterServer.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -162,8 +163,12 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DBWrapper\DBWrapper.h" />
     <ClInclude Include="MasterServerPch.h" />
     <ClInclude Include="pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configs\ServerConfig.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

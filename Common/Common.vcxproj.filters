@@ -186,6 +186,9 @@
     <ClInclude Include="Protocol\gen\MasterAndGameServer.pb.h">
       <Filter>Protocol\gen</Filter>
     </ClInclude>
+    <ClInclude Include="DB\DBEnums.h">
+      <Filter>DB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">

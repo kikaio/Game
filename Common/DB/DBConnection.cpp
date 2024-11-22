@@ -25,7 +25,7 @@ bool DBConnection::Connect(SQLHENV _henv, const char* _connStr)
 	return (ret == SQL_SUCCESS || ret == SQL_SUCCESS_WITH_INFO);
 }
 
-bool DBConnection::Connect(SQLHENV _henv, string _odbcName, string _host, string _user, string _pwd, int32_t dbNameVal, int32_t rwVal)
+bool DBConnection::Connect(SQLHENV _henv, string _odbcName, string _host, string _user, string _pwd, DBNameType _dbNameType, RWType _rwType)
 {
 	SQLSMALLINT retLen = 0;
 

@@ -10,7 +10,7 @@ DBConnectionPool::~DBConnectionPool()
 	Clear();
 }
 
-bool DBConnectionPool::Connect(int32_t _connCnt, string _odbcName, string _host, string _user, string _pwd, int32_t _dbNameVal, int32_t _rwVal)
+bool DBConnectionPool::Connect(int32_t _connCnt, string _odbcName, string _host, string _user, string _pwd, DBNameType _dbNameType, RWType _rwType)
 {
 	LOCK_GUARDDING(dbPoolLock);
 	SQLRETURN sqlRet = SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &env);
@@ -24,9 +24,10 @@ bool DBConnectionPool::Connect(int32_t _connCnt, string _odbcName, string _host,
 		printf("SQL Return : %d\n", sqlRet);
 		return false;
 	}
+
 	for(int32_t idx = 0; idx < _connCnt; idx++) {
 		DBConnection* _conn = new DBConnection();
-		if(_conn->Connect(env, _odbcName, _host, _user, _pwd, _dbNameVal, _rwVal) == false) {
+		if(_conn->Connect(env, _odbcName, _host, _user, _pwd, _dbNameType, _rwType) == false) {
 			return false;
 		}
 		connections.push_back(_conn);
