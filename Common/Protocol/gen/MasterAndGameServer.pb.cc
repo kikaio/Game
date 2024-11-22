@@ -17,49 +17,102 @@
 
 PROTOBUF_PRAGMA_INIT_SEG
 namespace MessageAndGameServer {
-constexpr MasterTest::MasterTest(
+constexpr NotiErrInfo::NotiErrInfo(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : val_(0){}
-struct MasterTestDefaultTypeInternal {
-  constexpr MasterTestDefaultTypeInternal()
+  : err_desc_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , err_no_(0){}
+struct NotiErrInfoDefaultTypeInternal {
+  constexpr NotiErrInfoDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
-  ~MasterTestDefaultTypeInternal() {}
+  ~NotiErrInfoDefaultTypeInternal() {}
   union {
-    MasterTest _instance;
+    NotiErrInfo _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT MasterTestDefaultTypeInternal _MasterTest_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT NotiErrInfoDefaultTypeInternal _NotiErrInfo_default_instance_;
+constexpr ReqGameServerConnect::ReqGameServerConnect(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : game_server_name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , game_server_no_(0){}
+struct ReqGameServerConnectDefaultTypeInternal {
+  constexpr ReqGameServerConnectDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ReqGameServerConnectDefaultTypeInternal() {}
+  union {
+    ReqGameServerConnect _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ReqGameServerConnectDefaultTypeInternal _ReqGameServerConnect_default_instance_;
+constexpr AnsGameServerConnect::AnsGameServerConnect(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : is_success_(false){}
+struct AnsGameServerConnectDefaultTypeInternal {
+  constexpr AnsGameServerConnectDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~AnsGameServerConnectDefaultTypeInternal() {}
+  union {
+    AnsGameServerConnect _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT AnsGameServerConnectDefaultTypeInternal _AnsGameServerConnect_default_instance_;
 }  // namespace MessageAndGameServer
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_MasterAndGameServer_2eproto[1];
-static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_MasterAndGameServer_2eproto = nullptr;
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_MasterAndGameServer_2eproto[3];
+static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_MasterAndGameServer_2eproto[2];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_MasterAndGameServer_2eproto = nullptr;
 
 const uint32_t TableStruct_MasterAndGameServer_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::MessageAndGameServer::MasterTest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::MessageAndGameServer::NotiErrInfo, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::MessageAndGameServer::MasterTest, val_),
+  PROTOBUF_FIELD_OFFSET(::MessageAndGameServer::NotiErrInfo, err_no_),
+  PROTOBUF_FIELD_OFFSET(::MessageAndGameServer::NotiErrInfo, err_desc_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::MessageAndGameServer::ReqGameServerConnect, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::MessageAndGameServer::ReqGameServerConnect, game_server_no_),
+  PROTOBUF_FIELD_OFFSET(::MessageAndGameServer::ReqGameServerConnect, game_server_name_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::MessageAndGameServer::AnsGameServerConnect, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::MessageAndGameServer::AnsGameServerConnect, is_success_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::MessageAndGameServer::MasterTest)},
+  { 0, -1, -1, sizeof(::MessageAndGameServer::NotiErrInfo)},
+  { 8, -1, -1, sizeof(::MessageAndGameServer::ReqGameServerConnect)},
+  { 16, -1, -1, sizeof(::MessageAndGameServer::AnsGameServerConnect)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::MessageAndGameServer::_MasterTest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::MessageAndGameServer::_NotiErrInfo_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::MessageAndGameServer::_ReqGameServerConnect_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::MessageAndGameServer::_AnsGameServerConnect_default_instance_),
 };
 
 const char descriptor_table_protodef_MasterAndGameServer_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\031MasterAndGameServer.proto\022\024MessageAndG"
-  "ameServer\"\031\n\nMasterTest\022\013\n\003val\030\001 \001(\005b\006pr"
-  "oto3"
+  "ameServer\"/\n\013NotiErrInfo\022\016\n\006err_no\030\001 \001(\005"
+  "\022\020\n\010err_desc\030\002 \001(\t\"H\n\024ReqGameServerConne"
+  "ct\022\026\n\016game_server_no\030\001 \001(\005\022\030\n\020game_serve"
+  "r_name\030\002 \001(\t\"*\n\024AnsGameServerConnect\022\022\n\n"
+  "is_success\030\001 \001(\010*D\n\007MsgType\022\024\n\020INVALID_M"
+  "SG_TYPE\020\000\022\007\n\003Req\020\001\022\007\n\003Ans\020\002\022\010\n\004Noti\020\003\022\007\n"
+  "\003Err\020\004*`\n\010Protocol\022\024\n\020INVALID_PROTOCOL\020\000"
+  "\022\013\n\007ErrInfo\020\001\022\r\n\tPublicKey\020\002\022\013\n\007Connect\020"
+  "\003\022\013\n\007TestMsg\020\004\022\010\n\004Chat\020\005b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_MasterAndGameServer_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_MasterAndGameServer_2eproto = {
-  false, false, 84, descriptor_table_protodef_MasterAndGameServer_2eproto, "MasterAndGameServer.proto", 
-  &descriptor_table_MasterAndGameServer_2eproto_once, nullptr, 0, 1,
+  false, false, 392, descriptor_table_protodef_MasterAndGameServer_2eproto, "MasterAndGameServer.proto", 
+  &descriptor_table_MasterAndGameServer_2eproto_once, nullptr, 0, 3,
   schemas, file_default_instances, TableStruct_MasterAndGameServer_2eproto::offsets,
   file_level_metadata_MasterAndGameServer_2eproto, file_level_enum_descriptors_MasterAndGameServer_2eproto, file_level_service_descriptors_MasterAndGameServer_2eproto,
 };
@@ -70,74 +123,133 @@ PROTOBUF_ATTRIBUTE_WEAK const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_MasterAndGameServer_2eproto(&descriptor_table_MasterAndGameServer_2eproto);
 namespace MessageAndGameServer {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MsgType_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MasterAndGameServer_2eproto);
+  return file_level_enum_descriptors_MasterAndGameServer_2eproto[0];
+}
+bool MsgType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Protocol_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_MasterAndGameServer_2eproto);
+  return file_level_enum_descriptors_MasterAndGameServer_2eproto[1];
+}
+bool Protocol_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+      return true;
+    default:
+      return false;
+  }
+}
+
 
 // ===================================================================
 
-class MasterTest::_Internal {
+class NotiErrInfo::_Internal {
  public:
 };
 
-MasterTest::MasterTest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+NotiErrInfo::NotiErrInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor();
   if (!is_message_owned) {
     RegisterArenaDtor(arena);
   }
-  // @@protoc_insertion_point(arena_constructor:MessageAndGameServer.MasterTest)
+  // @@protoc_insertion_point(arena_constructor:MessageAndGameServer.NotiErrInfo)
 }
-MasterTest::MasterTest(const MasterTest& from)
+NotiErrInfo::NotiErrInfo(const NotiErrInfo& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  val_ = from.val_;
-  // @@protoc_insertion_point(copy_constructor:MessageAndGameServer.MasterTest)
+  err_desc_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    err_desc_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_err_desc().empty()) {
+    err_desc_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_err_desc(), 
+      GetArenaForAllocation());
+  }
+  err_no_ = from.err_no_;
+  // @@protoc_insertion_point(copy_constructor:MessageAndGameServer.NotiErrInfo)
 }
 
-inline void MasterTest::SharedCtor() {
-val_ = 0;
+inline void NotiErrInfo::SharedCtor() {
+err_desc_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  err_desc_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+err_no_ = 0;
 }
 
-MasterTest::~MasterTest() {
-  // @@protoc_insertion_point(destructor:MessageAndGameServer.MasterTest)
+NotiErrInfo::~NotiErrInfo() {
+  // @@protoc_insertion_point(destructor:MessageAndGameServer.NotiErrInfo)
   if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void MasterTest::SharedDtor() {
+inline void NotiErrInfo::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  err_desc_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
-void MasterTest::ArenaDtor(void* object) {
-  MasterTest* _this = reinterpret_cast< MasterTest* >(object);
+void NotiErrInfo::ArenaDtor(void* object) {
+  NotiErrInfo* _this = reinterpret_cast< NotiErrInfo* >(object);
   (void)_this;
 }
-void MasterTest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+void NotiErrInfo::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
 }
-void MasterTest::SetCachedSize(int size) const {
+void NotiErrInfo::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void MasterTest::Clear() {
-// @@protoc_insertion_point(message_clear_start:MessageAndGameServer.MasterTest)
+void NotiErrInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:MessageAndGameServer.NotiErrInfo)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  val_ = 0;
+  err_desc_.ClearToEmpty();
+  err_no_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* MasterTest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* NotiErrInfo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // int32 val = 1;
+      // int32 err_no = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          val_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          err_no_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string err_desc = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_err_desc();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "MessageAndGameServer.NotiErrInfo.err_desc"));
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -165,95 +277,535 @@ failure:
 #undef CHK_
 }
 
-uint8_t* MasterTest::_InternalSerialize(
+uint8_t* NotiErrInfo::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:MessageAndGameServer.MasterTest)
+  // @@protoc_insertion_point(serialize_to_array_start:MessageAndGameServer.NotiErrInfo)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int32 val = 1;
-  if (this->_internal_val() != 0) {
+  // int32 err_no = 1;
+  if (this->_internal_err_no() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_val(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_err_no(), target);
+  }
+
+  // string err_desc = 2;
+  if (!this->_internal_err_desc().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_err_desc().data(), static_cast<int>(this->_internal_err_desc().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "MessageAndGameServer.NotiErrInfo.err_desc");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_err_desc(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:MessageAndGameServer.MasterTest)
+  // @@protoc_insertion_point(serialize_to_array_end:MessageAndGameServer.NotiErrInfo)
   return target;
 }
 
-size_t MasterTest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:MessageAndGameServer.MasterTest)
+size_t NotiErrInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:MessageAndGameServer.NotiErrInfo)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // int32 val = 1;
-  if (this->_internal_val() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_val());
+  // string err_desc = 2;
+  if (!this->_internal_err_desc().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_err_desc());
+  }
+
+  // int32 err_no = 1;
+  if (this->_internal_err_no() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_err_no());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MasterTest::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData NotiErrInfo::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    MasterTest::MergeImpl
+    NotiErrInfo::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MasterTest::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NotiErrInfo::GetClassData() const { return &_class_data_; }
 
-void MasterTest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+void NotiErrInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
                       const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<MasterTest *>(to)->MergeFrom(
-      static_cast<const MasterTest &>(from));
+  static_cast<NotiErrInfo *>(to)->MergeFrom(
+      static_cast<const NotiErrInfo &>(from));
 }
 
 
-void MasterTest::MergeFrom(const MasterTest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:MessageAndGameServer.MasterTest)
+void NotiErrInfo::MergeFrom(const NotiErrInfo& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:MessageAndGameServer.NotiErrInfo)
   GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_val() != 0) {
-    _internal_set_val(from._internal_val());
+  if (!from._internal_err_desc().empty()) {
+    _internal_set_err_desc(from._internal_err_desc());
+  }
+  if (from._internal_err_no() != 0) {
+    _internal_set_err_no(from._internal_err_no());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void MasterTest::CopyFrom(const MasterTest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:MessageAndGameServer.MasterTest)
+void NotiErrInfo::CopyFrom(const NotiErrInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:MessageAndGameServer.NotiErrInfo)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool MasterTest::IsInitialized() const {
+bool NotiErrInfo::IsInitialized() const {
   return true;
 }
 
-void MasterTest::InternalSwap(MasterTest* other) {
+void NotiErrInfo::InternalSwap(NotiErrInfo* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(val_, other->val_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &err_desc_, lhs_arena,
+      &other->err_desc_, rhs_arena
+  );
+  swap(err_no_, other->err_no_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata MasterTest::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata NotiErrInfo::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_MasterAndGameServer_2eproto_getter, &descriptor_table_MasterAndGameServer_2eproto_once,
       file_level_metadata_MasterAndGameServer_2eproto[0]);
 }
 
+// ===================================================================
+
+class ReqGameServerConnect::_Internal {
+ public:
+};
+
+ReqGameServerConnect::ReqGameServerConnect(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:MessageAndGameServer.ReqGameServerConnect)
+}
+ReqGameServerConnect::ReqGameServerConnect(const ReqGameServerConnect& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  game_server_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    game_server_name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_game_server_name().empty()) {
+    game_server_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_game_server_name(), 
+      GetArenaForAllocation());
+  }
+  game_server_no_ = from.game_server_no_;
+  // @@protoc_insertion_point(copy_constructor:MessageAndGameServer.ReqGameServerConnect)
+}
+
+inline void ReqGameServerConnect::SharedCtor() {
+game_server_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  game_server_name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+game_server_no_ = 0;
+}
+
+ReqGameServerConnect::~ReqGameServerConnect() {
+  // @@protoc_insertion_point(destructor:MessageAndGameServer.ReqGameServerConnect)
+  if (GetArenaForAllocation() != nullptr) return;
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+inline void ReqGameServerConnect::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  game_server_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void ReqGameServerConnect::ArenaDtor(void* object) {
+  ReqGameServerConnect* _this = reinterpret_cast< ReqGameServerConnect* >(object);
+  (void)_this;
+}
+void ReqGameServerConnect::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void ReqGameServerConnect::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ReqGameServerConnect::Clear() {
+// @@protoc_insertion_point(message_clear_start:MessageAndGameServer.ReqGameServerConnect)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  game_server_name_.ClearToEmpty();
+  game_server_no_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ReqGameServerConnect::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int32 game_server_no = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          game_server_no_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string game_server_name = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_game_server_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "MessageAndGameServer.ReqGameServerConnect.game_server_name"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* ReqGameServerConnect::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:MessageAndGameServer.ReqGameServerConnect)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 game_server_no = 1;
+  if (this->_internal_game_server_no() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_game_server_no(), target);
+  }
+
+  // string game_server_name = 2;
+  if (!this->_internal_game_server_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_game_server_name().data(), static_cast<int>(this->_internal_game_server_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "MessageAndGameServer.ReqGameServerConnect.game_server_name");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_game_server_name(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:MessageAndGameServer.ReqGameServerConnect)
+  return target;
+}
+
+size_t ReqGameServerConnect::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:MessageAndGameServer.ReqGameServerConnect)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string game_server_name = 2;
+  if (!this->_internal_game_server_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_game_server_name());
+  }
+
+  // int32 game_server_no = 1;
+  if (this->_internal_game_server_no() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_game_server_no());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ReqGameServerConnect::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ReqGameServerConnect::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ReqGameServerConnect::GetClassData() const { return &_class_data_; }
+
+void ReqGameServerConnect::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ReqGameServerConnect *>(to)->MergeFrom(
+      static_cast<const ReqGameServerConnect &>(from));
+}
+
+
+void ReqGameServerConnect::MergeFrom(const ReqGameServerConnect& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:MessageAndGameServer.ReqGameServerConnect)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_game_server_name().empty()) {
+    _internal_set_game_server_name(from._internal_game_server_name());
+  }
+  if (from._internal_game_server_no() != 0) {
+    _internal_set_game_server_no(from._internal_game_server_no());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ReqGameServerConnect::CopyFrom(const ReqGameServerConnect& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:MessageAndGameServer.ReqGameServerConnect)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ReqGameServerConnect::IsInitialized() const {
+  return true;
+}
+
+void ReqGameServerConnect::InternalSwap(ReqGameServerConnect* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &game_server_name_, lhs_arena,
+      &other->game_server_name_, rhs_arena
+  );
+  swap(game_server_no_, other->game_server_no_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ReqGameServerConnect::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_MasterAndGameServer_2eproto_getter, &descriptor_table_MasterAndGameServer_2eproto_once,
+      file_level_metadata_MasterAndGameServer_2eproto[1]);
+}
+
+// ===================================================================
+
+class AnsGameServerConnect::_Internal {
+ public:
+};
+
+AnsGameServerConnect::AnsGameServerConnect(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:MessageAndGameServer.AnsGameServerConnect)
+}
+AnsGameServerConnect::AnsGameServerConnect(const AnsGameServerConnect& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  is_success_ = from.is_success_;
+  // @@protoc_insertion_point(copy_constructor:MessageAndGameServer.AnsGameServerConnect)
+}
+
+inline void AnsGameServerConnect::SharedCtor() {
+is_success_ = false;
+}
+
+AnsGameServerConnect::~AnsGameServerConnect() {
+  // @@protoc_insertion_point(destructor:MessageAndGameServer.AnsGameServerConnect)
+  if (GetArenaForAllocation() != nullptr) return;
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+inline void AnsGameServerConnect::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void AnsGameServerConnect::ArenaDtor(void* object) {
+  AnsGameServerConnect* _this = reinterpret_cast< AnsGameServerConnect* >(object);
+  (void)_this;
+}
+void AnsGameServerConnect::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void AnsGameServerConnect::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void AnsGameServerConnect::Clear() {
+// @@protoc_insertion_point(message_clear_start:MessageAndGameServer.AnsGameServerConnect)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  is_success_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* AnsGameServerConnect::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool is_success = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          is_success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* AnsGameServerConnect::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:MessageAndGameServer.AnsGameServerConnect)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool is_success = 1;
+  if (this->_internal_is_success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_is_success(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:MessageAndGameServer.AnsGameServerConnect)
+  return target;
+}
+
+size_t AnsGameServerConnect::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:MessageAndGameServer.AnsGameServerConnect)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bool is_success = 1;
+  if (this->_internal_is_success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AnsGameServerConnect::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    AnsGameServerConnect::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AnsGameServerConnect::GetClassData() const { return &_class_data_; }
+
+void AnsGameServerConnect::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<AnsGameServerConnect *>(to)->MergeFrom(
+      static_cast<const AnsGameServerConnect &>(from));
+}
+
+
+void AnsGameServerConnect::MergeFrom(const AnsGameServerConnect& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:MessageAndGameServer.AnsGameServerConnect)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_is_success() != 0) {
+    _internal_set_is_success(from._internal_is_success());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AnsGameServerConnect::CopyFrom(const AnsGameServerConnect& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:MessageAndGameServer.AnsGameServerConnect)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AnsGameServerConnect::IsInitialized() const {
+  return true;
+}
+
+void AnsGameServerConnect::InternalSwap(AnsGameServerConnect* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(is_success_, other->is_success_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AnsGameServerConnect::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_MasterAndGameServer_2eproto_getter, &descriptor_table_MasterAndGameServer_2eproto_once,
+      file_level_metadata_MasterAndGameServer_2eproto[2]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace MessageAndGameServer
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::MessageAndGameServer::MasterTest* Arena::CreateMaybeMessage< ::MessageAndGameServer::MasterTest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::MessageAndGameServer::MasterTest >(arena);
+template<> PROTOBUF_NOINLINE ::MessageAndGameServer::NotiErrInfo* Arena::CreateMaybeMessage< ::MessageAndGameServer::NotiErrInfo >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::MessageAndGameServer::NotiErrInfo >(arena);
+}
+template<> PROTOBUF_NOINLINE ::MessageAndGameServer::ReqGameServerConnect* Arena::CreateMaybeMessage< ::MessageAndGameServer::ReqGameServerConnect >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::MessageAndGameServer::ReqGameServerConnect >(arena);
+}
+template<> PROTOBUF_NOINLINE ::MessageAndGameServer::AnsGameServerConnect* Arena::CreateMaybeMessage< ::MessageAndGameServer::AnsGameServerConnect >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::MessageAndGameServer::AnsGameServerConnect >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

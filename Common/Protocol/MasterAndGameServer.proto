@@ -2,6 +2,33 @@ syntax = "proto3";
 
 package MessageAndGameServer;
 
-message MasterTest {
-	int32 val = 1;
+enum MsgType {
+	INVALID_MSG_TYPE = 0;
+	Req = 1;
+	Ans = 2;
+	Noti = 3;
+	Err = 4;
+}
+
+enum Protocol {
+	INVALID_PROTOCOL = 0;
+	ErrInfo = 1;
+	PublicKey = 2;
+	Connect = 3;
+	TestMsg = 4;
+	Chat = 5;
+}
+
+message NotiErrInfo {
+	int32 err_no = 1;
+	string err_desc = 2;
+}
+
+message ReqGameServerConnect{
+	int32 game_server_no = 1;
+	string game_server_name = 2;
+}
+
+message AnsGameServerConnect {
+	bool is_success = 1;
 }
