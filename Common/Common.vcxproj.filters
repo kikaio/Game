@@ -183,6 +183,9 @@
     <ClInclude Include="DBBind.h">
       <Filter>DB</Filter>
     </ClInclude>
+    <ClInclude Include="Protocol\gen\MasterAndGameServer.pb.h">
+      <Filter>Protocol\gen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -308,9 +311,15 @@
     <ClCompile Include="DBBind.cpp">
       <Filter>DB</Filter>
     </ClCompile>
+    <ClCompile Include="Protocol\gen\MasterAndGameServer.pb.cc">
+      <Filter>Protocol\gen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Protocol\UserAndGameServer.proto">
+      <Filter>Protocol</Filter>
+    </None>
+    <None Include="Protocol\MasterAndGameServer.proto">
       <Filter>Protocol</Filter>
     </None>
   </ItemGroup>
