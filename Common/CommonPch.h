@@ -105,3 +105,4 @@ using namespace std;
 
 #include "DBConnection.h"
 #include "DBConnectionPool.h"
+#include "DBBind.h"

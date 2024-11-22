@@ -57,7 +57,9 @@ int32_t DoDatabaseTest()
     auto sql2 = "CREATE TABLE `Gold`                    \
     (                                                   \
         `id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,   \
-        `gold` INT NOT NULL DEFAULT 0                   \
+        `gold` INT NOT NULL DEFAULT 0,                  \
+        `name` varchar(500) DEFAULT NULL,                \
+        `cDate` DATETIME DEFAULT NULL                   \
     );                                                  \
     ";
 
@@ -73,39 +75,96 @@ int32_t DoDatabaseTest()
 
     for(int32_t idx = 0; idx < 3; idx++) {
         DBConnection* conn = DBConnectionPool::Get().Pop();
-        conn->Unbind();
+        /*conn->Unbind();
 
         int gold = 100;
         SQLLEN len = 0;
 
-        conn->BindParam(1, SQL_C_LONG, SQL_INTEGER, sizeof(gold), &gold, &len);
+        char name[500] = "testName";
+        SQLLEN nameLen = 0;
 
-        ASSERT_CRASH(conn->Execute("INSERT INTO `gold` (`gold`) VALUES (?);"));
+        TIMESTAMP_STRUCT ts = {};
+        ts.year = 2024;
+        ts.month = 11;
+        ts.day = 24;
+        SQLLEN tsLen = 0;
+
+
+
+        conn->BindParam(1, &gold, &len);
+        conn->BindParam(2, name, &nameLen);
+        conn->BindParam(3, &ts, &tsLen);
+        
+        ASSERT_CRASH(conn->Execute("INSERT INTO `gold` (`gold`, `name`, `cDate`) VALUES (?, ?, ?);"));*/
+
+        DBBind<3, 0> bind(*conn, "INSERT INTO `gold` (`gold`, `name`, `cDate`) VALUES (?, ?, ?);");
+        int gold = 100;
+        char name[500] = "testName";
+        TIMESTAMP_STRUCT ts = {2024, 11, 24};
+        bind.BindParam(0, gold);
+        bind.BindParam(1, name);
+        bind.BindParam(2, ts);
+        ASSERT_CRASH(bind.Execute());
+
         DBConnectionPool::Get().Push(conn);
     }
 
     {
         DBConnection* conn = DBConnectionPool::Get().Pop();
-        conn->Unbind();
+        /*conn->Unbind();
 
         int32_t targetGold = 100;
         SQLLEN len = 0;
 
-        ASSERT_CRASH(conn->BindParam(1, SQL_C_LONG, SQL_INTEGER, sizeof(targetGold), &targetGold, &len));
+        ASSERT_CRASH(conn->BindParam(1, &targetGold, &len));
 
         int32_t outId = 0;
         SQLLEN outIdLen = 0;
+        ASSERT_CRASH(conn->BindCol(1, &outId, &outIdLen));
+
         int32_t outGold = 0;
         SQLLEN outGoldLen = 0;
+        ASSERT_CRASH(conn->BindCol(2, &outGold, &outGoldLen));
 
-        ASSERT_CRASH(conn->BindCol(1, SQL_C_LONG, sizeof(outId), &outId, &outIdLen));
-        ASSERT_CRASH(conn->BindCol(2, SQL_C_LONG, sizeof(outGold), &outGold, &outGoldLen));
+        char outName[500] = { 0, };
+        SQLLEN outNameLen = 0;
+        ASSERT_CRASH(conn->BindCol(3, outName, 500, &outNameLen));
 
-        ASSERT_CRASH(conn->Execute("SELECT id, gold FROM `gold` WHERE id = (?);"));
-            
+        TIMESTAMP_STRUCT outTs = {};
+        SQLLEN outTsLen = 0;
+        ASSERT_CRASH(conn->BindCol(4, &outTs, &outTsLen));
+
+        ASSERT_CRASH(conn->Execute("SELECT id, gold, name, cDate FROM `gold` WHERE gold = (?);"));
+                    
         while(conn->Fetch()) {
             printf("cur Id : %d, gold : %d\n", outId, outGold);
+            printf("cur name : %s, year : %d, month : %d, day : %d\n", outName, outTs.year, outTs.month, outTs.day);
+        }*/
+
+
+
+        DBBind<1, 4> bind(*conn, "SELECT id, gold, name, cDate FROM `gold` WHERE gold = (?);");
+
+        int32_t targetGold = 100;
+        bind.BindParam(0, targetGold);
+        
+        int32_t outId = 0;
+        int32_t outGold = 0;
+        char outName[500] = { 0, };
+        TIMESTAMP_STRUCT outTs = {};
+
+        bind.BindCol(0, OUT outId);
+        bind.BindCol(1, OUT outGold);
+        bind.BindCol(2, OUT outName);
+        bind.BindCol(3, OUT outTs);
+
+        ASSERT_CRASH(bind.Execute());
+        while (bind.Fetch()) {
+            printf("cur Id : %d, gold : %d\n", outId, outGold);
+            printf("cur name : %s, year : %d, month : %d, day : %d\n", outName, outTs.year, outTs.month, outTs.day);
         }
+
+
         DBConnectionPool::Get().Push(conn);
     }
 

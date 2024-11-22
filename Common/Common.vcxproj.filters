@@ -180,6 +180,9 @@
     <ClInclude Include="DB\DBConnectionPool.h">
       <Filter>DB</Filter>
     </ClInclude>
+    <ClInclude Include="DBBind.h">
+      <Filter>DB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -300,6 +303,9 @@
       <Filter>DB</Filter>
     </ClCompile>
     <ClCompile Include="DB\DBConnectionPool.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="DBBind.cpp">
       <Filter>DB</Filter>
     </ClCompile>
   </ItemGroup>

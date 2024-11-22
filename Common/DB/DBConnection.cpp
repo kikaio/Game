@@ -116,6 +116,81 @@ void DBConnection::Unbind()
 	SQLFreeStmt(statement, SQL_CLOSE);
 }
 
+bool DBConnection::BindParam(int32_t _idx, bool* _val, SQLLEN* _len)
+{
+	return BindParam(_idx, SQL_C_TINYINT, SQL_TINYINT, sizeof(bool), _val, _len);
+}
+
+bool DBConnection::BindParam(int32_t _idx, float* _val, SQLLEN* _len)
+{
+	return BindParam(_idx, SQL_C_FLOAT, SQL_REAL, 0, _val, _len);
+}
+
+bool DBConnection::BindParam(int32_t _idx, double* _val, SQLLEN* _len)
+{
+	return BindParam(_idx, SQL_C_DOUBLE, SQL_DOUBLE, 0, _val, _len);
+}
+
+bool DBConnection::BindParam(int32_t _idx, int8_t* _val, SQLLEN* _len)
+{
+	return BindParam(_idx, SQL_C_TINYINT, SQL_TINYINT, sizeof(int8_t), _val, _len);
+}
+
+bool DBConnection::BindParam(int32_t _idx, int16_t* _val, SQLLEN* _len)
+{
+	return BindParam(_idx, SQL_C_SHORT, SQL_SMALLINT, sizeof(int16_t), _val, _len);
+}
+
+bool DBConnection::BindParam(int32_t _idx, int32_t* _val, SQLLEN* _len)
+{
+	return BindParam(_idx, SQL_C_LONG, SQL_INTEGER, sizeof(int32_t), _val, _len);
+}
+
+bool DBConnection::BindParam(int32_t _idx, int64_t* _val, SQLLEN* _len)
+{
+	return BindParam(_idx, SQL_C_SBIGINT, SQL_BIGINT, sizeof(int64_t), _val, _len);
+}
+
+bool DBConnection::BindParam(int32_t _idx, TIMESTAMP_STRUCT* _val, SQLLEN* _len)
+{
+	return BindParam(_idx, SQL_C_TYPE_TIMESTAMP, SQL_TYPE_TIMESTAMP, sizeof(TIMESTAMP_STRUCT), _val, _len);
+}
+
+bool DBConnection::BindParam(int32_t _idx, const char* _val, SQLLEN* _len)
+{
+	SQLULEN size = static_cast<SQLULEN>((strlen(_val)+1) * 2);
+	*_len = SQL_NTSL;
+
+	if(size > CHAR_MAX) {
+		return BindParam(_idx, SQL_CHAR, SQL_LONGVARCHAR, size, (SQLPOINTER)_val, _len);
+	}
+	return BindParam(_idx, SQL_CHAR, SQL_VARCHAR, size, (SQLPOINTER)_val, _len);
+}
+
+bool DBConnection::BindParam(int32_t _idx, const BYTE* _val, int32_t _size, SQLLEN* _len)
+{
+	if(_val == nullptr) {
+		*_len = SQL_NULL_DATA;
+		_size = 1;
+	}
+	else {
+		*_len = _size;
+	}
+
+	if(_size > SQL_MAX_BINARY_LITERAL_LEN) {
+		return BindParam(
+			_idx, SQL_C_BINARY, SQL_LONGVARBINARY, _size, (BYTE*)_val, _len
+		);
+	}
+	else {
+		return BindParam(
+			_idx, SQL_C_BINARY, SQL_BINARY, _size, (BYTE*)_val, _len
+		);
+	}
+
+}
+
+
 bool DBConnection::BindParam(SQLUSMALLINT _paramIdx, SQLSMALLINT _cType, SQLSMALLINT _sqlType, SQLULEN _len, SQLPOINTER _ptr, SQLLEN* _idx)
 {
 	SQLRETURN ret = SQLBindParameter(statement, _paramIdx, SQL_PARAM_INPUT, _cType, _sqlType, _len, 0, _ptr, 0, _idx);
@@ -170,4 +245,54 @@ void DBConnection::HandleError(SQLRETURN _ret)
 		cout << errMsg.data() << endl;
 		idx++;
 	}
+}
+
+bool DBConnection::BindCol(int32_t _idx, bool* _val, SQLLEN* _len)
+{
+	return BindCol(_idx, SQL_TINYINT, sizeof(bool), _val, _len);
+}
+
+bool DBConnection::BindCol(int32_t _idx, float* _val, SQLLEN* _len)
+{
+	return BindCol(_idx, SQL_C_FLOAT, sizeof(float), _val, _len);
+}
+
+bool DBConnection::BindCol(int32_t _idx, double* _val, SQLLEN* _len)
+{
+	return BindCol(_idx, SQL_C_DOUBLE, sizeof(double), _val, _len);
+}
+
+bool DBConnection::BindCol(int32_t _idx, int8_t* _val, SQLLEN* _len)
+{
+	return BindCol(_idx, SQL_TINYINT, sizeof(int8_t), _val, _len);
+}
+
+bool DBConnection::BindCol(int32_t _idx, int16_t* _val, SQLLEN* _len)
+{
+	return BindCol(_idx, SQL_SMALLINT, sizeof(int16_t), _val, _len);
+}
+
+bool DBConnection::BindCol(int32_t _idx, int32_t* _val, SQLLEN* _len)
+{
+	return BindCol(_idx, SQL_INTEGER, sizeof(int32_t), _val, _len);
+}
+
+bool DBConnection::BindCol(int32_t _idx, int64_t* _val, SQLLEN* _len)
+{
+	return BindCol(_idx, SQL_BIGINT, sizeof(int64_t), _val, _len);
+}
+
+bool DBConnection::BindCol(int32_t _idx, TIMESTAMP_STRUCT* _val, SQLLEN* _len)
+{
+	return BindCol(_idx, SQL_C_TIMESTAMP, sizeof(TIMESTAMP_STRUCT), _val, _len);
+}
+
+bool DBConnection::BindCol(int32_t _idx, char* _val, int32_t _size, SQLLEN* _len)
+{
+	return BindCol(_idx, SQL_C_CHAR, _size, _val, _len);
+}
+
+bool DBConnection::BindCol(int32_t _idx, BYTE* _val, int32_t _size, SQLLEN* _len)
+{
+	return BindCol(_idx, SQL_BINARY, _size, _val, _len);
 }
