@@ -1,4 +1,5 @@
 #pragma once
+//master server와 server간의 주고받는 packet에 대한 handler 관련 코드들.
 
 class MasterPacketHandler
 {
@@ -22,7 +23,7 @@ public:
 public:
 	template<typename MSG_TYPE, typename P, typename T> 
 	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet);
-public: //packet 보낼 때 send buffer 제작용 함수들.
+public: //해당 packet에 대해서 전송해주는 함수들.
 	DECL_MAKE_SENDBUF_FROM_MASTER_PACKET(Req, MasterServerConnect);
 };
 

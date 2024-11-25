@@ -1,5 +1,7 @@
 #pragma once
 
+//server와 client간의 주고받는 packet에 대한 handler 관련 코드들.
+
 class ServerPacketHandler
 {
 private:
@@ -22,7 +24,7 @@ public:
 public:
 	template<typename MSG_TYPE, typename P, typename T> 
 	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet);
-public:
+public: //해당 packet에 대해서 전송해주는 함수들.
 	DECL_MAKE_SENDBUF_FROM_PACKET(ServerPacketHandler, Ans, Chat);
 };
 

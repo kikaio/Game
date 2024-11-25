@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "ServerPacketHandler.h"
 
+// handler 함수 지정용 define
 #define REGIST_MASTER_PACKET_FUNC(_msgType, _protocol, _func)																\
 {																															\
 	RegistPacketFunc(MasterAndGameServer::MsgType::##_msgType, MasterAndGameServer::Protocol::##_protocol, _func);			\

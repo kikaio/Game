@@ -20,3 +20,4 @@ bool UserSession::SendPacket(MasterAndGameServer::##_msgType##_protocolName& _pa
 	SendBufferSptr sendBuf = ServerPacketHandler::MakePacket##_msgType##_protocolName(_packet);		\
 	return TrySend(sendBuf);																		\
 }																									\
+

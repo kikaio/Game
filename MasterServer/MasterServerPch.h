@@ -21,7 +21,12 @@
 
 #include "CommonPch.h"
 #include "MasterDefines.h"
+#include "MasterTypes.h"
+
 #include "MasterConfig.h"
 
 #include "DBWrapper.h"
+
+#include "MasterAndGameServerHandle.h"
 #include "ServerSession.h"
+
