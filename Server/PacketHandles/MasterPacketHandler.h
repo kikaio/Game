@@ -22,13 +22,11 @@ public:
 public:
 	template<typename MSG_TYPE, typename P, typename T> 
 	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet);
-public:
-	DECL_MAKE_SENDBUF_FROM_MASTER_PACKET(Ans, MasterServerConnect);
+public: //packet 보낼 때 send buffer 제작용 함수들.
+	DECL_MAKE_SENDBUF_FROM_MASTER_PACKET(Req, MasterServerConnect);
 };
 
-
-
-
+//실질적으로 각 packet 발송 시 여기서 buffer 처리를 한다.
 template<typename MSG_TYPE, typename P, typename T>
 SendBufferSptr MasterPacketHandler::MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet) {
 

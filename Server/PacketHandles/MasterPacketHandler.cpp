@@ -1,13 +1,11 @@
 #include "pch.h"
 #include "ServerPacketHandler.h"
 
-
-
-
 #define REGIST_MASTER_PACKET_FUNC(_msgType, _protocol, _func)																\
 {																															\
 	RegistPacketFunc(MasterAndGameServer::MsgType::##_msgType, MasterAndGameServer::Protocol::##_protocol, _func);			\
 }																															\
+
 
 map<MasterAndGameServer::Protocol, PacketFunc*> MasterPacketHandler::reqMap;	//받은 req를 handle
 map<MasterAndGameServer::Protocol, PacketFunc*> MasterPacketHandler::ansMap;  //받은 ans를 handle
@@ -70,7 +68,7 @@ void MasterPacketHandler::Init()
 		MasterAndGameServer::AnsMasterServerConnect packet;
 		packet.ParseFromArray(_brPtr->Buffer() + _brPtr->ReadSize(), _brPtr->FreeSize());
 		_brPtr->Close();
-		return MasterAndGameServerHandle::AnsMasterServerConnect(static_cast<MasterSession>(_session), packet);
+		return MasterAndGameServerHandle::AnsMasterServerConnect(static_pointer_cast<MasterSession>(_session), packet);
 	});
 }
 
@@ -131,4 +129,4 @@ bool MasterPacketHandler::HandlePayload(SessionSptr _session, BYTE* _buf, uint32
 }
 
 
-IMPL_MAKE_PACKET_MASTER_FUNC(MasterPacketHandler, Ans, MasterServerConnect);
+IMPL_MAKE_PACKET_MASTER_FUNC(MasterPacketHandler, Req, MasterServerConnect);

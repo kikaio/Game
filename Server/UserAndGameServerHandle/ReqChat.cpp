@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "UserAndGameServerHandle.h"
 
+
 namespace UserAndGameServerHandle {
 
 	void SetAnsChatPacket(UserAndGameServer::ReqChat& _req, UserAndGameServer::AnsChat& _ans) {

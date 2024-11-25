@@ -66,6 +66,9 @@
     <ClCompile Include="PacketHandles\MasterPacketHandler.cpp">
       <Filter>PacketHandles</Filter>
     </ClCompile>
+    <ClCompile Include="MasterAndGameServerHandle\AnsMasterServerConnect.cpp">
+      <Filter>Main\MasterAndGameServerHandle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ServerPch.h">

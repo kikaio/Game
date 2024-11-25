@@ -32,8 +32,10 @@ SendBufferSptr _className::MakePacket##_msgType##_protocolName(MasterAndGameServ
 	return MakeProtoSendBuffer(MasterAndGameServer::MsgType::##_msgType, MasterAndGameServer::Protocol::##_protocolName, _packet);		\
 }																																		\
 
+
 #define DECL_MASTER_SESSION_SEND_PACKET(_msgType, _protocolName)										\
 bool SendPacket(MasterAndGameServer::##_msgType##_protocolName& _packet)								\
+
 
 #define IMPL_MASTER_SESSION_SEND_PACKET(_msgType, _protocolName)										\
 bool MasterSession::SendPacket(MasterAndGameServer::##_msgType##_protocolName& _packet)					\

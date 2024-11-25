@@ -1,5 +1,5 @@
 #pragma once
 
 namespace MasterAndGameServerHandle {
-	bool ReqChat(UserSessionSptr _session, UserAndGameServer::ReqChat& _packet);
+	bool AnsMasterServerConnect(MasterSessionSptr _session, MasterAndGameServer::AnsMasterServerConnect& _packet);
 }

@@ -19,7 +19,7 @@
 #include "ServerTypes.h"
 #include "ServerEnums.h"
 
-s#include "ServerPacketHandler.h"
+#include "ServerPacketHandler.h"
 #include "MasterPacketHandler.h"
 
 #include "UserSession.h"
