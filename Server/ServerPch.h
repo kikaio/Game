@@ -19,9 +19,14 @@
 #include "ServerTypes.h"
 #include "ServerEnums.h"
 
+s#include "ServerPacketHandler.h"
+#include "MasterPacketHandler.h"
+
 #include "UserSession.h"
-#include "ServerPacketHandler.h"
+#include "MasterSession.h"
+
 #include "UserAndGameServerHandle.h"
+#include "MasterAndGameServerHandle.h"
 
 #include "GameUser.h"
 #include "DBConfig.h"

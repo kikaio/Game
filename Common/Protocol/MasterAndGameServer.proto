@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package MessageAndGameServer;
+package MasterAndGameServer;
 
 enum MsgType {
 	INVALID_MSG_TYPE = 0;
@@ -13,10 +13,7 @@ enum MsgType {
 enum Protocol {
 	INVALID_PROTOCOL = 0;
 	ErrInfo = 1;
-	PublicKey = 2;
-	Connect = 3;
-	TestMsg = 4;
-	Chat = 5;
+	MasterServerConnect = 2;
 }
 
 message NotiErrInfo {
@@ -24,11 +21,11 @@ message NotiErrInfo {
 	string err_desc = 2;
 }
 
-message ReqGameServerConnect{
+message ReqMasterServerConnect{
 	int32 game_server_no = 1;
 	string game_server_name = 2;
 }
 
-message AnsGameServerConnect {
+message AnsMasterServerConnect {
 	bool is_success = 1;
 }

@@ -19,6 +19,15 @@
     <Filter Include="DBWrapper">
       <UniqueIdentifier>{7ed29010-87ce-41ac-bae7-62004db11888}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sessions">
+      <UniqueIdentifier>{38551ab9-be81-4e3a-aeab-037865be4e25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PacketHandles">
+      <UniqueIdentifier>{15f57ab2-0ba3-4655-b310-a5626b504c3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main\MasterAndGameServerHandle">
+      <UniqueIdentifier>{f844f1ae-f2d0-40d3-b8db-c6569fd046c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Server.cpp">
@@ -28,12 +37,6 @@
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="ServerPch.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="UserSession.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="ServerPacketHandler.cpp">
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="UserAndGameServerHandle\ReqChat.cpp">
@@ -51,18 +54,24 @@
     <ClCompile Include="DBWrapper\DBWrapper.cpp">
       <Filter>DBWrapper</Filter>
     </ClCompile>
+    <ClCompile Include="Sessions\UserSession.cpp">
+      <Filter>Sessions</Filter>
+    </ClCompile>
+    <ClCompile Include="Sessions\MasterSession.cpp">
+      <Filter>Sessions</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketHandles\ServerPacketHandler.cpp">
+      <Filter>PacketHandles</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketHandles\MasterPacketHandler.cpp">
+      <Filter>PacketHandles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ServerPch.h">
       <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
-      <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="UserSession.h">
-      <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="ServerPacketHandler.h">
       <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="UserAndGameServerHandle\UserAndGameServerHandle.h">
@@ -88,6 +97,21 @@
     </ClInclude>
     <ClInclude Include="DBWrapper\DBWrapper.h">
       <Filter>DBWrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Sessions\UserSession.h">
+      <Filter>Sessions</Filter>
+    </ClInclude>
+    <ClInclude Include="Sessions\MasterSession.h">
+      <Filter>Sessions</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketHandles\ServerPacketHandler.h">
+      <Filter>PacketHandles</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketHandles\MasterPacketHandler.h">
+      <Filter>PacketHandles</Filter>
+    </ClInclude>
+    <ClInclude Include="MasterAndGameServerHandle\MasterAndGameServerHandle.h">
+      <Filter>Main\MasterAndGameServerHandle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

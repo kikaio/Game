@@ -16,5 +16,12 @@ int main()
 	masterConfig.ReadFromJson(masterConfigVal);
 	masterConfig.Render();
 
+	NetworkCoreSptr masterServiceNetCore = MakeShared<NetworkCore>();
+	ASSERT_CRASH(masterServiceNetCore->Ready());
+	printf("master corenet read.\n");
+	masterServiceNetCore->CreateSessionFactory = []() {
+		auto session= MakeShared<ServerSession>();
+		return session;
+	};
 	return 0;
 }

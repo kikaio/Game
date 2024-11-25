@@ -54,23 +54,23 @@ struct TableStruct_MasterAndGameServer_2eproto {
   static const uint32_t offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_MasterAndGameServer_2eproto;
-namespace MessageAndGameServer {
-class AnsGameServerConnect;
-struct AnsGameServerConnectDefaultTypeInternal;
-extern AnsGameServerConnectDefaultTypeInternal _AnsGameServerConnect_default_instance_;
+namespace MasterAndGameServer {
+class AnsMasterServerConnect;
+struct AnsMasterServerConnectDefaultTypeInternal;
+extern AnsMasterServerConnectDefaultTypeInternal _AnsMasterServerConnect_default_instance_;
 class NotiErrInfo;
 struct NotiErrInfoDefaultTypeInternal;
 extern NotiErrInfoDefaultTypeInternal _NotiErrInfo_default_instance_;
-class ReqGameServerConnect;
-struct ReqGameServerConnectDefaultTypeInternal;
-extern ReqGameServerConnectDefaultTypeInternal _ReqGameServerConnect_default_instance_;
-}  // namespace MessageAndGameServer
+class ReqMasterServerConnect;
+struct ReqMasterServerConnectDefaultTypeInternal;
+extern ReqMasterServerConnectDefaultTypeInternal _ReqMasterServerConnect_default_instance_;
+}  // namespace MasterAndGameServer
 PROTOBUF_NAMESPACE_OPEN
-template<> ::MessageAndGameServer::AnsGameServerConnect* Arena::CreateMaybeMessage<::MessageAndGameServer::AnsGameServerConnect>(Arena*);
-template<> ::MessageAndGameServer::NotiErrInfo* Arena::CreateMaybeMessage<::MessageAndGameServer::NotiErrInfo>(Arena*);
-template<> ::MessageAndGameServer::ReqGameServerConnect* Arena::CreateMaybeMessage<::MessageAndGameServer::ReqGameServerConnect>(Arena*);
+template<> ::MasterAndGameServer::AnsMasterServerConnect* Arena::CreateMaybeMessage<::MasterAndGameServer::AnsMasterServerConnect>(Arena*);
+template<> ::MasterAndGameServer::NotiErrInfo* Arena::CreateMaybeMessage<::MasterAndGameServer::NotiErrInfo>(Arena*);
+template<> ::MasterAndGameServer::ReqMasterServerConnect* Arena::CreateMaybeMessage<::MasterAndGameServer::ReqMasterServerConnect>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
-namespace MessageAndGameServer {
+namespace MasterAndGameServer {
 
 enum MsgType : int {
   INVALID_MSG_TYPE = 0,
@@ -103,16 +103,13 @@ inline bool MsgType_Parse(
 enum Protocol : int {
   INVALID_PROTOCOL = 0,
   ErrInfo = 1,
-  PublicKey = 2,
-  Connect = 3,
-  TestMsg = 4,
-  Chat = 5,
+  MasterServerConnect = 2,
   Protocol_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   Protocol_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool Protocol_IsValid(int value);
 constexpr Protocol Protocol_MIN = INVALID_PROTOCOL;
-constexpr Protocol Protocol_MAX = Chat;
+constexpr Protocol Protocol_MAX = MasterServerConnect;
 constexpr int Protocol_ARRAYSIZE = Protocol_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Protocol_descriptor();
@@ -132,7 +129,7 @@ inline bool Protocol_Parse(
 // ===================================================================
 
 class NotiErrInfo final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:MessageAndGameServer.NotiErrInfo) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:MasterAndGameServer.NotiErrInfo) */ {
  public:
   inline NotiErrInfo() : NotiErrInfo(nullptr) {}
   ~NotiErrInfo() override;
@@ -233,7 +230,7 @@ class NotiErrInfo final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "MessageAndGameServer.NotiErrInfo";
+    return "MasterAndGameServer.NotiErrInfo";
   }
   protected:
   explicit NotiErrInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -279,7 +276,7 @@ class NotiErrInfo final :
   void _internal_set_err_no(int32_t value);
   public:
 
-  // @@protoc_insertion_point(class_scope:MessageAndGameServer.NotiErrInfo)
+  // @@protoc_insertion_point(class_scope:MasterAndGameServer.NotiErrInfo)
  private:
   class _Internal;
 
@@ -293,24 +290,24 @@ class NotiErrInfo final :
 };
 // -------------------------------------------------------------------
 
-class ReqGameServerConnect final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:MessageAndGameServer.ReqGameServerConnect) */ {
+class ReqMasterServerConnect final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:MasterAndGameServer.ReqMasterServerConnect) */ {
  public:
-  inline ReqGameServerConnect() : ReqGameServerConnect(nullptr) {}
-  ~ReqGameServerConnect() override;
-  explicit constexpr ReqGameServerConnect(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline ReqMasterServerConnect() : ReqMasterServerConnect(nullptr) {}
+  ~ReqMasterServerConnect() override;
+  explicit constexpr ReqMasterServerConnect(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  ReqGameServerConnect(const ReqGameServerConnect& from);
-  ReqGameServerConnect(ReqGameServerConnect&& from) noexcept
-    : ReqGameServerConnect() {
+  ReqMasterServerConnect(const ReqMasterServerConnect& from);
+  ReqMasterServerConnect(ReqMasterServerConnect&& from) noexcept
+    : ReqMasterServerConnect() {
     *this = ::std::move(from);
   }
 
-  inline ReqGameServerConnect& operator=(const ReqGameServerConnect& from) {
+  inline ReqMasterServerConnect& operator=(const ReqMasterServerConnect& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ReqGameServerConnect& operator=(ReqGameServerConnect&& from) noexcept {
+  inline ReqMasterServerConnect& operator=(ReqMasterServerConnect&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -333,20 +330,20 @@ class ReqGameServerConnect final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const ReqGameServerConnect& default_instance() {
+  static const ReqMasterServerConnect& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ReqGameServerConnect* internal_default_instance() {
-    return reinterpret_cast<const ReqGameServerConnect*>(
-               &_ReqGameServerConnect_default_instance_);
+  static inline const ReqMasterServerConnect* internal_default_instance() {
+    return reinterpret_cast<const ReqMasterServerConnect*>(
+               &_ReqMasterServerConnect_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(ReqGameServerConnect& a, ReqGameServerConnect& b) {
+  friend void swap(ReqMasterServerConnect& a, ReqMasterServerConnect& b) {
     a.Swap(&b);
   }
-  inline void Swap(ReqGameServerConnect* other) {
+  inline void Swap(ReqMasterServerConnect* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -359,7 +356,7 @@ class ReqGameServerConnect final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ReqGameServerConnect* other) {
+  void UnsafeArenaSwap(ReqMasterServerConnect* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -367,13 +364,13 @@ class ReqGameServerConnect final :
 
   // implements Message ----------------------------------------------
 
-  ReqGameServerConnect* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ReqGameServerConnect>(arena);
+  ReqMasterServerConnect* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ReqMasterServerConnect>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const ReqGameServerConnect& from);
+  void CopyFrom(const ReqMasterServerConnect& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const ReqGameServerConnect& from);
+  void MergeFrom(const ReqMasterServerConnect& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -390,15 +387,15 @@ class ReqGameServerConnect final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(ReqGameServerConnect* other);
+  void InternalSwap(ReqMasterServerConnect* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "MessageAndGameServer.ReqGameServerConnect";
+    return "MasterAndGameServer.ReqMasterServerConnect";
   }
   protected:
-  explicit ReqGameServerConnect(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit ReqMasterServerConnect(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   private:
   static void ArenaDtor(void* object);
@@ -441,7 +438,7 @@ class ReqGameServerConnect final :
   void _internal_set_game_server_no(int32_t value);
   public:
 
-  // @@protoc_insertion_point(class_scope:MessageAndGameServer.ReqGameServerConnect)
+  // @@protoc_insertion_point(class_scope:MasterAndGameServer.ReqMasterServerConnect)
  private:
   class _Internal;
 
@@ -455,24 +452,24 @@ class ReqGameServerConnect final :
 };
 // -------------------------------------------------------------------
 
-class AnsGameServerConnect final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:MessageAndGameServer.AnsGameServerConnect) */ {
+class AnsMasterServerConnect final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:MasterAndGameServer.AnsMasterServerConnect) */ {
  public:
-  inline AnsGameServerConnect() : AnsGameServerConnect(nullptr) {}
-  ~AnsGameServerConnect() override;
-  explicit constexpr AnsGameServerConnect(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline AnsMasterServerConnect() : AnsMasterServerConnect(nullptr) {}
+  ~AnsMasterServerConnect() override;
+  explicit constexpr AnsMasterServerConnect(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  AnsGameServerConnect(const AnsGameServerConnect& from);
-  AnsGameServerConnect(AnsGameServerConnect&& from) noexcept
-    : AnsGameServerConnect() {
+  AnsMasterServerConnect(const AnsMasterServerConnect& from);
+  AnsMasterServerConnect(AnsMasterServerConnect&& from) noexcept
+    : AnsMasterServerConnect() {
     *this = ::std::move(from);
   }
 
-  inline AnsGameServerConnect& operator=(const AnsGameServerConnect& from) {
+  inline AnsMasterServerConnect& operator=(const AnsMasterServerConnect& from) {
     CopyFrom(from);
     return *this;
   }
-  inline AnsGameServerConnect& operator=(AnsGameServerConnect&& from) noexcept {
+  inline AnsMasterServerConnect& operator=(AnsMasterServerConnect&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -495,20 +492,20 @@ class AnsGameServerConnect final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const AnsGameServerConnect& default_instance() {
+  static const AnsMasterServerConnect& default_instance() {
     return *internal_default_instance();
   }
-  static inline const AnsGameServerConnect* internal_default_instance() {
-    return reinterpret_cast<const AnsGameServerConnect*>(
-               &_AnsGameServerConnect_default_instance_);
+  static inline const AnsMasterServerConnect* internal_default_instance() {
+    return reinterpret_cast<const AnsMasterServerConnect*>(
+               &_AnsMasterServerConnect_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     2;
 
-  friend void swap(AnsGameServerConnect& a, AnsGameServerConnect& b) {
+  friend void swap(AnsMasterServerConnect& a, AnsMasterServerConnect& b) {
     a.Swap(&b);
   }
-  inline void Swap(AnsGameServerConnect* other) {
+  inline void Swap(AnsMasterServerConnect* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -521,7 +518,7 @@ class AnsGameServerConnect final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(AnsGameServerConnect* other) {
+  void UnsafeArenaSwap(AnsMasterServerConnect* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -529,13 +526,13 @@ class AnsGameServerConnect final :
 
   // implements Message ----------------------------------------------
 
-  AnsGameServerConnect* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<AnsGameServerConnect>(arena);
+  AnsMasterServerConnect* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AnsMasterServerConnect>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const AnsGameServerConnect& from);
+  void CopyFrom(const AnsMasterServerConnect& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const AnsGameServerConnect& from);
+  void MergeFrom(const AnsMasterServerConnect& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -552,15 +549,15 @@ class AnsGameServerConnect final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(AnsGameServerConnect* other);
+  void InternalSwap(AnsMasterServerConnect* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "MessageAndGameServer.AnsGameServerConnect";
+    return "MasterAndGameServer.AnsMasterServerConnect";
   }
   protected:
-  explicit AnsGameServerConnect(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit AnsMasterServerConnect(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   private:
   static void ArenaDtor(void* object);
@@ -588,7 +585,7 @@ class AnsGameServerConnect final :
   void _internal_set_is_success(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:MessageAndGameServer.AnsGameServerConnect)
+  // @@protoc_insertion_point(class_scope:MasterAndGameServer.AnsMasterServerConnect)
  private:
   class _Internal;
 
@@ -618,7 +615,7 @@ inline int32_t NotiErrInfo::_internal_err_no() const {
   return err_no_;
 }
 inline int32_t NotiErrInfo::err_no() const {
-  // @@protoc_insertion_point(field_get:MessageAndGameServer.NotiErrInfo.err_no)
+  // @@protoc_insertion_point(field_get:MasterAndGameServer.NotiErrInfo.err_no)
   return _internal_err_no();
 }
 inline void NotiErrInfo::_internal_set_err_no(int32_t value) {
@@ -627,7 +624,7 @@ inline void NotiErrInfo::_internal_set_err_no(int32_t value) {
 }
 inline void NotiErrInfo::set_err_no(int32_t value) {
   _internal_set_err_no(value);
-  // @@protoc_insertion_point(field_set:MessageAndGameServer.NotiErrInfo.err_no)
+  // @@protoc_insertion_point(field_set:MasterAndGameServer.NotiErrInfo.err_no)
 }
 
 // string err_desc = 2;
@@ -635,7 +632,7 @@ inline void NotiErrInfo::clear_err_desc() {
   err_desc_.ClearToEmpty();
 }
 inline const std::string& NotiErrInfo::err_desc() const {
-  // @@protoc_insertion_point(field_get:MessageAndGameServer.NotiErrInfo.err_desc)
+  // @@protoc_insertion_point(field_get:MasterAndGameServer.NotiErrInfo.err_desc)
   return _internal_err_desc();
 }
 template <typename ArgT0, typename... ArgT>
@@ -643,11 +640,11 @@ inline PROTOBUF_ALWAYS_INLINE
 void NotiErrInfo::set_err_desc(ArgT0&& arg0, ArgT... args) {
  
  err_desc_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:MessageAndGameServer.NotiErrInfo.err_desc)
+  // @@protoc_insertion_point(field_set:MasterAndGameServer.NotiErrInfo.err_desc)
 }
 inline std::string* NotiErrInfo::mutable_err_desc() {
   std::string* _s = _internal_mutable_err_desc();
-  // @@protoc_insertion_point(field_mutable:MessageAndGameServer.NotiErrInfo.err_desc)
+  // @@protoc_insertion_point(field_mutable:MasterAndGameServer.NotiErrInfo.err_desc)
   return _s;
 }
 inline const std::string& NotiErrInfo::_internal_err_desc() const {
@@ -662,7 +659,7 @@ inline std::string* NotiErrInfo::_internal_mutable_err_desc() {
   return err_desc_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* NotiErrInfo::release_err_desc() {
-  // @@protoc_insertion_point(field_release:MessageAndGameServer.NotiErrInfo.err_desc)
+  // @@protoc_insertion_point(field_release:MasterAndGameServer.NotiErrInfo.err_desc)
   return err_desc_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void NotiErrInfo::set_allocated_err_desc(std::string* err_desc) {
@@ -678,69 +675,69 @@ inline void NotiErrInfo::set_allocated_err_desc(std::string* err_desc) {
     err_desc_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:MessageAndGameServer.NotiErrInfo.err_desc)
+  // @@protoc_insertion_point(field_set_allocated:MasterAndGameServer.NotiErrInfo.err_desc)
 }
 
 // -------------------------------------------------------------------
 
-// ReqGameServerConnect
+// ReqMasterServerConnect
 
 // int32 game_server_no = 1;
-inline void ReqGameServerConnect::clear_game_server_no() {
+inline void ReqMasterServerConnect::clear_game_server_no() {
   game_server_no_ = 0;
 }
-inline int32_t ReqGameServerConnect::_internal_game_server_no() const {
+inline int32_t ReqMasterServerConnect::_internal_game_server_no() const {
   return game_server_no_;
 }
-inline int32_t ReqGameServerConnect::game_server_no() const {
-  // @@protoc_insertion_point(field_get:MessageAndGameServer.ReqGameServerConnect.game_server_no)
+inline int32_t ReqMasterServerConnect::game_server_no() const {
+  // @@protoc_insertion_point(field_get:MasterAndGameServer.ReqMasterServerConnect.game_server_no)
   return _internal_game_server_no();
 }
-inline void ReqGameServerConnect::_internal_set_game_server_no(int32_t value) {
+inline void ReqMasterServerConnect::_internal_set_game_server_no(int32_t value) {
   
   game_server_no_ = value;
 }
-inline void ReqGameServerConnect::set_game_server_no(int32_t value) {
+inline void ReqMasterServerConnect::set_game_server_no(int32_t value) {
   _internal_set_game_server_no(value);
-  // @@protoc_insertion_point(field_set:MessageAndGameServer.ReqGameServerConnect.game_server_no)
+  // @@protoc_insertion_point(field_set:MasterAndGameServer.ReqMasterServerConnect.game_server_no)
 }
 
 // string game_server_name = 2;
-inline void ReqGameServerConnect::clear_game_server_name() {
+inline void ReqMasterServerConnect::clear_game_server_name() {
   game_server_name_.ClearToEmpty();
 }
-inline const std::string& ReqGameServerConnect::game_server_name() const {
-  // @@protoc_insertion_point(field_get:MessageAndGameServer.ReqGameServerConnect.game_server_name)
+inline const std::string& ReqMasterServerConnect::game_server_name() const {
+  // @@protoc_insertion_point(field_get:MasterAndGameServer.ReqMasterServerConnect.game_server_name)
   return _internal_game_server_name();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void ReqGameServerConnect::set_game_server_name(ArgT0&& arg0, ArgT... args) {
+void ReqMasterServerConnect::set_game_server_name(ArgT0&& arg0, ArgT... args) {
  
  game_server_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:MessageAndGameServer.ReqGameServerConnect.game_server_name)
+  // @@protoc_insertion_point(field_set:MasterAndGameServer.ReqMasterServerConnect.game_server_name)
 }
-inline std::string* ReqGameServerConnect::mutable_game_server_name() {
+inline std::string* ReqMasterServerConnect::mutable_game_server_name() {
   std::string* _s = _internal_mutable_game_server_name();
-  // @@protoc_insertion_point(field_mutable:MessageAndGameServer.ReqGameServerConnect.game_server_name)
+  // @@protoc_insertion_point(field_mutable:MasterAndGameServer.ReqMasterServerConnect.game_server_name)
   return _s;
 }
-inline const std::string& ReqGameServerConnect::_internal_game_server_name() const {
+inline const std::string& ReqMasterServerConnect::_internal_game_server_name() const {
   return game_server_name_.Get();
 }
-inline void ReqGameServerConnect::_internal_set_game_server_name(const std::string& value) {
+inline void ReqMasterServerConnect::_internal_set_game_server_name(const std::string& value) {
   
   game_server_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
 }
-inline std::string* ReqGameServerConnect::_internal_mutable_game_server_name() {
+inline std::string* ReqMasterServerConnect::_internal_mutable_game_server_name() {
   
   return game_server_name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
-inline std::string* ReqGameServerConnect::release_game_server_name() {
-  // @@protoc_insertion_point(field_release:MessageAndGameServer.ReqGameServerConnect.game_server_name)
+inline std::string* ReqMasterServerConnect::release_game_server_name() {
+  // @@protoc_insertion_point(field_release:MasterAndGameServer.ReqMasterServerConnect.game_server_name)
   return game_server_name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
-inline void ReqGameServerConnect::set_allocated_game_server_name(std::string* game_server_name) {
+inline void ReqMasterServerConnect::set_allocated_game_server_name(std::string* game_server_name) {
   if (game_server_name != nullptr) {
     
   } else {
@@ -753,31 +750,31 @@ inline void ReqGameServerConnect::set_allocated_game_server_name(std::string* ga
     game_server_name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:MessageAndGameServer.ReqGameServerConnect.game_server_name)
+  // @@protoc_insertion_point(field_set_allocated:MasterAndGameServer.ReqMasterServerConnect.game_server_name)
 }
 
 // -------------------------------------------------------------------
 
-// AnsGameServerConnect
+// AnsMasterServerConnect
 
 // bool is_success = 1;
-inline void AnsGameServerConnect::clear_is_success() {
+inline void AnsMasterServerConnect::clear_is_success() {
   is_success_ = false;
 }
-inline bool AnsGameServerConnect::_internal_is_success() const {
+inline bool AnsMasterServerConnect::_internal_is_success() const {
   return is_success_;
 }
-inline bool AnsGameServerConnect::is_success() const {
-  // @@protoc_insertion_point(field_get:MessageAndGameServer.AnsGameServerConnect.is_success)
+inline bool AnsMasterServerConnect::is_success() const {
+  // @@protoc_insertion_point(field_get:MasterAndGameServer.AnsMasterServerConnect.is_success)
   return _internal_is_success();
 }
-inline void AnsGameServerConnect::_internal_set_is_success(bool value) {
+inline void AnsMasterServerConnect::_internal_set_is_success(bool value) {
   
   is_success_ = value;
 }
-inline void AnsGameServerConnect::set_is_success(bool value) {
+inline void AnsMasterServerConnect::set_is_success(bool value) {
   _internal_set_is_success(value);
-  // @@protoc_insertion_point(field_set:MessageAndGameServer.AnsGameServerConnect.is_success)
+  // @@protoc_insertion_point(field_set:MasterAndGameServer.AnsMasterServerConnect.is_success)
 }
 
 #ifdef __GNUC__
@@ -790,19 +787,19 @@ inline void AnsGameServerConnect::set_is_success(bool value) {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace MessageAndGameServer
+}  // namespace MasterAndGameServer
 
 PROTOBUF_NAMESPACE_OPEN
 
-template <> struct is_proto_enum< ::MessageAndGameServer::MsgType> : ::std::true_type {};
+template <> struct is_proto_enum< ::MasterAndGameServer::MsgType> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::MessageAndGameServer::MsgType>() {
-  return ::MessageAndGameServer::MsgType_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::MasterAndGameServer::MsgType>() {
+  return ::MasterAndGameServer::MsgType_descriptor();
 }
-template <> struct is_proto_enum< ::MessageAndGameServer::Protocol> : ::std::true_type {};
+template <> struct is_proto_enum< ::MasterAndGameServer::Protocol> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::MessageAndGameServer::Protocol>() {
-  return ::MessageAndGameServer::Protocol_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::MasterAndGameServer::Protocol>() {
+  return ::MasterAndGameServer::Protocol_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE

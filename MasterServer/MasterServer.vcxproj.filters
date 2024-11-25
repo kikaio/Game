@@ -10,6 +10,9 @@
     <Filter Include="DBWrapper">
       <UniqueIdentifier>{5a2cf114-e0e9-45fb-b86a-6c3ee542f674}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sessions">
+      <UniqueIdentifier>{6b62664f-326c-4d61-b566-97fa1aeeb303}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MasterServer.cpp">
@@ -20,6 +23,9 @@
     </ClCompile>
     <ClCompile Include="DBWrapper\DBWrapper.cpp">
       <Filter>DBWrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Sessions\ServerSession.cpp">
+      <Filter>Sessions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -34,6 +40,12 @@
     </ClInclude>
     <ClInclude Include="Configs\MasterConfig.h">
       <Filter>Configs</Filter>
+    </ClInclude>
+    <ClInclude Include="Sessions\ServerSession.h">
+      <Filter>Sessions</Filter>
+    </ClInclude>
+    <ClInclude Include="MasterDefines.h">
+      <Filter>Main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

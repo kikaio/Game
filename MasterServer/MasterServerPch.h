@@ -20,6 +20,8 @@
 
 
 #include "CommonPch.h"
+#include "MasterDefines.h"
 #include "MasterConfig.h"
 
 #include "DBWrapper.h"
+#include "ServerSession.h"
