@@ -28,5 +28,6 @@
 #include "DBWrapper.h"
 
 #include "MasterAndGameServerHandle.h"
+#include "GamePacketHandler.h"
 #include "ServerSession.h"
 

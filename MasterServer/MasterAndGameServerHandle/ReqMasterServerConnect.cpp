@@ -10,6 +10,6 @@ namespace MasterAndGameServerHandle
 
 		MasterAndGameServer::AnsMasterServerConnect _ans;
 		_ans.set_is_success(true);
-		return ;
+		return true;
 	}
 };
