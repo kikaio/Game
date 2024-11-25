@@ -8,7 +8,10 @@ MasterSession ::~MasterSession()
 
 bool MasterSession::OnPacketRecved(BYTE* _payloadPtr, uint32_t _payloadBytes)
 {
-	MasterPacketHandler::HandlePayload(GetSession(), _payloadPtr, _payloadBytes);
+	if (MasterPacketHandler::HandlePayload(GetSession(), _payloadPtr, _payloadBytes) == false) {
+		// todo : error logging
+		return false;
+	}
 	return true;
 }
 

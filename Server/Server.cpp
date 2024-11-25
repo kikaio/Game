@@ -9,6 +9,7 @@ void PrintLn(const char* _msg)
 }
 
 void DoIocpGameService(NetworkCoreSptr netCore);
+void DoIocpMasterService(NetworkCoreSptr netCore);
 int32_t DoServerLogic();
 int32_t DoDatabaseTest();
 
@@ -16,8 +17,11 @@ int32_t DoDatabaseTest();
 
 int main()
 {
-    return DoDatabaseTest();
-    //return DoServerLogic();
+    //int32_t ret = DoDatabaseTest();
+    int32_t ret = DoServerLogic();
+    ThreadManager::Get().JoinAll();
+    printf("Server Main Thread Finished\n");
+    return ret;
 }
 
 int32_t DoDatabaseTest()
@@ -50,11 +54,17 @@ int32_t DoServerLogic() {
     printf("accept ready\n");
     ThreadManager::Get().PushAndStart([&gameServiceNetCore]() {
         DoIocpGameService(gameServiceNetCore);
-        });
+    });
 
-    this_thread::sleep_for(10s);
-
-    ThreadManager::Get().JoinAll();
+    MasterPacketHandler::Init();
+    NetworkCoreSptr masterCore = MakeShared<NetworkCore>();
+    if (masterCore->ReadyToConnect()) {
+        return 0;
+    }
+    ThreadManager::Get().PushAndStart([&masterCore]() {
+        this_thread::sleep_for(3s);
+        DoIocpMasterService(masterCore);
+    });
 }
 
 void DoIocpGameService(NetworkCoreSptr netCore) {
@@ -69,3 +79,35 @@ void DoIocpGameService(NetworkCoreSptr netCore) {
     }
 }
 
+void DoIocpMasterService(NetworkCoreSptr master) {
+    UInt32 waitMilliSec = 10;
+    uint64_t workerTick = 10000;
+
+    string ip = "127.0.0.1";
+    int16_t port = 33301;
+    auto sessions = master->StartConnect(ip, port, 1);
+
+    for (auto _session : sessions) {
+        //todo : send connect req
+        MasterAndGameServer::ReqMasterServerConnect _packet;
+        _packet.set_game_server_name("gameServer");
+        _packet.set_game_server_no(1);
+        auto _sendBuff = MasterPacketHandler::MakePacketReqMasterServerConnect(_packet);
+        if (_session->TrySend(_sendBuff) == false) {
+            //todo : error logging
+            printf("session send failed");
+            continue;
+        }
+    }
+
+    int32_t keepAliveSec = 10;
+    chrono::duration keepaliveMilliSec = chrono::seconds::duration(keepAliveSec);
+    while (true) {
+        this_thread::sleep_for(keepaliveMilliSec);
+        printf("todo send keep alive...\n");
+        //for (auto _session : sessions) {
+        //    // todo : send noti for keep alive
+        //}
+    }
+
+}

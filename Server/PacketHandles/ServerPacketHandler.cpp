@@ -1,13 +1,11 @@
 #include "pch.h"
 #include "ServerPacketHandler.h"
 
-
-
-
 #define REGIST_PACKET_FUNC(_msgType, _protocol, _func)																\
 {																													\
 	RegistPacketFunc(UserAndGameServer::MsgType::##_msgType, UserAndGameServer::Protocol::##_protocol, _func);		\
 }																													\
+
 
 map<UserAndGameServer::Protocol, PacketFunc*> ServerPacketHandler::userAndGameServerReqMap;	//받은 req를 handle
 map<UserAndGameServer::Protocol, PacketFunc*> ServerPacketHandler::userAndGameServerAnsMap;  //받은 ans를 handle
@@ -70,6 +68,7 @@ void ServerPacketHandler::Init()
 		printf("handle for AnsTestMsg.\n");
 		return false;
 	});
+
 	REGIST_PACKET_FUNC(Req, Chat, [](SessionSptr _session, BufReader* _brPtr){
 		UserAndGameServer::ReqChat packet;
 		packet.ParseFromArray(_brPtr->Buffer() + _brPtr->ReadSize(), _brPtr->FreeSize());
