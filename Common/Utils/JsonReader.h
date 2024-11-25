@@ -23,4 +23,7 @@ public:
 	bool GetArray(const char* _name, OUT rapidjson::Value& _val);
 	bool GetArray(const string& _name, OUT rapidjson::Value& _val);
 
+	bool GetObject(const char* _name, OUT rapidjson::Value& _out);
+	bool GetObject(const string& _name, OUT rapidjson::Value& _out);
+
 };

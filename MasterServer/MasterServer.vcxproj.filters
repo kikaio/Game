@@ -32,6 +32,9 @@
     <ClInclude Include="DBWrapper\DBWrapper.h">
       <Filter>DBWrapper</Filter>
     </ClInclude>
+    <ClInclude Include="Configs\MasterConfig.h">
+      <Filter>Configs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Configs\ServerConfig.json">

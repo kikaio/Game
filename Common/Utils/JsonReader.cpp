@@ -20,10 +20,13 @@ bool JsonReader::CopyValue(const rapidjson::Value& _other) {
 
 bool JsonReader::CopyObj(const char* _name, const rapidjson::Value& _val)
 {
-	if(_val.HasMember(_name) == false) {
+	if(doc.HasMember(_name) == false) {
 		return false;
 	}
-	doc.CopyFrom(_val[_name], doc.GetAllocator());
+	if(doc[_name].IsObject() == false) {
+		return false;
+	}
+	doc[_name].CopyFrom(_val, doc.GetAllocator());
 	return true;
 }
 
@@ -72,3 +75,23 @@ bool JsonReader::GetArray(const string& _name, OUT rapidjson::Value& _val)
 {
 	return GetArray(_name.c_str(), _val);
 }
+
+bool JsonReader::GetObject(const char* _name, OUT rapidjson::Value& _out)
+{
+	if(doc.HasMember(_name) == false) {
+		return false;
+	}
+	if(doc[_name].IsObject() == false) {
+		return false;
+	}
+
+	_out.CopyFrom(doc[_name], doc.GetAllocator());
+
+	return true;
+}
+
+bool JsonReader::GetObject(const string& _name, OUT rapidjson::Value& _out)
+{
+	return GetObject(_name.c_str(), OUT _out);
+}
+

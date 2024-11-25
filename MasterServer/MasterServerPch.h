@@ -18,6 +18,8 @@
 #include <string.h>
 #include "stdio.h"
 
+
 #include "CommonPch.h"
+#include "MasterConfig.h"
 
 #include "DBWrapper.h"
