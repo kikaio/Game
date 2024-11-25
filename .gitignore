@@ -13,3 +13,5 @@ Server/Configs/ServerConfig_local.json
 Server/Configs/ServerConfig.json
 MasterServer/Configs/ServerConfig.json
 MasterServer/x64/
+Debug/MasterServer/MasterServer.exe
+Debug/MasterServer/MasterServer.pdb
