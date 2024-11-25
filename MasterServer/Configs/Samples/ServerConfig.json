@@ -6,7 +6,7 @@
 			"user": "gameuser",
 			"pw": "gameuser",
 			"port": 3306,
-			"rw_type": "read_and_write",
+			"rw_type": "READ_WRITE",
 			"pool_cnt": 1, 
 			"desc" : "mysqlDB port : 3306"
 		}
