@@ -12,3 +12,4 @@ Debug/Server/Server.pdb
 Server/Configs/ServerConfig_local.json
 Server/Configs/ServerConfig.json
 MasterServer/Configs/ServerConfig.json
+MasterServer/x64/
