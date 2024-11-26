@@ -1,4 +1,9 @@
 ﻿#include "pch.h"
+#include "ServerSession.h"
+#include "MasterConfig.h"
+#include "DBWrapper.h"
+#include "GamePacketHandler.h"
+
 
 int main()
 {
@@ -23,5 +28,26 @@ int main()
 		auto session= MakeShared<ServerSession>();
 		return session;
 	};
+
+	GamePacketHandler::Init();
+	NetworkCoreSptr gameCoreSptr = MakeShared<NetworkCore>();
+	ASSERT_CRASH(gameCoreSptr->Ready());
+	printf("master and game wsa ready");
+	gameCoreSptr->CreateSessionFactory= [](){
+		auto gameServer = MakeShared<ServerSession>();
+		return gameServer;
+	};
+	printf("accept ready");
+	ThreadManager::Get().PushAndStart([&masterConfig, &gameCoreSptr](){
+		uint32_t waitMilliSec = 100;
+		uint64_t workerTick = 10000;
+		while(true) {
+			LEndTickCount = ::GetTickCount64() + workerTick;
+			gameCoreSptr->Dispatch(waitMilliSec);
+			ThreadManager::Get().DoGlobalQueueWork();
+			ThreadManager::Get().DoDitributeJob();
+		}
+	});
+
 	return 0;
 }

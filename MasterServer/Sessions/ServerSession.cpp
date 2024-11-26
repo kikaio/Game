@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "ServerSession.h"
+#include "GamePacketHandler.h"
+#include "MasterDefines.h"
 
 ServerSession::~ServerSession()
 {
@@ -15,4 +17,5 @@ bool ServerSession::OnPacketRecved(BYTE* _payloadPtr, uint32_t _payloadBytes)
 	return true;
 }
 
-//IMPL_USER_SESSION_SEND_PACKET(Ans, MasterServerConnect);
+
+IMPL_SERVER_SESSION_SEND_GAME_PACKET(Ans, MasterServerConnect);

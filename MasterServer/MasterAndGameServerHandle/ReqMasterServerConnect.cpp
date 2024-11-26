@@ -1,5 +1,8 @@
 #include "pch.h"
 #include "MasterAndGameServerHandle.h"
+#include "MasterTypes.h"
+#include "ServerSession.h"
+
 
 namespace MasterAndGameServerHandle
 {
@@ -10,6 +13,6 @@ namespace MasterAndGameServerHandle
 
 		MasterAndGameServer::AnsMasterServerConnect _ans;
 		_ans.set_is_success(true);
-		return true;
+		return _session->SendPacket(_ans);
 	}
 };

@@ -2,10 +2,10 @@
 
 class GamePacketHandler {
 private:
-	static map<MasterAndGameServer::Protocol, PacketFunc*> reqMap;	//받은 req를 handle
-	static map<MasterAndGameServer::Protocol, PacketFunc*> ansMap;  //받은 ans를 handle
-	static map<MasterAndGameServer::Protocol, PacketFunc*> notiMap;  //받은 noti를 handle
-	static map<MasterAndGameServer::Protocol, PacketFunc*> errMap;  //받은 err를 handle
+	static std::map<MasterAndGameServer::Protocol, PacketFunc*> reqMap;	//받은 req를 handle
+	static std::map<MasterAndGameServer::Protocol, PacketFunc*> ansMap;  //받은 ans를 handle
+	static std::map<MasterAndGameServer::Protocol, PacketFunc*> notiMap;  //받은 noti를 handle
+	static std::map<MasterAndGameServer::Protocol, PacketFunc*> errMap;  //받은 err를 handle
 private:
 	static bool HandleMasterAndGameServerReq(SessionSptr _session, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol, BufReader* _brPtr);
 	static bool HandleMasterAndGameServerAns(SessionSptr _session, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol, BufReader* _brPtr);
@@ -22,7 +22,8 @@ public:
 	template<typename MSG_TYPE, typename P, typename T>
 	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet);
 public: //해당 packet에 대해서 전송해주는 함수들.
-	//DECL_MAKE_SENDBUF_FROM_GAME_PACKET(Ans, MasterGServerConnect);
+	//static SendBufferSptr MakePacketAnsMasterServerConnect(MasterAndGameServer::AnsMasterServerConnect& _packet);
+	DECL_MAKE_SENDBUF_FROM_GAME_PACKET(Ans, MasterServerConnect);
 };
 
 template<typename MSG_TYPE, typename P, typename T>

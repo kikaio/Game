@@ -1,6 +1,3 @@
 #pragma once
-
-
-DECL_REF_USING(ServerSession);
-
-
+#include "pch.h"
+using ServerSessionSptr = std::shared_ptr<class ServerSession>;

@@ -1,11 +1,26 @@
 #include "pch.h"
 #include "GamePacketHandler.h"
+#include "MasterDefines.h"
+#include "ServerSession.h"
+#include "MasterAndGameServerHandle.h"
+
 
 // handler 함수 지정용 define
 #define REGIST_GAME_PACKET_FUNC(_msgType, _protocol, _func)																\
 {																														\
 	RegistPacketFunc(MasterAndGameServer::MsgType::##_msgType, MasterAndGameServer::Protocol::##_protocol, _func);		\
 }																														\
+
+
+#define REGIST_HANDLE_GAME_PACKET_FUNC(_msgType, _protocol, _func)																\
+{																																\
+	REGIST_GAME_PACKET_FUNC(_msgType, _protocol, [](SessionSptr _session, BufReader* _brPtr){									\
+		MasterAndGameServer::##_msgType##_protocol packet;																		\
+		packet.ParseFromArray(_brPtr->Buffer() + _brPtr->ReadSize(), _brPtr->FreeSize());										\
+		_brPtr->Close();																										\
+		return MasterAndGameServerHandle::##_msgType##_protocol(static_pointer_cast<ServerSession>(_session), packet);			\
+	});																															\
+}
 
 
 map<MasterAndGameServer::Protocol, PacketFunc*> GamePacketHandler::reqMap;
@@ -65,10 +80,13 @@ void GamePacketHandler::AbusingRecord(SessionSptr _session, int32_t _msgType, in
 void GamePacketHandler::Init()
 {
 	//master server가 처리할 packet handle을 지정한다.
-	REGIST_GAME_PACKET_FUNC(Req, MasterServerConnect, [](SessionSptr _session, BufReader* _brPtr) {
-		printf("handle MasterServerConnect called\n");
-		return false;
-	});
+	//REGIST_GAME_PACKET_FUNC(Req, MasterServerConnect, [](SessionSptr _session, BufReader* _brPtr) {
+	//	printf("handle MasterServerConnect called\n");
+	//	return false;
+	//});
+
+	//해당 prc에 대한 packet을 생성 및 실제 처리하는 handle인 MasterAndGameServerHandle의 함수를 호출한다.
+	REGIST_HANDLE_GAME_PACKET_FUNC(Req, MasterServerConnect);
 }
 
 void GamePacketHandler::RegistPacketFunc(MasterAndGameServer::MsgType _msg_type, MasterAndGameServer::Protocol _protocol, PacketFunc* _packetHandle)
@@ -127,4 +145,8 @@ bool GamePacketHandler::HandlePayload(SessionSptr _session, BYTE* _buf, uint32_t
 	return true;
 }
 
-//IMPL_MAKE_PACKET_GAME_FUNC(Ans, MasterServerConnect);
+IMPL_MAKE_PACKET_GAME_FUNC(GamePacketHandler, Ans, MasterServerConnect);
+
+//SendBufferSptr GamePacketHandler::MakePacketAnsMasterServerConnect(MasterAndGameServer::AnsMasterServerConnect& _packet) {
+//	return MakeProtoSendBuffer(MasterAndGameServer::MsgType::Ans, MasterAndGameServer::Protocol::MasterServerConnect, _packet);
+//};
