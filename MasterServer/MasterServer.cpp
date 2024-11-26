@@ -33,7 +33,9 @@ int main()
 			};
 
 		ListenerSptr gameListener = MakeShared<Listener>(masterConfig.ListenPort());
-		ASSERT_CRASH(gameCoreSptr->ReadyToAccept(gameListener, masterConfig.BackLog(), masterConfig.AcceptCnt()));
+		ASSERT_CRASH(gameCoreSptr->ReadyToAccept(gameListener
+			, masterConfig.BackLog(), masterConfig.AcceptCnt())
+		);
 		printf("accept ready\n");
 
 		printf("master and game wsa ready\n");

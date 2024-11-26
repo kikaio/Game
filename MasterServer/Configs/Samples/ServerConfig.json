@@ -7,8 +7,13 @@
 			"pw": "gameuser",
 			"port": 3306,
 			"rw_type": "READ_WRITE",
-			"pool_cnt": 1, 
-			"desc" : "mysqlDB port : 3306"
+			"pool_cnt": 1,
+			"desc": "mysqlDB port : 3306"
 		}
-	]
+	],
+	"master_config": {
+		"listen_port": 33301,
+		"accept_cnt": 1,
+		"back_log": 100
+	}
 }
