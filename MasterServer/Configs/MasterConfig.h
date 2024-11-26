@@ -5,9 +5,13 @@ class MasterConfig
 public:
 	MasterConfig() {}
 private:
-	int16_t listenPort = 0;
+	uint16_t listenPort = 0;
 	int32_t acceptCnt = 1;
 	int32_t backLog = 100;
+public:
+	const uint16_t ListenPort() { return listenPort; }
+	const int32_t AcceptCnt() { return acceptCnt; }
+	const int32_t BackLog() { return backLog; }
 public:
 	bool ReadFromJson(const rapidjson::Value& _val) {
 		for(auto _iter = _val.MemberBegin(); _iter != _val.MemberEnd(); _iter++) {

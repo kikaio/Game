@@ -31,44 +31,44 @@ int32_t DoDatabaseTest()
 }
 
 int32_t DoServerLogic() {
+    
+
+    ThreadManager::Get().PushAndStart([]() {
+        NetworkCoreSptr gameServiceNetCore = MakeShared<NetworkCore>();
+        DoIocpGameService(gameServiceNetCore);
+    });
+
+
+    ThreadManager::Get().PushAndStart([]() {
+        NetworkCoreSptr masterCore = MakeShared<NetworkCore>();
+        DoIocpMasterService(masterCore);
+    });
+
+    return 0;
+}
+
+void DoIocpGameService(NetworkCoreSptr netCore) {
     int accepterCnt = 1;
     int backlog = 100;
     int port = 7777;
     ServerPacketHandler::Init();
-    NetworkCoreSptr gameServiceNetCore = MakeShared<NetworkCore>();
-    if (gameServiceNetCore->Ready() == false) {
-        return 0;
-    }
+    ASSERT_CRASH(netCore->Ready());
     printf("wsa standby.\n");
 
-    gameServiceNetCore->CreateSessionFactory = [] {
+    ListenerSptr listener = MakeShared<Listener>(port);
+    netCore->ReadyToAccept(listener, backlog, accepterCnt);
+    printf("accept ready\n");
+
+    netCore->CreateSessionFactory = [] {
         //sid는 accept, connect 완료 시 자동 할당한다. => After 함수들 참고.
         auto user = MakeShared<UserSession>();
         //GameUser와의 연결은 GameService에서 특정 RPC를 통해 계정 로그인 후에 부여한다.
         return user;
         };
 
-    ListenerSptr listener = MakeShared<Listener>(port);
-    gameServiceNetCore->ReadyToAccept(listener, backlog, accepterCnt);
-
-    printf("accept ready\n");
-    ThreadManager::Get().PushAndStart([&gameServiceNetCore]() {
-        DoIocpGameService(gameServiceNetCore);
-    });
-
-    MasterPacketHandler::Init();
-    NetworkCoreSptr masterCore = MakeShared<NetworkCore>();
-    if (masterCore->ReadyToConnect()) {
-        return 0;
-    }
-    ThreadManager::Get().PushAndStart([&masterCore]() {
-        this_thread::sleep_for(3s);
-        DoIocpMasterService(masterCore);
-    });
-}
-
-void DoIocpGameService(NetworkCoreSptr netCore) {
     //    UInt32 waitMilliSec = INFINITE;
+
+
     UInt32 waitMilliSec = 10;
     uint64_t workerTick = 10000;
     while (true) {
@@ -80,14 +80,39 @@ void DoIocpGameService(NetworkCoreSptr netCore) {
 }
 
 void DoIocpMasterService(NetworkCoreSptr master) {
-    UInt32 waitMilliSec = 10;
-    uint64_t workerTick = 10000;
+
+    //master server instance 기다려주는 시간
+    this_thread::sleep_for(3s);
+
+    MasterPacketHandler::Init();
 
     string ip = "127.0.0.1";
-    int16_t port = 33301;
-    auto sessions = master->StartConnect(ip, port, 1);
+    uint16_t port = 33301;
 
+    ASSERT_CRASH(master->Ready());
+    ASSERT_CRASH(master->ReadyToConnect());
+
+    master->CreateSessionFactory = [](){
+        MasterSessionSptr session = MakeShared<MasterSession>();
+        printf("master session created\n");
+        
+        return session;
+    };
+
+
+    auto sessions = master->StartConnect(ip, port, 1);
+    UInt32 waitMilliSec = 10;
+    uint64_t workerTick = 10000;
+    while(true) {
+        master->Dispatch(waitMilliSec);
+        ThreadManager::Get().DoGlobalQueueWork();
+        ThreadManager::Get().DoDitributeJob();
+    }
+    
     for (auto _session : sessions) {
+        if(_session->IsConnected() == false) {
+            continue;
+        }
         //todo : send connect req
         MasterAndGameServer::ReqMasterServerConnect _packet;
         _packet.set_game_server_name("gameServer");

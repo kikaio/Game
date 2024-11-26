@@ -21,24 +21,23 @@ int main()
 	masterConfig.ReadFromJson(masterConfigVal);
 	masterConfig.Render();
 
-	NetworkCoreSptr masterServiceNetCore = MakeShared<NetworkCore>();
-	ASSERT_CRASH(masterServiceNetCore->Ready());
-	printf("master corenet read.\n");
-	masterServiceNetCore->CreateSessionFactory = []() {
-		auto session= MakeShared<ServerSession>();
-		return session;
-	};
 
-	GamePacketHandler::Init();
-	NetworkCoreSptr gameCoreSptr = MakeShared<NetworkCore>();
-	ASSERT_CRASH(gameCoreSptr->Ready());
-	printf("master and game wsa ready");
-	gameCoreSptr->CreateSessionFactory= [](){
-		auto gameServer = MakeShared<ServerSession>();
-		return gameServer;
-	};
-	printf("accept ready");
-	ThreadManager::Get().PushAndStart([&masterConfig, &gameCoreSptr](){
+	ThreadManager::Get().PushAndStart([&masterConfig](){
+		GamePacketHandler::Init();
+		NetworkCoreSptr gameCoreSptr = MakeShared<NetworkCore>();
+
+		ASSERT_CRASH(gameCoreSptr->Ready());
+		gameCoreSptr->CreateSessionFactory = []() {
+			auto gameServer = MakeShared<ServerSession>();
+			return gameServer;
+			};
+
+		ListenerSptr gameListener = MakeShared<Listener>(masterConfig.ListenPort());
+		ASSERT_CRASH(gameCoreSptr->ReadyToAccept(gameListener, masterConfig.BackLog(), masterConfig.AcceptCnt()));
+		printf("accept ready\n");
+
+		printf("master and game wsa ready\n");
+
 		uint32_t waitMilliSec = 100;
 		uint64_t workerTick = 10000;
 		while(true) {
@@ -48,6 +47,8 @@ int main()
 			ThreadManager::Get().DoDitributeJob();
 		}
 	});
+	
+	ThreadManager::Get().JoinAll();
 
 	return 0;
 }

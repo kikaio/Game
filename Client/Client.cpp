@@ -25,8 +25,6 @@ void DoIocpClient() {
 		return ;
 	}
 
-	function<void()> _func = []() {};
-
 	this_thread::sleep_for(3s);
 	//dummyUser 제어를 위해 Manager에서 관리한다.
 	netCore->CreateSessionFactory = [] {
@@ -40,8 +38,7 @@ void DoIocpClient() {
 		});
 		return dumSession;
 	};
-	NetAddrSptr net = MakeShared<NetAddr>();
-
+	
 	netCore->StartConnect(ip, port, clientCnt);
 
 	UInt32 waitMilliSec = INFINITE;
