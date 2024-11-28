@@ -29,6 +29,8 @@ int main()
 		ASSERT_CRASH(gameCoreSptr->Ready());
 		gameCoreSptr->CreateSessionFactory = []() {
 			auto gameServer = MakeShared<ServerSession>();
+			gameServer->SetOnSessionConnectedFunc([]() {
+			});
 			return gameServer;
 			};
 

@@ -94,8 +94,13 @@ void DoIocpMasterService(NetworkCoreSptr master) {
 
     master->CreateSessionFactory = [](){
         MasterSessionSptr session = MakeShared<MasterSession>();
-        printf("master session created\n");
-        
+        session->SetOnSessionConnectedFunc([session]() {
+            //todo : send req connect packet
+            MasterAndGameServer::ReqMasterServerConnect packet;
+            packet.set_game_server_name("game_instance");
+            packet.set_game_server_no(1);
+            session->SendPacket(packet);
+        });
         return session;
     };
 
