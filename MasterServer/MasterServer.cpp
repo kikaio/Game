@@ -21,6 +21,12 @@ int main()
 	masterConfig.ReadFromJson(masterConfigVal);
 	masterConfig.Render();
 
+	ThreadManager::Get().PushAndStart([]() {
+		while (true) {
+			ThreadManager::Get().DoGlobalQueueWork();
+			ThreadManager::Get().DoDitributeJob();
+		}
+	});
 
 	ThreadManager::Get().PushAndStart([&masterConfig](){
 		GamePacketHandler::Init();
@@ -47,8 +53,6 @@ int main()
 		while(true) {
 			LEndTickCount = ::GetTickCount64() + workerTick;
 			gameCoreSptr->Dispatch(waitMilliSec);
-			ThreadManager::Get().DoGlobalQueueWork();
-			ThreadManager::Get().DoDitributeJob();
 		}
 	});
 	

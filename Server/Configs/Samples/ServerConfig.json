@@ -6,12 +6,22 @@
 			"user": "gameuser",
 			"pw": "gameuser",
 			"port": 3306,
-			"rw_type": "read_and_write",
-			"pool_cnt": 1, 
-			"desc" : "현재 mariaDB port가 3306임", 
-			"connTimeoutSec" : 10,
-			"readTimeoutSec" : 3,
-			"writeTimeoutSec" : 3
+			"rw_type": "READ_WRITE",
+			"pool_cnt": 1,
+			"desc": "현재 mariaDB port가 3306임",
+			"connTimeoutSec": 10,
+			"readTimeoutSec": 3,
+			"writeTimeoutSec": 3
 		}
-	]
+	], 
+	"master" : {
+		"host": "127.0.0.1:33301"
+	}, 
+	"game": {
+		"no": 1,
+		"name" : "game_instance",
+		"listen_port": 33302,
+		"accept_cnt": 1,
+		"back_log": 100
+	}
 }

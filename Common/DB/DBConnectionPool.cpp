@@ -30,7 +30,19 @@ bool DBConnectionPool::Connect(int32_t _connCnt, string _odbcName, string _host,
 		if(_conn->Connect(env, _odbcName, _host, _user, _pwd, _dbNameType, _rwType) == false) {
 			return false;
 		}
-		connections.push_back(_conn);
+
+		switch (_conn->DbNameType()) {
+		case DBNameType::CommonDB: {
+			auto ret = commonDBConnMap.emplace(_rwType, vector<DBConnection*>());
+			(ret.first)->second.push_back(_conn);
+			break;
+		}
+		case DBNameType::GameDB: {
+			auto ret = gameDBConnMap.emplace(_rwType, vector<DBConnection*>());
+			(ret.first)->second.push_back(_conn);
+			break;
+		}
+		}
 	}
 
 	return true;
@@ -56,22 +68,57 @@ void DBConnectionPool::Clear()
 	connections.clear();
 }
 
-DBConnection* DBConnectionPool::Pop()
-{
+DBConnection* DBConnectionPool::PopCommonDB(RWType _rwType) {
 	LOCK_GUARDDING(dbPoolLock);
-	if(connections.empty()) {
+	if (commonDBConnMap.empty()) {
 		return nullptr;
 	}
-	DBConnection* conn = connections.back();
-	connections.pop_back();
+	auto iter = commonDBConnMap.find(_rwType);
+	if (iter == commonDBConnMap.end()) {
+		return nullptr;
+	}
+	if (iter->second.empty()) {
+		return nullptr;
+	}
+	auto conn = iter->second.back();
+	iter->second.pop_back();
+	return conn;
+}
+
+DBConnection* DBConnectionPool::PopGameDB(RWType _rwType) {
+	LOCK_GUARDDING(dbPoolLock);
+	if (gameDBConnMap.empty()) {
+		return nullptr;
+	}
+	auto iter = gameDBConnMap.find(_rwType);
+	if (iter == gameDBConnMap.end()) {
+		return nullptr;
+	}
+	if (iter->second.empty()) {
+		return nullptr;
+	}
+	auto conn = iter->second.back();
+	iter->second.pop_back();
 	return conn;
 }
 
 void DBConnectionPool::Push(DBConnection* _conn)
 {
 	LOCK_GUARDDING(dbPoolLock);
-	if(_conn == nullptr) {
-		return;
+	switch (_conn->DbNameType()) {
+	case DBNameType::CommonDB: {
+		auto iter = commonDBConnMap.emplace(_conn->RwType(), vector<DBConnection*>());
+		iter.first->second.push_back(_conn);
+		break;
 	}
-	connections.push_back(_conn);
+	case DBNameType::GameDB: {
+		auto iter = gameDBConnMap.emplace(_conn->RwType(), vector<DBConnection*>());
+		iter.first->second.push_back(_conn);
+		break;
+	}
+	default: {
+		//todo : error logging
+		break;
+	}
+	}
 }

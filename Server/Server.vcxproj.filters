@@ -69,6 +69,12 @@
     <ClCompile Include="MasterAndGameServerHandle\AnsMasterServerConnect.cpp">
       <Filter>Main\MasterAndGameServerHandle</Filter>
     </ClCompile>
+    <ClCompile Include="ConfigClass\MasterConfig.cpp">
+      <Filter>ConfigClass</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigClass\GameConfig.cpp">
+      <Filter>ConfigClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ServerPch.h">
@@ -115,6 +121,12 @@
     </ClInclude>
     <ClInclude Include="MasterAndGameServerHandle\MasterAndGameServerHandle.h">
       <Filter>Main\MasterAndGameServerHandle</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigClass\MasterConfig.h">
+      <Filter>ConfigClass</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigClass\GameConfig.h">
+      <Filter>ConfigClass</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

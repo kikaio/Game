@@ -1,41 +1,6 @@
 #include "pch.h"
 #include "DBWrapper.h"
 
-bool DBWrapper::TryConnectToDatabases()
-{
-    JsonReader js;
-    js.ReadFile("./Configs/ServerConfig.json");
-    rapidjson::Value _dbs(kArrayType);
-    js.GetArray("db_configs", OUT _dbs);
-    ASSERT_CRASH(_dbs.IsArray());
-    for (auto iter = _dbs.Begin(); iter != _dbs.End(); iter++) {
-        JsonReader _js;
-        string name, host, user, pw, rwTypeStr;
-        int32_t port, poolCnt;
-        _js.CopyValue(*iter);
-        _js.GetStr("name", OUT name);
-        _js.GetStr("host", OUT host);
-        _js.GetStr("user", OUT user);
-        _js.GetStr("pw", OUT pw);
-        _js.GetInt32("port", OUT port);
-        _js.GetStr("rw_type", OUT rwTypeStr);
-        _js.GetInt32("pool_cnt", OUT poolCnt);
-
-        auto rwCastRet = magic_enum::enum_cast<RWType>(rwTypeStr.c_str());
-        ASSERT_CRASH(rwCastRet.has_value());
-        RWType rwType = rwCastRet.value();
-        auto dbNameCastRet = magic_enum::enum_cast<DBNameType>(name.c_str());
-        ASSERT_CRASH(dbNameCastRet.has_value());
-        DBNameType dbNameType = dbNameCastRet.value();
-        array<char, MAX_PATH> connStrArr = { 0, };
-
-        string odbcName = "MysqlODBC";
-        ASSERT_CRASH(DBConnectionPool::Get().Connect(poolCnt, odbcName, host, user, pw, dbNameType, rwType));
-        continue;
-    }
-
-	return true;
-}
 
 int32_t DBWrapper::DoDatabaseTest()
 {
@@ -50,7 +15,7 @@ int32_t DBWrapper::DoDatabaseTest()
     ";
 
 
-    DBConnection* conn = DBConnectionPool::Get().Pop();
+    DBConnection* conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
     ASSERT_CRASH(conn != nullptr);
     ASSERT_CRASH(conn->Execute(sql));
     conn->Unbind();
@@ -60,7 +25,8 @@ int32_t DBWrapper::DoDatabaseTest()
 
 
     for (int32_t idx = 0; idx < 3; idx++) {
-        DBConnection* conn = DBConnectionPool::Get().Pop();
+        DBConnection* conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
+        ASSERT_CRASH(conn != nullptr);
 
         DBBind<3, 0> bind(*conn, "INSERT INTO `gold` (`gold`, `name`, `cDate`) VALUES (?, ?, ?);");
         int gold = 100;
@@ -75,7 +41,7 @@ int32_t DBWrapper::DoDatabaseTest()
     }
 
     {
-        DBConnection* conn = DBConnectionPool::Get().Pop();
+        DBConnection* conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
 
         DBBind<1, 4> bind(*conn, "SELECT id, gold, name, cDate FROM `gold` WHERE gold = (?);");
 

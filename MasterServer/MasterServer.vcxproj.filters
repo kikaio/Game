@@ -19,6 +19,9 @@
     <Filter Include="PacketHandles">
       <UniqueIdentifier>{ec22d482-1a41-4001-bcec-4340c26e9d2c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ConfigClass">
+      <UniqueIdentifier>{612a9910-f3ce-4023-8361-7a329c95e6c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MasterServer.cpp">
@@ -53,9 +56,6 @@
     <ClInclude Include="DBWrapper\DBWrapper.h">
       <Filter>DBWrapper</Filter>
     </ClInclude>
-    <ClInclude Include="Configs\MasterConfig.h">
-      <Filter>Configs</Filter>
-    </ClInclude>
     <ClInclude Include="Sessions\ServerSession.h">
       <Filter>Sessions</Filter>
     </ClInclude>
@@ -67,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="PacketHandles\GamePacketHandler.h">
       <Filter>PacketHandles</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigClass\MasterConfig.h">
+      <Filter>ConfigClass</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

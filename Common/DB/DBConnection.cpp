@@ -50,6 +50,10 @@ bool DBConnection::Connect(SQLHENV _henv, string _odbcName, string _host, string
 		printf("SQL Return : %d\n", ret);
 		return false;
 	}
+
+	dbNameType = _dbNameType;
+	rwType = _rwType;
+
 	return true;
 }
 

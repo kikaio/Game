@@ -160,6 +160,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConfigClass\DBConfig.cpp" />
+    <ClCompile Include="ConfigClass\GameConfig.cpp" />
+    <ClCompile Include="ConfigClass\MasterConfig.cpp" />
     <ClCompile Include="DBWrapper\DBWrapper.cpp" />
     <ClCompile Include="MasterAndGameServerHandle\AnsMasterServerConnect.cpp" />
     <ClCompile Include="PacketHandles\MasterPacketHandler.cpp" />
@@ -180,6 +182,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConfigClass\DBConfig.h" />
+    <ClInclude Include="ConfigClass\GameConfig.h" />
+    <ClInclude Include="ConfigClass\MasterConfig.h" />
     <ClInclude Include="DBWrapper\DBWrapper.h" />
     <ClInclude Include="MasterAndGameServerHandle\MasterAndGameServerHandle.h" />
     <ClInclude Include="PacketHandles\MasterPacketHandler.h" />

@@ -17,23 +17,47 @@ DBConfig::DBConfig(const DBConfig& _other)
 	userStr= _other.userStr;
 	pwStr= _other.pwStr;
 	rwTypeStr= _other.rwTypeStr;
-	poolCnt= _other.poolCnt;
+	port = _other.port;
+	poolCnt = _other.poolCnt;
+	connTimeoutSec = _other.connTimeoutSec;
+	readTimeoutSec = _other.readTimeoutSec;
+	writeTimeoutSec = _other.writeTimeoutSec;
 }
 
 void DBConfig::Init(rapidjson::Value& _val)
 {
-	JsonReader reader;
-	reader.CopyValue(_val);
-	ASSERT_CRASH(reader.GetStr("name", OUT dbNameStr));
-	ASSERT_CRASH(reader.GetStr("host", OUT hostStr));
-	ASSERT_CRASH(reader.GetStr("user", OUT userStr));
-	ASSERT_CRASH(reader.GetStr("pw", OUT pwStr));
-	ASSERT_CRASH(reader.GetStr("rw_type", OUT rwTypeStr));
+	ASSERT_CRASH(_val.HasMember("name") && _val["name"].IsString());
+	ASSERT_CRASH(_val.HasMember("host") && _val["host"].IsString());
+	ASSERT_CRASH(_val.HasMember("user") && _val["user"].IsString());
+	ASSERT_CRASH(_val.HasMember("pw") && _val["pw"].IsString());
+	ASSERT_CRASH(_val.HasMember("rw_type") && _val["rw_type"].IsString());
+	ASSERT_CRASH(_val.HasMember("pool_cnt") && _val["pool_cnt"].IsUint());
+	ASSERT_CRASH(_val.HasMember("port") && _val["port"].IsUint());
+	ASSERT_CRASH(_val.HasMember("conn_timeout_sec") && _val["conn_timeout_sec"].IsUint());
+	ASSERT_CRASH(_val.HasMember("read_timeout_sec") && _val["read_timeout_sec"].IsUint());
+	ASSERT_CRASH(_val.HasMember("write_timeout_sec") && _val["write_timeout_sec"].IsUint());
 
-	int32_t _poolCnt = 0;
-	ASSERT_CRASH(reader.GetInt32("pool_cnt", OUT _poolCnt));
-	poolCnt = static_cast<int8_t>(_poolCnt);
-	ASSERT_CRASH(reader.GetInt32("port", OUT port));
+
+	dbNameStr = _val["name"].GetString();
+	hostStr = _val["host"].GetString();
+	userStr = _val["user"].GetString();
+	pwStr = _val["pw"].GetString();
+	rwTypeStr = _val["rw_type"].GetString();
+	port = _val["pool_cnt"].GetUint();
+	poolCnt = _val["port"].GetUint();
+	connTimeoutSec = _val["conn_timeout_sec"].GetUint();
+	readTimeoutSec = _val["read_timeout_sec"].GetUint();
+	writeTimeoutSec = _val["write_timeout_sec"].GetUint();
+
+	auto magicDBName = magic_enum::enum_cast<DBNameType>(dbNameStr.c_str());
+	ASSERT_CRASH(magicDBName.has_value());
+	dbNameType = magicDBName.value_or(DBNameType::NONE);
+	ASSERT_CRASH(dbNameType != DBNameType::NONE);
+
+	auto magicRWType = magic_enum::enum_cast<RWType>(rwTypeStr.c_str());
+	ASSERT_CRASH(magicRWType.has_value());
+	rwType = magicRWType.value_or(RWType::NONE);
+	ASSERT_CRASH(rwType != RWType::NONE);
 }
 
 void DBConfig::Render()
@@ -46,6 +70,9 @@ void DBConfig::Render()
 	printf("Port : %d\n", port);
 	printf("RW_Type : %s\n", rwTypeStr.c_str());
 	printf("PoolCnt : %d\n", poolCnt);
+	printf("connTimeoutSec : %d\n", connTimeoutSec);
+	printf("readTimeoutSec : %d\n", readTimeoutSec);
+	printf("writeTimeoutSec : %d\n", writeTimeoutSec);
 	printf("=============================\n");
 }
 

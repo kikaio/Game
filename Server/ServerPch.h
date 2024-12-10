@@ -29,6 +29,8 @@
 #include "MasterAndGameServerHandle.h"
 
 #include "GameUser.h"
+#include "GameConfig.h"
 #include "DBConfig.h"
+#include "MasterConfig.h"
 
 #include "DBWrapper.h"

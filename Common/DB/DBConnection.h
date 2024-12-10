@@ -4,6 +4,16 @@
 class DBConnection
 {
 private:
+	DBNameType dbNameType = DBNameType::NONE;
+	RWType rwType = RWType::NONE;
+public:
+	DBNameType DbNameType() {
+		return dbNameType;
+	}
+	RWType RwType() {
+		return rwType;
+	}
+private:
 	SQLHDBC hdbc = SQL_NULL_HANDLE;
 	SQLHSTMT statement = SQL_NULL_HANDLE;
 private:

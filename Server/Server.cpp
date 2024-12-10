@@ -8,31 +8,59 @@ void PrintLn(const char* _msg)
     printf("%s\n", _msg);
 }
 
+
+void InitConfigs();
 void DoIocpGameService(NetworkCoreSptr netCore);
 void DoIocpMasterService(NetworkCoreSptr netCore);
 int32_t DoServerLogic();
-int32_t DoDatabaseTest();
 
-
+static GameConfig gameConf;
+static MasterConfig masterConf;
+static std::map<string, DBConfig> dbConfigs;
 
 int main()
 {
-    //int32_t ret = DoDatabaseTest();
+    //config 정보 초기화
+    InitConfigs();
+
     int32_t ret = DoServerLogic();
     ThreadManager::Get().JoinAll();
     printf("Server Main Thread Finished\n");
     return ret;
 }
 
-int32_t DoDatabaseTest()
-{
-    ASSERT_CRASH(DBWrapper::TryConnectToDatabases());
-    return DBWrapper::DoDatabaseTest();
+void InitConfigs() {
+
+    JsonReader jr;
+    jr.ReadFile("./configs/ServerConfig.json");
+
+    rapidjson::Value masterValue(kObjectType);
+    jr.GetObjectW("master", OUT masterValue);
+
+    rapidjson::Value gameValue(kObjectType);
+    jr.GetObjectW("game", OUT gameValue);
+
+    rapidjson::Value dbValue(kArrayType);
+    jr.GetObjectW("db_configs", OUT dbValue);
+    ASSERT_CRASH(dbValue.IsArray());
+
+
+    gameConf.ReadFromJson(gameValue);
+    masterConf.Init(masterValue);
+    for (auto iter = dbValue.Begin(); iter != dbValue.End(); iter++) {
+        rapidjson::Value& dbConfigVal = *iter;
+        DBConfig dbConf;
+        dbConf.Init(dbConfigVal);
+        dbConfigs.emplace(dbConf.dbNameStr, dbConf);
+        ASSERT_CRASH(DBConnectionPool::Get().Connect(dbConf.poolCnt
+            , DBConfig::odbcName, dbConf.hostStr
+            , dbConf.userStr, dbConf.pwStr, dbConf.dbNameType, dbConf.rwType
+        ));
+    }
 }
 
 int32_t DoServerLogic() {
     
-
     ThreadManager::Get().PushAndStart([]() {
         NetworkCoreSptr gameServiceNetCore = MakeShared<NetworkCore>();
         DoIocpGameService(gameServiceNetCore);
@@ -44,16 +72,24 @@ int32_t DoServerLogic() {
         DoIocpMasterService(masterCore);
     });
 
+    //스케줄 및 job 담당
+    ThreadManager::Get().PushAndStart([]() {
+        while (true) {
+            ThreadManager::Get().DoGlobalQueueWork();
+            ThreadManager::Get().DoDitributeJob();
+        }
+    });
     return 0;
 }
 
 void DoIocpGameService(NetworkCoreSptr netCore) {
-    int accepterCnt = 1;
-    int backlog = 100;
-    int port = 7777;
     ServerPacketHandler::Init();
     ASSERT_CRASH(netCore->Ready());
     printf("wsa standby.\n");
+
+    int accepterCnt = 1;
+    int backlog = 100;
+    int port = 7777;
 
     ListenerSptr listener = MakeShared<Listener>(port);
     netCore->ReadyToAccept(listener, backlog, accepterCnt);
@@ -69,13 +105,11 @@ void DoIocpGameService(NetworkCoreSptr netCore) {
     //    UInt32 waitMilliSec = INFINITE;
 
 
-    UInt32 waitMilliSec = 10;
+    UInt32 waitMilliSec = INFINITE;
     uint64_t workerTick = 10000;
     while (true) {
         LEndTickCount = ::GetTickCount64() + workerTick;
         netCore->Dispatch(waitMilliSec);
-        ThreadManager::Get().DoGlobalQueueWork();
-        ThreadManager::Get().DoDitributeJob();
     }
 }
 
@@ -86,58 +120,28 @@ void DoIocpMasterService(NetworkCoreSptr master) {
 
     MasterPacketHandler::Init();
 
-    string ip = "127.0.0.1";
-    uint16_t port = 33301;
-
+    int32_t serverNo = 1;
+    string serverName = "game_instance";
     ASSERT_CRASH(master->Ready());
     ASSERT_CRASH(master->ReadyToConnect());
 
-    master->CreateSessionFactory = [](){
+    master->CreateSessionFactory = [serverNo, serverName](){
         MasterSessionSptr session = MakeShared<MasterSession>();
-        session->SetOnSessionConnectedFunc([session]() {
+        session->SetOnSessionConnectedFunc([session, serverNo, serverName]() {
             //todo : send req connect packet
             MasterAndGameServer::ReqMasterServerConnect packet;
-            packet.set_game_server_name("game_instance");
-            packet.set_game_server_no(1);
+            packet.set_game_server_name(serverName.c_str());
+            packet.set_game_server_no(serverNo);
             session->SendPacket(packet);
         });
         return session;
     };
 
 
-    auto sessions = master->StartConnect(ip, port, 1);
-    UInt32 waitMilliSec = 10;
+    auto sessions = master->StartConnect(masterConf.hostStr, masterConf.port, 1);
+    UInt32 waitMilliSec = INFINITE;
     uint64_t workerTick = 10000;
     while(true) {
         master->Dispatch(waitMilliSec);
-        ThreadManager::Get().DoGlobalQueueWork();
-        ThreadManager::Get().DoDitributeJob();
     }
-    
-    for (auto _session : sessions) {
-        if(_session->IsConnected() == false) {
-            continue;
-        }
-        //todo : send connect req
-        MasterAndGameServer::ReqMasterServerConnect _packet;
-        _packet.set_game_server_name("gameServer");
-        _packet.set_game_server_no(1);
-        auto _sendBuff = MasterPacketHandler::MakePacketReqMasterServerConnect(_packet);
-        if (_session->TrySend(_sendBuff) == false) {
-            //todo : error logging
-            printf("session send failed");
-            continue;
-        }
-    }
-
-    int32_t keepAliveSec = 10;
-    chrono::duration keepaliveMilliSec = chrono::seconds::duration(keepAliveSec);
-    while (true) {
-        this_thread::sleep_for(keepaliveMilliSec);
-        printf("todo send keep alive...\n");
-        //for (auto _session : sessions) {
-        //    // todo : send noti for keep alive
-        //}
-    }
-
 }
