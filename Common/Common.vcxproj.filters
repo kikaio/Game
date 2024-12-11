@@ -43,6 +43,9 @@
     <Filter Include="DB">
       <UniqueIdentifier>{c6331a58-c487-49ea-835d-27d8b379ff3a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Redis">
+      <UniqueIdentifier>{9804fe0c-3810-4441-ae4f-fedda3f899a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -189,6 +192,9 @@
     <ClInclude Include="DB\DBEnums.h">
       <Filter>DB</Filter>
     </ClInclude>
+    <ClInclude Include="Redis\RedisConn.h">
+      <Filter>Redis</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -316,6 +322,9 @@
     </ClCompile>
     <ClCompile Include="Protocol\gen\MasterAndGameServer.pb.cc">
       <Filter>Protocol\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Redis\RedisConn.cpp">
+      <Filter>Redis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

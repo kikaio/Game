@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "DBConfig.h"
 
+string DBConfig::odbcName = "MysqlODBC";
+
 
 DBConfig::DBConfig()
 {

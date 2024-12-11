@@ -2,6 +2,7 @@
 #include "ServerPch.h"
 #include "Session.h"
 
+#include <sw/redis++/redis++.h>
 
 void PrintLn(const char* _msg)
 {
@@ -20,6 +21,12 @@ static std::map<string, DBConfig> dbConfigs;
 
 int main()
 {
+    timeval timeout;
+    timeout.tv_sec = 10;
+    timeout.tv_usec = 0;
+
+    auto redis = sw::redis::Redis("tcp://127.0.0.1:6379");
+
     //config 정보 초기화
     InitConfigs();
 
@@ -100,10 +107,7 @@ void DoIocpGameService(NetworkCoreSptr netCore) {
         auto user = MakeShared<UserSession>();
         //GameUser와의 연결은 GameService에서 특정 RPC를 통해 계정 로그인 후에 부여한다.
         return user;
-        };
-
-    //    UInt32 waitMilliSec = INFINITE;
-
+    };
 
     UInt32 waitMilliSec = INFINITE;
     uint64_t workerTick = 10000;

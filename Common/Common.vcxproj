@@ -71,19 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\mysql_connector_9;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)Random;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\mysql_connector_9;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)Random;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir)Redis;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\mysql_connector_9;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)Random;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\mysql_connector_9;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)Random;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir)Redis;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\mysql_connector_9;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)Random;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\mysql_connector_9;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)Random;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir)Redis;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\mysql_connector_9;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)Random;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\mysql_connector_9;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)Random;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir)Redis;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -199,6 +199,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Protocol\gen\MasterAndGameServer.pb.h" />
     <ClInclude Include="Protocol\gen\UserAndGameServer.pb.h" />
+    <ClInclude Include="Redis\RedisConn.h" />
     <ClInclude Include="Threads\Thread.h" />
     <ClInclude Include="Threads\ThreadManager.h" />
     <ClInclude Include="Utils\ClockUtil.h" />
@@ -263,6 +264,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Redis\RedisConn.cpp" />
     <ClCompile Include="Threads\Thread.cpp" />
     <ClCompile Include="Threads\ThreadManager.cpp" />
     <ClCompile Include="Utils\ClockUtil.cpp" />

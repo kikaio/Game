@@ -27,4 +27,3 @@ public:
 	void Render();
 };
 
-string DBConfig::odbcName = "MysqlODBC";

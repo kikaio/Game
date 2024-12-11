@@ -8,8 +8,12 @@
 
 #if _DEBUG
 #pragma comment(lib, "../Libraries/Libs/Protobuf/Debug/libprotobufd.lib")
+#pragma comment(lib, "../Libraries/Libs/Hiredis/Debug/hiredisd.lib")
+#pragma comment(lib, "../Libraries/Libs/redis-plus-plus/Debug/redis++.lib")
 #else
 #pragma comment(lib, "../Libraries/Libs/Protobuf/Release/libprotobuf.lib")
+#pragma comment(lib, "../Libraries/Libs/Hiredis/Release/hiredisd.lib")
+#pragma comment(lib, "../Libraries/Libs/redis-plus-plus/Release/redis++.lib")
 #endif
 
 #include <iostream>
@@ -45,6 +49,9 @@ using namespace std;
 #include <magic_enum/magic_enum.hpp>
 #include <magic_enum/magic_enum_iostream.hpp>
 //-------------------------------
+
+#include <sw/redis++/redis++.h>
+
 
 #include "Types.h"
 #include "CommonDefines.h"
@@ -107,3 +114,5 @@ using namespace std;
 #include "DBConnection.h"
 #include "DBConnectionPool.h"
 #include "DBBind.h"
+
+#include "RedisConn.h"
