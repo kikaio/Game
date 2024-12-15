@@ -195,6 +195,9 @@
     <ClInclude Include="Redis\RedisConn.h">
       <Filter>Redis</Filter>
     </ClInclude>
+    <ClInclude Include="Random\Random.h">
+      <Filter>Random</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -325,6 +328,9 @@
     </ClCompile>
     <ClCompile Include="Redis\RedisConn.cpp">
       <Filter>Redis</Filter>
+    </ClCompile>
+    <ClCompile Include="Random\Random.cpp">
+      <Filter>Random</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
