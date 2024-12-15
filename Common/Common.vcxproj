@@ -190,6 +190,7 @@
     <ClInclude Include="Network\IOCP\IocpEvent.h" />
     <ClInclude Include="Network\IOCP\IocpObj.h" />
     <ClInclude Include="Network\NetAddr.h" />
+    <ClInclude Include="Network\NetUtil.h" />
     <ClInclude Include="Network\NetworkCore.h" />
     <ClInclude Include="Network\Session\Listener.h" />
     <ClInclude Include="Network\Session\Session.h" />
@@ -241,6 +242,7 @@
     <ClCompile Include="Network\IOCP\IocpEvent.cpp" />
     <ClCompile Include="Network\IOCP\IocpObj.cpp" />
     <ClCompile Include="Network\NetAddr.cpp" />
+    <ClCompile Include="Network\NetUtil.cpp" />
     <ClCompile Include="Network\NetworkCore.cpp" />
     <ClCompile Include="Network\Session\Listener.cpp" />
     <ClCompile Include="Network\Session\Session.cpp" />

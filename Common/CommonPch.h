@@ -86,6 +86,7 @@ using namespace std;
 #include "BufReader.h"
 
 
+#include "NetUtil.h"
 #include "IocpObj.h"
 #include "Listener.h"
 #include "Session.h"

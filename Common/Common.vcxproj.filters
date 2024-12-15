@@ -198,6 +198,9 @@
     <ClInclude Include="Random\Random.h">
       <Filter>Random</Filter>
     </ClInclude>
+    <ClInclude Include="Network\NetUtil.h">
+      <Filter>Network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -331,6 +334,9 @@
     </ClCompile>
     <ClCompile Include="Random\Random.cpp">
       <Filter>Random</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\NetUtil.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
