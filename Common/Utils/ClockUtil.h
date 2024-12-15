@@ -13,4 +13,8 @@ private:
 public:
 	static string GetNowStr(bool _isUTC = true, const char* _fm = DEF_DT_STR_FORMAT);
 	static string GetNowStrWithMilli(bool _isUTC = true, const char* _fm = DEF_DT_STR_FORMAT);
+	static time_t getTimeSec();
+	static time_t getTimeMsec();
+	static time_t getTimeUsec();
+	static tm* getLocalTime();
 };

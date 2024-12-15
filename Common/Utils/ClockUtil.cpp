@@ -40,3 +40,30 @@ string ClockUtil::GetNowStrWithMilli(bool _isUTC, const char* _fm)
 	UInt16 milliSec =  utcNowTimePoint.time_since_epoch().count() % 1000;
 	return GetDateTimeStr(inputTm, _fm, milliSec);
 }
+
+time_t ClockUtil::getTimeSec()
+{
+	return std::chrono::duration_cast<seconds>(
+		std::chrono::system_clock::now().time_since_epoch()
+	).count();
+}
+
+time_t ClockUtil::getTimeMsec()
+{
+	return std::chrono::duration_cast<milliseconds>(
+		std::chrono::system_clock::now().time_since_epoch()
+	).count();
+}
+
+time_t ClockUtil::getTimeUsec()
+{
+	return std::chrono::duration_cast<microseconds>(
+		std::chrono::system_clock::now().time_since_epoch()
+	).count();
+}
+
+tm* ClockUtil::getLocalTime()
+{
+	time_t time = getTimeSec();
+	return localtime(&time);
+}
