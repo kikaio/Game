@@ -201,6 +201,9 @@
     <ClInclude Include="Network\NetUtil.h">
       <Filter>Network</Filter>
     </ClInclude>
+    <ClInclude Include="Utils\StrUtil.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -337,6 +340,9 @@
     </ClCompile>
     <ClCompile Include="Network\NetUtil.cpp">
       <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\StrUtil.cpp">
+      <Filter>Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

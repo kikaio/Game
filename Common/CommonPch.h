@@ -60,7 +60,11 @@ using namespace std;
 #include "CommonTLS.h"
 #include "Singleton.h"
 #include "TLSSingleton.h"
+
+#include "Random.h"
+#include "StrUtil.h"
 #include "ClockUtil.h"
+#include "NetUtil.h"
 
 
 #include "Allocator.h"
@@ -86,7 +90,6 @@ using namespace std;
 #include "BufReader.h"
 
 
-#include "NetUtil.h"
 #include "IocpObj.h"
 #include "Listener.h"
 #include "Session.h"

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CommonMacro.h"
+#include "StrUtil.h"
 
 string ClockUtil::GetDateTimeStr(tm _tm, const char* _fm, UInt16 _milli)
 {
@@ -41,29 +42,74 @@ string ClockUtil::GetNowStrWithMilli(bool _isUTC, const char* _fm)
 	return GetDateTimeStr(inputTm, _fm, milliSec);
 }
 
-time_t ClockUtil::getTimeSec()
+time_t ClockUtil::GetTimeSec()
 {
 	return std::chrono::duration_cast<seconds>(
 		std::chrono::system_clock::now().time_since_epoch()
 	).count();
 }
 
-time_t ClockUtil::getTimeMsec()
+time_t ClockUtil::GetTimeMsec()
 {
 	return std::chrono::duration_cast<milliseconds>(
 		std::chrono::system_clock::now().time_since_epoch()
 	).count();
 }
 
-time_t ClockUtil::getTimeUsec()
+time_t ClockUtil::GetTimeUsec()
 {
 	return std::chrono::duration_cast<microseconds>(
 		std::chrono::system_clock::now().time_since_epoch()
 	).count();
 }
 
-tm* ClockUtil::getLocalTime()
+tm* ClockUtil::GetLocalTime()
 {
-	time_t time = getTimeSec();
+	time_t time = GetTimeSec();
 	return localtime(&time);
+}
+
+void ClockUtil::TimeToTmLocal(time_t _time, OUT tm& _local)
+{
+	localtime_s(&_local, &_time);
+	return ;
+}
+
+void ClockUtil::TimeToTmUtc(time_t _time, OUT tm& _utc)
+{
+	_gmtime64_s(&_utc, &_time);
+	return ;
+}
+
+time_t ClockUtil::TmLocalToTime(tm& _local)
+{
+	return _mktime64(&_local);
+}
+
+time_t ClockUtil::TmUtcToTime(tm& _utc)
+{
+	return _mkgmtime64(&_utc);
+}
+
+time_t ClockUtil::GetDeltaUtcAndLocal()
+{
+	time_t timeVal = time(NULL);
+	tm local;
+	tm utc;
+	TimeToTmLocal(timeVal, OUT local);
+	TimeToTmUtc(timeVal, OUT utc);
+
+	time_t localTime = TmLocalToTime(local);
+	time_t utcTime = TmUtcToTime(utc);
+	return localTime - utcTime;
+}
+
+string ClockUtil::GetCurTimeZone()
+{
+	array<char, BUF_128> buf = {0, };
+	TIME_ZONE_INFORMATION tz;
+	GetTimeZoneInformation(&tz);
+	std::wstring wName = tz.StandardName;
+	WideCharToMultiByte(0, 0, wName.c_str(), wName.size(), buf.data(), buf.size(), 0, 0);
+	return buf.data();
 }

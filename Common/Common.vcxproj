@@ -212,6 +212,7 @@
     <ClInclude Include="Utils\JsonReader.h" />
     <ClInclude Include="Utils\JsonWriter.h" />
     <ClInclude Include="Utils\Singleton.h" />
+    <ClInclude Include="Utils\StrUtil.h" />
     <ClInclude Include="Utils\TLSSingleton.h" />
     <ClInclude Include="Utils\Types.h" />
   </ItemGroup>
@@ -276,6 +277,7 @@
     <ClCompile Include="Utils\JsonParser.cpp" />
     <ClCompile Include="Utils\JsonReader.cpp" />
     <ClCompile Include="Utils\JsonWriter.cpp" />
+    <ClCompile Include="Utils\StrUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Protocol\MasterAndGameServer.proto" />
