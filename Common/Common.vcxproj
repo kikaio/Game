@@ -202,6 +202,8 @@
     <ClInclude Include="Protocol\gen\UserAndGameServer.pb.h" />
     <ClInclude Include="Random\Random.h" />
     <ClInclude Include="Redis\RedisConn.h" />
+    <ClInclude Include="Redis\RedisConnPool.h" />
+    <ClInclude Include="Redis\RedisEnum.h" />
     <ClInclude Include="Threads\Thread.h" />
     <ClInclude Include="Threads\ThreadManager.h" />
     <ClInclude Include="Utils\ClockUtil.h" />
@@ -270,6 +272,7 @@
     </ClCompile>
     <ClCompile Include="Random\Random.cpp" />
     <ClCompile Include="Redis\RedisConn.cpp" />
+    <ClCompile Include="Redis\RedisConnPool.cpp" />
     <ClCompile Include="Threads\Thread.cpp" />
     <ClCompile Include="Threads\ThreadManager.cpp" />
     <ClCompile Include="Utils\ClockUtil.cpp" />

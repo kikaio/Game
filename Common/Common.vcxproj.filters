@@ -204,6 +204,12 @@
     <ClInclude Include="Utils\StrUtil.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Redis\RedisEnum.h">
+      <Filter>Redis</Filter>
+    </ClInclude>
+    <ClInclude Include="Redis\RedisConnPool.h">
+      <Filter>Redis</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -343,6 +349,9 @@
     </ClCompile>
     <ClCompile Include="Utils\StrUtil.cpp">
       <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Redis\RedisConnPool.cpp">
+      <Filter>Redis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

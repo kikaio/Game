@@ -13,7 +13,23 @@
 			"readTimeoutSec": 3,
 			"writeTimeoutSec": 3
 		}
-	], 
+	],
+	"redis": [
+		{
+			"name": "Common",
+			"host": "127.0.0.1",
+			"port": 6379,
+			"db_no": 0,
+			"pool_cnt": 1
+		},
+		{
+			"name": "Session",
+			"host": "127.0.0.1",
+			"port": 6379,
+			"db_no": 1,
+			"pool_cnt": 1
+		}
+	],
 	"master" : {
 		"host": "127.0.0.1:33301"
 	}, 

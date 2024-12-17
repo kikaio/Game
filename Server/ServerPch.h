@@ -29,6 +29,7 @@
 #include "MasterAndGameServerHandle.h"
 
 #include "GameUser.h"
+#include "RedisConfig.h"
 #include "GameConfig.h"
 #include "DBConfig.h"
 #include "MasterConfig.h"

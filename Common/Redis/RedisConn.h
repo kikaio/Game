@@ -2,9 +2,12 @@
 
 class RedisConn {
 private:
+	RedisName name;
 	sw::redis::Redis conn;
 public:
 	RedisConn(string _hostStr) : conn(_hostStr) {
+	}
+	RedisConn(sw::redis::ConnectionOptions _connOpt, sw::redis::ConnectionPoolOptions _poolOpt) : conn(_connOpt, _poolOpt) {
 	}
 public:
 	void set(const char* _key, const char* _val) {

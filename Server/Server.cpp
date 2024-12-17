@@ -18,6 +18,7 @@ int32_t DoServerLogic();
 static GameConfig gameConf;
 static MasterConfig masterConf;
 static std::map<string, DBConfig> dbConfigs;
+static std::map<string, RedisConfig> redisConfigs;
 
 int main()
 {
@@ -43,17 +44,16 @@ void InitConfigs() {
 
     rapidjson::Value masterValue(kObjectType);
     jr.GetObjectW("master", OUT masterValue);
+    masterConf.Init(masterValue);
 
     rapidjson::Value gameValue(kObjectType);
     jr.GetObjectW("game", OUT gameValue);
+    gameConf.ReadFromJson(gameValue);
 
     rapidjson::Value dbValue(kArrayType);
     jr.GetObjectW("db_configs", OUT dbValue);
     ASSERT_CRASH(dbValue.IsArray());
 
-
-    gameConf.ReadFromJson(gameValue);
-    masterConf.Init(masterValue);
     for (auto iter = dbValue.Begin(); iter != dbValue.End(); iter++) {
         rapidjson::Value& dbConfigVal = *iter;
         DBConfig dbConf;
@@ -63,6 +63,18 @@ void InitConfigs() {
             , DBConfig::odbcName, dbConf.hostStr
             , dbConf.userStr, dbConf.pwStr, dbConf.dbNameType, dbConf.rwType
         ));
+    }
+
+    rapidjson::Value redisValues(kArrayType);
+    jr.GetObjectW("redis", redisValues);
+    ASSERT_CRASH(redisValues.IsArray());
+    for(auto _iter = redisValues.Begin(); _iter != redisValues.End(); _iter++) {
+        rapidjson::Value& val = *_iter;
+        RedisConfig redisConf ;
+        redisConf.Init(val);
+        redisConfigs.emplace(redisConf.nameStr, redisConf);
+        //todo : redis db connect
+        RedisConnPool::Get().Add(redisConf.redisName, redisConf.hostStr, redisConf.port);
     }
 }
 

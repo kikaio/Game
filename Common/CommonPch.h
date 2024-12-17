@@ -119,4 +119,7 @@ using namespace std;
 #include "DBConnectionPool.h"
 #include "DBBind.h"
 
+
+#include "RedisEnum.h"
 #include "RedisConn.h"
+#include "RedisConnPool.h"
