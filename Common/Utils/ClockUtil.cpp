@@ -63,10 +63,20 @@ time_t ClockUtil::GetTimeUsec()
 	).count();
 }
 
-tm* ClockUtil::GetLocalTime()
+tm ClockUtil::GetLocalTime()
 {
 	time_t time = GetTimeSec();
-	return localtime(&time);
+	tm local = {0, };
+	localtime_s(&local, &time);
+	return local;
+}
+
+tm ClockUtil::GetUtcTime()
+{
+	time_t time = GetTimeSec();
+	tm utc = {0, };
+	gmtime_s(&utc, &time);
+	return utc;
 }
 
 void ClockUtil::TimeToTmLocal(time_t _time, OUT tm& _local)

@@ -19,7 +19,7 @@ public:
 	static string StrFormat(const std::string& _fmt, ARGS... args) {
 		size_t size = snprintf(nullptr, 0, _fmt.c_str(), args...)  + 1;
 		ASSERT_CRASH(size <= 0);
-		unique_ptr<char*> buf = char[size] {0, };
+		unique_ptr<char*> buf = char[size]();
 		snprintf(buf.get(), size, _fmt.c_str(), args...);
 		return std::string(buf.get(), buf.get() + size -1);
 	}

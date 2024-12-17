@@ -3,42 +3,48 @@
 
 bool NetUtil::HostNameToIp(const char* _host, OUT std::string& _ip)
 {
-	hostent* ent = nullptr;
-	in_addr inAddr = {0, };
-	long int* addr = nullptr;
+	addrinfo addrHint = {0, };
+	addrinfo* servinfo = nullptr;
 
-	ent = gethostbyname(_host);
-	if (ent == nullptr) {
+	addrHint.ai_family = AF_INET;
+	addrHint.ai_socktype = SOCK_STREAM;
+
+	if (getaddrinfo(_host, "http", &addrHint, &servinfo) != NO_ERROR) {
 		return false;
 	}
 
-	while (*(ent->h_addr_list) != nullptr) {
-		addr = (long int*)*ent->h_addr_list;
-		inAddr.s_addr = *addr;
-		_ip = inet_ntoa(inAddr);
+	char buf[80] = { 0, };
+	for (auto _ptr = servinfo; _ptr != nullptr; _ptr = _ptr->ai_next) {
+		sockaddr_in* addr = reinterpret_cast<sockaddr_in*>(_ptr->ai_addr);
+		inet_ntop(_ptr->ai_family, &(addr->sin_addr), buf, sizeof(buf));
+		_ip = buf;
 		break;
 	}
 
 	return true;
 }
 
-uint16_t NetUtil::HostNameToIp(const char* _host)
+int32_t NetUtil::HostNameToIp(const char* _host)
 {
-	hostent* ent = nullptr;
-	in_addr inAddr = { 0, };
-	long int* addr = nullptr;
+	addrinfo addrHint = { 0, };
+	addrinfo* servinfo = nullptr;
+	uint16_t ret = 0;
+	addrHint.ai_family = AF_INET;
+	addrHint.ai_socktype = SOCK_STREAM;
 
-	ent = gethostbyname(_host);
-	if (ent == nullptr) {
-		return false;
+	if (getaddrinfo(_host, "http", &addrHint, &servinfo) != NO_ERROR) {
+		return ret;
 	}
 
-	while (*(ent->h_addr_list) != nullptr) {
-		addr = (long int*)*ent->h_addr_list;
-		inAddr.s_addr = *addr;
+	char buf[80] = {0, };
+	for(auto _ptr = servinfo; _ptr != nullptr; _ptr = _ptr->ai_next) {
+		sockaddr_in* addr = reinterpret_cast<sockaddr_in*>(_ptr->ai_addr);
+		inet_ntop(_ptr->ai_family, &(addr->sin_addr), buf, sizeof(buf));
+		ret = ntohl((addr->sin_addr).s_addr);
 		break;
 	}
-	return inAddr.s_addr;
+
+	return ret;
 }
 
 bool NetUtil::IsUsedAddr(sockaddr_in _addr, bool _b_tcp)

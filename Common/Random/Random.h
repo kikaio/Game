@@ -5,7 +5,7 @@ public:
 	Random();
 private:
 	std::random_device randomDevice;
-	std::mt19937 gen;
+	std::mt19937 engine;
 	std::uniform_int_distribution<int> dis;
 	int disMax;
 	unsigned int seed;

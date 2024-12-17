@@ -16,7 +16,8 @@ public:
 	static time_t GetTimeSec();
 	static time_t GetTimeMsec();
 	static time_t GetTimeUsec();
-	static tm* GetLocalTime();
+	static tm GetLocalTime();
+	static tm GetUtcTime();
 
 	static void TimeToTmLocal(time_t _time, OUT tm& _local);
 	static void TimeToTmUtc(time_t _time, OUT tm& _utc);

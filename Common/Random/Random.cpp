@@ -2,14 +2,14 @@
 #include "Random.h"
 
 Random::Random()
-	: randomDevice(), gen(randomDevice), dis(0, 10000)
+	: engine(randomDevice()), dis(0, 10000)
 {
 }
 
 int Random::GetRand(int _ltMax)
 {
 	if (_ltMax == 0) {
-		return dis(gen);
+		return dis(engine);
 	}
 }
 
@@ -17,7 +17,7 @@ int Random::GetRand(int _gteMin, int _lteMax)
 {
 	ASSERT_CRASH(_gteMin <= _lteMax);
 	std::uniform_int_distribution<int> _dis(_gteMin, _lteMax);
-	return _dis(gen);
+	return _dis(engine);
 }
 
 int Random::SeedGen()
