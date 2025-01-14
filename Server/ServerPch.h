@@ -4,21 +4,34 @@
 
 #if _DEBUG
 
-#pragma comment(lib, "../Libraries/Libs/Protobuf/Debug/libprotobufd.lib")
 #pragma comment(lib, "../Libraries/Libs/Common/Debug/Common.lib")
 
 #else
 
-#pragma comment(lib, "../Libraries/Libs/Protobuf/Release/libprotobuf.lib")
 #pragma comment(lib, "../Libraries/Libs/Common/Release/Common.lib")
 
 #endif
 
 
+
 #include "CommonPch.h"
 #include "ServerDefines.h"
 #include "ServerTypes.h"
+#include "ServerEnums.h"
+
+#include "ServerPacketHandler.h"
+#include "MasterPacketHandler.h"
 
 #include "UserSession.h"
-#include "ServerPacketHandler.h"
+#include "MasterSession.h"
+
 #include "UserAndGameServerHandle.h"
+#include "MasterAndGameServerHandle.h"
+
+#include "GameUser.h"
+#include "RedisConfig.h"
+#include "GameConfig.h"
+#include "DBConfig.h"
+#include "MasterConfig.h"
+
+#include "DBWrapper.h"

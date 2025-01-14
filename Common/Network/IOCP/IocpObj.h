@@ -35,7 +35,7 @@ public:
 	NetAddrSptr Net();
 	
 	SOCKET Sock();
-	
+
 	bool IsConnected() {
 		return isConnected.load();
 	}

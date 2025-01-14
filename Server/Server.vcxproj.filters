@@ -7,6 +7,27 @@
     <Filter Include="Main\UserAndGameServerHandle">
       <UniqueIdentifier>{a77ac2c4-f7ac-48c4-aa02-0929fab6a4e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="User">
+      <UniqueIdentifier>{24c4486a-b1ee-43f9-98cc-0c18ceda4579}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Configs">
+      <UniqueIdentifier>{fdc51fe6-6d83-4023-a0a9-7fbc8617bb7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ConfigClass">
+      <UniqueIdentifier>{48a94c8c-0b13-4094-97c0-f65709c38521}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DBWrapper">
+      <UniqueIdentifier>{7ed29010-87ce-41ac-bae7-62004db11888}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sessions">
+      <UniqueIdentifier>{38551ab9-be81-4e3a-aeab-037865be4e25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PacketHandles">
+      <UniqueIdentifier>{15f57ab2-0ba3-4655-b310-a5626b504c3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main\MasterAndGameServerHandle">
+      <UniqueIdentifier>{f844f1ae-f2d0-40d3-b8db-c6569fd046c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Server.cpp">
@@ -18,14 +39,44 @@
     <ClCompile Include="ServerPch.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="UserSession.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="ServerPacketHandler.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
     <ClCompile Include="UserAndGameServerHandle\ReqChat.cpp">
       <Filter>Main\UserAndGameServerHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="User\GameUser.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="User\GameProfile.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigClass\DBConfig.cpp">
+      <Filter>ConfigClass</Filter>
+    </ClCompile>
+    <ClCompile Include="DBWrapper\DBWrapper.cpp">
+      <Filter>DBWrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Sessions\UserSession.cpp">
+      <Filter>Sessions</Filter>
+    </ClCompile>
+    <ClCompile Include="Sessions\MasterSession.cpp">
+      <Filter>Sessions</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketHandles\ServerPacketHandler.cpp">
+      <Filter>PacketHandles</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketHandles\MasterPacketHandler.cpp">
+      <Filter>PacketHandles</Filter>
+    </ClCompile>
+    <ClCompile Include="MasterAndGameServerHandle\AnsMasterServerConnect.cpp">
+      <Filter>Main\MasterAndGameServerHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigClass\MasterConfig.cpp">
+      <Filter>ConfigClass</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigClass\GameConfig.cpp">
+      <Filter>ConfigClass</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigClass\RedisConfig.cpp">
+      <Filter>ConfigClass</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -33,12 +84,6 @@
       <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
-      <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="UserSession.h">
-      <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="ServerPacketHandler.h">
       <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="UserAndGameServerHandle\UserAndGameServerHandle.h">
@@ -50,5 +95,49 @@
     <ClInclude Include="ServerDefines.h">
       <Filter>Main</Filter>
     </ClInclude>
+    <ClInclude Include="User\GameUser.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="User\GameProfile.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigClass\DBConfig.h">
+      <Filter>ConfigClass</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerEnums.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="DBWrapper\DBWrapper.h">
+      <Filter>DBWrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Sessions\UserSession.h">
+      <Filter>Sessions</Filter>
+    </ClInclude>
+    <ClInclude Include="Sessions\MasterSession.h">
+      <Filter>Sessions</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketHandles\ServerPacketHandler.h">
+      <Filter>PacketHandles</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketHandles\MasterPacketHandler.h">
+      <Filter>PacketHandles</Filter>
+    </ClInclude>
+    <ClInclude Include="MasterAndGameServerHandle\MasterAndGameServerHandle.h">
+      <Filter>Main\MasterAndGameServerHandle</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigClass\MasterConfig.h">
+      <Filter>ConfigClass</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigClass\GameConfig.h">
+      <Filter>ConfigClass</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigClass\RedisConfig.h">
+      <Filter>ConfigClass</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configs\ServerConfig.json">
+      <Filter>Configs</Filter>
+    </None>
   </ItemGroup>
 </Project>

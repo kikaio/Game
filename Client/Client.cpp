@@ -15,17 +15,15 @@ void DoIocpClient() {
 	int clientCnt = 1;
 
 	NetworkCoreSptr netCore = MakeShared<NetworkCore>();
-
+	
 	ASSERT_CRASH(netCore->Ready());
-
+	
 	printf("wsa standby.\n");
 
 	if (netCore->ReadyToConnect() == false) {
 		printf("ReadyToConnect failed\n");
-		return;
+		return ;
 	}
-
-	function<void()> _func = []() {};
 
 	this_thread::sleep_for(3s);
 	//dummyUser 제어를 위해 Manager에서 관리한다.
@@ -35,13 +33,12 @@ void DoIocpClient() {
 		dummyUser->SetDummySession(dumSession);
 		DummyUserManager::Get().PushDummyUser(dummyUser);
 		//session disconnect 후처리 연결 필수.
-		dumSession->SetOnSessionDisconnectedFunc([dummyUser = dummyUser]() {
+		dumSession->SetOnSessionDisconnectedFunc([dummyUser=dummyUser](){
 			dummyUser->OnSessionDisconnected();
-			});
+		});
 		return dumSession;
-		};
-	NetAddrSptr net = MakeShared<NetAddr>();
-
+	};
+	
 	netCore->StartConnect(ip, port, clientCnt);
 
 	UInt32 waitMilliSec = INFINITE;
@@ -61,7 +58,7 @@ void DoSendChat() {
 			dummyUser->SendChatMsg("this is dummy chat");
 		}
 	}
-
+	
 }
 
 int main()
@@ -80,9 +77,9 @@ int main()
 
 
 	ThreadManager::Get().StartAll();
-
-
-	while (clientDoRunning.load()) {
+	
+	
+	while(clientDoRunning.load()) {
 		this_thread::sleep_for(10s);
 	}
 

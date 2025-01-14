@@ -83,3 +83,14 @@ shared_ptr<T> MakeShared(Args&&... args) {
 	return shared_ptr<T>(xnew<T>(forward<Args>(args)...), xfree<T>);
 }
 
+#define ENUM_TO_INT(_eVal) magic_enum::enum_integer(_eVal)
+
+#define ENUM_TO_STR(_eType) magic_enum::enum_name(_eType)
+
+#define ENUM_NAMES(_eClass) magic_enum::enum_names<_eClass>()
+
+#define ENUM_FROM_STR(_eClass, _eStr) magic_enum::enum_cast<_eClass>(_eStr, magic_enum::case_insensitive)
+
+#define ENUM_FROM_INT(_eClass, _intVal) magic_enum::enum_cast<_eClass>(_intVal)
+
+#define ENUM_ENTRY(_eClass) magic_enum::enum_entries<_eClass>()

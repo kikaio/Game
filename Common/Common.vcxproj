@@ -71,19 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\mysql_connector_9;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)Random;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir)Redis;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\mysql_connector_9;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)Random;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir)Redis;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\mysql_connector_9;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)Random;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir)Redis;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir)Random\;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\mysql_connector_9;$(SolutionDir)Libraries\Include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)Random;$(ProjectDir)Memory;$(ProjectDir)Network;$(ProjectDir)Threads;$(ProjectDir)Utils;$(ProjectDir)Buffer;$(ProjectDir)Lock;$(ProjectDir)Job;$(ProjectDir)DB;$(ProjectDir)Redis;$(ProjectDir);$(ProjectDir)Network\IOCP;$(ProjectDir)Network\Session;$(ProjectDir)Protocol\gen;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Libraries\Libs\Common\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -94,6 +94,8 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -111,6 +113,8 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -128,6 +132,8 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -145,6 +151,8 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -162,6 +170,10 @@
     <ClInclude Include="Buffer\SendBuffer.h" />
     <ClInclude Include="CommonPch.h" />
     <ClInclude Include="CommonProtocol.h" />
+    <ClInclude Include="DBBind.h" />
+    <ClInclude Include="DB\DBConnection.h" />
+    <ClInclude Include="DB\DBConnectionPool.h" />
+    <ClInclude Include="DB\DBEnums.h" />
     <ClInclude Include="Job\GlobalQueue.h" />
     <ClInclude Include="Job\Job.h" />
     <ClInclude Include="Job\JobTimer.h" />
@@ -178,6 +190,7 @@
     <ClInclude Include="Network\IOCP\IocpEvent.h" />
     <ClInclude Include="Network\IOCP\IocpObj.h" />
     <ClInclude Include="Network\NetAddr.h" />
+    <ClInclude Include="Network\NetUtil.h" />
     <ClInclude Include="Network\NetworkCore.h" />
     <ClInclude Include="Network\Session\Listener.h" />
     <ClInclude Include="Network\Session\Session.h" />
@@ -185,14 +198,24 @@
     <ClInclude Include="Network\SocketUtil.h" />
     <ClInclude Include="Network\WsaReady.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Protocol\gen\MasterAndGameServer.pb.h" />
     <ClInclude Include="Protocol\gen\UserAndGameServer.pb.h" />
+    <ClInclude Include="Random\Random.h" />
+    <ClInclude Include="Redis\RedisConn.h" />
+    <ClInclude Include="Redis\RedisConnPool.h" />
+    <ClInclude Include="Redis\RedisEnum.h" />
     <ClInclude Include="Threads\Thread.h" />
     <ClInclude Include="Threads\ThreadManager.h" />
     <ClInclude Include="Utils\ClockUtil.h" />
     <ClInclude Include="Utils\CommonDefines.h" />
     <ClInclude Include="Utils\CommonMacro.h" />
     <ClInclude Include="Utils\CommonTLS.h" />
+    <ClInclude Include="Utils\JsonParser.h" />
+    <ClInclude Include="Utils\JsonReader.h" />
+    <ClInclude Include="Utils\JsonWriter.h" />
     <ClInclude Include="Utils\Singleton.h" />
+    <ClInclude Include="Utils\StrUtil.h" />
+    <ClInclude Include="Utils\TLSSingleton.h" />
     <ClInclude Include="Utils\Types.h" />
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +226,9 @@
     <ClCompile Include="Buffer\SendBuffer.cpp" />
     <ClCompile Include="CommonPch.cpp" />
     <ClCompile Include="CommonTLS.cpp" />
+    <ClCompile Include="DBBind.cpp" />
+    <ClCompile Include="DB\DBConnection.cpp" />
+    <ClCompile Include="DB\DBConnectionPool.cpp" />
     <ClCompile Include="Job\GlobalQueue.cpp" />
     <ClCompile Include="Job\Job.cpp" />
     <ClCompile Include="Job\JobTimer.cpp" />
@@ -219,6 +245,7 @@
     <ClCompile Include="Network\IOCP\IocpEvent.cpp" />
     <ClCompile Include="Network\IOCP\IocpObj.cpp" />
     <ClCompile Include="Network\NetAddr.cpp" />
+    <ClCompile Include="Network\NetUtil.cpp" />
     <ClCompile Include="Network\NetworkCore.cpp" />
     <ClCompile Include="Network\Session\Listener.cpp" />
     <ClCompile Include="Network\Session\Session.cpp" />
@@ -231,18 +258,32 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Protocol\gen\MasterAndGameServer.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Protocol\gen\UserAndGameServer.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Random\Random.cpp" />
+    <ClCompile Include="Redis\RedisConn.cpp" />
+    <ClCompile Include="Redis\RedisConnPool.cpp" />
     <ClCompile Include="Threads\Thread.cpp" />
     <ClCompile Include="Threads\ThreadManager.cpp" />
     <ClCompile Include="Utils\ClockUtil.cpp" />
     <ClCompile Include="Utils\CommonMacro.cpp" />
+    <ClCompile Include="Utils\JsonParser.cpp" />
+    <ClCompile Include="Utils\JsonReader.cpp" />
+    <ClCompile Include="Utils\JsonWriter.cpp" />
+    <ClCompile Include="Utils\StrUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Protocol\MasterAndGameServer.proto" />
     <None Include="Protocol\UserAndGameServer.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

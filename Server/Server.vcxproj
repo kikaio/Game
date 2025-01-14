@@ -71,19 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Common\DB;$(SolutionDir)Common\Redis;$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir);$(ProjectDir)ConfigClass;$(ProjectDir)DBWrapper;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)MasterAndGameServerHandle;$(ProjectDir)PacketHandles;$(ProjectDir)Sessions;$(ProjectDir)User</IncludePath>
     <OutDir>$(SolutionDir)$(Configuration)\Server\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Common\DB;$(SolutionDir)Common\Redis;$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir);$(ProjectDir)ConfigClass;$(ProjectDir)DBWrapper;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)MasterAndGameServerHandle;$(ProjectDir)PacketHandles;$(PorjectDir)Sessions;$(ProjectDir)User</IncludePath>
     <OutDir>$(SolutionDir)$(Configuration)\Server\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Common\DB;$(SolutionDir)Common\Redis;$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir);$(ProjectDir)ConfigClass;$(ProjectDir)DBWrapper;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)MasterAndGameServerHandle;$(ProjectDir)PacketHandles;$(ProjectDir)Sessions;$(ProjectDir)User</IncludePath>
     <OutDir>$(SolutionDir)$(Configuration)\Server\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Common\DB;$(SolutionDir)Common\Redis;$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir);$(ProjectDir)ConfigClass;$(ProjectDir)DBWrapper;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)MasterAndGameServerHandle;$(ProjectDir)PacketHandles;$(PorjectDir)Sessions;$(ProjectDir)User</IncludePath>
     <OutDir>$(SolutionDir)$(Configuration)\Server\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -94,7 +94,8 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -111,7 +112,8 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,7 +130,8 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,7 +148,8 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -155,6 +159,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ConfigClass\DBConfig.cpp" />
+    <ClCompile Include="ConfigClass\GameConfig.cpp" />
+    <ClCompile Include="ConfigClass\MasterConfig.cpp" />
+    <ClCompile Include="ConfigClass\RedisConfig.cpp" />
+    <ClCompile Include="DBWrapper\DBWrapper.cpp" />
+    <ClCompile Include="MasterAndGameServerHandle\AnsMasterServerConnect.cpp" />
+    <ClCompile Include="PacketHandles\MasterPacketHandler.cpp" />
+    <ClCompile Include="PacketHandles\ServerPacketHandler.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -162,19 +174,35 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Server.cpp" />
-    <ClCompile Include="ServerPacketHandler.cpp" />
     <ClCompile Include="ServerPch.cpp" />
+    <ClCompile Include="Sessions\MasterSession.cpp" />
+    <ClCompile Include="Sessions\UserSession.cpp" />
     <ClCompile Include="UserAndGameServerHandle\ReqChat.cpp" />
-    <ClCompile Include="UserSession.cpp" />
+    <ClCompile Include="User\GameProfile.cpp" />
+    <ClCompile Include="User\GameUser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConfigClass\DBConfig.h" />
+    <ClInclude Include="ConfigClass\GameConfig.h" />
+    <ClInclude Include="ConfigClass\MasterConfig.h" />
+    <ClInclude Include="ConfigClass\RedisConfig.h" />
+    <ClInclude Include="DBWrapper\DBWrapper.h" />
+    <ClInclude Include="MasterAndGameServerHandle\MasterAndGameServerHandle.h" />
+    <ClInclude Include="PacketHandles\MasterPacketHandler.h" />
+    <ClInclude Include="PacketHandles\ServerPacketHandler.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ServerDefines.h" />
-    <ClInclude Include="ServerPacketHandler.h" />
+    <ClInclude Include="ServerEnums.h" />
     <ClInclude Include="ServerPch.h" />
     <ClInclude Include="ServerTypes.h" />
+    <ClInclude Include="Sessions\MasterSession.h" />
+    <ClInclude Include="Sessions\UserSession.h" />
     <ClInclude Include="UserAndGameServerHandle\UserAndGameServerHandle.h" />
-    <ClInclude Include="UserSession.h" />
+    <ClInclude Include="User\GameProfile.h" />
+    <ClInclude Include="User\GameUser.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configs\ServerConfig.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

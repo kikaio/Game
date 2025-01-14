@@ -46,6 +46,7 @@ void Session::AfterAccepted(SessionSptr _session)
 void Session::AfterConnected()
 {
 	netCore->GetSessionMgr().PushSession(GetSession());
+	onSessionConenctedFunc();
 }
 
 void Session::AfterDisconnected()
@@ -63,4 +64,9 @@ bool Session::OnPacketRecved(BYTE* _payloadPtr, uint32_t _payloadBytes)
 void Session::SetOnSessionDisconnectedFunc(OnSessionDisconnectedFunc _func)
 {
 	onSessionDisconenctedFunc = _func;
+}
+
+void Session::SetOnSessionConnectedFunc(OnSessionConnectedFunc _func)
+{
+	onSessionConenctedFunc = _func;
 }

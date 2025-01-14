@@ -40,6 +40,12 @@
     <Filter Include="Job">
       <UniqueIdentifier>{0610ef0c-ff5b-410a-9834-92050ce534f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DB">
+      <UniqueIdentifier>{c6331a58-c487-49ea-835d-27d8b379ff3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Redis">
+      <UniqueIdentifier>{9804fe0c-3810-4441-ae4f-fedda3f899a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -159,6 +165,51 @@
     <ClInclude Include="Job\JobTimer.h">
       <Filter>Job</Filter>
     </ClInclude>
+    <ClInclude Include="Utils\TLSSingleton.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\JsonParser.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\JsonWriter.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\JsonReader.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="DB\DBConnection.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="DB\DBConnectionPool.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="DBBind.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\gen\MasterAndGameServer.pb.h">
+      <Filter>Protocol\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="DB\DBEnums.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="Redis\RedisConn.h">
+      <Filter>Redis</Filter>
+    </ClInclude>
+    <ClInclude Include="Random\Random.h">
+      <Filter>Random</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\NetUtil.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\StrUtil.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Redis\RedisEnum.h">
+      <Filter>Redis</Filter>
+    </ClInclude>
+    <ClInclude Include="Redis\RedisConnPool.h">
+      <Filter>Redis</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -266,9 +317,48 @@
     <ClCompile Include="Job\JobTimer.cpp">
       <Filter>Job</Filter>
     </ClCompile>
+    <ClCompile Include="Utils\JsonParser.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\JsonWriter.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\JsonReader.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="DB\DBConnection.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="DB\DBConnectionPool.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="DBBind.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\gen\MasterAndGameServer.pb.cc">
+      <Filter>Protocol\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Redis\RedisConn.cpp">
+      <Filter>Redis</Filter>
+    </ClCompile>
+    <ClCompile Include="Random\Random.cpp">
+      <Filter>Random</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\NetUtil.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\StrUtil.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Redis\RedisConnPool.cpp">
+      <Filter>Redis</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Protocol\UserAndGameServer.proto">
+      <Filter>Protocol</Filter>
+    </None>
+    <None Include="Protocol\MasterAndGameServer.proto">
       <Filter>Protocol</Filter>
     </None>
   </ItemGroup>

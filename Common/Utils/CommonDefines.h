@@ -1,7 +1,7 @@
 
 //단순 define 들.
 #ifndef OUT
-#define OUT
+#define OUT 
 #endif
 
 #ifndef IN

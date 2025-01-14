@@ -10,7 +10,7 @@ void DummyUser::ClearUser()
 
 bool DummyUser::IsConnected()
 {
-	if (session == nullptr || session->IsConnected() == false) {
+	if(session == nullptr || session->IsConnected() == false) {
 		return false;
 	}
 	return true;
@@ -28,8 +28,8 @@ void DummyUser::SetDummySession(DummySessionSptr _dummySession)
 
 void DummyUser::SendChatMsg(string _msg)
 {
-	if (IsConnected() == false) {
-		return;
+	if(IsConnected() == false) {
+		return ;
 	}
 
 	UserAndGameServer::ReqChat packet;
@@ -38,7 +38,7 @@ void DummyUser::SendChatMsg(string _msg)
 	auto* profile = chatInfo->mutable_user_profile();
 	profile->set_nick_name(GetNickname());
 	chatInfo->set_msg(_msg);
-	if (session->SendPacketReqChat(packet) == false) {
+	if(session->SendPacketReqChat(packet) == false) {
 		//todo : logging
 	}
 }
@@ -48,7 +48,7 @@ void DummyUser::OnSessionDisconnected()
 	//todo : 기존 session 참조를 nullptr로
 	session = nullptr;
 	profile.Clear();
-	if (dummyUserRecycle == false) {
+	if(dummyUserRecycle == false) {
 		DummyUserManager::Get().PopDummyUser(dummyIdx);
 	}
 }

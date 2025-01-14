@@ -195,7 +195,6 @@ void LockManager::Pop(LockId _lockId)
 
 	ASSERT_CRASH(LLockStack.empty() == false);
 	ASSERT_CRASH(_lockId == LLockStack.back());
-
 	LLockStack.pop_back();
 	return;
 }

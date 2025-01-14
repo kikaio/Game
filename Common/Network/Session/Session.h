@@ -3,6 +3,7 @@
 class SessionManager;
 
 using OnSessionDisconnectedFunc = std::function<void()>;
+using OnSessionConnectedFunc = std::function<void()>;
 
 class Session : public IocpObj //, public enable_shared_from_this<Session>
 {
@@ -19,8 +20,10 @@ public:
 protected:
 	virtual bool OnPacketRecved(BYTE* _payloadPtr, uint32_t payloadBytes);
 	OnSessionDisconnectedFunc onSessionDisconenctedFunc = []() {};
-public:
-void SetOnSessionDisconnectedFunc(OnSessionDisconnectedFunc _func); 
+	OnSessionConnectedFunc onSessionConenctedFunc = [](){};
+public: 
+	void SetOnSessionDisconnectedFunc(OnSessionDisconnectedFunc _func);
+	void SetOnSessionConnectedFunc(OnSessionConnectedFunc _func);
 public:
 	SessionSptr GetSession() {
 		return static_pointer_cast<Session>(shared_from_this());

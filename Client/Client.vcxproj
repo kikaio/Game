@@ -71,19 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)Dummy;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Common\DB;$(SolutionDir)Libraries\include;$(SolutionDir)Libraries\include\mysql-connector-9;$(SolutionDir)Libraries\include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)Dummy;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Configuration)\Client\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)Dummy;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Common\DB;$(SolutionDir)Libraries\include;$(SolutionDir)Libraries\include\mysql_connector_9;$(SolutionDir)Libraries\include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)Dummy;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Configuration)\Client\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)Dummy;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Common\DB;$(SolutionDir)Libraries\include;$(SolutionDir)Libraries\include\mysql-connector-9;$(SolutionDir)Libraries\include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)Dummy;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Configuration)\Client\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)Common\;$(SolutionDir)Common\Lock\;$(SolutionDir)Common\Memory\;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Libraries\include;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)Dummy;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Common\DB;$(SolutionDir)Libraries\include;$(SolutionDir)Libraries\include\mysql_connector_9;$(SolutionDir)Libraries\include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)Dummy;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Configuration)\Client\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -94,6 +94,8 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -110,6 +112,8 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -126,6 +130,8 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,6 +148,8 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

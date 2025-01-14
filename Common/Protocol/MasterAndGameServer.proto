@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package MasterAndGameServer;
+
+enum MsgType {
+	INVALID_MSG_TYPE = 0;
+	Req = 1;
+	Ans = 2;
+	Noti = 3;
+	Err = 4;
+}
+
+enum Protocol {
+	INVALID_PROTOCOL = 0;
+	ErrInfo = 1;
+	MasterServerConnect = 2;
+}
+
+message NotiErrInfo {
+	int32 err_no = 1;
+	string err_desc = 2;
+}
+
+message ReqMasterServerConnect{
+	int32 game_server_no = 1;
+	string game_server_name = 2;
+}
+
+message AnsMasterServerConnect {
+	bool is_success = 1;
+}

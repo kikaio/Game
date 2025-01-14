@@ -55,8 +55,7 @@ class ImmutableMapFieldGenerator : public ImmutableFieldGenerator {
   void GenerateBuilderClearCode(io::Printer* printer) const override;
   void GenerateMergingCode(io::Printer* printer) const override;
   void GenerateBuildingCode(io::Printer* printer) const override;
-  void GenerateParsingCode(io::Printer* printer) const override;
-  void GenerateParsingDoneCode(io::Printer* printer) const override;
+  void GenerateBuilderParsingCode(io::Printer* printer) const override;
   void GenerateSerializationCode(io::Printer* printer) const override;
   void GenerateSerializedSizeCode(io::Printer* printer) const override;
   void GenerateFieldBuilderInitializationCode(
@@ -65,7 +64,7 @@ class ImmutableMapFieldGenerator : public ImmutableFieldGenerator {
   void GenerateHashCode(io::Printer* printer) const override;
   void GenerateKotlinDslMembers(io::Printer* printer) const override;
 
-  std::string GetBoxedType() const;
+  std::string GetBoxedType() const override;
 
  private:
   const FieldDescriptor* descriptor_;
