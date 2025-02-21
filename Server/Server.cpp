@@ -74,7 +74,9 @@ void InitConfigs() {
         redisConf.Init(val);
         redisConfigs.emplace(redisConf.nameStr, redisConf);
         //todo : redis db connect
-        RedisConnPool::Get().Add(redisConf.redisName, redisConf.hostStr, redisConf.port);
+        RedisConnPool::Get().Add(redisConf.redisName, redisConf.hostStr, redisConf.port
+            , redisConf.pw, redisConf.dbNo, redisConf.poolCnt
+        );
     }
 }
 

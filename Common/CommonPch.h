@@ -12,7 +12,7 @@
 #pragma comment(lib, "../Libraries/Libs/redis-plus-plus/Debug/redis++.lib")
 #else
 #pragma comment(lib, "../Libraries/Libs/Protobuf/Release/libprotobuf.lib")
-#pragma comment(lib, "../Libraries/Libs/Hiredis/Release/hiredisd.lib")
+#pragma comment(lib, "../Libraries/Libs/Hiredis/Release/hiredis.lib")
 #pragma comment(lib, "../Libraries/Libs/redis-plus-plus/Release/redis++.lib")
 #endif
 

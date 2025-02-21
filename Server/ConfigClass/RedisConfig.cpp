@@ -18,6 +18,9 @@ void RedisConfig::Init(rapidjson::Value& _doc) {
 
 	nameStr = _doc["name"].GetString();
 	hostStr = _doc["host"].GetString();
+	if(_doc.HasMember("pw")) {
+		pw = _doc["pw"].GetString();
+	}
 	port = _doc["port"].GetInt();
 	dbNo = _doc["db_no"].GetInt();
 	poolCnt = _doc["pool_cnt"].GetInt();

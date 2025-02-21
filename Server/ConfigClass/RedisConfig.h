@@ -9,6 +9,7 @@ public:
 	RedisName redisName = RedisName::None;
 	string nameStr = "none";
 	string hostStr = "NONE";
+	string pw = "";
 	int32_t port = 0;
 	int32_t dbNo = 0;
 	int32_t poolCnt = 1;
