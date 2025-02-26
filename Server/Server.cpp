@@ -22,18 +22,14 @@ static std::map<string, RedisConfig> redisConfigs;
 
 int main()
 {
+    //config 정보 초기화
+    InitConfigs();
     int32_t ret = DoServerLogic();
     ThreadManager::Get().JoinAll();
     printf("Server Main Thread Finished\n");
 
-    timeval timeout;
-    timeout.tv_sec = 10;
-    timeout.tv_usec = 0;
+    //auto redis = sw::redis::Redis("tcp://127.0.0.1:6379");
 
-    auto redis = sw::redis::Redis("tcp://127.0.0.1:6379");
-
-    //config 정보 초기화
-    InitConfigs();
 
     return ret;
 }
