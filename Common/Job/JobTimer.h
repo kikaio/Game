@@ -32,6 +32,7 @@ private:
 	atomic<bool> distributing = false;
 public:
 	void Reserve(uint64_t _afterTick, weak_ptr<JobQueue> _owner, JobSptr _job);
+	void Reserve(uint64_t _afterTick, weak_ptr<JobQueue> _owner, CallBackType&& _cb);
 	void Distribute(uint64_t _now);
 	void Clear();
 

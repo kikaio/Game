@@ -35,3 +35,5 @@
 #include "MasterConfig.h"
 
 #include "DBWrapper.h"
+
+#include "MonitorHelper.h"

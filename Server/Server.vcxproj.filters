@@ -28,6 +28,9 @@
     <Filter Include="Main\MasterAndGameServerHandle">
       <UniqueIdentifier>{f844f1ae-f2d0-40d3-b8db-c6569fd046c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Helper">
+      <UniqueIdentifier>{e1014f1b-b598-48fa-a420-2cf0914234b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Server.cpp">
@@ -77,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="ConfigClass\RedisConfig.cpp">
       <Filter>ConfigClass</Filter>
+    </ClCompile>
+    <ClCompile Include="MonitorHelper.cpp">
+      <Filter>Helper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +139,9 @@
     </ClInclude>
     <ClInclude Include="ConfigClass\RedisConfig.h">
       <Filter>ConfigClass</Filter>
+    </ClInclude>
+    <ClInclude Include="MonitorHelper.h">
+      <Filter>Helper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

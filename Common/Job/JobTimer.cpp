@@ -11,6 +11,16 @@ void JobTimer::Reserve(uint64_t _afterTick, weak_ptr<JobQueue> _owner, JobSptr _
 	items.push(TimerItem{ executeTick, jobData });
 }
 
+void JobTimer::Reserve(uint64_t _afterTick, weak_ptr<JobQueue> _owner, CallBackType&& _cb)
+{
+	const uint64_t executeTick = ::GetTickCount64() + _afterTick;
+	JobSptr jobSptr = MakeShared<Job>(std::move(_cb));
+	JobData* jobData = reinterpret_cast<JobData*>(XALLOC(sizeof(JobData)));
+	new (jobData) JobData(_owner, jobSptr);
+	LOCK_GUARDDING(timerLock);
+	items.push(TimerItem{executeTick, jobData});
+}
+
 void JobTimer::Distribute(uint64_t _now)
 {
 	if (this->distributing.exchange(true) == true) {

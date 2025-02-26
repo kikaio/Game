@@ -210,6 +210,9 @@
     <ClInclude Include="Redis\RedisConnPool.h">
       <Filter>Redis</Filter>
     </ClInclude>
+    <ClInclude Include="StatusMonitor.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -352,6 +355,9 @@
     </ClCompile>
     <ClCompile Include="Redis\RedisConnPool.cpp">
       <Filter>Redis</Filter>
+    </ClCompile>
+    <ClCompile Include="StatusMonitor.cpp">
+      <Filter>Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

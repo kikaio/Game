@@ -123,3 +123,5 @@ using namespace std;
 #include "RedisEnum.h"
 #include "RedisConn.h"
 #include "RedisConnPool.h"
+
+#include "StatusMonitor.h"

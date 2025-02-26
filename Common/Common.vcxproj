@@ -204,6 +204,7 @@
     <ClInclude Include="Redis\RedisConn.h" />
     <ClInclude Include="Redis\RedisConnPool.h" />
     <ClInclude Include="Redis\RedisEnum.h" />
+    <ClInclude Include="StatusMonitor.h" />
     <ClInclude Include="Threads\Thread.h" />
     <ClInclude Include="Threads\ThreadManager.h" />
     <ClInclude Include="Utils\ClockUtil.h" />
@@ -273,6 +274,7 @@
     <ClCompile Include="Random\Random.cpp" />
     <ClCompile Include="Redis\RedisConn.cpp" />
     <ClCompile Include="Redis\RedisConnPool.cpp" />
+    <ClCompile Include="StatusMonitor.cpp" />
     <ClCompile Include="Threads\Thread.cpp" />
     <ClCompile Include="Threads\ThreadManager.cpp" />
     <ClCompile Include="Utils\ClockUtil.cpp" />

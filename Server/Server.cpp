@@ -22,6 +22,10 @@ static std::map<string, RedisConfig> redisConfigs;
 
 int main()
 {
+    int32_t ret = DoServerLogic();
+    ThreadManager::Get().JoinAll();
+    printf("Server Main Thread Finished\n");
+
     timeval timeout;
     timeout.tv_sec = 10;
     timeout.tv_usec = 0;
@@ -31,9 +35,6 @@ int main()
     //config 정보 초기화
     InitConfigs();
 
-    int32_t ret = DoServerLogic();
-    ThreadManager::Get().JoinAll();
-    printf("Server Main Thread Finished\n");
     return ret;
 }
 
@@ -92,6 +93,9 @@ int32_t DoServerLogic() {
         NetworkCoreSptr masterCore = MakeShared<NetworkCore>();
         DoIocpMasterService(masterCore);
     });
+
+
+
 
     //스케줄 및 job 담당
     ThreadManager::Get().PushAndStart([]() {

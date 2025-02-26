@@ -165,6 +165,7 @@
     <ClCompile Include="ConfigClass\RedisConfig.cpp" />
     <ClCompile Include="DBWrapper\DBWrapper.cpp" />
     <ClCompile Include="MasterAndGameServerHandle\AnsMasterServerConnect.cpp" />
+    <ClCompile Include="MonitorHelper.cpp" />
     <ClCompile Include="PacketHandles\MasterPacketHandler.cpp" />
     <ClCompile Include="PacketHandles\ServerPacketHandler.cpp" />
     <ClCompile Include="pch.cpp">
@@ -188,6 +189,7 @@
     <ClInclude Include="ConfigClass\RedisConfig.h" />
     <ClInclude Include="DBWrapper\DBWrapper.h" />
     <ClInclude Include="MasterAndGameServerHandle\MasterAndGameServerHandle.h" />
+    <ClInclude Include="MonitorHelper.h" />
     <ClInclude Include="PacketHandles\MasterPacketHandler.h" />
     <ClInclude Include="PacketHandles\ServerPacketHandler.h" />
     <ClInclude Include="pch.h" />
