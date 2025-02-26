@@ -77,6 +77,12 @@ void ServerPacketHandler::Init()
 		_brPtr->Close();
 		return UserAndGameServerHandle::ReqChat(static_pointer_cast<UserSession>(_session), packet);
 	});
+	REGIST_PACKET_FUNC(Req, Login, [](SessionSptr _session, BufReader* _brPtr){
+		UserAndGameServer::ReqLogin packet;
+		packet.ParseFromArray(_brPtr->Buffer() + _brPtr->ReadSize(), _brPtr->FreeSize());
+		_brPtr->Close();
+		return UserAndGameServerHandle::ReqLogin(static_pointer_cast<UserSession>(_session), packet);
+	});
 }
 
 void ServerPacketHandler::RegistPacketFunc(UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, PacketFunc* _packetHandle)

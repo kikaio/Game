@@ -10,6 +10,12 @@
     <Filter Include="Dummy">
       <UniqueIdentifier>{7215d8e1-a7d1-4d4f-9cd4-de34f37bb54c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Helper">
+      <UniqueIdentifier>{46b2041c-a6eb-41f5-8874-a05f00ec20e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dummy\DumAct">
+      <UniqueIdentifier>{572ab291-5a53-498d-9f16-99f8c90ba69d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -38,6 +44,15 @@
     </ClCompile>
     <ClCompile Include="Dummy\DummyProfile.cpp">
       <Filter>Dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="AnsLogin.cpp">
+      <Filter>UserAndGameServerHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtoConverter.cpp">
+      <Filter>Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="DumAct.cpp">
+      <Filter>Dummy\DumAct</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +85,12 @@
     </ClInclude>
     <ClInclude Include="Dummy\DummyProfile.h">
       <Filter>Dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtoConverter.h">
+      <Filter>Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="DumAct.h">
+      <Filter>Dummy\DumAct</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

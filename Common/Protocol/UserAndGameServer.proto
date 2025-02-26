@@ -17,15 +17,33 @@ enum Protocol {
 	Connect = 3;
 	TestMsg = 4;
 	Chat = 5;
+	Login = 6;
 }
 
+message UserProfile {
+	string nick_name = 1;
+}
+
+message ChatInfo {
+	int32 chat_type = 1;
+	UserProfile user_profile = 2;
+	string msg = 3;
+}
+
+message LoginData {
+	string device_key = 1;
+}
+
+message LoginResultData {
+	bool is_success = 1;
+}
 
 message NotiErrInfo {
 	int32 err_no = 1;
 	string err_desc = 2;
 }
 
-message ReqPublicKey{
+message ReqPublicKey {
 	string device_id = 1;
 }
 
@@ -50,20 +68,18 @@ message AnsTestMsg {
 	string msg = 1;
 }
 
-message UserProfile {
-	string nick_name = 1;
-}
-
-message ChatInfo {
-	int32 chat_type = 1;
-	UserProfile user_profile = 2;
-	string msg = 3;
-}
-
 message ReqChat {
 	ChatInfo chat_info = 1;
 }
 
 message AnsChat {
 	ChatInfo chat_info = 1;
+}
+
+message ReqLogin {
+	LoginData login_data = 1;
+}
+
+message AnsLogin {
+	LoginResultData login_result_data = 1;
 }

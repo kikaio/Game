@@ -84,6 +84,12 @@
     <ClCompile Include="MonitorHelper.cpp">
       <Filter>Helper</Filter>
     </ClCompile>
+    <ClCompile Include="ReqLogin.cpp">
+      <Filter>Main\UserAndGameServerHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtoConverter.cpp">
+      <Filter>Helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ServerPch.h">
@@ -141,6 +147,9 @@
       <Filter>ConfigClass</Filter>
     </ClInclude>
     <ClInclude Include="MonitorHelper.h">
+      <Filter>Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtoConverter.h">
       <Filter>Helper</Filter>
     </ClInclude>
   </ItemGroup>

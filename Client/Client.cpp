@@ -7,8 +7,9 @@ void PrintLn(const char* _msg) {
 	printf("%s\n", _msg);
 }
 
+atomic<bool> clientDoRunning = true;
 
-void DoIocpClient() {
+void DoClientToGameServer() {
 
 	string ip = "127.0.0.1";
 	int port = 7777;
@@ -47,35 +48,33 @@ void DoIocpClient() {
 	}
 }
 
-void DoSendChat() {
-
-	this_thread::sleep_for(5s);
-	UserAndGameServer::ReqChat reqChat;
-	while (true) {
-		auto dummyUser = DummyUserManager::Get().PeekDummyUser(0);
-		if (dummyUser != nullptr) {
-			this_thread::sleep_for(5s);
-			dummyUser->SendChatMsg("this is dummy chat");
-		}
-	}
+void DoWorkerThread() {
 	
+	uint64_t workerTick = 100;
+	while(clientDoRunning) {
+		LEndTickCount = ::GetTickCount64() + workerTick;
+		ThreadManager::Get().DoGlobalQueueWork();
+		ThreadManager::Get().DoDitributeJob();
+	}
 }
+
 
 int main()
 {
-	atomic<bool> clientDoRunning = true;
 
 	ClientPacketHandler::Init();
 
 	ThreadManager::Get().PushThread(
-		DoIocpClient, "DoIocpDispatch", "iocp port dispatch while shutdown"
+		DoClientToGameServer, "DoIocpDispatch", "iocp port dispatch while shutdown"
 	);
 
-	ThreadManager::Get().PushThread(
-		DoSendChat, "DoIocpDispatch", "iocp port dispatch while shutdown"
-	);
-
-
+	int workerThreadCnt = 1;
+	for(int idx = 0; idx < workerThreadCnt; idx++) {
+		ThreadManager::Get().PushAndStart(
+			DoWorkerThread, "Do Job with GlobalQueue", "execute every dummy's job in this threads"
+		);
+	}
+	
 	ThreadManager::Get().StartAll();
 	
 	

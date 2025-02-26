@@ -21,3 +21,6 @@
 #include "DummyProfile.h"
 #include "DummyUser.h"
 #include "DummyUserManager.h"
+
+
+#include "ProtoConverter.h"

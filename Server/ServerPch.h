@@ -37,3 +37,4 @@
 #include "DBWrapper.h"
 
 #include "MonitorHelper.h"
+#include "ProtoConverter.h"

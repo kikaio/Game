@@ -18,7 +18,7 @@ bool DummyUser::IsConnected()
 
 DummyUserSptr DummyUser::GetSptr()
 {
-	return shared_from_this();
+	return static_pointer_cast<DummyUser>(shared_from_this());
 }
 
 void DummyUser::SetDummySession(DummySessionSptr _dummySession)

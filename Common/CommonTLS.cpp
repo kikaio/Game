@@ -2,7 +2,7 @@
 #include "CommonTLS.h"
 
 thread_local ThreadId LThreadId;
-thread_local int64_t LEndTickCount = 0;
+thread_local int64_t LEndTickCount = 100;
 
 //thread_local std::stack<LockId> LLockStack;
 thread_local std::vector<LockId> LLockStack;

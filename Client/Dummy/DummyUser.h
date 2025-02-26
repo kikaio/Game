@@ -1,6 +1,6 @@
 #pragma once
 
-class DummyUser : public enable_shared_from_this<DummyUser>
+class DummyUser : public JobQueue
 {
 public:
 	DummyUserSptr GetSptr();
@@ -15,6 +15,11 @@ public:
 	bool IsConnected();
 public:
 	void SetDummySession(DummySessionSptr _dummySession);
+	
+	DummySessionSptr GetDummySession() {
+		return session;
+	}
+
 	string GetNickname() {
 		return profile.Nickname();
 	}

@@ -99,7 +99,9 @@ int32_t DoServerLogic() {
 
     //스케줄 및 job 담당
     ThreadManager::Get().PushAndStart([]() {
+        uint64_t workerTick = 100;
         while (true) {
+            LEndTickCount = ::GetTickCount64() + workerTick;
             ThreadManager::Get().DoGlobalQueueWork();
             ThreadManager::Get().DoDitributeJob();
         }
@@ -130,7 +132,6 @@ void DoIocpGameService(NetworkCoreSptr netCore) {
     UInt32 waitMilliSec = INFINITE;
     uint64_t workerTick = 10000;
     while (true) {
-        LEndTickCount = ::GetTickCount64() + workerTick;
         netCore->Dispatch(waitMilliSec);
     }
 }
@@ -162,7 +163,6 @@ void DoIocpMasterService(NetworkCoreSptr master) {
 
     auto sessions = master->StartConnect(masterConf.hostStr, masterConf.port, 1);
     UInt32 waitMilliSec = INFINITE;
-    uint64_t workerTick = 10000;
     while(true) {
         master->Dispatch(waitMilliSec);
     }
