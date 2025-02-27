@@ -10,6 +10,9 @@ public:
 	void SetDummyUserIdx(int32_t _idx) {
 		dummyIdx = _idx;
 	}
+	int32_t GetDummyIdx() {
+		return dummyIdx;
+	}
 public:
 	DummyUserSptr GetSptr();
 	void ClearUser();

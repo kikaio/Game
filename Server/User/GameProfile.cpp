@@ -10,7 +10,7 @@ bool GameProfile::InvalidNickNameCheck(string& _name)
 
 void GameProfile::Render()
 {
-    printf("=========[User profile : %d]========\n", accountId);
+    printf("=========[User profile : %lld]========\n", accountId);
     printf("nickname : %s\n", nickname.c_str());
     printf("greeting ment : %s\n", greetingMent.c_str());
     printf("main hero id : %d\n", mainHeroId);

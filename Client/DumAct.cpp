@@ -12,7 +12,7 @@ void DumActGameServerConnect::DoAct(DummyUserSptr _dumSptr)
 	});
 	gsSession->Net()->SetAddrAny(0);
 	if(gsSession->Bind() == false) {
-		printf("[dummy:%d]bind failed.. err : %d\n", _dumSptr->, WSAGetLastError());
+		printf("[dummy:%d]bind failed.. err : %d\n", _dumSptr->GetDummyIdx(), WSAGetLastError());
 		return ;
 	}
 	IocpCoreSptr iocpCoreSptr = _dumSptr->gameServerNetCore->GetIocpCore();
