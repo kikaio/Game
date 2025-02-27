@@ -1,11 +1,14 @@
-echo master server try start
-start .\Debug\MasterServer\MasterServer.exe
-timeout 2
+echo "master server try start"
+cd C:\Users\user\Documents\Projects\portfolio\Game\Debug\MasterServer
+start ./MasterServer.exe
+timeout /t 2
 
-echo game server try start
-start .\Debug\Server\Server.exe
-timeout 2
+echo "game server try start"
+cd C:\Users\user\Documents\Projects\portfolio\Game\Debug\Server
+start .\Server.exe
+timeout /t 2
 
-echo client server try start
-start .\Debug\Client\Client.exe
+echo "client server try start"
+cd C:\Users\user\Documents\Projects\portfolio\Game\Debug\Client
+start .\Client.exe
 
