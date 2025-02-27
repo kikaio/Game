@@ -11,4 +11,10 @@ public:
 	void PushDummyUser(DummyUserSptr _suer);
 	DummyUserSptr PeekDummyUser(int32_t _dummyUserIdx);
 	DummyUserSptr PopDummyUser(int32_t _dummyUserIdx);
+
+public :
+	bool ReadyTestScenario();
+	void DoTestScenario();
+private:
+	vector<DumActSptr> dumActs;
 };

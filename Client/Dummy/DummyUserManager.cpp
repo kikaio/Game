@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "DummyUserManager.h"
+#include "DummyUser.h"
 
 void DummyUserManager::PushDummyUser(DummyUserSptr _user)
 {
@@ -33,4 +34,28 @@ DummyUserSptr DummyUserManager::PopDummyUser(int32_t _dummyUserIdx)
 		dummyUserMap.erase(finder);
 	}
 	return ret;
+}
+
+bool DummyUserManager::ReadyTestScenario()
+{
+	//DumAct 항목 추가.
+	auto _dumActSptr = MakeShared<DumActGameServerConnect>();
+	dumActs.push_back(_dumActSptr);
+
+	//DummyUser들에게 각자 실행할 Acts에 대해서 설정.
+	LOCK_GUARDDING(dummyUserMapLock);
+	for(auto _pair : dummyUserMap) {
+		_pair.second->SetTestScenario(dumActs);
+	}
+
+	return true;
+}
+
+void DummyUserManager::DoTestScenario()
+{
+	LOCK_GUARDDING(dummyUserMapLock);
+	for (auto _pair : dummyUserMap) {
+		_pair.second->DoDumAct();
+	}
+	return ;
 }

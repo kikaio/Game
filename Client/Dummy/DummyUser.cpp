@@ -2,18 +2,34 @@
 #include "DummyUser.h"
 #include "DummyUserManager.h"
 
+
 void DummyUser::ClearUser()
 {
-	session = nullptr;
+	gameServerSession = nullptr;
 
 }
 
 bool DummyUser::IsConnected()
 {
-	if(session == nullptr || session->IsConnected() == false) {
+	if(gameServerSession == nullptr || gameServerSession->IsConnected() == false) {
 		return false;
 	}
 	return true;
+}
+
+void DummyUser::SetTestScenario(const std::vector<DumActSptr>& _dumActs)
+{	
+	dumActs = _dumActs;
+}
+
+void DummyUser::DoDumAct()
+{
+	DumActSptr act = dumActs[dumActIdx++];
+	if(act == nullptr) {
+		// todo : error logging 
+		return ;
+	}
+	act->Do(GetSptr());
 }
 
 DummyUserSptr DummyUser::GetSptr()
@@ -21,32 +37,15 @@ DummyUserSptr DummyUser::GetSptr()
 	return static_pointer_cast<DummyUser>(shared_from_this());
 }
 
-void DummyUser::SetDummySession(DummySessionSptr _dummySession)
+void DummyUser::SetGameServerSession(GameServerSessionSptr _dummySession)
 {
-	session = _dummySession; session;
+	gameServerSession = _dummySession; gameServerSession;
 }
 
-void DummyUser::SendChatMsg(string _msg)
-{
-	if(IsConnected() == false) {
-		return ;
-	}
-
-	UserAndGameServer::ReqChat packet;
-
-	auto* chatInfo = packet.mutable_chat_info();
-	auto* profile = chatInfo->mutable_user_profile();
-	profile->set_nick_name(GetNickname());
-	chatInfo->set_msg(_msg);
-	if(session->SendPacketReqChat(packet) == false) {
-		//todo : logging
-	}
-}
-
-void DummyUser::OnSessionDisconnected()
+void DummyUser::OnGameServerSessionDisconnected()
 {
 	//todo : 기존 session 참조를 nullptr로
-	session = nullptr;
+	gameServerSession = nullptr;
 	profile.Clear();
 	if(dummyUserRecycle == false) {
 		DummyUserManager::Get().PopDummyUser(dummyIdx);

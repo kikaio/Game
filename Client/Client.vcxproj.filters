@@ -24,7 +24,7 @@
     <ClCompile Include="pch.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="DummySession.cpp">
+    <ClCompile Include="GameServerSession.cpp">
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="ClientPacketHandler.cpp">
@@ -62,7 +62,7 @@
     <ClInclude Include="pch.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="DummySession.h">
+    <ClInclude Include="GameServerSession.h">
       <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="ClientPacketHandler.h">

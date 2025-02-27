@@ -35,4 +35,7 @@ public:
 	NetworkCoreSptr GetCoreSptr() {
 		return shared_from_this();
 	}
+	IocpCoreSptr GetIocpCore() {
+		return iocpCore;
+	}
 };

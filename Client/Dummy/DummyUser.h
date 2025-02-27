@@ -2,32 +2,55 @@
 
 class DummyUser : public JobQueue
 {
+#pragma region dummy 자체정보
+private:
+	int32_t dummyIdx = 0;
+	bool dummyUserRecycle = false; //dummy user를 계속 재활용할지 여부.
+public:
+	void SetDummyUserIdx(int32_t _idx) {
+		dummyIdx = _idx;
+	}
 public:
 	DummyUserSptr GetSptr();
-private:
-	bool dummyUserRecycle = false; //dummy user를 계속 재활용할지 여부.
-private:
-	DummySessionSptr session;
-	DummyProfile profile;
-	int32_t dummyIdx = 0;
-public:
 	void ClearUser();
-	bool IsConnected();
-public:
-	void SetDummySession(DummySessionSptr _dummySession);
-	
-	DummySessionSptr GetDummySession() {
-		return session;
-	}
+#pragma endregion
 
+#pragma region test scenario 관련
+private:
+	int32_t dumActIdx = 0;
+	vector<DumActSptr> dumActs;
+public:
+	void SetTestScenario(const std::vector<DumActSptr>& _dumActs);
+	void DoDumAct();
+#pragma endregion
+
+#pragma region network 관련
+public:
+	NetworkCoreSptr gameServerNetCore = nullptr;
+private:
+	GameServerSessionSptr gameServerSession;
+public:
+	bool IsConnected();
+	void SetGameServerSession(GameServerSessionSptr _dummySession);
+	GameServerSessionSptr GetGameServerSession() {
+		return gameServerSession;
+	}
+public:
+	void OnGameServerSessionDisconnected();
+
+#pragma endregion 
+
+
+private:
+	DummyProfile profile;
+
+public:
+	
 	string GetNickname() {
 		return profile.Nickname();
 	}
 	string GetGreetingMent() {
 		return profile.GreetingMent();
-	}
-	void SetDummyUserIdx(int32_t _idx) {
-		dummyIdx = _idx;
 	}
 	bool SetNickname(string _name) {
 		return profile.ChangeNickname(_name);
@@ -36,8 +59,4 @@ public:
 		return profile.ChangeGreetingMent(_ment);
 	}
 
-public:
-	void SendChatMsg(string _msg);
-public:
-	void OnSessionDisconnected();
 };

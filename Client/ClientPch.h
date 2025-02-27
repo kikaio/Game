@@ -14,12 +14,13 @@
 #include "ClientDefine.h"
 #include "ClientType.h"
 
-#include "DummySession.h"
+#include "GameServerSession.h"
 #include "ClientPacketHandler.h"
 #include "UserAndGameServerHandle.h"
 
 #include "DummyProfile.h"
 #include "DummyUser.h"
+#include "DumAct.h"
 #include "DummyUserManager.h"
 
 
