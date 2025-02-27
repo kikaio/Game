@@ -94,15 +94,14 @@ bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _backlog, UInt32 
 }
 
 
-bool NetworkCore::ReadyToConnect()
+bool NetworkCore::ReadyToConnect(string _ip, UInt32 _port)
 {
+	iocpCore->GetNetTarget()->SetAddr(_ip, _port);
 	return true;
 }
 
-vector<SessionSptr> NetworkCore::StartConnect(string _ip, UInt32 _port, UInt32 _connCnt)
+vector<SessionSptr> NetworkCore::StartConnect(UInt32 _connCnt)
 {
-	iocpCore->GetNetTarget()->SetAddr(_ip, _port);
-
 	vector<SessionSptr> sessions;
 	for (UInt32 idx = 0; idx < _connCnt; idx++) {
 		SessionSptr session = CreateSessionFactory();

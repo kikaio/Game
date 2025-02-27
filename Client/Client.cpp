@@ -21,7 +21,7 @@ void DoClientToGameServer() {
 	
 	printf("wsa standby.\n");
 
-	if (netCore->ReadyToConnect() == false) {
+	if (netCore->ReadyToConnect(ip, port) == false) {
 		printf("ReadyToConnect failed\n");
 		return ;
 	}
@@ -40,7 +40,8 @@ void DoClientToGameServer() {
 		return dumSession;
 	};
 	
-	netCore->StartConnect(ip, port, clientCnt);
+	//더미의 경우 act를 통해 connect 시도하는 것으로...
+	netCore->StartConnect(0);
 
 	UInt32 waitMilliSec = INFINITE;
 	while (true) {

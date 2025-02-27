@@ -22,8 +22,8 @@ private:
 public:
 	bool Ready();
 	bool ReadyToAccept(ListenerSptr _listener, UInt32 _backlog, UInt32 _acceptCnt);
-	bool ReadyToConnect();
-	vector<SessionSptr> StartConnect(string _ip, UInt32 _port, UInt32 _connCnt);
+	bool ReadyToConnect(string _ip, UInt32 _port);
+	vector<SessionSptr> StartConnect(UInt32 _connCnt);
 public:
 	HANDLE GetIocpHandle();
 	void Dispatch(UInt32 _milliSec);

@@ -142,7 +142,7 @@ void DoIocpMasterService(NetworkCoreSptr master) {
     int32_t serverNo = 1;
     string serverName = "game_instance";
     ASSERT_CRASH(master->Ready());
-    ASSERT_CRASH(master->ReadyToConnect());
+    ASSERT_CRASH(master->ReadyToConnect(masterConf.hostStr, masterConf.port));
 
     master->CreateSessionFactory = [serverNo, serverName](){
         MasterSessionSptr session = MakeShared<MasterSession>();
@@ -156,8 +156,7 @@ void DoIocpMasterService(NetworkCoreSptr master) {
         return session;
     };
 
-
-    auto sessions = master->StartConnect(masterConf.hostStr, masterConf.port, 1);
+    auto sessions = master->StartConnect(1);
     UInt32 waitMilliSec = INFINITE;
     while(true) {
         master->Dispatch(waitMilliSec);
