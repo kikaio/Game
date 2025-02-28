@@ -71,9 +71,6 @@ public:
 	virtual void TryRecv();
 	virtual void OnRecved(UInt32 _bytes);
 protected:
-	virtual void AfterAccepted(SessionSptr _session) {
-		return ;
-	}
 	virtual int32_t AfterRecved(BYTE* _buf, UInt32 _dataSize) {
 		return 0;
 	}

@@ -35,14 +35,6 @@ int32_t Session::AfterRecved(BYTE* _buf, UInt32 _dataSize)
 	return proceedBytes;
 }
 
-void Session::AfterAccepted(SessionSptr _session)
-{
-	//Accept 완료 된 session에 session id 지정.
-	_session->sId = _session->netCore->GetSessionMgr().GenSessionId();
-	_session->netCore->GetSessionMgr().PushSession(_session);
-	return ;
-}
-
 void Session::AfterConnected()
 {
 	netCore->GetSessionMgr().PushSession(GetSession());

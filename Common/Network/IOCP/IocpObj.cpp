@@ -217,8 +217,6 @@ void IocpObj::OnAccepted(IocpAccept* _iocpAccept, SessionSptr _session)
 		}
 		return;
 	}
-	AfterAccepted(_session);
-
 	DoAccept(_iocpAccept);
 	_session->OnConnected();
 }

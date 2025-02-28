@@ -11,10 +11,14 @@ bool DummyUserManager::LoadScenarioFromFile()
 	}
 	{
 		//connect 후 chat 전송
-		auto _dumActSptr = MakeShared<DumActChat>(1);
+		auto _dumActSptr = MakeShared<DumActChat>(1, "first chat");
 		dumActs.push_back(_dumActSptr);
 	}
-
+	{
+		//connect 후 chat 전송
+		auto _dumActSptr = MakeShared<DumActChat>(2, "second chat");
+		dumActs.push_back(_dumActSptr);
+	}
 	return true;
 }
 
