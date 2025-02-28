@@ -115,15 +115,17 @@ void DoIocpGameService(NetworkCoreSptr netCore) {
     int port = 7777;
 
     ListenerSptr listener = MakeShared<Listener>(port);
-    netCore->ReadyToAccept(listener, backlog, accepterCnt);
-    printf("accept ready\n");
 
     netCore->CreateSessionFactory = [] {
         //sid는 accept, connect 완료 시 자동 할당한다. => After 함수들 참고.
-        auto user = MakeShared<UserSession>();
+        UserSessionSptr user = MakeShared<UserSession>();
         //GameUser와의 연결은 GameService에서 특정 RPC를 통해 계정 로그인 후에 부여한다.
-        return user;
-    };
+        return static_pointer_cast<Session>(user);
+        };
+
+
+    netCore->ReadyToAccept(listener, backlog, accepterCnt);
+    printf("accept ready\n");
 
     UInt32 waitMilliSec = INFINITE;
     uint64_t workerTick = 10000;
