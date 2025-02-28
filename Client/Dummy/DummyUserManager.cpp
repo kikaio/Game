@@ -2,6 +2,22 @@
 #include "DummyUserManager.h"
 #include "DummyUser.h"
 
+bool DummyUserManager::LoadScenarioFromFile()
+{
+	{
+		//시작 시 connect 요청
+		auto _dumActSptr = MakeShared<DumActGameServerConnect>(1);
+		dumActs.push_back(_dumActSptr);
+	}
+	{
+		//connect 후 chat 전송
+		auto _dumActSptr = MakeShared<DumActChat>(1);
+		dumActs.push_back(_dumActSptr);
+	}
+
+	return true;
+}
+
 void DummyUserManager::PushDummyUser(DummyUserSptr _user)
 {
 	LOCK_GUARDDING(dummyUserMapLock);
@@ -38,14 +54,15 @@ DummyUserSptr DummyUserManager::PopDummyUser(int32_t _dummyUserIdx)
 
 bool DummyUserManager::ReadyTestScenario()
 {
-	//DumAct 항목 추가.
-	auto _dumActSptr = MakeShared<DumActGameServerConnect>();
-	dumActs.push_back(_dumActSptr);
+	//todo : 추후 json file에서 읽어오도록 할 것.
+	if(LoadScenarioFromFile() == false) {
+		return false;
+	}
 
 	//DummyUser들에게 각자 실행할 Acts에 대해서 설정.
 	LOCK_GUARDDING(dummyUserMapLock);
 	for(auto _pair : dummyUserMap) {
-		_pair.second->SetTestScenario(dumActs);
+		_pair.second->SetTestScenario(dumActs, false);
 	}
 
 	return true;

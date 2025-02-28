@@ -15,7 +15,7 @@
 #include "ClientType.h"
 
 #include "GameServerSession.h"
-#include "ClientPacketHandler.h"
+#include "GameServerPacketHandler.h"
 #include "UserAndGameServerHandle.h"
 
 #include "DummyProfile.h"

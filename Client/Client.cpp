@@ -23,7 +23,7 @@ void DoClientToGameServer(NetworkCoreSptr gameServerNetCore) {
 		return ;
 	}
 
-	this_thread::sleep_for(3s);
+	//this_thread::sleep_for(3s);
 	//dummyUser 제어를 위해 Manager에서 관리한다.
 	//gameServerNetCore->CreateSessionFactory = [] {
 	//	auto dumSession = MakeShared<GameServerSession>();
@@ -60,7 +60,7 @@ void DoWorkerThread() {
 int main()
 {
 
-	ClientPacketHandler::Init();
+	GameServerPacketHandler::Init();
 
 	NetworkCoreSptr gameServerNetCore = MakeShared<NetworkCore>();
 	//todo : chat server 용 net core 도 준비.
@@ -69,16 +69,17 @@ int main()
 	//dummy user 생성
 	for (int i = 0; i < dummyUserCnt; ++i) {
 		auto dummyUser = MakeShared<DummyUser>();
+		dummyUser->gameServerNetCore = gameServerNetCore;
 		DummyUserManager::Get().PushDummyUser(dummyUser);
 	}
 
 
 	//기본적인 Net 연결 관련 설정 준비 - game server
-	ThreadManager::Get().PushThread(
+	ThreadManager::Get().PushAndStart(
 		[gameServerNetCore](){ 
 			DoClientToGameServer(gameServerNetCore); 
 		}
-		, "DoIocpDispatch", "iocp port dispatch while shutdown"
+		, "DoClientToGameServer", "iocp port dispatch while shutdown"
 	);
 
 	//worker thread 및 job timer 준비
@@ -88,10 +89,9 @@ int main()
 			DoWorkerThread, "Do Job with GlobalQueue", "execute every dummy's job in this threads"
 		);
 	}
-	
-	ThreadManager::Get().StartAll();
 
 	//실제 dummy user의 작동
+	this_thread::sleep_for(1s);
 	DummyUserManager::Get().ReadyTestScenario();
 	DummyUserManager::Get().DoTestScenario();
 	

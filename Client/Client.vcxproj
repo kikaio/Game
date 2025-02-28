@@ -161,7 +161,7 @@
   <ItemGroup>
     <ClCompile Include="AnsLogin.cpp" />
     <ClCompile Include="Client.cpp" />
-    <ClCompile Include="ClientPacketHandler.cpp" />
+    <ClCompile Include="GameServerPacketHandler.cpp" />
     <ClCompile Include="DumAct.cpp" />
     <ClCompile Include="GameServerSession.cpp" />
     <ClCompile Include="Dummy\DummyProfile.cpp" />
@@ -179,7 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClientDefine.h" />
-    <ClInclude Include="ClientPacketHandler.h" />
+    <ClInclude Include="GameServerPacketHandler.h" />
     <ClInclude Include="ClientPch.h" />
     <ClInclude Include="ClientType.h" />
     <ClInclude Include="DumAct.h" />

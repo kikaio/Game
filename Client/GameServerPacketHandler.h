@@ -2,15 +2,14 @@
 
 class BufReader;
 
-#define DECL_MAKE_SENDBUF_FROM_PACKET(_msgType, _protocolName) \
-static SendBufferSptr MakeSendBufferFromPacket(UserAndGameServer::##_msgType##_protocolName& _packet)																		\
-{																																								\
-	return MakeProtoSendBuffer(UserAndGameServer::MsgType::##_msgType, UserAndGameServer::Protocol::##_protocolName, _packet);										\
-}																																								\
+#define DECL_MAKE_SENDBUF_FROM_GAME_SERVER_PACKET(_msgType, _protocolName)														\
+static SendBufferSptr MakeSendBufferFromPacket(UserAndGameServer::##_msgType##_protocolName& _packet)							\
+{																																\
+	return MakeProtoSendBuffer(UserAndGameServer::MsgType::##_msgType, UserAndGameServer::Protocol::##_protocolName, _packet);	\
+}																																\
 
 
-
-class ClientPacketHandler
+class GameServerPacketHandler
 {
 private:
 	static map<UserAndGameServer::Protocol, PacketFunc*> userAndGameServerReqMap;	//받은 req를 handle
@@ -28,14 +27,16 @@ private:
 public:
 	static void Init();
 	static bool HandlePayload(SessionSptr _session, BYTE* _buf, uint32_t _size);
-public:
+
+	
+public: //server에 보낼 packet을 통해 sendBytes를 만드는 과정에 대한 영역, 모든 gameserver로 보내는 packet에 대하여 선언해야한다.
 	template<typename MSG_TYPE, typename P, typename T>
 	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet);
-	DECL_MAKE_SENDBUF_FROM_PACKET(Req, Chat);
+	DECL_MAKE_SENDBUF_FROM_GAME_SERVER_PACKET(Req, Chat);
 };
 
 template<typename MSG_TYPE, typename P, typename T>
-SendBufferSptr ClientPacketHandler::MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet) {
+SendBufferSptr GameServerPacketHandler::MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet) {
 
 	uint16_t byteLen = _packet.ByteSizeLong();
 	uint32_t headerVal = sizeof(MSG_TYPE) + sizeof(P) + byteLen;

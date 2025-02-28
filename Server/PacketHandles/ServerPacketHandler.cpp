@@ -8,6 +8,18 @@
 	RegistPacketFunc(UserAndGameServer::MsgType::##_msgType, UserAndGameServer::Protocol::##_protocol, _func);		\
 }																													\
 
+#define REGIST_USER_PACKET_FUNC(_msgType, _protocol, _func) {														\
+	RegistPacketFunc(UserAndGameServer::MsgType::##_msgType, UserAndGameServer::Protocol::##_protocol, _func);		\
+}
+
+#define REGIST_USER_PACKET_HANDLE(_msgType, _protocol) {															\
+	REGIST_PACKET_FUNC(_msgType, _protocol, [](SessionSptr _session, BufReader* _brPtr) {							\
+		UserAndGameServer::##_msgType##_protocol packet;																\
+		packet.ParseFromArray(_brPtr->Buffer() + _brPtr->ReadSize(), _brPtr->FreeSize());							\
+		_brPtr->Close();																							\
+		return UserAndGameServerHandle::##_msgType##_protocol(static_pointer_cast<UserSession>(_session), packet);	\
+		});																											\
+}
 
 map<UserAndGameServer::Protocol, PacketFunc*> ServerPacketHandler::userAndGameServerReqMap;	//받은 req를 handle
 map<UserAndGameServer::Protocol, PacketFunc*> ServerPacketHandler::userAndGameServerAnsMap;  //받은 ans를 handle
@@ -70,19 +82,20 @@ void ServerPacketHandler::Init()
 		printf("handle for AnsTestMsg.\n");
 		return false;
 	});
-
-	REGIST_PACKET_FUNC(Req, Chat, [](SessionSptr _session, BufReader* _brPtr){
-		UserAndGameServer::ReqChat packet;
-		packet.ParseFromArray(_brPtr->Buffer() + _brPtr->ReadSize(), _brPtr->FreeSize());
-		_brPtr->Close();
-		return UserAndGameServerHandle::ReqChat(static_pointer_cast<UserSession>(_session), packet);
-	});
-	REGIST_PACKET_FUNC(Req, Login, [](SessionSptr _session, BufReader* _brPtr){
-		UserAndGameServer::ReqLogin packet;
-		packet.ParseFromArray(_brPtr->Buffer() + _brPtr->ReadSize(), _brPtr->FreeSize());
-		_brPtr->Close();
-		return UserAndGameServerHandle::ReqLogin(static_pointer_cast<UserSession>(_session), packet);
-	});
+	//REGIST_PACKET_FUNC(Req, Chat, [](SessionSptr _session, BufReader* _brPtr){
+	//	UserAndGameServer::ReqChat packet;
+	//	packet.ParseFromArray(_brPtr->Buffer() + _brPtr->ReadSize(), _brPtr->FreeSize());
+	//	_brPtr->Close();
+	//	return UserAndGameServerHandle::ReqChat(static_pointer_cast<UserSession>(_session), packet);
+	//});
+	//REGIST_PACKET_FUNC(Req, Login, [](SessionSptr _session, BufReader* _brPtr){
+	//	UserAndGameServer::ReqLogin packet;
+	//	packet.ParseFromArray(_brPtr->Buffer() + _brPtr->ReadSize(), _brPtr->FreeSize());
+	//	_brPtr->Close();
+	//	return UserAndGameServerHandle::ReqLogin(static_pointer_cast<UserSession>(_session), packet);
+	//});
+	REGIST_USER_PACKET_HANDLE(Req, Chat);
+	REGIST_USER_PACKET_HANDLE(Req, Login);
 }
 
 void ServerPacketHandler::RegistPacketFunc(UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, PacketFunc* _packetHandle)

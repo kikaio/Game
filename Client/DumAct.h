@@ -19,6 +19,8 @@ protected:
 };
 
 class DumActGameServerConnect : public DumAct {
+public:
+	DumActGameServerConnect(uint64_t _delayMsec);
 protected:
 	void DoAct(DummyUserSptr _dumSptr) override;
 };
@@ -26,6 +28,8 @@ protected:
 class DumActChat : public DumAct{
 public:
 	string chatMsg = "dum chat";
+public:
+	DumActChat(uint64_t _delayMsec, string _chatMsg = "dum default chat");
 protected:
 	void DoAct(DummyUserSptr _dumSptr) override; 
 };

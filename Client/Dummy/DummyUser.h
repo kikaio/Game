@@ -21,9 +21,10 @@ public:
 #pragma region test scenario 관련
 private:
 	int32_t dumActIdx = 0;
+	bool isLoopTest = false;
 	vector<DumActSptr> dumActs;
 public:
-	void SetTestScenario(const std::vector<DumActSptr>& _dumActs);
+	void SetTestScenario(const std::vector<DumActSptr>& _dumActs, bool _isLoopTest = false);
 	void DoDumAct();
 #pragma endregion
 
@@ -40,6 +41,7 @@ public:
 	}
 public:
 	void OnGameServerSessionDisconnected();
+	void OnGameServerSessionConnected();
 
 #pragma endregion 
 

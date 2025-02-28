@@ -27,7 +27,7 @@
     <ClCompile Include="GameServerSession.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="ClientPacketHandler.cpp">
+    <ClCompile Include="GameServerPacketHandler.cpp">
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="UserAndGameServerHandle\ReqTestMsg.cpp">
@@ -65,7 +65,7 @@
     <ClInclude Include="GameServerSession.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="ClientPacketHandler.h">
+    <ClInclude Include="GameServerPacketHandler.h">
       <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="UserAndGameServerHandle\UserAndGameServerHandle.h">

@@ -17,13 +17,24 @@ bool DummyUser::IsConnected()
 	return true;
 }
 
-void DummyUser::SetTestScenario(const std::vector<DumActSptr>& _dumActs)
+void DummyUser::SetTestScenario(const std::vector<DumActSptr>& _dumActs, bool _isLoopTest)
 {	
+	isLoopTest = _isLoopTest;
 	dumActs = _dumActs;
 }
 
 void DummyUser::DoDumAct()
 {
+	if(dumActIdx >= dumActs.size()) {
+		if(isLoopTest) {
+			//처음부터 다시 반족하는 test의 경우
+			dumActIdx = 0;
+		}
+		else {
+			printf("[dummy:%d]test scenario fin\n", dummyIdx);
+			return ;
+		}
+	}
 	DumActSptr act = dumActs[dumActIdx++];
 	if(act == nullptr) {
 		// todo : error logging 
@@ -46,8 +57,10 @@ void DummyUser::OnGameServerSessionDisconnected()
 {
 	//todo : 기존 session 참조를 nullptr로
 	gameServerSession = nullptr;
-	profile.Clear();
-	if(dummyUserRecycle == false) {
-		DummyUserManager::Get().PopDummyUser(dummyIdx);
-	}
+	DoDumAct();
+}
+
+void DummyUser::OnGameServerSessionConnected()
+{
+	DoDumAct();
 }

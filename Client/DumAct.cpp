@@ -3,25 +3,44 @@
 #include "DummyUser.h"
 #include "GameServerSession.h"
 
+DumActGameServerConnect::DumActGameServerConnect(uint64_t _delayMsec)
+{
+	this->actDelayMsec = _delayMsec;
+}
+
 void DumActGameServerConnect::DoAct(DummyUserSptr _dumSptr)
 {
-	GameServerSessionSptr gsSession = MakeShared<GameServerSession>();
-	_dumSptr->SetGameServerSession(gsSession);
-	gsSession->SetOnSessionDisconnectedFunc([_dumSptr = _dumSptr]() {
-		_dumSptr->OnGameServerSessionDisconnected();
-	});
-	gsSession->Net()->SetAddrAny(0);
-	if(gsSession->Bind() == false) {
-		printf("[dummy:%d]bind failed.. err : %d\n", _dumSptr->GetDummyIdx(), WSAGetLastError());
-		return ;
-	}
-	IocpCoreSptr iocpCoreSptr = _dumSptr->gameServerNetCore->GetIocpCore();
-	gsSession->SetSockOpts();
-	gsSession->SetNetCore(_dumSptr->gameServerNetCore);
-	gsSession->SetIocpCore(iocpCoreSptr);
-	iocpCoreSptr->RegistToIocp(gsSession->Sock());
-	gsSession->TryConnect();
+	JobTimer::Get().Reserve(actDelayMsec, _dumSptr, [_dumSptr]() {
+
+		GameServerSessionSptr gsSession = MakeShared<GameServerSession>();
+		_dumSptr->SetGameServerSession(gsSession);
+
+		gsSession->SetOnSessionConnectedFunc([_dumSptr = _dumSptr]() {
+			_dumSptr->OnGameServerSessionConnected();
+			});
+		gsSession->SetOnSessionDisconnectedFunc([_dumSptr = _dumSptr]() {
+			_dumSptr->OnGameServerSessionDisconnected();
+			});
+		gsSession->Net()->SetAddrAny(0);
+		if (gsSession->Bind() == false) {
+			printf("[dummy:%d]bind failed.. err : %d\n", _dumSptr->GetDummyIdx(), WSAGetLastError());
+			return;
+		}
+		IocpCoreSptr iocpCoreSptr = _dumSptr->gameServerNetCore->GetIocpCore();
+		gsSession->SetSockOpts();
+		gsSession->SetNetCore(_dumSptr->gameServerNetCore);
+		gsSession->SetIocpCore(iocpCoreSptr);
+		iocpCoreSptr->RegistToIocp(gsSession->Sock());
+		gsSession->TryConnect();
+		}
+	);
 	return ;
+}
+
+DumActChat::DumActChat(uint64_t _delayMsec, string _chatMsg)
+{
+	this->actDelayMsec = _delayMsec;
+	chatMsg = _chatMsg;
 }
 
 void DumActChat::DoAct(DummyUserSptr _dumSptr) {
