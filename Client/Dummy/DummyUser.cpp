@@ -64,3 +64,22 @@ void DummyUser::OnGameServerSessionConnected()
 {
 	DoDumAct();
 }
+
+void DummyUser::SetLoginData(const LoginData& _loginData)
+{
+	loginData = _loginData;
+}
+
+const LoginData& DummyUser::GetLoginData() {
+	return loginData;
+}
+
+void DummyUser::SetChatProfile(const ChatProfile& _chatProfile)
+{
+	chatProfile = _chatProfile;
+}
+
+const ChatProfile& DummyUser::GetChatProfile()
+{
+	return chatProfile;
+}

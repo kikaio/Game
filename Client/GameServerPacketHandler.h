@@ -1,5 +1,10 @@
 #pragma once
 
+/// <summary>
+/// packet을 수령 후 실질적인 handler 호출까지 담당, 
+/// 추가적으로 특정 proto packet 을 send buffer로 가공하는 것까지 담당
+/// </summary>
+
 class BufReader;
 
 #define DECL_MAKE_SENDBUF_FROM_GAME_SERVER_PACKET(_msgType, _protocolName)														\
@@ -33,6 +38,7 @@ public: //server에 보낼 packet을 통해 sendBytes를 만드는 과정에 대
 	template<typename MSG_TYPE, typename P, typename T>
 	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet);
 	DECL_MAKE_SENDBUF_FROM_GAME_SERVER_PACKET(Req, Chat);
+	DECL_MAKE_SENDBUF_FROM_GAME_SERVER_PACKET(Req, Login);
 };
 
 template<typename MSG_TYPE, typename P, typename T>

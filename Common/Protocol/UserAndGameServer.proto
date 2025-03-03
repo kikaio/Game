@@ -20,18 +20,34 @@ enum Protocol {
 	Login = 6;
 }
 
+
 message UserProfile {
-	string nick_name = 1;
+	int32 profile_id = 1;
+	int32 account_lv = 2;
+	string nick_name = 3;
+	string greeting_ment = 4;
+	int32 profile_hero_id = 5;
+	int32 profile_frame_id = 6;
+	int32 main_hero_id = 7;
 }
 
-message ChatInfo {
+message ChatProfile {
+	int32 profile_id = 1;
+	string nick_name = 2;
+	int32 profile_hero_id = 3;
+	int32 profile_frame_id = 4;
+	int32 main_hero_id = 5;
+}
+
+message ChatData {
 	int32 chat_type = 1;
-	UserProfile user_profile = 2;
+	ChatProfile chat_profile = 2;
 	string msg = 3;
 }
 
 message LoginData {
 	string device_key = 1;
+	int32 login_platform = 2;
 }
 
 message LoginResultData {
@@ -69,11 +85,11 @@ message AnsTestMsg {
 }
 
 message ReqChat {
-	ChatInfo chat_info = 1;
+	ChatData chat_data = 1;
 }
 
 message AnsChat {
-	ChatInfo chat_info = 1;
+	ChatData chat_data = 1;
 }
 
 message ReqLogin {
@@ -82,4 +98,5 @@ message ReqLogin {
 
 message AnsLogin {
 	LoginResultData login_result_data = 1;
+	UserProfile user_profile = 2;
 }

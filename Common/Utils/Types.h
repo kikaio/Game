@@ -56,3 +56,15 @@ using AccountId_t = uint64_t;
 #define size32(val)		static_cast<int32>(sizeof(val))
 #define len16(arr)		static_cast<int16>(sizeof(arr)/sizeof(arr[0]))
 #define len32(arr)		static_cast<int32>(sizeof(arr)/sizeof(arr[0]))
+
+
+enum class LOGIN_PLATFORM {
+	GUEST = 0,
+	GOOGLE = 1,
+	IOS = 2, 
+};
+
+enum class CHAT_TYPE {
+	NORMAL = 0,
+	GUILD = 1,
+};

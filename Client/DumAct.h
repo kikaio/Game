@@ -16,6 +16,8 @@ public:
 	}
 protected:
 	virtual void DoAct(DummyUserSptr _dumSptr) = 0;
+protected:
+	void ReserveAct(DummyUserSptr _dumSptr, CallBackType&& _cb);
 };
 
 class DumActGameServerConnect : public DumAct {
@@ -25,12 +27,37 @@ protected:
 	void DoAct(DummyUserSptr _dumSptr) override;
 };
 
+class DumActSetChatProfile : public DumAct {
+public: 
+	ChatProfile chatProfile;
+public:
+	DumActSetChatProfile(const ChatProfile& _chatProfile);
+protected:
+	void DoAct(DummyUserSptr _dumSptr) override;
+};
+
 class DumActChat : public DumAct{
 public:
+	CHAT_TYPE chatType;
 	string chatMsg = "dum chat";
 public:
-	DumActChat(uint64_t _delayMsec, string _chatMsg = "dum default chat");
+	DumActChat(uint64_t _delayMsec, string _chatMsg = "dum default chat", CHAT_TYPE _chatType=CHAT_TYPE::NORMAL);
 protected:
 	void DoAct(DummyUserSptr _dumSptr) override; 
 };
 
+class DumActSetLoginData : public DumAct {
+public:
+	LoginData loginData;
+public:
+	DumActSetLoginData(string _deviceKey, LOGIN_PLATFORM _platformType);
+protected:
+	void DoAct(DummyUserSptr _dumSptr) override;
+};
+
+class DumActLogin : public DumAct {
+public:
+	DumActLogin(uint64_t _delayMsec);
+protected:
+	void DoAct(DummyUserSptr _dumSptr) override;
+};

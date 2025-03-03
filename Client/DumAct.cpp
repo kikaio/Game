@@ -3,6 +3,11 @@
 #include "DummyUser.h"
 #include "GameServerSession.h"
 
+void DumAct::ReserveAct(DummyUserSptr _dumSptr, CallBackType&& _cb)
+{
+	JobTimer::Get().Reserve(actDelayMsec, _dumSptr, std::move(_cb));
+}
+
 DumActGameServerConnect::DumActGameServerConnect(uint64_t _delayMsec)
 {
 	this->actDelayMsec = _delayMsec;
@@ -37,30 +42,77 @@ void DumActGameServerConnect::DoAct(DummyUserSptr _dumSptr)
 	return ;
 }
 
-DumActChat::DumActChat(uint64_t _delayMsec, string _chatMsg)
+DumActSetChatProfile::DumActSetChatProfile(const ChatProfile& _chatProfile)
+{
+	chatProfile = _chatProfile;
+}
+
+void DumActSetChatProfile::DoAct(DummyUserSptr _dumSptr)
+{
+	_dumSptr->SetChatProfile(chatProfile);
+}
+
+DumActChat::DumActChat(uint64_t _delayMsec, string _chatMsg, CHAT_TYPE _chatType)
 {
 	this->actDelayMsec = _delayMsec;
+	chatType = _chatType;
 	chatMsg = _chatMsg;
 }
 
 void DumActChat::DoAct(DummyUserSptr _dumSptr) {
 	// todo : dummy user send chat packet using msg value
-	JobTimer::Get().Reserve(actDelayMsec, _dumSptr, [_dumSptr, chatMsg = chatMsg]() {
+	JobTimer::Get().Reserve(actDelayMsec, _dumSptr, [_dumSptr, chatMsg = chatMsg, chatType=chatType]() {
 		if (_dumSptr->IsConnected() == false) {
 			return;
 		}
-		UserAndGameServer::ReqChat packet;
-
-		auto* chatInfo = packet.mutable_chat_info();
-		auto* profile = chatInfo->mutable_user_profile();
-		profile->set_nick_name(_dumSptr->GetNickname());
-		chatInfo->set_msg(chatMsg + "from " + _dumSptr->GetNickname());
+		UserAndGameServer::ReqChat _req;
+		ChatData chatData;
+		chatData.chatType = chatType;
+		chatData.chatProfile = _dumSptr->GetChatProfile();
+		chatData.msg = chatMsg;
+		ProtoConverter::ToProto(chatData, _req);
 		auto _gsSession = _dumSptr->GetGameServerSession();
-		if (_gsSession->SendPacketReqChat(packet) == false) {
+		if (_gsSession->SendPacketReqChat(_req) == false) {
 			//todo : logging
 		}
 		return;
 		}
 	);
 	return;
+}
+
+
+DumActSetLoginData::DumActSetLoginData(string _deviceKey, LOGIN_PLATFORM _platformType)
+{
+	loginData.deviceKey = _deviceKey;
+	loginData.loginPlatform = _platformType;
+}
+
+void DumActSetLoginData::DoAct(DummyUserSptr _dumSptr)
+{
+	_dumSptr->SetLoginData(loginData);
+	return ;
+}
+
+DumActLogin::DumActLogin(uint64_t _delayMsec)
+{
+	actDelayMsec = _delayMsec;
+}
+
+void DumActLogin::DoAct(DummyUserSptr _dumSptr)
+{
+	//지정된 delay 후 행동하도록.
+	ReserveAct(_dumSptr, [_dumSptr, this](){
+		UserAndGameServer::ReqLogin _req;
+		ProtoConverter::ToProto(_dumSptr->GetLoginData(), _req);
+		auto gsSession = _dumSptr->GetGameServerSession();
+		if(gsSession->SendPacketReqLogin(_req) == false){
+			//todo : erro logging
+			return ;
+		}
+
+		return ;
+	});
+
+	return ;
 }

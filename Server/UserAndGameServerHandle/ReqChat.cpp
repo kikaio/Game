@@ -4,16 +4,6 @@
 
 namespace UserAndGameServerHandle {
 
-	void SetAnsChatPacket(UserAndGameServer::ReqChat& _req, UserAndGameServer::AnsChat& _ans) {
-		auto* chatInfo = _ans.mutable_chat_info();
-		auto* userProfile = chatInfo->mutable_user_profile();
-
-		chatInfo->set_chat_type(_req.chat_info().chat_type());
-		userProfile->set_nick_name(_req.chat_info().user_profile().nick_name());
-		chatInfo->set_msg(_req.chat_info().msg());
-		return;
-	}
-
 	bool ReqChat(UserSessionSptr _session, UserAndGameServer::ReqChat& _packet) {
 
 		auto curNetCore = _session->GetNetCore();
@@ -21,8 +11,11 @@ namespace UserAndGameServerHandle {
 			return false;
 		}
 
+		ChatData chatData;
+		ProtoConverter::FromPacket(_packet, OUT chatData);
+
 		UserAndGameServer::AnsChat ans;
-		SetAnsChatPacket(_packet, ans);
+		ProtoConverter::ToPacket(chatData, OUT ans);
 		SendBufferSptr sendBuf = ServerPacketHandler::MakePacketAnsChat(ans);
 		curNetCore->BroadCast(sendBuf);
 		return true;
