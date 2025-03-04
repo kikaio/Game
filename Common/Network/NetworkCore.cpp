@@ -123,6 +123,11 @@ vector<SessionSptr> NetworkCore::StartConnect(UInt32 _connCnt)
 
 	return sessions;
 }
+void NetworkCore::SetTag(UInt32 _tag1, UInt32 _tag2)
+{
+	sessionMgr.SetTag(_tag1, _tag2);
+}
+
 HANDLE NetworkCore::GetIocpHandle()
 {
 	if(iocpCore == nullptr) {

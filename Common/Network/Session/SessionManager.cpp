@@ -1,9 +1,16 @@
 #include "pch.h"
 #include "Session.h"
 
+void SessionManager::SetTag(UInt32 _tag_1, UInt32 _tag_2)
+{
+	tag1 = _tag_1;
+	tag2 = _tag_2;
+}
+
 void SessionManager::PushSession(SessionSptr _session)
 {
 	LOCK_GUARDDING(sessionsLock);
+	_session->SetId(GenSessionId());
 	sessions.push_back(_session);
 
 
@@ -74,7 +81,7 @@ SessionSptr SessionManager::PopSession(SessionSptr _target)
 string SessionManager::GenSessionId()
 {
 	auto curTimeStr = ClockUtil::GetNowStrWithMilli();
-	string ret = to_string(regionNo) + '_' + to_string(serverNo) + '_' + curTimeStr;
+	string ret = to_string(tag1) + '_' + to_string(tag2) + '_' + curTimeStr;
 	//todo : encrypt?
 	return ret;
 }

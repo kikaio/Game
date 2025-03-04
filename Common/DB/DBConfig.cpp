@@ -45,8 +45,8 @@ void DBConfig::Init(rapidjson::Value& _val)
 	userStr = _val["user"].GetString();
 	pwStr = _val["pw"].GetString();
 	rwTypeStr = _val["rw_type"].GetString();
-	port = _val["pool_cnt"].GetUint();
-	poolCnt = _val["port"].GetUint();
+	port = _val["port"].GetUint();
+	poolCnt = _val["pool_cnt"].GetUint();
 	//해당 DB에 대한 pool의 최대 수.
 	if(_val.HasMember("max_pool_cnt") == false || _val["max_pool_cnt"].GetInt() <= poolCnt) {
 		maxPoolCnt = poolCnt;

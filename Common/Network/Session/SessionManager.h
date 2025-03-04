@@ -7,8 +7,10 @@ private:
 	VAL_LOCK(sessionsLock);
 //	map<string, SessionSptr> sessions;
 	Vector<SessionSptr> sessions;
-	UInt32 regionNo = 0;
-	UInt32 serverNo = 0;
+	UInt32 tag1 = 0;
+	UInt32 tag2 = 0;
+public:
+	void SetTag(UInt32 _tag_1, UInt32 _tag_2);
 public:
 	void PushSession(SessionSptr _session);
 	SessionSptr GetSession(string _sid);

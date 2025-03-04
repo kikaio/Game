@@ -46,7 +46,7 @@ void InitConfigs() {
     gameConf.ReadFromJson(gameValue);
 
     rapidjson::Value dbValue(kArrayType);
-    jr.GetObjectW("db_configs", OUT dbValue);
+    jr.GetArray("db_configs", OUT dbValue);
     ASSERT_CRASH(dbValue.IsArray());
 
     for (auto iter = dbValue.Begin(); iter != dbValue.End(); iter++) {
@@ -57,7 +57,7 @@ void InitConfigs() {
     }
 
     rapidjson::Value redisValues(kArrayType);
-    jr.GetObjectW("redis", redisValues);
+    jr.GetArray("redis", OUT redisValues);
     ASSERT_CRASH(redisValues.IsArray());
     for(auto _iter = redisValues.Begin(); _iter != redisValues.End(); _iter++) {
         rapidjson::Value& val = *_iter;
@@ -98,6 +98,10 @@ int32_t DoServerLogic() {
 
 void DoIocpGameService(NetworkCoreSptr netCore) {
     ServerPacketHandler::Init();
+    UInt32 tag1 = 1;
+    UInt32 tag2 = 2;
+
+    netCore->SetTag(tag1, tag2);
     ASSERT_CRASH(netCore->Ready());
     printf("wsa standby.\n");
 
@@ -111,8 +115,15 @@ void DoIocpGameService(NetworkCoreSptr netCore) {
         //sid는 accept, connect 완료 시 자동 할당한다. => After 함수들 참고.
         UserSessionSptr user = MakeShared<UserSession>();
         //GameUser와의 연결은 GameService에서 특정 RPC를 통해 계정 로그인 후에 부여한다.
+        user->SetOnSessionConnectedFunc([user]() {
+            //session 을 redis에 저장.   
+            shared_ptr<RedisConn> _conn = RedisConnPool::Get().GetSessionConn();
+            printf("session id save to redis : %s", user->GetSId().c_str());
+            _conn->set(user->GetSId().c_str(), "session_id");
+            }
+        );
         return static_pointer_cast<Session>(user);
-        };
+    };
 
 
     netCore->ReadyToAccept(listener, backlog, accepterCnt);

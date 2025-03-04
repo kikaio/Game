@@ -24,6 +24,7 @@ public:
 	bool ReadyToAccept(ListenerSptr _listener, UInt32 _backlog, UInt32 _acceptCnt);
 	bool ReadyToConnect(string _ip, UInt32 _port);
 	vector<SessionSptr> StartConnect(UInt32 _connCnt);
+	void SetTag(UInt32 _tag1, UInt32 _tag2);
 public:
 	HANDLE GetIocpHandle();
 	void Dispatch(UInt32 _milliSec);
