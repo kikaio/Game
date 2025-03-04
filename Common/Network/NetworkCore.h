@@ -20,7 +20,7 @@ private:
 	void DispatchEvent(class IocpEvent* _event, UInt32 _bytes);
 
 public:
-	bool Ready();
+	bool Ready(DWORD _iocpThreadPoolCnt = 0);
 	bool ReadyToAccept(ListenerSptr _listener, UInt32 _backlog, UInt32 _acceptCnt);
 	bool ReadyToConnect(string _ip, UInt32 _port);
 	vector<SessionSptr> StartConnect(UInt32 _connCnt);

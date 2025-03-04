@@ -10,7 +10,7 @@ NetworkCore::NetworkCore()
 	};
 }
 
-bool NetworkCore::Ready()
+bool NetworkCore::Ready(DWORD _iocpThreadPoolCnt)
 {
 	wsaReady = MakeShared<WsaReady>();
 	if (wsaReady->Ready() == false) {
@@ -22,7 +22,7 @@ bool NetworkCore::Ready()
 
 	iocpCore = MakeShared<IocpCore>();
 	// ready에서 handle 도 생성함.
-	if (iocpCore->Ready() == false) {
+	if (iocpCore->Ready(_iocpThreadPoolCnt) == false) {
 		printf("iocp core ready failed\n");
 		CRASH("iocp core ready failed\n");
 		return false;

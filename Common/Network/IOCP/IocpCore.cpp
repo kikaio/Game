@@ -22,12 +22,12 @@ void IocpCore::ErrorHandle(UInt32 _err)
 
 HANDLE IocpCore::CreateIocpHandle(DWORD _threadCnt)
 {
-    return CreateIoCompletionPort(INVALID_HANDLE_VALUE, nullptr, NULL, 0);
+    return CreateIoCompletionPort(INVALID_HANDLE_VALUE, nullptr, NULL, _threadCnt);
 }
 
-bool IocpCore::Ready()
+bool IocpCore::Ready(DWORD _threadCnt)
 {
-    iocpHandle = CreateIocpHandle(0);
+    iocpHandle = CreateIocpHandle(_threadCnt);
     if (iocpHandle == NULL) {
         DWORD err = GetLastError();
         //todo : logging

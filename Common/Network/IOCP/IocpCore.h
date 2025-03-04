@@ -12,7 +12,7 @@ private:
 	void ErrorHandle(UInt32 _err);
 	HANDLE CreateIocpHandle(DWORD _threadCnt);
 public:
-	bool Ready();
+	bool Ready(DWORD _threadPoolCnt);
 	BOOL RegistToIocp(SOCKET _sock);
 	HANDLE IocpHandle() {
 		return iocpHandle;
