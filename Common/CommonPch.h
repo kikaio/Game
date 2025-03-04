@@ -115,6 +115,7 @@ using namespace std;
 #include <sqlext.h>
 
 #include "DBEnums.h"
+#include "DBConfig.h"
 #include "DBConnection.h"
 #include "DBConnectionPool.h"
 #include "DBBind.h"

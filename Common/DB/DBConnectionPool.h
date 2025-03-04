@@ -14,14 +14,19 @@ private:
 	SQLHENV env = SQL_NULL_HANDLE;
 	vector<DBConnection*> connections;
 private:
+	map<RWType, DBConfig> commonDBConfMap;
+	map<RWType, DBConfig> gameDBConfMap;
+private:
 	map<RWType, vector<DBConnection*>> commonDBConnMap;
 	map<RWType, vector<DBConnection*>> gameDBConnMap;
+private:
+	void Push(DBConnection* _conn);
 public:
-	bool Connect(int32_t _connCnt, string _odbcName, string _host, string _user, string _pwd, DBNameType _dbNameType, RWType _rwType);
+	bool Connect(const DBConfig& _conf);
 	void Clear();
 public:
-	DBConnection* PopCommonDB(RWType _rwType = RWType::READ_WRITE);
-	DBConnection* PopGameDB(RWType _rwType = RWType::READ_WRITE);
-	void Push(DBConnection* _conn);
-
+	shared_ptr<DBConnection> PopCommonDB(RWType _rwType = RWType::READ_WRITE);
+	shared_ptr<DBConnection> PopGameDB(RWType _rwType = RWType::READ_WRITE);
+public:
+	static void ReleaseConn(DBConnection* _conn);
 };

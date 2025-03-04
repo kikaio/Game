@@ -14,18 +14,17 @@ int32_t DBWrapper::DoDatabaseTest()
     );                                                  \
     ";
 
-
-    DBConnection* conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
-    ASSERT_CRASH(conn != nullptr);
-    ASSERT_CRASH(conn->Execute(sql));
-    conn->Unbind();
-    ASSERT_CRASH(conn->Execute(sql2));
-    conn->Unbind();
-    DBConnectionPool::Get().Push(conn);
-
+    {
+        DBConnectionSptr conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
+        ASSERT_CRASH(conn != nullptr);
+        ASSERT_CRASH(conn->Execute(sql));
+        conn->Unbind();
+        ASSERT_CRASH(conn->Execute(sql2));
+        conn->Unbind();
+    }
 
     for (int32_t idx = 0; idx < 3; idx++) {
-        DBConnection* conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
+        DBConnectionSptr conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
         ASSERT_CRASH(conn != nullptr);
 
         DBBind<3, 0> bind(*conn, "INSERT INTO `gold` (`gold`, `name`, `cDate`) VALUES (?, ?, ?);");
@@ -36,12 +35,10 @@ int32_t DBWrapper::DoDatabaseTest()
         bind.BindParam(1, name);
         bind.BindParam(2, ts);
         ASSERT_CRASH(bind.Execute());
-
-        DBConnectionPool::Get().Push(conn);
     }
 
     {
-        DBConnection* conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
+        DBConnectionSptr conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
 
         DBBind<1, 4> bind(*conn, "SELECT id, gold, name, cDate FROM `gold` WHERE gold = (?);");
 
@@ -63,8 +60,6 @@ int32_t DBWrapper::DoDatabaseTest()
             printf("cur Id : %d, gold : %d\n", outId, outGold);
             printf("cur name : %s, year : %d, month : %d, day : %d\n", outName, outTs.year, outTs.month, outTs.day);
         }
-
-        DBConnectionPool::Get().Push(conn);
     }
 
     DBConnectionPool::Get().Clear();

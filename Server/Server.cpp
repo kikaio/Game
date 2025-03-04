@@ -17,7 +17,6 @@ int32_t DoServerLogic();
 
 static GameConfig gameConf;
 static MasterConfig masterConf;
-static std::map<string, DBConfig> dbConfigs;
 static std::map<string, RedisConfig> redisConfigs;
 
 int main()
@@ -55,11 +54,7 @@ void InitConfigs() {
         rapidjson::Value& dbConfigVal = *iter;
         DBConfig dbConf;
         dbConf.Init(dbConfigVal);
-        dbConfigs.emplace(dbConf.dbNameStr, dbConf);
-        ASSERT_CRASH(DBConnectionPool::Get().Connect(dbConf.poolCnt
-            , DBConfig::odbcName, dbConf.hostStr
-            , dbConf.userStr, dbConf.pwStr, dbConf.dbNameType, dbConf.rwType
-        ));
+        ASSERT_CRASH(DBConnectionPool::Get().Connect(dbConf));
     }
 
     rapidjson::Value redisValues(kArrayType);
