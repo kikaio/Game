@@ -47,6 +47,14 @@ void DBConfig::Init(rapidjson::Value& _val)
 	rwTypeStr = _val["rw_type"].GetString();
 	port = _val["pool_cnt"].GetUint();
 	poolCnt = _val["port"].GetUint();
+	//해당 DB에 대한 pool의 최대 수.
+	if(_val.HasMember("max_pool_cnt") == false || _val["max_pool_cnt"].GetInt() <= poolCnt) {
+		maxPoolCnt = poolCnt;
+	}
+	else {
+		maxPoolCnt = _val["max_pool_cnt"].GetInt();
+	}
+
 	connTimeoutSec = _val["conn_timeout_sec"].GetUint();
 	readTimeoutSec = _val["read_timeout_sec"].GetUint();
 	writeTimeoutSec = _val["write_timeout_sec"].GetUint();

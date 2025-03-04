@@ -171,6 +171,7 @@
     <ClInclude Include="CommonPch.h" />
     <ClInclude Include="CommonProtocol.h" />
     <ClInclude Include="DBBind.h" />
+    <ClInclude Include="DB\DBConfig.h" />
     <ClInclude Include="DB\DBConnection.h" />
     <ClInclude Include="DB\DBConnectionPool.h" />
     <ClInclude Include="DB\DBEnums.h" />
@@ -228,6 +229,7 @@
     <ClCompile Include="CommonPch.cpp" />
     <ClCompile Include="CommonTLS.cpp" />
     <ClCompile Include="DBBind.cpp" />
+    <ClCompile Include="DB\DBConfig.cpp" />
     <ClCompile Include="DB\DBConnection.cpp" />
     <ClCompile Include="DB\DBConnectionPool.cpp" />
     <ClCompile Include="Job\GlobalQueue.cpp" />

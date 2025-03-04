@@ -51,9 +51,6 @@
     <ClCompile Include="User\GameProfile.cpp">
       <Filter>User</Filter>
     </ClCompile>
-    <ClCompile Include="ConfigClass\DBConfig.cpp">
-      <Filter>ConfigClass</Filter>
-    </ClCompile>
     <ClCompile Include="DBWrapper\DBWrapper.cpp">
       <Filter>DBWrapper</Filter>
     </ClCompile>
@@ -112,9 +109,6 @@
     </ClInclude>
     <ClInclude Include="User\GameProfile.h">
       <Filter>User</Filter>
-    </ClInclude>
-    <ClInclude Include="ConfigClass\DBConfig.h">
-      <Filter>ConfigClass</Filter>
     </ClInclude>
     <ClInclude Include="ServerEnums.h">
       <Filter>Main</Filter>
