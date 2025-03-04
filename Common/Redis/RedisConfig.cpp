@@ -6,7 +6,10 @@ RedisConfig::RedisConfig(const RedisConfig& _other)
 	redisName = _other.redisName;
 	nameStr = _other.nameStr;
 	hostStr = _other.hostStr;
+	pw = _other.pw;
 	port = _other.port;
+	dbNo = _other.dbNo;
+	poolCnt = _other.poolCnt;
 }
 
 void RedisConfig::Init(rapidjson::Value& _doc) {

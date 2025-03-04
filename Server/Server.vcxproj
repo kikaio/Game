@@ -161,7 +161,6 @@
   <ItemGroup>
     <ClCompile Include="ConfigClass\GameConfig.cpp" />
     <ClCompile Include="ConfigClass\MasterConfig.cpp" />
-    <ClCompile Include="ConfigClass\RedisConfig.cpp" />
     <ClCompile Include="DBWrapper\DBWrapper.cpp" />
     <ClCompile Include="MasterAndGameServerHandle\AnsMasterServerConnect.cpp" />
     <ClCompile Include="MonitorHelper.cpp" />
@@ -186,7 +185,6 @@
   <ItemGroup>
     <ClInclude Include="ConfigClass\GameConfig.h" />
     <ClInclude Include="ConfigClass\MasterConfig.h" />
-    <ClInclude Include="ConfigClass\RedisConfig.h" />
     <ClInclude Include="DBWrapper\DBWrapper.h" />
     <ClInclude Include="MasterAndGameServerHandle\MasterAndGameServerHandle.h" />
     <ClInclude Include="MonitorHelper.h" />

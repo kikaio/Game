@@ -17,7 +17,6 @@ int32_t DoServerLogic();
 
 static GameConfig gameConf;
 static MasterConfig masterConf;
-static std::map<string, RedisConfig> redisConfigs;
 
 int main()
 {
@@ -64,11 +63,8 @@ void InitConfigs() {
         rapidjson::Value& val = *_iter;
         RedisConfig redisConf ;
         redisConf.Init(val);
-        redisConfigs.emplace(redisConf.nameStr, redisConf);
         //todo : redis db connect
-        RedisConnPool::Get().Add(redisConf.redisName, redisConf.hostStr, redisConf.port
-            , redisConf.pw, redisConf.dbNo, redisConf.poolCnt
-        );
+        RedisConnPool::Get().Add(redisConf);
     }
 }
 
@@ -138,7 +134,7 @@ void DoIocpMasterService(NetworkCoreSptr master) {
 
     int32_t serverNo = 1;
     string serverName = "game_instance";
-    ASSERT_CRASH(master->Ready());
+    ASSERT_CRASH(master->Ready(1));
     ASSERT_CRASH(master->ReadyToConnect(masterConf.hostStr, masterConf.port));
 
     master->CreateSessionFactory = [serverNo, serverName](){

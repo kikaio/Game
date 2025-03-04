@@ -122,6 +122,7 @@ using namespace std;
 
 
 #include "RedisEnum.h"
+#include "RedisConfig.h"
 #include "RedisConn.h"
 #include "RedisConnPool.h"
 

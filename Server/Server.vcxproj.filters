@@ -75,9 +75,6 @@
     <ClCompile Include="ConfigClass\GameConfig.cpp">
       <Filter>ConfigClass</Filter>
     </ClCompile>
-    <ClCompile Include="ConfigClass\RedisConfig.cpp">
-      <Filter>ConfigClass</Filter>
-    </ClCompile>
     <ClCompile Include="MonitorHelper.cpp">
       <Filter>Helper</Filter>
     </ClCompile>
@@ -135,9 +132,6 @@
       <Filter>ConfigClass</Filter>
     </ClInclude>
     <ClInclude Include="ConfigClass\GameConfig.h">
-      <Filter>ConfigClass</Filter>
-    </ClInclude>
-    <ClInclude Include="ConfigClass\RedisConfig.h">
       <Filter>ConfigClass</Filter>
     </ClInclude>
     <ClInclude Include="MonitorHelper.h">

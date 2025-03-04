@@ -9,6 +9,7 @@ public:
 	bool Add(RedisName _name, string _host, int16_t _port, string _pw
 		, int32_t _dbNo, int32_t _poolCnt
 	);
+	bool Add(const RedisConfig& _conf);
 public:
 	std::shared_ptr<RedisConn> GetCommonConn();
 	std::shared_ptr<RedisConn> GetSessionConn();

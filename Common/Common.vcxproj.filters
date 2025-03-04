@@ -216,6 +216,9 @@
     <ClInclude Include="DB\DBConfig.h">
       <Filter>DB</Filter>
     </ClInclude>
+    <ClInclude Include="Redis\RedisConfig.h">
+      <Filter>Redis</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -364,6 +367,9 @@
     </ClCompile>
     <ClCompile Include="DB\DBConfig.cpp">
       <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="Redis\RedisConfig.cpp">
+      <Filter>Redis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

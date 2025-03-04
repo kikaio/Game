@@ -1,13 +1,19 @@
 #include "pch.h"
 #include "RedisConnPool.h"
 
-bool RedisConnPool::Add(RedisName _name, string _host, int16_t _port, string _pw
-	, int32_t _dbNo, int32_t _poolCnt)
-{
+bool RedisConnPool::Add(const RedisConfig& _conf) {
+	
+	RedisName _name = _conf.redisName;
+	string _host = _conf.hostStr;
+	int16_t _port = _conf.port;
+	string _pw = _conf.pw;
+	int32_t _dbNo = _conf.dbNo;
+	int32_t _poolCnt = _conf.poolCnt;
+
 	sw::redis::ConnectionOptions connOpt;
 	connOpt.host = _host;
 	connOpt.port = _port;
-	if(_pw != "") {
+	if (_pw != "") {
 		connOpt.password = _pw;
 	}
 	connOpt.db = _dbNo;
@@ -15,7 +21,7 @@ bool RedisConnPool::Add(RedisName _name, string _host, int16_t _port, string _pw
 	sw::redis::ConnectionPoolOptions poolOpt;
 	poolOpt.size = _poolCnt;
 
-	switch(_name) {
+	switch (_name) {
 	case RedisName::Common: {
 		commonConn = make_shared<RedisConn>(connOpt, poolOpt);
 		break;
