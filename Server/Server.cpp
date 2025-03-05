@@ -26,9 +26,6 @@ int main()
     ThreadManager::Get().JoinAll();
     printf("Server Main Thread Finished\n");
 
-    //auto redis = sw::redis::Redis("tcp://127.0.0.1:6379");
-
-
     return ret;
 }
 
