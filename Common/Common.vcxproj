@@ -183,6 +183,7 @@
     <ClInclude Include="Lock\Lock.h" />
     <ClInclude Include="Lock\LockManager.h" />
     <ClInclude Include="Lock\ReadWriteLock.h" />
+    <ClInclude Include="Logger.h" />
     <ClInclude Include="Memory\Allocator.h" />
     <ClInclude Include="Memory\Memory.h" />
     <ClInclude Include="Memory\MemoryPool.h" />
@@ -241,6 +242,7 @@
     <ClCompile Include="Lock\Lock.cpp" />
     <ClCompile Include="Lock\LockManager.cpp" />
     <ClCompile Include="Lock\ReadWriteLock.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Memory\Allocator.cpp" />
     <ClCompile Include="Memory\Memory.cpp" />
     <ClCompile Include="Memory\MemoryPool.cpp" />

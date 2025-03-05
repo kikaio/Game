@@ -46,6 +46,9 @@
     <Filter Include="Redis">
       <UniqueIdentifier>{9804fe0c-3810-4441-ae4f-fedda3f899a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Logging">
+      <UniqueIdentifier>{fa3f7ba9-92b9-4737-bc8b-2ed2ea9a8534}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -219,6 +222,9 @@
     <ClInclude Include="Redis\RedisConfig.h">
       <Filter>Redis</Filter>
     </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Logging</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -370,6 +376,9 @@
     </ClCompile>
     <ClCompile Include="Redis\RedisConfig.cpp">
       <Filter>Redis</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Logging</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

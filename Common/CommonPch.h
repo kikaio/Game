@@ -61,6 +61,7 @@ using namespace std;
 #include "Singleton.h"
 #include "TLSSingleton.h"
 
+#include "Logger.h"
 #include "Random.h"
 #include "StrUtil.h"
 #include "ClockUtil.h"
