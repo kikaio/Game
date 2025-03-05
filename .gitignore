@@ -16,3 +16,4 @@ MasterServer/x64/
 Debug/MasterServer/MasterServer.exe
 Debug/MasterServer/MasterServer.pdb
 Server/logs/
+Debug/Server/logs/
