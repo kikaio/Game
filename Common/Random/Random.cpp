@@ -11,6 +11,10 @@ int Random::GetRand(int _ltMax)
 	if (_ltMax == 0) {
 		return dis(engine);
 	}
+	else {
+		std::uniform_int_distribution<int> _dis(0, _ltMax);
+		return _dis(engine);
+	}
 }
 
 int Random::GetRand(int _gteMin, int _lteMax)

@@ -24,7 +24,7 @@ int main()
     InitConfigs();
     int32_t ret = DoServerLogic();
     ThreadManager::Get().JoinAll();
-    printf("Server Main Thread Finished\n");
+    GS_DEBUG_LOG("Server Main Thread Finished");
 
     return ret;
 }
@@ -63,6 +63,9 @@ void InitConfigs() {
         //todo : redis db connect
         RedisConnPool::Get().Add(redisConf);
     }
+
+    string logFilePath = "logs/GameServer.log";
+    LogHelper::Init(logFilePath);
 }
 
 int32_t DoServerLogic() {
@@ -100,7 +103,7 @@ void DoIocpGameService(NetworkCoreSptr netCore) {
 
     netCore->SetTag(tag1, tag2);
     ASSERT_CRASH(netCore->Ready());
-    printf("wsa standby.\n");
+    GS_DEBUG_LOG("wsa standby.");
 
     int accepterCnt = 1;
     int backlog = 100;
@@ -115,7 +118,7 @@ void DoIocpGameService(NetworkCoreSptr netCore) {
         user->SetOnSessionConnectedFunc([user]() {
             //session 을 redis에 저장.   
             shared_ptr<RedisConn> _conn = RedisConnPool::Get().GetSessionConn();
-            printf("session id save to redis : %s", user->GetSId().c_str());
+            GS_DEBUG_LOG("session[{}] connected!", user->GetSId());
             _conn->set(user->GetSId().c_str(), "session_id");
             }
         );
@@ -124,7 +127,7 @@ void DoIocpGameService(NetworkCoreSptr netCore) {
 
 
     netCore->ReadyToAccept(listener, backlog, accepterCnt);
-    printf("accept ready\n");
+    GS_DEBUG_LOG("accept ready");
 
     UInt32 waitMilliSec = INFINITE;
     uint64_t workerTick = 10000;

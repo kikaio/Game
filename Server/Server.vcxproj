@@ -162,6 +162,7 @@
     <ClCompile Include="ConfigClass\GameConfig.cpp" />
     <ClCompile Include="ConfigClass\MasterConfig.cpp" />
     <ClCompile Include="DBWrapper\DBWrapper.cpp" />
+    <ClCompile Include="LogHelper.cpp" />
     <ClCompile Include="MasterAndGameServerHandle\AnsMasterServerConnect.cpp" />
     <ClCompile Include="MonitorHelper.cpp" />
     <ClCompile Include="PacketHandles\MasterPacketHandler.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="ConfigClass\GameConfig.h" />
     <ClInclude Include="ConfigClass\MasterConfig.h" />
     <ClInclude Include="DBWrapper\DBWrapper.h" />
+    <ClInclude Include="LogHelper.h" />
     <ClInclude Include="MasterAndGameServerHandle\MasterAndGameServerHandle.h" />
     <ClInclude Include="MonitorHelper.h" />
     <ClInclude Include="PacketHandles\MasterPacketHandler.h" />

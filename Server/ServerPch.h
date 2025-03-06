@@ -19,6 +19,8 @@
 #include "ServerTypes.h"
 #include "ServerEnums.h"
 
+#include "LogHelper.h"
+
 #include "ServerPacketHandler.h"
 #include "MasterPacketHandler.h"
 
@@ -36,3 +38,4 @@
 
 #include "MonitorHelper.h"
 #include "ProtoConverter.h"
+

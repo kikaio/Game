@@ -23,6 +23,18 @@ Logger::Logger(string _loggerName, spdlog::sinks_init_list _initList, bool _isAc
 	logger = std::make_shared<spdlog::logger>(_loggerName, _initList.begin(), _initList.end());
 }
 
+Logger& Logger::operator=(Logger&& _other)
+{
+	logger = _other.logger;
+	//other 객체의 기존 logger 는 nullptr로 변경.
+	_other.logger = nullptr;
+
+	loggerName = _other.loggerName;
+	fileName = _other.fileName;
+	isActive = _other.isActive;
+	return *this;
+}
+
 void Logger::ToggleActive()
 {
 	isActive = !isActive;

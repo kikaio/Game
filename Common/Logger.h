@@ -15,7 +15,7 @@ public:
 	Logger() = delete;
 	Logger(const Logger& _other) = delete;
 	Logger(Logger&& _other) = delete;
-	Logger& operator=(Logger&& _other) = delete;
+	Logger& operator=(Logger&& _other);
 public:
 	void ToggleActive();
 	void SetLevel(spdlog::level::level_enum _lv);
