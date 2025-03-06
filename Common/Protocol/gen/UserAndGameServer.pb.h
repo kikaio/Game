@@ -1213,10 +1213,11 @@ class NotiErrInfo final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kErrDescFieldNumber = 2,
+    kErrDescFieldNumber = 3,
     kErrNoFieldNumber = 1,
+    kErrDetailFieldNumber = 2,
   };
-  // string err_desc = 2;
+  // string err_desc = 3;
   void clear_err_desc();
   const std::string& err_desc() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -1239,6 +1240,15 @@ class NotiErrInfo final :
   void _internal_set_err_no(int32_t value);
   public:
 
+  // int32 err_detail = 2;
+  void clear_err_detail();
+  int32_t err_detail() const;
+  void set_err_detail(int32_t value);
+  private:
+  int32_t _internal_err_detail() const;
+  void _internal_set_err_detail(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:UserAndGameServer.NotiErrInfo)
  private:
   class _Internal;
@@ -1248,6 +1258,7 @@ class NotiErrInfo final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr err_desc_;
   int32_t err_no_;
+  int32_t err_detail_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_UserAndGameServer_2eproto;
 };
@@ -3444,7 +3455,27 @@ inline void NotiErrInfo::set_err_no(int32_t value) {
   // @@protoc_insertion_point(field_set:UserAndGameServer.NotiErrInfo.err_no)
 }
 
-// string err_desc = 2;
+// int32 err_detail = 2;
+inline void NotiErrInfo::clear_err_detail() {
+  err_detail_ = 0;
+}
+inline int32_t NotiErrInfo::_internal_err_detail() const {
+  return err_detail_;
+}
+inline int32_t NotiErrInfo::err_detail() const {
+  // @@protoc_insertion_point(field_get:UserAndGameServer.NotiErrInfo.err_detail)
+  return _internal_err_detail();
+}
+inline void NotiErrInfo::_internal_set_err_detail(int32_t value) {
+  
+  err_detail_ = value;
+}
+inline void NotiErrInfo::set_err_detail(int32_t value) {
+  _internal_set_err_detail(value);
+  // @@protoc_insertion_point(field_set:UserAndGameServer.NotiErrInfo.err_detail)
+}
+
+// string err_desc = 3;
 inline void NotiErrInfo::clear_err_desc() {
   err_desc_.ClearToEmpty();
 }

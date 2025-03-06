@@ -15,5 +15,12 @@ bool UserSession::OnPacketRecved(BYTE* _payloadPtr, uint32_t _payloadBytes)
 	return true;
 }
 
+bool UserSession::SendError(const UserAndGameServer::NotiErrInfo& _err)
+{
+	SendBufferSptr sendBuf = ServerPacketHandler::MakePacketNotiErrInfo(_err);
+	return TrySend(sendBuf);
+}
+
 
 IMPL_USER_SESSION_SEND_PACKET(Ans, Chat);
+IMPL_USER_SESSION_SEND_PACKET(Noti, ErrInfo);

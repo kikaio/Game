@@ -66,3 +66,13 @@ int32_t DBWrapper::DoDatabaseTest()
 
     return 0;
 }
+
+PacketError DBWrapper::SelectAccount(const LoginData& _loginData)
+{
+    auto conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
+    if (conn == nullptr) {
+        return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::CONN_FAILED);
+    }
+
+    return PacketError();
+}

@@ -20,7 +20,8 @@ namespace MasterAndGameServer {
 constexpr NotiErrInfo::NotiErrInfo(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : err_desc_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , err_no_(0){}
+  , err_no_(0)
+  , err_detail_(0){}
 struct NotiErrInfoDefaultTypeInternal {
   constexpr NotiErrInfoDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -68,6 +69,7 @@ const uint32_t TableStruct_MasterAndGameServer_2eproto::offsets[] PROTOBUF_SECTI
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::MasterAndGameServer::NotiErrInfo, err_no_),
+  PROTOBUF_FIELD_OFFSET(::MasterAndGameServer::NotiErrInfo, err_detail_),
   PROTOBUF_FIELD_OFFSET(::MasterAndGameServer::NotiErrInfo, err_desc_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::MasterAndGameServer::ReqMasterServerConnect, _internal_metadata_),
@@ -87,8 +89,8 @@ const uint32_t TableStruct_MasterAndGameServer_2eproto::offsets[] PROTOBUF_SECTI
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::MasterAndGameServer::NotiErrInfo)},
-  { 8, -1, -1, sizeof(::MasterAndGameServer::ReqMasterServerConnect)},
-  { 16, -1, -1, sizeof(::MasterAndGameServer::AnsMasterServerConnect)},
+  { 9, -1, -1, sizeof(::MasterAndGameServer::ReqMasterServerConnect)},
+  { 17, -1, -1, sizeof(::MasterAndGameServer::AnsMasterServerConnect)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -99,19 +101,19 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_MasterAndGameServer_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\031MasterAndGameServer.proto\022\023MasterAndGa"
-  "meServer\"/\n\013NotiErrInfo\022\016\n\006err_no\030\001 \001(\005\022"
-  "\020\n\010err_desc\030\002 \001(\t\"J\n\026ReqMasterServerConn"
-  "ect\022\026\n\016game_server_no\030\001 \001(\005\022\030\n\020game_serv"
-  "er_name\030\002 \001(\t\",\n\026AnsMasterServerConnect\022"
-  "\022\n\nis_success\030\001 \001(\010*D\n\007MsgType\022\024\n\020INVALI"
-  "D_MSG_TYPE\020\000\022\007\n\003Req\020\001\022\007\n\003Ans\020\002\022\010\n\004Noti\020\003"
-  "\022\007\n\003Err\020\004*F\n\010Protocol\022\024\n\020INVALID_PROTOCO"
-  "L\020\000\022\013\n\007ErrInfo\020\001\022\027\n\023MasterServerConnect\020"
-  "\002b\006proto3"
+  "meServer\"C\n\013NotiErrInfo\022\016\n\006err_no\030\001 \001(\005\022"
+  "\022\n\nerr_detail\030\002 \001(\005\022\020\n\010err_desc\030\003 \001(\t\"J\n"
+  "\026ReqMasterServerConnect\022\026\n\016game_server_n"
+  "o\030\001 \001(\005\022\030\n\020game_server_name\030\002 \001(\t\",\n\026Ans"
+  "MasterServerConnect\022\022\n\nis_success\030\001 \001(\010*"
+  "D\n\007MsgType\022\024\n\020INVALID_MSG_TYPE\020\000\022\007\n\003Req\020"
+  "\001\022\007\n\003Ans\020\002\022\010\n\004Noti\020\003\022\007\n\003Err\020\004*F\n\010Protoco"
+  "l\022\024\n\020INVALID_PROTOCOL\020\000\022\013\n\007ErrInfo\020\001\022\027\n\023"
+  "MasterServerConnect\020\002b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_MasterAndGameServer_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_MasterAndGameServer_2eproto = {
-  false, false, 369, descriptor_table_protodef_MasterAndGameServer_2eproto, "MasterAndGameServer.proto", 
+  false, false, 389, descriptor_table_protodef_MasterAndGameServer_2eproto, "MasterAndGameServer.proto", 
   &descriptor_table_MasterAndGameServer_2eproto_once, nullptr, 0, 3,
   schemas, file_default_instances, TableStruct_MasterAndGameServer_2eproto::offsets,
   file_level_metadata_MasterAndGameServer_2eproto, file_level_enum_descriptors_MasterAndGameServer_2eproto, file_level_service_descriptors_MasterAndGameServer_2eproto,
@@ -182,7 +184,9 @@ NotiErrInfo::NotiErrInfo(const NotiErrInfo& from)
     err_desc_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_err_desc(), 
       GetArenaForAllocation());
   }
-  err_no_ = from.err_no_;
+  ::memcpy(&err_no_, &from.err_no_,
+    static_cast<size_t>(reinterpret_cast<char*>(&err_detail_) -
+    reinterpret_cast<char*>(&err_no_)) + sizeof(err_detail_));
   // @@protoc_insertion_point(copy_constructor:MasterAndGameServer.NotiErrInfo)
 }
 
@@ -191,7 +195,10 @@ err_desc_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlr
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   err_desc_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-err_no_ = 0;
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&err_no_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&err_detail_) -
+    reinterpret_cast<char*>(&err_no_)) + sizeof(err_detail_));
 }
 
 NotiErrInfo::~NotiErrInfo() {
@@ -223,7 +230,9 @@ void NotiErrInfo::Clear() {
   (void) cached_has_bits;
 
   err_desc_.ClearToEmpty();
-  err_no_ = 0;
+  ::memset(&err_no_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&err_detail_) -
+      reinterpret_cast<char*>(&err_no_)) + sizeof(err_detail_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -241,9 +250,17 @@ const char* NotiErrInfo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
         } else
           goto handle_unusual;
         continue;
-      // string err_desc = 2;
+      // int32 err_detail = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          err_detail_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string err_desc = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           auto str = _internal_mutable_err_desc();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "MasterAndGameServer.NotiErrInfo.err_desc"));
@@ -286,14 +303,20 @@ uint8_t* NotiErrInfo::_InternalSerialize(
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_err_no(), target);
   }
 
-  // string err_desc = 2;
+  // int32 err_detail = 2;
+  if (this->_internal_err_detail() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_err_detail(), target);
+  }
+
+  // string err_desc = 3;
   if (!this->_internal_err_desc().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_err_desc().data(), static_cast<int>(this->_internal_err_desc().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "MasterAndGameServer.NotiErrInfo.err_desc");
     target = stream->WriteStringMaybeAliased(
-        2, this->_internal_err_desc(), target);
+        3, this->_internal_err_desc(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -312,7 +335,7 @@ size_t NotiErrInfo::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string err_desc = 2;
+  // string err_desc = 3;
   if (!this->_internal_err_desc().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
@@ -322,6 +345,11 @@ size_t NotiErrInfo::ByteSizeLong() const {
   // int32 err_no = 1;
   if (this->_internal_err_no() != 0) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_err_no());
+  }
+
+  // int32 err_detail = 2;
+  if (this->_internal_err_detail() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_err_detail());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -352,6 +380,9 @@ void NotiErrInfo::MergeFrom(const NotiErrInfo& from) {
   if (from._internal_err_no() != 0) {
     _internal_set_err_no(from._internal_err_no());
   }
+  if (from._internal_err_detail() != 0) {
+    _internal_set_err_detail(from._internal_err_detail());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -376,7 +407,12 @@ void NotiErrInfo::InternalSwap(NotiErrInfo* other) {
       &err_desc_, lhs_arena,
       &other->err_desc_, rhs_arena
   );
-  swap(err_no_, other->err_no_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(NotiErrInfo, err_detail_)
+      + sizeof(NotiErrInfo::err_detail_)
+      - PROTOBUF_FIELD_OFFSET(NotiErrInfo, err_no_)>(
+          reinterpret_cast<char*>(&err_no_),
+          reinterpret_cast<char*>(&other->err_no_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata NotiErrInfo::GetMetadata() const {

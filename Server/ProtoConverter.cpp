@@ -45,6 +45,12 @@ void ProtoConverter::ToPacket(const ChatData& _chatData, UserAndGameServer::AnsC
 	return ;
 }
 
+void ProtoConverter::ToPacket(const PacketError& _packetError, UserAndGameServer::NotiErrInfo& _out)
+{
+	_out.set_err_no(_packetError.err_no);
+	_out.set_err_desc(_packetError.err_desc);
+}
+
 
 void ProtoConverter::FromProto(const UserAndGameServer::LoginData& _in, LoginData& _out)
 {
@@ -88,4 +94,10 @@ void ProtoConverter::FromPacket(const UserAndGameServer::ReqLogin& _in, LoginDat
 
 void ProtoConverter::FromPacket(const UserAndGameServer::ReqChat& _in, ChatData& _chatData) {
 	FromProto(_in.chat_data(), _chatData);
+}
+
+void ProtoConverter::FromPacket(const UserAndGameServer::NotiErrInfo& _in, PacketError& _packetError)
+{
+	_packetError.err_no = _in.err_no();
+	_packetError.err_desc = _in.err_desc();
 }

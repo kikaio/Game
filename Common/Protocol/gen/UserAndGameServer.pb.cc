@@ -93,7 +93,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT LoginResultDataDefaultTypeInter
 constexpr NotiErrInfo::NotiErrInfo(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : err_desc_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , err_no_(0){}
+  , err_no_(0)
+  , err_detail_(0){}
 struct NotiErrInfoDefaultTypeInternal {
   constexpr NotiErrInfoDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -286,6 +287,7 @@ const uint32_t TableStruct_UserAndGameServer_2eproto::offsets[] PROTOBUF_SECTION
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::UserAndGameServer::NotiErrInfo, err_no_),
+  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::NotiErrInfo, err_detail_),
   PROTOBUF_FIELD_OFFSET(::UserAndGameServer::NotiErrInfo, err_desc_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ReqPublicKey, _internal_metadata_),
@@ -367,16 +369,16 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 33, -1, -1, sizeof(::UserAndGameServer::LoginData)},
   { 41, -1, -1, sizeof(::UserAndGameServer::LoginResultData)},
   { 48, -1, -1, sizeof(::UserAndGameServer::NotiErrInfo)},
-  { 56, -1, -1, sizeof(::UserAndGameServer::ReqPublicKey)},
-  { 63, -1, -1, sizeof(::UserAndGameServer::AnsPublicKey)},
-  { 70, -1, -1, sizeof(::UserAndGameServer::ReqConnect)},
-  { 77, -1, -1, sizeof(::UserAndGameServer::AnsConnect)},
-  { 85, -1, -1, sizeof(::UserAndGameServer::ReqTestMsg)},
-  { 92, -1, -1, sizeof(::UserAndGameServer::AnsTestMsg)},
-  { 99, -1, -1, sizeof(::UserAndGameServer::ReqChat)},
-  { 106, -1, -1, sizeof(::UserAndGameServer::AnsChat)},
-  { 113, -1, -1, sizeof(::UserAndGameServer::ReqLogin)},
-  { 120, -1, -1, sizeof(::UserAndGameServer::AnsLogin)},
+  { 57, -1, -1, sizeof(::UserAndGameServer::ReqPublicKey)},
+  { 64, -1, -1, sizeof(::UserAndGameServer::AnsPublicKey)},
+  { 71, -1, -1, sizeof(::UserAndGameServer::ReqConnect)},
+  { 78, -1, -1, sizeof(::UserAndGameServer::AnsConnect)},
+  { 86, -1, -1, sizeof(::UserAndGameServer::ReqTestMsg)},
+  { 93, -1, -1, sizeof(::UserAndGameServer::AnsTestMsg)},
+  { 100, -1, -1, sizeof(::UserAndGameServer::ReqChat)},
+  { 107, -1, -1, sizeof(::UserAndGameServer::AnsChat)},
+  { 114, -1, -1, sizeof(::UserAndGameServer::ReqLogin)},
+  { 121, -1, -1, sizeof(::UserAndGameServer::AnsLogin)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -412,30 +414,30 @@ const char descriptor_table_protodef_UserAndGameServer_2eproto[] PROTOBUF_SECTIO
   "erAndGameServer.ChatProfile\022\013\n\003msg\030\003 \001(\t"
   "\"7\n\tLoginData\022\022\n\ndevice_key\030\001 \001(\t\022\026\n\016log"
   "in_platform\030\002 \001(\005\"%\n\017LoginResultData\022\022\n\n"
-  "is_success\030\001 \001(\010\"/\n\013NotiErrInfo\022\016\n\006err_n"
-  "o\030\001 \001(\005\022\020\n\010err_desc\030\002 \001(\t\"!\n\014ReqPublicKe"
-  "y\022\021\n\tdevice_id\030\001 \001(\t\"\"\n\014AnsPublicKey\022\022\n\n"
-  "public_key\030\001 \001(\t\"\037\n\nReqConnect\022\021\n\tdevice"
-  "_id\030\001 \001(\t\"4\n\nAnsConnect\022\022\n\nis_success\030\001 "
-  "\001(\010\022\022\n\nsession_id\030\002 \001(\t\"\031\n\nReqTestMsg\022\013\n"
-  "\003msg\030\001 \001(\t\"\031\n\nAnsTestMsg\022\013\n\003msg\030\001 \001(\t\"9\n"
-  "\007ReqChat\022.\n\tchat_data\030\001 \001(\0132\033.UserAndGam"
-  "eServer.ChatData\"9\n\007AnsChat\022.\n\tchat_data"
-  "\030\001 \001(\0132\033.UserAndGameServer.ChatData\"<\n\010R"
-  "eqLogin\0220\n\nlogin_data\030\001 \001(\0132\034.UserAndGam"
-  "eServer.LoginData\"\177\n\010AnsLogin\022=\n\021login_r"
-  "esult_data\030\001 \001(\0132\".UserAndGameServer.Log"
-  "inResultData\0224\n\014user_profile\030\002 \001(\0132\036.Use"
-  "rAndGameServer.UserProfile*D\n\007MsgType\022\024\n"
-  "\020INVALID_MSG_TYPE\020\000\022\007\n\003Req\020\001\022\007\n\003Ans\020\002\022\010\n"
-  "\004Noti\020\003\022\007\n\003Err\020\004*k\n\010Protocol\022\024\n\020INVALID_"
-  "PROTOCOL\020\000\022\013\n\007ErrInfo\020\001\022\r\n\tPublicKey\020\002\022\013"
-  "\n\007Connect\020\003\022\013\n\007TestMsg\020\004\022\010\n\004Chat\020\005\022\t\n\005Lo"
-  "gin\020\006b\006proto3"
+  "is_success\030\001 \001(\010\"C\n\013NotiErrInfo\022\016\n\006err_n"
+  "o\030\001 \001(\005\022\022\n\nerr_detail\030\002 \001(\005\022\020\n\010err_desc\030"
+  "\003 \001(\t\"!\n\014ReqPublicKey\022\021\n\tdevice_id\030\001 \001(\t"
+  "\"\"\n\014AnsPublicKey\022\022\n\npublic_key\030\001 \001(\t\"\037\n\n"
+  "ReqConnect\022\021\n\tdevice_id\030\001 \001(\t\"4\n\nAnsConn"
+  "ect\022\022\n\nis_success\030\001 \001(\010\022\022\n\nsession_id\030\002 "
+  "\001(\t\"\031\n\nReqTestMsg\022\013\n\003msg\030\001 \001(\t\"\031\n\nAnsTes"
+  "tMsg\022\013\n\003msg\030\001 \001(\t\"9\n\007ReqChat\022.\n\tchat_dat"
+  "a\030\001 \001(\0132\033.UserAndGameServer.ChatData\"9\n\007"
+  "AnsChat\022.\n\tchat_data\030\001 \001(\0132\033.UserAndGame"
+  "Server.ChatData\"<\n\010ReqLogin\0220\n\nlogin_dat"
+  "a\030\001 \001(\0132\034.UserAndGameServer.LoginData\"\177\n"
+  "\010AnsLogin\022=\n\021login_result_data\030\001 \001(\0132\".U"
+  "serAndGameServer.LoginResultData\0224\n\014user"
+  "_profile\030\002 \001(\0132\036.UserAndGameServer.UserP"
+  "rofile*D\n\007MsgType\022\024\n\020INVALID_MSG_TYPE\020\000\022"
+  "\007\n\003Req\020\001\022\007\n\003Ans\020\002\022\010\n\004Noti\020\003\022\007\n\003Err\020\004*k\n\010"
+  "Protocol\022\024\n\020INVALID_PROTOCOL\020\000\022\013\n\007ErrInf"
+  "o\020\001\022\r\n\tPublicKey\020\002\022\013\n\007Connect\020\003\022\013\n\007TestM"
+  "sg\020\004\022\010\n\004Chat\020\005\022\t\n\005Login\020\006b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_UserAndGameServer_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_UserAndGameServer_2eproto = {
-  false, false, 1293, descriptor_table_protodef_UserAndGameServer_2eproto, "UserAndGameServer.proto", 
+  false, false, 1313, descriptor_table_protodef_UserAndGameServer_2eproto, "UserAndGameServer.proto", 
   &descriptor_table_UserAndGameServer_2eproto_once, nullptr, 0, 16,
   schemas, file_default_instances, TableStruct_UserAndGameServer_2eproto::offsets,
   file_level_metadata_UserAndGameServer_2eproto, file_level_enum_descriptors_UserAndGameServer_2eproto, file_level_service_descriptors_UserAndGameServer_2eproto,
@@ -1880,7 +1882,9 @@ NotiErrInfo::NotiErrInfo(const NotiErrInfo& from)
     err_desc_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_err_desc(), 
       GetArenaForAllocation());
   }
-  err_no_ = from.err_no_;
+  ::memcpy(&err_no_, &from.err_no_,
+    static_cast<size_t>(reinterpret_cast<char*>(&err_detail_) -
+    reinterpret_cast<char*>(&err_no_)) + sizeof(err_detail_));
   // @@protoc_insertion_point(copy_constructor:UserAndGameServer.NotiErrInfo)
 }
 
@@ -1889,7 +1893,10 @@ err_desc_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlr
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   err_desc_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-err_no_ = 0;
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&err_no_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&err_detail_) -
+    reinterpret_cast<char*>(&err_no_)) + sizeof(err_detail_));
 }
 
 NotiErrInfo::~NotiErrInfo() {
@@ -1921,7 +1928,9 @@ void NotiErrInfo::Clear() {
   (void) cached_has_bits;
 
   err_desc_.ClearToEmpty();
-  err_no_ = 0;
+  ::memset(&err_no_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&err_detail_) -
+      reinterpret_cast<char*>(&err_no_)) + sizeof(err_detail_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1939,9 +1948,17 @@ const char* NotiErrInfo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
         } else
           goto handle_unusual;
         continue;
-      // string err_desc = 2;
+      // int32 err_detail = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          err_detail_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string err_desc = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           auto str = _internal_mutable_err_desc();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "UserAndGameServer.NotiErrInfo.err_desc"));
@@ -1984,14 +2001,20 @@ uint8_t* NotiErrInfo::_InternalSerialize(
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_err_no(), target);
   }
 
-  // string err_desc = 2;
+  // int32 err_detail = 2;
+  if (this->_internal_err_detail() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_err_detail(), target);
+  }
+
+  // string err_desc = 3;
   if (!this->_internal_err_desc().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_err_desc().data(), static_cast<int>(this->_internal_err_desc().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "UserAndGameServer.NotiErrInfo.err_desc");
     target = stream->WriteStringMaybeAliased(
-        2, this->_internal_err_desc(), target);
+        3, this->_internal_err_desc(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2010,7 +2033,7 @@ size_t NotiErrInfo::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string err_desc = 2;
+  // string err_desc = 3;
   if (!this->_internal_err_desc().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
@@ -2020,6 +2043,11 @@ size_t NotiErrInfo::ByteSizeLong() const {
   // int32 err_no = 1;
   if (this->_internal_err_no() != 0) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_err_no());
+  }
+
+  // int32 err_detail = 2;
+  if (this->_internal_err_detail() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_err_detail());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -2050,6 +2078,9 @@ void NotiErrInfo::MergeFrom(const NotiErrInfo& from) {
   if (from._internal_err_no() != 0) {
     _internal_set_err_no(from._internal_err_no());
   }
+  if (from._internal_err_detail() != 0) {
+    _internal_set_err_detail(from._internal_err_detail());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -2074,7 +2105,12 @@ void NotiErrInfo::InternalSwap(NotiErrInfo* other) {
       &err_desc_, lhs_arena,
       &other->err_desc_, rhs_arena
   );
-  swap(err_no_, other->err_no_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(NotiErrInfo, err_detail_)
+      + sizeof(NotiErrInfo::err_detail_)
+      - PROTOBUF_FIELD_OFFSET(NotiErrInfo, err_no_)>(
+          reinterpret_cast<char*>(&err_no_),
+          reinterpret_cast<char*>(&other->err_no_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata NotiErrInfo::GetMetadata() const {

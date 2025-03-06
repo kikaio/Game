@@ -16,8 +16,8 @@
 
 #include "CommonPch.h"
 #include "ServerDefines.h"
-#include "ServerTypes.h"
 #include "ServerEnums.h"
+#include "ServerTypes.h"
 
 #include "LogHelper.h"
 

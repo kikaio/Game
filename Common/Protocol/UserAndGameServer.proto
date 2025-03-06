@@ -56,7 +56,8 @@ message LoginResultData {
 
 message NotiErrInfo {
 	int32 err_no = 1;
-	string err_desc = 2;
+	int32 err_detail = 2;
+	string err_desc = 3;
 }
 
 message ReqPublicKey {

@@ -26,6 +26,7 @@ public:
 	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet);
 public: //해당 packet에 대해서 전송해주는 함수들.
 	DECL_MAKE_SENDBUF_FROM_PACKET(ServerPacketHandler, Ans, Chat);
+	DECL_MAKE_SENDBUF_FROM_PACKET(ServerPacketHandler, Noti, ErrInfo);
 };
 
 
