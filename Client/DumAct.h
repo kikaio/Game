@@ -48,9 +48,11 @@ protected:
 
 class DumActSetLoginData : public DumAct {
 public:
+	bool isNewLogin = false;
 	LoginData loginData;
+	LoginData nextLoginData;
 public:
-	DumActSetLoginData(string _deviceKey, LOGIN_PLATFORM _platformType);
+	DumActSetLoginData(string _userKey, bool _isNewLogin);
 protected:
 	void DoAct(DummyUserSptr _dumSptr) override;
 };

@@ -77,7 +77,8 @@ string StrUtil::GetFileName(const string& _path)
 
 string StrUtil::GetRandomStr(int _len)
 {
-	char sz[101] = {'\0', };
+	vector<char> sz(_len + 1, '\0');
+//	char sz[101] = {'\0', };
 	static const char set[] =
 		"0123456789"
 		"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -86,8 +87,8 @@ string StrUtil::GetRandomStr(int _len)
 	for(int i = 0; i < _len; ++i) {
 		sz[i] = set[rand.GetRand(sizeof(set) - 2)];
 	}
-	sz[_len] = 0;
-	return sz;
+//	sz[_len] = 0;
+	return sz.data();
 }
 
 char StrUtil::GetRandomAscii(char _minAscii, char _maxAscii)

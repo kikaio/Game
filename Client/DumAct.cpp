@@ -82,10 +82,13 @@ void DumActChat::DoAct(DummyUserSptr _dumSptr) {
 }
 
 
-DumActSetLoginData::DumActSetLoginData(string _deviceKey, LOGIN_PLATFORM _platformType)
+DumActSetLoginData::DumActSetLoginData(string _userKey, bool _isNewLogin)
+ : isNewLogin(_isNewLogin)
 {
-	loginData.deviceKey = _deviceKey;
-	loginData.loginPlatform = _platformType;
+	if (_userKey == "") {
+		_userKey = StrUtil::GetRandomStr();
+	}
+	loginData.deviceKey = _userKey;
 }
 
 void DumActSetLoginData::DoAct(DummyUserSptr _dumSptr)
