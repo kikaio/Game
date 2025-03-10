@@ -12,17 +12,6 @@ SendBufferSptr _className::MakePacket##_msgType##_protocolName(const UserAndGame
 }																																\
 
 
-#define DECL_USER_SESSION_SEND_PACKET(_msgType, _protocolName)										\
-bool SendPacket(const UserAndGameServer::##_msgType##_protocolName& _packet)						\
-
-
-#define IMPL_USER_SESSION_SEND_PACKET(_msgType, _protocolName)										\
-bool UserSession::SendPacket(const UserAndGameServer::##_msgType##_protocolName& _packet)			\
-{																									\
-	SendBufferSptr sendBuf = ServerPacketHandler::MakePacket##_msgType##_protocolName(_packet);		\
-	return TrySend(sendBuf);																		\
-}																									\
-
 
 #define DECL_MAKE_SENDBUF_FROM_MASTER_PACKET(_msgType, _protocolName) 																	\
 	static SendBufferSptr MakePacket##_msgType##_protocolName(const MasterAndGameServer::##_msgType##_protocolName& _packet)			\
