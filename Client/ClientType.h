@@ -25,7 +25,7 @@ struct ChatProfile {
 };
 
 struct LoginData {
-	string deviceKey = "";
+	string sId = "";
 	LOGIN_PLATFORM loginPlatform = LOGIN_PLATFORM::GUEST;
 };
 

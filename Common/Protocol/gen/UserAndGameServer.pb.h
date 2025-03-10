@@ -905,21 +905,21 @@ class LoginData final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kDeviceKeyFieldNumber = 1,
+    kSIdFieldNumber = 1,
     kLoginPlatformFieldNumber = 2,
   };
-  // string device_key = 1;
-  void clear_device_key();
-  const std::string& device_key() const;
+  // string s_id = 1;
+  void clear_s_id();
+  const std::string& s_id() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_device_key(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_device_key();
-  PROTOBUF_NODISCARD std::string* release_device_key();
-  void set_allocated_device_key(std::string* device_key);
+  void set_s_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_s_id();
+  PROTOBUF_NODISCARD std::string* release_s_id();
+  void set_allocated_s_id(std::string* s_id);
   private:
-  const std::string& _internal_device_key() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_device_key(const std::string& value);
-  std::string* _internal_mutable_device_key();
+  const std::string& _internal_s_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_s_id(const std::string& value);
+  std::string* _internal_mutable_s_id();
   public:
 
   // int32 login_platform = 2;
@@ -938,7 +938,7 @@ class LoginData final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr device_key_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr s_id_;
   int32_t login_platform_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_UserAndGameServer_2eproto;
@@ -3336,55 +3336,55 @@ inline void ChatData::set_allocated_msg(std::string* msg) {
 
 // LoginData
 
-// string device_key = 1;
-inline void LoginData::clear_device_key() {
-  device_key_.ClearToEmpty();
+// string s_id = 1;
+inline void LoginData::clear_s_id() {
+  s_id_.ClearToEmpty();
 }
-inline const std::string& LoginData::device_key() const {
-  // @@protoc_insertion_point(field_get:UserAndGameServer.LoginData.device_key)
-  return _internal_device_key();
+inline const std::string& LoginData::s_id() const {
+  // @@protoc_insertion_point(field_get:UserAndGameServer.LoginData.s_id)
+  return _internal_s_id();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void LoginData::set_device_key(ArgT0&& arg0, ArgT... args) {
+void LoginData::set_s_id(ArgT0&& arg0, ArgT... args) {
  
- device_key_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:UserAndGameServer.LoginData.device_key)
+ s_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:UserAndGameServer.LoginData.s_id)
 }
-inline std::string* LoginData::mutable_device_key() {
-  std::string* _s = _internal_mutable_device_key();
-  // @@protoc_insertion_point(field_mutable:UserAndGameServer.LoginData.device_key)
+inline std::string* LoginData::mutable_s_id() {
+  std::string* _s = _internal_mutable_s_id();
+  // @@protoc_insertion_point(field_mutable:UserAndGameServer.LoginData.s_id)
   return _s;
 }
-inline const std::string& LoginData::_internal_device_key() const {
-  return device_key_.Get();
+inline const std::string& LoginData::_internal_s_id() const {
+  return s_id_.Get();
 }
-inline void LoginData::_internal_set_device_key(const std::string& value) {
+inline void LoginData::_internal_set_s_id(const std::string& value) {
   
-  device_key_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+  s_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
 }
-inline std::string* LoginData::_internal_mutable_device_key() {
+inline std::string* LoginData::_internal_mutable_s_id() {
   
-  return device_key_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+  return s_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
-inline std::string* LoginData::release_device_key() {
-  // @@protoc_insertion_point(field_release:UserAndGameServer.LoginData.device_key)
-  return device_key_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+inline std::string* LoginData::release_s_id() {
+  // @@protoc_insertion_point(field_release:UserAndGameServer.LoginData.s_id)
+  return s_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
-inline void LoginData::set_allocated_device_key(std::string* device_key) {
-  if (device_key != nullptr) {
+inline void LoginData::set_allocated_s_id(std::string* s_id) {
+  if (s_id != nullptr) {
     
   } else {
     
   }
-  device_key_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), device_key,
+  s_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), s_id,
       GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (device_key_.IsDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited())) {
-    device_key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+  if (s_id_.IsDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited())) {
+    s_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.LoginData.device_key)
+  // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.LoginData.s_id)
 }
 
 // int32 login_platform = 2;

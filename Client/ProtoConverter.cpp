@@ -7,7 +7,7 @@
 
 void ProtoConverter::ToProto(const LoginData& _in, UserAndGameServer::LoginData& _out)
 {
-	_out.set_device_key(_in.deviceKey);
+	_out.set_s_id(_in.sId);
 	_out.set_login_platform(ENUM_TO_INT(_in.loginPlatform));
 }
 

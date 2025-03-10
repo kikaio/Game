@@ -88,7 +88,7 @@ DumActSetLoginData::DumActSetLoginData(string _userKey, bool _isNewLogin)
 	if (_userKey == "") {
 		_userKey = StrUtil::GetRandomStr(16);
 	}
-	loginData.deviceKey = _userKey;
+	loginData.sId = _userKey;
 }
 
 void DumActSetLoginData::DoAct(DummyUserSptr _dumSptr)

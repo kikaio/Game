@@ -54,7 +54,7 @@ void ProtoConverter::ToPacket(const PacketError& _packetError, UserAndGameServer
 
 void ProtoConverter::FromProto(const UserAndGameServer::LoginData& _in, LoginData& _out)
 {
-	_out.deviceKey = _in.device_key();
+	_out.sId = _in.s_id();
 	auto _optional = ENUM_FROM_INT(LOGIN_PLATFORM, _in.login_platform());
 	if(_optional.has_value()) {
 		_out.loginPlatform = _optional.value();
