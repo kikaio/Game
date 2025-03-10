@@ -268,22 +268,22 @@ bool DBConnection::BindCol(int32_t _idx, double* _val, SQLLEN* _len)
 
 bool DBConnection::BindCol(int32_t _idx, int8_t* _val, SQLLEN* _len)
 {
-	return BindCol(_idx, SQL_TINYINT, sizeof(int8_t), _val, _len);
+	return BindCol(_idx, SQL_C_TINYINT, sizeof(int8_t), _val, _len);
 }
 
 bool DBConnection::BindCol(int32_t _idx, int16_t* _val, SQLLEN* _len)
 {
-	return BindCol(_idx, SQL_SMALLINT, sizeof(int16_t), _val, _len);
+	return BindCol(_idx, SQL_C_SHORT, sizeof(int16_t), _val, _len);
 }
 
 bool DBConnection::BindCol(int32_t _idx, int32_t* _val, SQLLEN* _len)
 {
-	return BindCol(_idx, SQL_INTEGER, sizeof(int32_t), _val, _len);
+	return BindCol(_idx, SQL_C_LONG, sizeof(int32_t), _val, _len);
 }
 
 bool DBConnection::BindCol(int32_t _idx, int64_t* _val, SQLLEN* _len)
 {
-	return BindCol(_idx, SQL_BIGINT, sizeof(int64_t), _val, _len);
+	return BindCol(_idx, SQL_C_SBIGINT, sizeof(int64_t), _val, _len);
 }
 
 bool DBConnection::BindCol(int32_t _idx, TIMESTAMP_STRUCT* _val, SQLLEN* _len)
@@ -298,5 +298,5 @@ bool DBConnection::BindCol(int32_t _idx, char* _val, int32_t _size, SQLLEN* _len
 
 bool DBConnection::BindCol(int32_t _idx, BYTE* _val, int32_t _size, SQLLEN* _len)
 {
-	return BindCol(_idx, SQL_BINARY, _size, _val, _len);
+	return BindCol(_idx, SQL_C_BINARY, _size, _val, _len);
 }

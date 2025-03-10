@@ -157,3 +157,4 @@ bool ServerPacketHandler::HandlePayload(SessionSptr _session, BYTE* _buf, uint32
 
 IMPL_MAKE_PACKET_FUNC(ServerPacketHandler, Noti, ErrInfo);
 IMPL_MAKE_PACKET_FUNC(ServerPacketHandler, Ans, Chat);
+IMPL_MAKE_PACKET_FUNC(ServerPacketHandler, Ans, Login);

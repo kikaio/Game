@@ -194,6 +194,7 @@
     <ClInclude Include="PacketHandles\ServerPacketHandler.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ProtoConverter.h" />
+    <ClInclude Include="ServerDBTypes.h" />
     <ClInclude Include="ServerDefines.h" />
     <ClInclude Include="ServerEnums.h" />
     <ClInclude Include="ServerPch.h" />

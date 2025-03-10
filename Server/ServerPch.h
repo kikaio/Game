@@ -19,6 +19,8 @@
 #include "ServerEnums.h"
 #include "ServerTypes.h"
 
+#include "ServerDBTypes.h"
+
 #include "LogHelper.h"
 
 #include "ServerPacketHandler.h"

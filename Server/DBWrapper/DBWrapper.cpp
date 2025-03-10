@@ -61,18 +61,43 @@ int32_t DBWrapper::DoDatabaseTest()
             printf("cur name : %s, year : %d, month : %d, day : %d\n", outName, outTs.year, outTs.month, outTs.day);
         }
     }
-
     DBConnectionPool::Get().Clear();
 
     return 0;
 }
 
+PacketError DBWrapper::SelectPlatform(const LoginData& _loginData)
+{
+    DBConnectionSptr conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
+    DBBind<2, 6> dbBinder(*conn, "call usp_platform_select(?, ?);");
+
+    dbBinder.BindParam(0, IN _loginData.sId.c_str());
+    dbBinder.BindParam(1, IN ENUM_TO_INT(_loginData.loginPlatform));
+    {
+        int32_t curColIdx = 0;
+        PlatformRow platrofmRow;
+        
+        //col별로 변수에 연결해준다.
+        platrofmRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
+        if(dbBinder.Execute() == false) {
+            GS_ERROR_LOG("call usp_platform_select failed. param : {}, {}", _loginData.sId.c_str(), ENUM_TO_INT(_loginData.loginPlatform));
+            return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::PROCEDURE_FAILED);
+        }
+        
+        while(dbBinder.Fetch()) {
+            GS_DEBUG_LOG("cur platform pid : {}, sid : {}, aid : {}", platrofmRow.pId, platrofmRow.sId, platrofmRow.aId);
+        }
+    }
+
+
+    return PacketError();
+}
 PacketError DBWrapper::SelectAccount(const LoginData& _loginData)
 {
     auto conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
     if (conn == nullptr) {
         return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::CONN_FAILED);
     }
-
+    // todo : call procedure 'select_account'
     return PacketError();
 }

@@ -7,15 +7,21 @@ namespace UserAndGameServerHandle {
 		GS_DEBUG_LOG("ReqLogin Called");
 		LoginData loginData;
 		ProtoConverter::FromPacket(_packet, OUT loginData);
-		GS_DEBUG_LOG("user key : {}, platform : {}", loginData.deviceKey, ENUM_TO_STR(loginData.loginPlatform));
-		//to do : common db 에서 해당 user key 정보가 있는지 확인 및 생성.
-		PacketError err = DBWrapper::SelectAccount(loginData);
-		if (err.err_no != ENUM_TO_INT(ERR_CATEGORY::NONE)) {
-			UserAndGameServer::NotiErrInfo _noti;
-			ProtoConverter::ToPacket(err, _noti);
-			return _session->SendError(_noti);
+		GS_DEBUG_LOG("user key : {}, platform : {}", loginData.sId, ENUM_TO_STR(loginData.loginPlatform));
+
+		{
+			// platform 정보를 읽는다, 신규 유저라면 use_select_platform에서 account 등 data를 생성한다.
+			auto platformError = DBWrapper::SelectPlatform(loginData);
+			if(platformError.HasError()) {
+				return _session->SendError(platformError);
+			}
+			//to do : common db 에서 해당 user key 정보가 있는지 확인 및 생성.
+			auto selectError = DBWrapper::SelectAccount(loginData);
+			if (selectError.HasError()) {
+				return _session->SendError(selectError);
+			}
+
 		}
-		//to do : game db 에서 user character 정보가 있는지 확인 및 생성.
 
 		UserAndGameServer::AnsLogin _ans;
 		LoginResultData loginResultData;

@@ -146,6 +146,9 @@
     <ClInclude Include="LogHelper.h">
       <Filter>Helper</Filter>
     </ClInclude>
+    <ClInclude Include="ServerDBTypes.h">
+      <Filter>Main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Configs\ServerConfig.json">

@@ -59,6 +59,11 @@ public:
 		return conn.Fetch();
 	}
 public:
+	void BindParam(int32_t _idx, int32_t _val) {
+		conn.BindParam(_idx + 1, &_val, &paramIdx[_idx]);
+		paramFlag |= (1LL << _idx);
+	}
+	
 	template<typename T>
 	void BindParam(int32_t _idx, T& _val) {
 		conn.BindParam(_idx+1, &_val, &paramIdx[_idx]);
@@ -82,18 +87,24 @@ public:
 		paramFlag |= (1LL << _idx);
 	}
 
+	void BindCol(int32_t _idx, string& _val) {
+		conn.BindCol(_idx + 1, const_cast<char*>(_val.c_str()), _val.size(), &columnIdx[_idx]);
+		columnFlag |= (1LL << _idx);
+	}
+
 	template <typename T>
 	void BindCol(int32_t _idx, T& _val) {
 		conn.BindCol(_idx+1, &_val, &columnIdx[_idx]);
 		columnFlag |= (1LL << _idx);
 	}
 
-	template<int32_t N> 
+	template<int32_t N>
 	void BindCol(int32_t _idx, char(&_val)[N]) {
 		conn.BindCol(_idx+1, _val, N-1, &columnIdx[_idx]);
 		columnFlag |= (1LL << _idx);
 	}
 
+	
 	void BindCol(int32_t _idx, char* _val, int32_t _len) {
 		conn.BindCol(_idx + 1, _val, _len - 1, &columnIdx[_idx]);
 		columnFlag |= (1LL << _idx);
