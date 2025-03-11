@@ -66,19 +66,36 @@ int32_t DBWrapper::DoDatabaseTest()
     return 0;
 }
 
-PacketError DBWrapper::SelectPlatform(const LoginData& _loginData)
+PacketError DBWrapper::SelectPlatform(const LoginData& _loginData, bool& _is_old_user, int32_t _def_main_hero_id, int32_t _def_main_frame_id, string _def_main_greeting_ment)
 {
     DBConnectionSptr conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
-    DBBind<2, 6> dbBinder(*conn, "call usp_platform_select(?, ?);");
+    DBBind<5, 21> dbBinder(*conn, "call usp_platform_select(?, ?, ?, ?, ?);");
 
     dbBinder.BindParam(0, IN _loginData.sId.c_str());
     dbBinder.BindParam(1, IN ENUM_TO_INT(_loginData.loginPlatform));
+    dbBinder.BindParam(2, IN _def_main_hero_id);
+    dbBinder.BindParam(3, IN _def_main_frame_id);
+    dbBinder.BindParam(4, IN _def_main_greeting_ment.c_str());
+
     {
         int32_t curColIdx = 0;
         PlatformRow platrofmRow;
+        AccountRow accountRow;
+        SummaryRow summaryRow;
+        ProfileRow profileRow;
+
         
+        // false : 해당 유저가 신규 생성된 유저인 경우
+        dbBinder.BindCol(curColIdx++, OUT _is_old_user);
+
         //col별로 변수에 연결해준다.
         platrofmRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
+        accountRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
+        summaryRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
+        profileRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
+
+
+
         if(dbBinder.Execute() == false) {
             GS_ERROR_LOG("call usp_platform_select failed. param : {}, {}", _loginData.sId.c_str(), ENUM_TO_INT(_loginData.loginPlatform));
             return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::PROCEDURE_FAILED);
@@ -90,14 +107,5 @@ PacketError DBWrapper::SelectPlatform(const LoginData& _loginData)
     }
 
 
-    return PacketError();
-}
-PacketError DBWrapper::SelectAccount(const LoginData& _loginData)
-{
-    auto conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
-    if (conn == nullptr) {
-        return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::CONN_FAILED);
-    }
-    // todo : call procedure 'select_account'
     return PacketError();
 }

@@ -1,7 +1,7 @@
 #pragma once
 
 
-template <int32_t C>
+template <int64_t C>
 struct FullBits {
 	enum {
 		value = (1 << (C-1)) | FullBits<C-1>::value
