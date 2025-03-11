@@ -8,11 +8,19 @@ bool UserSession::SendPacket(const UserAndGameServer::##_msgType##_protocolName&
 	return TrySend(sendBuf);																		\
 }																									\
 
+UserSession::UserSession() {
+	gameUser = MakeShared<GameUser>();
+}
 
 
 UserSession::~UserSession()
 {
 	printf("UserSession released\n");
+	gameUser = nullptr;
+}
+
+GameUserSptr UserSession::GetGameUser() {
+	return gameUser;
 }
 
 bool UserSession::OnPacketRecved(BYTE* _payloadPtr, uint32_t _payloadBytes)

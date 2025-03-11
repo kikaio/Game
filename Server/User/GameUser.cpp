@@ -1,32 +1,26 @@
 #include "pch.h"
 #include "GameUser.h"
 
-GameUser::GameUser(UserSessionSptr _session)
- : session(_session)
-{
+
+GameUser::GameUser() {
+
 }
 
-UserSessionSptr GameUser::GetSession()
-{
-	return session;
+void GameUser::Render() {
+	profile.Render();
+}
+GameProfile& GameUser::GetProfile() {
+	return profile;
 }
 
-GameProfile* GameUser::GetProfile()
-{
-	return &profile;
+int64_t GameUser::GetAccountId() {
+	return accountId;
 }
 
-bool GameUser::ChangeNickname(string _name)
-{
-	return profile.ChangeNickname(_name);
+
+void GameUser::SetAccountId(int64_t _accountId) {
+	accountId = _accountId;
+	profile.SetAccountId(_accountId);
+	return;
 }
 
-bool GameUser::ChangeGreetingment(string _ment)
-{
-	return profile.ChangeGreetingMent(_ment);
-}
-
-void GameUser::OverlappedGameProfile(const GameProfile& _other)
-{
-	profile.Overllaped(_other);
-}

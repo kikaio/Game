@@ -16,7 +16,7 @@
 	],
 	"master_config": {
 		"listen_port": 33301,
-		"accept_cnt": 10,
-		"back_log": 50
+		"accept_cnt": 1, 
+		"back_log" :  100
 	}
 }

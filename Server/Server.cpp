@@ -120,6 +120,7 @@ void DoIocpGameService(NetworkCoreSptr netCore) {
             shared_ptr<RedisConn> _conn = RedisConnPool::Get().GetSessionConn();
             GS_DEBUG_LOG("session[{}] connected!", user->GetSId());
             _conn->set(user->GetSId().c_str(), "session_id");
+
             }
         );
         return static_pointer_cast<Session>(user);

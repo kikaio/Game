@@ -10,22 +10,16 @@ bool GameProfile::InvalidNickNameCheck(string& _name)
 
 void GameProfile::Render()
 {
-    printf("=========[User profile : %lld]========\n", accountId);
-    printf("nickname : %s\n", nickname.c_str());
+    printf("=========[game profile : %lld]========\n", accountId);
     printf("greeting ment : %s\n", greetingMent.c_str());
     printf("main hero id : %d\n", mainHeroId);
     printf("main frame id : %d\n", mainFrameId);
     printf("==============================================\n");
 }
 
-AccountId_t GameProfile::AccountId()
+int64_t GameProfile::AccountId()
 {
     return accountId;
-}
-
-const string& GameProfile::NickName()
-{
-    return nickname;
 }
 
 const string& GameProfile::GreetingMent()
@@ -42,10 +36,8 @@ const uint32_t& GameProfile::MainFrameId()
 {
     return mainFrameId;
 }
-
-bool GameProfile::ChangeNickname(string _newName)
-{
-    return true;
+void GameProfile::SetAccountId(int64_t _accountId) {
+    accountId = _accountId;
 }
 
 bool GameProfile::ChangeGreetingMent(string _newMent)
@@ -65,13 +57,4 @@ bool GameProfile::ChangeMainFrameId(uint32_t _newId)
     //todo : plan data check
     mainFrameId = _newId;
     return true;
-}
-
-void GameProfile::Overllaped(const GameProfile& _other)
-{
-    this->accountId = _other.accountId;
-    this->nickname = _other.nickname;
-    this->greetingMent = _other.greetingMent;
-    this->mainHeroId = _other.mainHeroId;
-    this->mainFrameId = _other.mainFrameId;
 }

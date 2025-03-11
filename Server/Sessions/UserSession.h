@@ -6,13 +6,16 @@ bool SendPacket(const UserAndGameServer::##_msgType##_protocolName& _packet)				
 
 class UserSession : public Session
 {
+private:
+	GameUserSptr gameUser = nullptr;
+public:
+	UserSession();
 public:
 	~UserSession();
 protected:
-	//virtual void AfterSended(UInt32 _bytes) {
-	//	printf("send bytes : %d\n", _bytes);
-	//}
 	virtual bool OnPacketRecved(BYTE* _payloadPtr, uint32_t payloadBytes);
+public:
+	GameUserSptr GetGameUser();
 public:
 	bool SendError(const UserAndGameServer::NotiErrInfo& _err);
 	bool SendError(const PacketError& _err);

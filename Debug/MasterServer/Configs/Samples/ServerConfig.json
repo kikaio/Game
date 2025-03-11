@@ -1,14 +1,17 @@
 {
 	"db_configs": [
 		{
+			"desc": "mysqlDB port : 3306",
 			"name": "CommonDB",
 			"host": "localhost",
 			"user": "gameuser",
 			"pw": "gameuser",
-			"port": 3306,
 			"rw_type": "READ_WRITE",
 			"pool_cnt": 1,
-			"desc": "mysqlDB port : 3306"
+			"port": 3306,
+			"conn_timeout_sec": 10,
+			"read_timeout_sec": 10,
+			"write_timeout_sec": 10
 		}
 	],
 	"master_config": {

@@ -4,23 +4,18 @@
 
 class GameUser : public enable_shared_from_this<GameUser>
 {
-public:
-	GameUser(UserSessionSptr _session);
 private:
-	UserSessionSptr session;
+	int64_t accountId;
+private:
 	GameProfile profile;
+public :
+	GameUser();
 public:
-	UserSessionSptr GetSession();
+	GameProfile& GetProfile();
+	void Render();
 public:
-	GameProfile* GetProfile();
-public:
-	bool ChangeNickname(string _name);
-	bool ChangeGreetingment(string _ment);
-	void OverlappedGameProfile(const GameProfile& _other);
-public:
-	GameUserSptr GetGameUser() {
-		return shared_from_this();
-	}
+	int64_t GetAccountId();
+	void SetAccountId(int64_t _accountId);
 };
 
 
