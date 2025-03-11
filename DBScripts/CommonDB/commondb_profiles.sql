@@ -1,9 +1,9 @@
 USE CommonDB;
 
-drop table `profiles`;
+drop table if exists `profiles`;
 
 create table `profiles` (
-	`p_id` bigint not null default 0 COMMENT 'summary id'
+	`p_id` bigint not null AUTO_INCREMENT COMMENT 'summary id'
 	, `a_id` bigint not null default 0 COMMENT 'id for account'
 	, `main_hero_id` bigint NOT NULL DEFAULT 0
 	, `main_frame_id` int NOT NULL DEFAULT 0

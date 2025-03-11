@@ -87,11 +87,6 @@ public:
 		paramFlag |= (1LL << _idx);
 	}
 
-	void BindCol(int32_t _idx, string& _val) {
-		conn.BindCol(_idx + 1, const_cast<char*>(_val.c_str()), _val.size(), &columnIdx[_idx]);
-		columnFlag |= (1LL << _idx);
-	}
-
 	template <typename T>
 	void BindCol(int32_t _idx, T& _val) {
 		conn.BindCol(_idx+1, &_val, &columnIdx[_idx]);

@@ -1,9 +1,9 @@
 USE CommonDB;
 
-drop table `platforms`;
+drop table if exists `platforms`;
 
 create table `platforms` (
-	`p_id` bigint not null
+	`p_id` bigint not null AUTO_INCREMENT
 	, `s_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin not null default "" COMMENT 'device key or oauth sns id, etc'
 	, `p_type` int not null default 0
 	, `a_id` bigint not null default 0 COMMENT 'user account id'

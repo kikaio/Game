@@ -111,6 +111,7 @@ void GameServerPacketHandler::Init()
 	//각 msg, packet에 대한 handler를 호출해주는 function을 연결해주는 과정을 여기서 진행한다.
 	REGIST_GAME_SERVER_HANDLE(Req, TestMsg);
 	REGIST_GAME_SERVER_HANDLE(Ans, Chat);
+	REGIST_GAME_SERVER_HANDLE(Ans, Login);
 	return;
 }
 

@@ -20,5 +20,8 @@ public:
 	static void FromProto(const UserAndGameServer::ChatProfile& _in, ChatProfile& _out);
 	static void FromProto(const UserAndGameServer::ChatData& _in, ChatData& _out);
 	static void FromProto(const UserAndGameServer::AnsChat& _in, ChatData& _out);
+	static void FromProto(const UserAndGameServer::UserProfile& _in, UserProfile& _out);
 	// MakeProto : 구조체 등의 인자를 통한 message packet 값 설정.
+public:
+	static void FromPacket(const UserAndGameServer::AnsLogin& _packet, OUT LoginResultData& _loginRet, OUT UserProfile& _profile);
 };

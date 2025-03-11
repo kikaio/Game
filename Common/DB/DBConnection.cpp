@@ -229,7 +229,7 @@ void DBConnection::HandleError(SQLRETURN _ret)
 	SQLSMALLINT msgLen = 0;
 	SQLRETURN errRet = 0;
 	while(true) {
-		SQLGetDiagRecA(SQL_HANDLE_STMT
+		errRet = SQLGetDiagRecA(SQL_HANDLE_STMT
 			,  statement
 			, idx, sqlState.data()
 			, OUT &nativeError

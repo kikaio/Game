@@ -3,12 +3,10 @@
 
 namespace UserAndGameServerHandle {
 	bool AnsLogin(SessionSptr _session, UserAndGameServer::AnsLogin& _packet) {
-		if(_packet.login_result_data().is_success()) {
-			printf("login success\n");
-		}
-		else {
-			printf("login failed\n");
-		}
+		LoginResultData loginRetData;
+		UserProfile userProfile;
+		ProtoConverter::FromPacket(_packet, OUT loginRetData, OUT userProfile);
+		
 		return true;
 	}
 }

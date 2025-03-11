@@ -85,7 +85,7 @@ PacketError DBWrapper::SelectPlatform(const LoginData& _loginData)
         }
         
         while(dbBinder.Fetch()) {
-            GS_DEBUG_LOG("cur platform pid : {}, sid : {}, aid : {}", platrofmRow.pId, platrofmRow.sId, platrofmRow.aId);
+            GS_DEBUG_LOG("cur platform pid : {}, sid : {}, aid : {}", platrofmRow.pId, platrofmRow.GetSid(), platrofmRow.aId);
         }
     }
 

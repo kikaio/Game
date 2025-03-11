@@ -79,6 +79,29 @@ void ProtoConverter::FromProto(const UserAndGameServer::AnsChat& _in, ChatData& 
 	FromProto(_in.chat_data(), _out);
 }
 
+void ProtoConverter::FromProto(const UserAndGameServer::UserProfile& _in, UserProfile& _out) {
+	_out.profileId = _in.profile_id();
+	_out.accountLv = _in.account_lv();
+	_out.nickName = _in.nick_name();
+	_out.greetingMent = _in.greeting_ment();
+	_out.profileHeroId = _in.profile_hero_id();
+	_out.profileFrameId = _in.profile_frame_id();
+	_out.mainHeroId = _in.main_hero_id();
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma endregion
 
+#pragma region from packet
+///////////////////////////////////////////////////////////////////////////////////////////
+
+void ProtoConverter::FromPacket(const UserAndGameServer::AnsLogin& _packet, OUT LoginResultData& _loginRet, OUT UserProfile& _profile) {
+	FromProto(_packet.login_result_data(), OUT _loginRet);
+	FromProto(_packet.user_profile(), OUT _profile);
+	return ;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma endregion
