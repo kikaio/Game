@@ -94,8 +94,6 @@ PacketError DBWrapper::SelectPlatform(const LoginData& _loginData, bool& _is_old
         summaryRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
         profileRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
 
-
-
         if(dbBinder.Execute() == false) {
             GS_ERROR_LOG("call usp_platform_select failed. param : {}, {}", _loginData.sId.c_str(), ENUM_TO_INT(_loginData.loginPlatform));
             return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::PROCEDURE_FAILED);
@@ -103,6 +101,7 @@ PacketError DBWrapper::SelectPlatform(const LoginData& _loginData, bool& _is_old
         
         while(dbBinder.Fetch()) {
             GS_DEBUG_LOG("cur platform pid : {}, sid : {}, aid : {}", platrofmRow.pId, platrofmRow.GetSid(), platrofmRow.aId);
+            //todo : 읽어온 정보를 토대로 server에서 사용할 data로 가공한다.
         }
     }
 

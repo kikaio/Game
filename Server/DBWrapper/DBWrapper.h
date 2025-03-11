@@ -9,4 +9,8 @@ public:
 		const LoginData& _loginData, OUT bool& _is_old_user
 		, int32_t _def_main_hero_id, int32_t _def_main_frame_id, string _def_main_greeting_ment
 	);
+
+	static PacketError SelectGame(
+		bool _is_old_user, int64_t _a_id 
+	);
 };
