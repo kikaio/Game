@@ -4,26 +4,22 @@
 class PlatformRow {
 public:
 	int64_t pId = 0;
-	char sIdBuf[50] = {0, };
+	string sId = "";
 	int64_t aId = 0;
 	int32_t pType = 0;
 	int64_t cDate = 0;
 	int64_t mDate = 0;
 public:
 	template<typename DB_BINDER>
-	void FromDB(DB_BINDER& _binder, int32_t _curIdx, OUT int32_t& _nextCol) {
-		_binder.BindCol(_curIdx++, OUT pId);
-		memset(sIdBuf, sizeof(sIdBuf), 0);
-		_binder.BindCol(_curIdx++, OUT sIdBuf);
-		_binder.BindCol(_curIdx++, OUT pType);
-		_binder.BindCol(_curIdx++, OUT aId);
-		_binder.BindCol(_curIdx++, OUT cDate);
-		_binder.BindCol(_curIdx++, OUT mDate);
-		_nextCol = _curIdx;
-	}
-
-	string GetSid() {
-		return sIdBuf;
+	void FromDB(DB_BINDER& _binder, int32_t _curColNo, OUT int32_t& _nextCol) {
+		_binder.GetInt64(_curColNo++, OUT pId);
+		_binder.GetStr(_curColNo++, OUT sId);
+		_binder.GetInt32(_curColNo++, OUT pType);
+		_binder.GetInt64(_curColNo++, OUT aId);
+		_binder.GetInt64(_curColNo++, OUT cDate);
+		_binder.GetInt64(_curColNo++, OUT mDate);
+		
+		_nextCol = _curColNo;
 	}
 };
 
@@ -34,11 +30,11 @@ public:
 	int64_t mDate = 0;
 public:
 	template<typename DB_BINDER>
-	void FromDB(DB_BINDER& _binder, int32_t _curIdx, OUT int32_t& _nextCol) {
-		_binder.BindCol(_curIdx++, OUT aId);
-		_binder.BindCol(_curIdx++, OUT cDate);
-		_binder.BindCol(_curIdx++, OUT mDate);
-		_nextCol = _curIdx;
+	void FromDB(DB_BINDER& _binder, int32_t _curColNo, OUT int32_t& _nextCol) {
+		_binder.GetInt64(_curColNo++, OUT aId);
+		_binder.GetInt64(_curColNo++, OUT cDate);
+		_binder.GetInt64(_curColNo++, OUT mDate);
+		_nextCol = _curColNo;
 		return ;
 	}
 };
@@ -51,13 +47,13 @@ public:
 	int64_t mDate = 0;
 public:
 	template<typename DB_BINDER> 
-	void FromDB(DB_BINDER& _binder, OUT int32_t _curIdx, OUT int32_t& _nextCol) {
-		_binder.BindCol(_curIdx++, OUT sId);
-		_binder.BindCol(_curIdx++, OUT aId);
-		_binder.BindCol(_curIdx++, OUT cDate);
-		_binder.BindCol(_curIdx++, OUT mDate);
+	void FromDB(DB_BINDER& _binder, OUT int32_t _curColNo, OUT int32_t& _nextCol) {
+		_binder.GetInt64(_curColNo++, OUT sId);
+		_binder.GetInt64(_curColNo++, OUT aId);
+		_binder.GetInt64(_curColNo++, OUT cDate);
+		_binder.GetInt64(_curColNo++, OUT mDate);
 
-		_nextCol = _curIdx;
+		_nextCol = _curColNo;
 		return ;
 	}
 };
@@ -68,26 +64,24 @@ public:
 	int64_t aId = 0;
 	int64_t mainHeroId = 0;
 	int32_t mainFrameId = 0;
-	char greetingMent[50] = {0, };
+	string greetingMent = "";
 	int64_t cDate = 0;
 	int64_t mDate = 0;
 public:
 	template<typename DB_BINDER>
-	void FromDB(DB_BINDER& _binder, OUT int32_t _curIdx, OUT int32_t& _nextCol) {
-		_binder.BindCol(_curIdx++, OUT pId);
-		_binder.BindCol(_curIdx++, OUT aId);
-		_binder.BindCol(_curIdx++, OUT mainHeroId);
-		_binder.BindCol(_curIdx++, OUT mainFrameId);
-		memset(greetingMent, sizeof(greetingMent), 0);
-		_binder.BindCol(_curIdx++, OUT greetingMent);
-		_binder.BindCol(_curIdx++, OUT cDate);
-		_binder.BindCol(_curIdx++, OUT mDate);
+	void FromDB(DB_BINDER& _binder, OUT int32_t _curColNo, OUT int32_t& _nextCol) {
+		_binder.GetInt64(_curColNo++, OUT pId);
+		_binder.GetInt64(_curColNo++, OUT aId);
+		_binder.GetInt64(_curColNo++, OUT mainHeroId);
+		_binder.GetInt32(_curColNo++, OUT mainFrameId);
+		
+		_binder.GetStr(_curColNo++, OUT greetingMent);
 
-		_nextCol = _curIdx;
+		_binder.GetInt64(_curColNo++, OUT cDate);
+		_binder.GetInt64(_curColNo++, OUT mDate);
+
+		_nextCol = _curColNo;
 	}
 
 public:
-	string GetGreetingMent() {
-		return greetingMent;
-	}
 };

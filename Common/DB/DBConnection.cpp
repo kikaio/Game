@@ -103,6 +103,11 @@ bool DBConnection::Fetch()
 	}
 }
 
+bool DBConnection::HasNext() {
+	return SQLMoreResults(statement) == SQL_SUCCESS;
+}
+
+
 int32_t DBConnection::GetRowCount()
 {
 	SQLLEN cnt = 0;
@@ -166,9 +171,9 @@ bool DBConnection::BindParam(int32_t _idx, const char* _val, SQLLEN* _len)
 	*_len = SQL_NTSL;
 
 	if(size > CHAR_MAX) {
-		return BindParam(_idx, SQL_CHAR, SQL_LONGVARCHAR, size, (SQLPOINTER)_val, _len);
+		return BindParam(_idx, SQL_C_CHAR, SQL_LONGVARCHAR, size, (SQLPOINTER)_val, _len);
 	}
-	return BindParam(_idx, SQL_CHAR, SQL_VARCHAR, size, (SQLPOINTER)_val, _len);
+	return BindParam(_idx, SQL_C_CHAR, SQL_VARCHAR, size, (SQLPOINTER)_val, _len);
 }
 
 bool DBConnection::BindParam(int32_t _idx, const BYTE* _val, int32_t _size, SQLLEN* _len)
@@ -299,4 +304,67 @@ bool DBConnection::BindCol(int32_t _idx, char* _val, int32_t _size, SQLLEN* _len
 bool DBConnection::BindCol(int32_t _idx, BYTE* _val, int32_t _size, SQLLEN* _len)
 {
 	return BindCol(_idx, SQL_C_BINARY, _size, _val, _len);
+}
+
+int8_t DBConnection::GetInt8(int _colNo)
+{
+	int8_t _ret = 0;
+	SQLGetData(statement, _colNo, SQL_C_TINYINT, OUT &_ret, sizeof(_ret), NULL);
+	return _ret;
+}
+
+int16_t DBConnection::GetInt16(int _colNo)
+{
+	int16_t _ret = 0;
+	SQLGetData(statement, _colNo, SQL_C_SHORT, OUT & _ret, sizeof(_ret), NULL);
+	return _ret;
+}
+
+int32_t DBConnection::GetInt32(int _colNo)
+{
+	int32_t _ret = 0;
+	SQLGetData(statement, _colNo, SQL_C_LONG, OUT & _ret, sizeof(_ret), NULL);
+	return _ret;
+}
+
+int64_t DBConnection::GetInt64(int _colNo)
+{
+	int64_t _ret = 0;
+	SQLGetData(statement, _colNo, SQL_C_SBIGINT, OUT & _ret, sizeof(_ret), NULL);
+	return _ret;
+}
+
+bool DBConnection::GetBool(int _colNo)
+{
+	bool _ret = false;
+	SQLGetData(statement, _colNo, SQL_C_BIT, &_ret, sizeof(_ret), NULL);
+	return _ret;
+}
+
+double DBConnection::GetDouble(int _colNo)
+{
+	double _ret = 0.0;
+	SQLGetData(statement, _colNo, SQL_C_DOUBLE, &_ret, sizeof(_ret), NULL);
+	return 0.0;
+}
+
+float DBConnection::GetFloat(int _colNo)
+{
+	float _ret = 0.0f;
+	SQLGetData(statement, _colNo, SQL_C_FLOAT, &_ret, sizeof(_ret), NULL);
+	return 0.0f;
+}
+
+string&& DBConnection::GetStr(int _colNo)
+{
+	char _ret[100] = {0, };
+	SQLGetData(statement, _colNo, SQL_C_BINARY, _ret, sizeof(_ret), NULL);
+	return _ret;
+}
+
+string&& DBConnection::GetStrLong(int _colNo)
+{
+	char _ret[200] = { 0, };
+	SQLGetData(statement, _colNo, SQL_C_BINARY, _ret, sizeof(_ret), NULL);
+	return _ret;
 }

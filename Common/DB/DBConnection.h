@@ -28,6 +28,7 @@ public:
 	void Clear();
 	bool Execute(const char* _sql);
 	bool Fetch();
+	bool HasNext();
 	int32_t GetRowCount();
 	void Unbind();
 public:
@@ -52,4 +53,18 @@ public:
 	bool BindCol(int32_t _idx, TIMESTAMP_STRUCT* _val, SQLLEN* _len);
 	bool BindCol(int32_t _idx, char*_val, int32_t _size, SQLLEN* _len);
 	bool BindCol(int32_t _idx, BYTE*_val, int32_t _size, SQLLEN* _len);
+public:
+	int8_t GetInt8(int _colNo);
+	int16_t GetInt16(int _colNo);
+	int32_t GetInt32(int _colNo);
+	int64_t GetInt64(int _colNo);
+
+	bool GetBool(int _colNo);
+
+	double GetDouble(int _colNo);
+	float GetFloat(int _colNo);
+
+	string&& GetStr(int _colNo);
+	string&& GetStrLong(int _colNo);
+
 };

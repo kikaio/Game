@@ -69,42 +69,41 @@ int32_t DBWrapper::DoDatabaseTest()
 PacketError DBWrapper::SelectPlatform(const LoginData& _loginData, GameUserSptr _gameUser, bool& _is_old_user, int32_t _def_main_hero_id, int32_t _def_main_frame_id, string _def_main_greeting_ment)
 {
     DBConnectionSptr conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
-    DBBind<5, 21> dbBinder(*conn, "call usp_platform_select(?, ?, ?, ?, ?);");
-
+    DBBind<5, 0> dbBinder(*conn, "call usp_platform_select(?, ?, ?, ?, ?);");
+    auto _tmp = ENUM_TO_INT(_loginData.loginPlatform);
     dbBinder.BindParam(0, IN _loginData.sId.c_str());
-    dbBinder.BindParam(1, IN ENUM_TO_INT(_loginData.loginPlatform));
+    dbBinder.BindParam(1, IN _tmp);
     dbBinder.BindParam(2, IN _def_main_hero_id);
     dbBinder.BindParam(3, IN _def_main_frame_id);
     dbBinder.BindParam(4, IN _def_main_greeting_ment.c_str());
 
     {
-        int32_t curColIdx = 0;
-        PlatformRow platformRow;
-        AccountRow accountRow;
-        SummaryRow summaryRow;
-        ProfileRow profileRow;
-
-        
-        // false : 해당 유저가 신규 생성된 유저인 경우
-        dbBinder.BindCol(curColIdx++, OUT _is_old_user);
-
-        //col별로 변수에 연결해준다.
-        platformRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
-        accountRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
-        summaryRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
-        profileRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
-
         if(dbBinder.Execute() == false) {
             GS_ERROR_LOG("call usp_platform_select failed. param : {}, {}", _loginData.sId.c_str(), ENUM_TO_INT(_loginData.loginPlatform));
             return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::PROCEDURE_FAILED);
         }
         
+        PlatformRow platformRow;
+        AccountRow accountRow;
+        SummaryRow summaryRow;
+        ProfileRow profileRow;
         while(dbBinder.Fetch()) {
-            GS_DEBUG_LOG("cur platform pid : {}, sid : {}, aid : {}", platformRow.pId, platformRow.GetSid(), platformRow.aId);
+
+            int32_t curColIdx = 1;
+
+            // false : 해당 유저가 신규 생성된 유저인 경우
+            dbBinder.GetBool(curColIdx++, OUT _is_old_user);
+
+            platformRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
+            accountRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
+            summaryRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
+            profileRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
+
+
             GameProfile& profile = _gameUser->GetProfile();
             
             _gameUser->SetAccountId(platformRow.aId);
-            profile.ChangeGreetingMent(profileRow.GetGreetingMent());
+            profile.ChangeGreetingMent(profileRow.greetingMent);
             profile.ChangeMainHeroId(profileRow.mainHeroId);
             profile.ChangeMainFrameId(profileRow.mainFrameId);
         }

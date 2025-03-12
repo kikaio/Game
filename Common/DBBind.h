@@ -58,6 +58,10 @@ public:
 	bool Fetch() {
 		return conn.Fetch();
 	}
+
+	bool HasNext() {
+		return conn.HasNext();
+	}
 public:
 	void BindParam(int32_t _idx, int32_t _val) {
 		conn.BindParam(_idx + 1, &_val, &paramIdx[_idx]);
@@ -111,5 +115,31 @@ public:
 		columnFlag |= (1LL <<  _idx);
 	}
 
-
+	void GetInt8(int32_t _colNo, OUT int8_t& _out) {
+		_out = conn.GetInt8(_colNo);
+	}
+	void GetInt16(int32_t _colNo, OUT int16_t& _out) {
+		_out = conn.GetInt16(_colNo);
+	}
+	void GetInt32(int32_t _colNo, OUT int32_t& _out) {
+		_out = conn.GetInt32(_colNo);
+	}
+	void GetInt64(int32_t _colNo, OUT int64_t& _out) {
+		_out = conn.GetInt64(_colNo);
+	}
+	void GetBool(int32_t _colNo, OUT bool& _out) {
+		_out = conn.GetBool(_colNo);
+	}
+	void GetFloat(int32_t _colNo, OUT float& _out) {
+		_out = conn.GetFloat(_colNo);
+	}
+	void GetDouble(int32_t _colNo, OUT double& _out) {
+		_out = conn.GetDouble(_colNo);
+	}
+	void GetStr(int32_t _colNo, OUT string& _out) {
+		_out = std::move(conn.GetStr(_colNo));
+	}
+	void GetStrLong(int32_t _colNo, OUT string& _out) {
+		_out = std::move(conn.GetStr(_colNo));
+	}
 };
