@@ -126,6 +126,7 @@ shared_ptr<DBConnection> DBConnectionPool::PopCommonDB(RWType _rwType) {
 			auto conn = iter->second.back();
 			iter->second.pop_back();
 			shared_ptr<DBConnection> _connSptr{ conn, DBConnectionPool::ReleaseConn };
+			_connSptr->Unbind();
 			return _connSptr;
 		}
 	}

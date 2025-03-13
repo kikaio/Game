@@ -12,6 +12,19 @@
 			"conn_timeout_sec": 10,
 			"read_timeout_sec": 3,
 			"write_timeout_sec": 3
+		},
+		{
+			"desc": "db는 mysql 만 써야함. -> 인증 방식 plugin 여부 떄문에",
+			"name": "GameDB",
+			"host": "localhost",
+			"user": "gameuser",
+			"pw": "gameuser",
+			"port": 3306,
+			"rw_type": "READ_WRITE",
+			"pool_cnt": 4,
+			"conn_timeout_sec": 10,
+			"read_timeout_sec": 3,
+			"write_timeout_sec": 3
 		}
 	],
 	"redis": [

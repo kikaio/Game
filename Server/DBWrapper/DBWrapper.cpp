@@ -114,9 +114,37 @@ PacketError DBWrapper::SelectPlatform(const LoginData& _loginData, GameUserSptr 
     return PacketError();
 }
 
-PacketError DBWrapper::SelectGame(bool _is_old_user, GameUserSptr _gameUser) {
+PacketError DBWrapper::CreateGameUser(GameUserSptr _gameUser) {
 
-    //todo : content 구현 전에 game 관련 entity들 정의 및 읽어 올 것.
+    // todo : aid 를 기준으로 신규 data를 생성하는 procedure 호출.
+    auto conn = DBConnectionPool::Get().PopGameDB();
+    if(conn == nullptr) {
+        GS_DEBUG_LOG("db connection pool is empty, check this. - CreateGame");
+        return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::CONNECTION_NOT_EXIST);
+    }
+
+    DBBind<4, 0> binder(*conn, "call usp_gameuser_create(?, ?, ?, ?)");
+    int64_t accountId = _gameUser->GetAccountId();
+    //기본적으로 지급해야 하는 character에 대한 basis id들의 연결된 문자열
+    string def_character_str = "12_34_56";
+    //기본적으로 지급해야 하는 item에 대한 basis id들의 연결된 문자열
+    string def_item_str = "1_2_3_4_5";
+    //기본적으로 지급해야 하는 costume에 대한 basis id들의 연결된 문자열
+    string def_costume_str = "1234_5678";
+
+    binder.BindParam(0, accountId);
+    binder.BindParam(1, def_character_str.c_str());
+    binder.BindParam(2, def_item_str.c_str());
+    binder.BindParam(3, def_costume_str.c_str());
+
+    binder.Execute();
+    
+    return PacketError();
+}
+
+PacketError DBWrapper::SelectGameUser(GameUserSptr _gameUser) {
+
+    //todo : select game user
 
     return PacketError();
 }
