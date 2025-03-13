@@ -64,7 +64,7 @@ public:
 	double GetDouble(int _colNo);
 	float GetFloat(int _colNo);
 
-	string&& GetStr(int _colNo);
-	string&& GetStrLong(int _colNo);
+	string GetStr(int _colNo);
+	string GetStrLong(int _colNo);
 
 };

@@ -70,38 +70,39 @@ PacketError DBWrapper::SelectPlatform(const LoginData& _loginData, GameUserSptr 
 {
     DBConnectionSptr conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
     DBBind<5, 0> dbBinder(*conn, "call usp_platform_select(?, ?, ?, ?, ?);");
-    auto _tmp = ENUM_TO_INT(_loginData.loginPlatform);
+    
+    int32_t platformVal = ENUM_TO_INT(_loginData.loginPlatform);
     dbBinder.BindParam(0, IN _loginData.sId.c_str());
-    dbBinder.BindParam(1, IN _tmp);
+    dbBinder.BindParam(1, IN platformVal);
     dbBinder.BindParam(2, IN _def_main_hero_id);
     dbBinder.BindParam(3, IN _def_main_frame_id);
     dbBinder.BindParam(4, IN _def_main_greeting_ment.c_str());
 
     {
-        if(dbBinder.Execute() == false) {
+        if (dbBinder.Execute() == false) {
             GS_ERROR_LOG("call usp_platform_select failed. param : {}, {}", _loginData.sId.c_str(), ENUM_TO_INT(_loginData.loginPlatform));
             return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::PROCEDURE_FAILED);
         }
-        
+
         PlatformRow platformRow;
         AccountRow accountRow;
         SummaryRow summaryRow;
         ProfileRow profileRow;
-        while(dbBinder.Fetch()) {
+        while (dbBinder.Fetch()) {
 
-            int32_t curColIdx = 1;
+            int32_t curColNo = 1;
 
             // false : 해당 유저가 신규 생성된 유저인 경우
-            dbBinder.GetBool(curColIdx++, OUT _is_old_user);
+            dbBinder.GetBool(curColNo++, OUT _is_old_user);
 
-            platformRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
-            accountRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
-            summaryRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
-            profileRow.FromDB(dbBinder, curColIdx, OUT curColIdx);
+            platformRow.FromDB(dbBinder, curColNo, OUT curColNo);
+            accountRow.FromDB(dbBinder, curColNo, OUT curColNo);
+            summaryRow.FromDB(dbBinder, curColNo, OUT curColNo);
+            profileRow.FromDB(dbBinder, curColNo, OUT curColNo);
 
 
             GameProfile& profile = _gameUser->GetProfile();
-            
+
             _gameUser->SetAccountId(platformRow.aId);
             profile.ChangeGreetingMent(profileRow.greetingMent);
             profile.ChangeMainHeroId(profileRow.mainHeroId);

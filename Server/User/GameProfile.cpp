@@ -42,6 +42,7 @@ void GameProfile::SetAccountId(int64_t _accountId) {
 
 bool GameProfile::ChangeGreetingMent(string _newMent)
 {
+    greetingMent = _newMent;
     return true;
 }
 

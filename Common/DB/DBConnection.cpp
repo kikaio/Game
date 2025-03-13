@@ -167,7 +167,7 @@ bool DBConnection::BindParam(int32_t _idx, TIMESTAMP_STRUCT* _val, SQLLEN* _len)
 
 bool DBConnection::BindParam(int32_t _idx, const char* _val, SQLLEN* _len)
 {
-	SQLULEN size = static_cast<SQLULEN>((strlen(_val)+1) * 2);
+	SQLULEN size = static_cast<SQLULEN>((strlen(_val)+1));
 	*_len = SQL_NTSL;
 
 	if(size > CHAR_MAX) {
@@ -355,14 +355,14 @@ float DBConnection::GetFloat(int _colNo)
 	return 0.0f;
 }
 
-string&& DBConnection::GetStr(int _colNo)
+string DBConnection::GetStr(int _colNo)
 {
 	char _ret[100] = {0, };
 	SQLGetData(statement, _colNo, SQL_C_BINARY, _ret, sizeof(_ret), NULL);
 	return _ret;
 }
 
-string&& DBConnection::GetStrLong(int _colNo)
+string DBConnection::GetStrLong(int _colNo)
 {
 	char _ret[200] = { 0, };
 	SQLGetData(statement, _colNo, SQL_C_BINARY, _ret, sizeof(_ret), NULL);

@@ -1,7 +1,7 @@
 #pragma once
 
 
-template <int64_t C>
+template <int32_t C>
 struct FullBits {
 	enum {
 		value = (1 << (C-1)) | FullBits<C-1>::value
@@ -63,11 +63,6 @@ public:
 		return conn.HasNext();
 	}
 public:
-	void BindParam(int32_t _idx, int32_t _val) {
-		conn.BindParam(_idx + 1, &_val, &paramIdx[_idx]);
-		paramFlag |= (1LL << _idx);
-	}
-	
 	template<typename T>
 	void BindParam(int32_t _idx, T& _val) {
 		conn.BindParam(_idx+1, &_val, &paramIdx[_idx]);

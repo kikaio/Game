@@ -83,7 +83,7 @@ shared_ptr<T> MakeShared(Args&&... args) {
 	return shared_ptr<T>(xnew<T>(forward<Args>(args)...), xfree<T>);
 }
 
-#define ENUM_TO_INT(_eVal) magic_enum::enum_integer(_eVal)
+#define ENUM_TO_INT(_eVal) magic_enum::enum_integer<decltype(_eVal)>(_eVal)
 
 
 #define ENUM_TO_STR(_eval) magic_enum::enum_name(_eval).data()
