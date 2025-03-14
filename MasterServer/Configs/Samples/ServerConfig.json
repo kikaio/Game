@@ -12,6 +12,19 @@
 			"conn_timeout_sec": 10,
 			"read_timeout_sec": 10,
 			"write_timeout_sec": 10
+		},
+		{
+			"desc": "mysqlDB port : 3306",
+			"name": "GameDB",
+			"host": "localhost",
+			"user": "gameuser",
+			"pw": "gameuser",
+			"rw_type": "READ_WRITE",
+			"pool_cnt": 1,
+			"port": 3306,
+			"conn_timeout_sec": 10,
+			"read_timeout_sec": 10,
+			"write_timeout_sec": 10
 		}
 	],
 	"master_config": {

@@ -7,8 +7,6 @@
 
 int main()
 {
-	ASSERT_CRASH(DBWrapper::ReadDBConfigFile());
-
 	printf("Master Server start\n");
 
 	JsonReader jr;
@@ -20,6 +18,18 @@ int main()
 	MasterConfig masterConfig;
 	masterConfig.ReadFromJson(masterConfigVal);
 	masterConfig.Render();
+
+	rapidjson::Value dbValue(kArrayType);
+	jr.GetArray("db_configs", OUT dbValue);
+	ASSERT_CRASH(dbValue.IsArray());
+
+	for(auto iter = dbValue.Begin(); iter != dbValue.End(); iter++) {
+		rapidjson::Value& _confVal = *iter;
+		DBConfig conf;
+		conf.Init(_confVal);
+		ASSERT_CRASH(DBConnectionPool::Get().Connect(conf));
+	}
+
 
 	ThreadManager::Get().PushAndStart([]() {
 		while (true) {

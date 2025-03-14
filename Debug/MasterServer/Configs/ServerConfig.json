@@ -3,12 +3,25 @@
 		{
 			"desc": "mysqlDB port : 3306",
 			"name": "CommonDB",
+			"host": "127.0.0.1",
+			"user": "gameuser",
+			"pw": "gameuser",
+			"rw_type": "READ_WRITE",
+			"pool_cnt": 1,
+			"port": 33306,
+			"conn_timeout_sec": 10,
+			"read_timeout_sec": 10,
+			"write_timeout_sec": 10
+		},
+		{
+			"desc": "mysqlDB port : 3306",
+			"name": "GameDB",
 			"host": "localhost",
 			"user": "gameuser",
 			"pw": "gameuser",
 			"rw_type": "READ_WRITE",
 			"pool_cnt": 1,
-			"port": 3306,
+			"port": 33306,
 			"conn_timeout_sec": 10,
 			"read_timeout_sec": 10,
 			"write_timeout_sec": 10
@@ -16,7 +29,7 @@
 	],
 	"master_config": {
 		"listen_port": 33301,
-		"accept_cnt": 1, 
-		"back_log" :  100
+		"accept_cnt": 10,
+		"back_log": 50
 	}
 }

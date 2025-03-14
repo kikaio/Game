@@ -17,14 +17,17 @@ private:
 	SQLHDBC hdbc = SQL_NULL_HANDLE;
 	SQLHSTMT statement = SQL_NULL_HANDLE;
 private:
+	void PrintSQLDiagnostic(SQLHDBC hdbc);
+
+private:
 	bool BindParam(SQLUSMALLINT _paramIdx, SQLSMALLINT _cType, SQLSMALLINT _sqlType
 		, SQLULEN _len, SQLPOINTER _ptr, SQLLEN* _idx
 	);
 	bool BindCol(SQLUSMALLINT _conIdx, SQLSMALLINT _cType, SQLULEN len, SQLPOINTER _val, SQLLEN* _idx);
 	void HandleError(SQLRETURN _ret);
 public:
+	void SetDBNameType(DBNameType _type);
 	bool Connect(SQLHENV _henv, const char* _connStr);
-	bool Connect(SQLHENV _henv, string _odbcName, string _host, string _user, string _pwd, DBNameType _dbNameType, RWType _rwType);
 	void Clear();
 	bool Execute(const char* _sql);
 	bool Fetch();

@@ -29,5 +29,6 @@ public:
 public:
 	void Init(rapidjson::Value& _doc);
 	void Render();
+	string GetConnectionStr() const;
 };
 

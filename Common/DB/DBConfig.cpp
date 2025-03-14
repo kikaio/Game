@@ -86,4 +86,9 @@ void DBConfig::Render()
 	printf("=============================\n");
 }
 
+string DBConfig::GetConnectionStr() const
+{
+	return "Driver={MySQL ODBC 9.1 ANSI Driver};" + fmt::format("Server={};Port={};Database={};UID={}; PWD={};", hostStr, port, dbNameStr, userStr, pwStr);
+}
+
 

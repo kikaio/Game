@@ -44,10 +44,11 @@ bool DBConnectionPool::Connect(const DBConfig& _conf) {
 
 	for (int32_t idx = 0; idx < _connCnt; idx++) {
 		DBConnection* _conn = new DBConnection();
-		if (_conn->Connect(env, _odbcName, _host, _user, _pwd, _dbNameType, _rwType) == false) {
+		string connStr = _conf.GetConnectionStr();
+		if (_conn->Connect(env, connStr.c_str()) == false) {
 			return false;
 		}
-
+		_conn->SetDBNameType(_conf.dbNameType);
 		switch (_conn->DbNameType()) {
 		case DBNameType::CommonDB: {
 			commonDBConfMap[_rwType].curPoolCnt++;
@@ -116,7 +117,8 @@ shared_ptr<DBConnection> DBConnectionPool::PopCommonDB(RWType _rwType) {
 		if(iter->second.empty()) {
 			//신규 conn 생성
 			DBConnection* _conn = new DBConnection();
-			ASSERT_CRASH(_conn->Connect(env, _conf.odbcName, _conf.hostStr, _conf.userStr, _conf.pwStr, _conf.dbNameType, _conf.rwType));
+			string connStr = _conf.GetConnectionStr();
+			ASSERT_CRASH(_conn->Connect(env, connStr.c_str()));
 			
 			commonDBConfMap[_rwType].curPoolCnt++;
 			shared_ptr<DBConnection> _connSptr{ _conn, DBConnectionPool::ReleaseConn };
@@ -163,7 +165,8 @@ shared_ptr<DBConnection> DBConnectionPool::PopGameDB(RWType _rwType) {
 		if (iter->second.empty()) {
 			//신규 conn 생성
 			DBConnection* _conn = new DBConnection();
-			ASSERT_CRASH(_conn->Connect(env, _conf.odbcName, _conf.hostStr, _conf.userStr, _conf.pwStr, _conf.dbNameType, _conf.rwType));
+			string connStr = _conf.GetConnectionStr();
+			ASSERT_CRASH(_conn->Connect(env, connStr.c_str()));
 
 			commonDBConfMap[_rwType].curPoolCnt++;
 			shared_ptr<DBConnection> _connSptr{ _conn, DBConnectionPool::ReleaseConn };

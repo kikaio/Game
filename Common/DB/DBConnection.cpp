@@ -1,61 +1,53 @@
 #include "pch.h"
 #include "DBConnection.h"
 
+void DBConnection::SetDBNameType(DBNameType _type) {
+	dbNameType = _type;
+	return ;
+}
+
+
 bool DBConnection::Connect(SQLHENV _henv, const char* _connStr)
 {
 	if(SQLAllocHandle(SQL_HANDLE_DBC, _henv, &hdbc) != SQL_SUCCESS) {
 		return false;
 	}
 
-	array<char, MAX_PATH> strBuf = {0, };
+	char strBuf[MAX_PATH] = {0,};
 	int len = strlen(_connStr);
-	strncpy_s(strBuf.data(), strBuf.size(), _connStr, len);
+	strcpy_s(strBuf, _countof(strBuf), _connStr);
 
-	array<char, MAX_PATH> retStr = {0, };
+	char retStr[MAX_PATH] = {0,};
 	SQLSMALLINT retLen = 0;
-	SQLRETURN ret = SQLDriverConnectA(hdbc, NULL, reinterpret_cast<SQLCHAR*>(strBuf.data()), strBuf.size()
-		, OUT reinterpret_cast<SQLCHAR*>(retStr.data()), retStr.size()
+
+	SQLRETURN ret = SQLDriverConnectA(hdbc, NULL, reinterpret_cast<SQLCHAR*>(strBuf), strlen(_connStr)
+		, OUT reinterpret_cast<SQLCHAR*>(retStr), _countof(retStr)
 		, OUT &retLen,  SQL_DRIVER_NOPROMPT
 	);
-
-	if(SQLAllocHandle(SQL_HANDLE_STMT, hdbc, &statement) != SQL_SUCCESS) {
-		return false;
+	if (ret == SQL_SUCCESS || ret == SQL_SUCCESS_WITH_INFO) {
+		if (SQLAllocHandle(SQL_HANDLE_STMT, hdbc, &statement) != SQL_SUCCESS) {
+			return false;
+		}
+		return true;
 	}
-
-	return (ret == SQL_SUCCESS || ret == SQL_SUCCESS_WITH_INFO);
+	PrintSQLDiagnostic(hdbc);
+	return false;
 }
 
-bool DBConnection::Connect(SQLHENV _henv, string _odbcName, string _host, string _user, string _pwd, DBNameType _dbNameType, RWType _rwType)
-{
-	SQLSMALLINT retLen = 0;
-
-	SQLRETURN ret = SQLAllocHandle(SQL_HANDLE_DBC, _henv, &hdbc);
-	if (ret != SQL_SUCCESS && ret != SQL_SUCCESS_WITH_INFO) {
-		printf("SQL Return : %d\n", ret);
-		return false;
+void DBConnection::PrintSQLDiagnostic(SQLHDBC hdbc) {
+	SQLCHAR sqlState[6], message[SQL_MAX_MESSAGE_LENGTH];
+	SQLINTEGER nativeError;
+	SQLSMALLINT messageLength;
+	SQLRETURN ret;
+	int i = 1;
+	while ((ret = SQLGetDiagRecA(SQL_HANDLE_DBC, hdbc, i, sqlState, &nativeError, message, sizeof(message), &messageLength)) != SQL_NO_DATA) {
+		std::cerr << "SQLSTATE: " << sqlState << "\n";
+		std::cerr << "Native Error: " << nativeError << "\n";
+		std::cerr << "Message: " << message << "\n";
+		++i;
 	}
-
-	ret = SQLConnectA(hdbc, (SQLCHAR*)_odbcName.c_str(), SQL_NTS
-		, (SQLCHAR*)_user.c_str(), SQL_NTS
-		, (SQLCHAR*)_pwd.c_str(), SQL_NTS
-	);
-	if (ret != SQL_SUCCESS && ret != SQL_SUCCESS_WITH_INFO) {
-		HandleError(ret);
-		printf("SQL Return : %d\n", ret);
-		return false;
-	}
-	ret = SQLAllocHandle(SQL_HANDLE_STMT, hdbc, &statement);
-	if (ret != SQL_SUCCESS && ret != SQL_SUCCESS_WITH_INFO) {
-		HandleError(ret);
-		printf("SQL Return : %d\n", ret);
-		return false;
-	}
-
-	dbNameType = _dbNameType;
-	rwType = _rwType;
-
-	return true;
 }
+
 
 void DBConnection::Clear()
 {
