@@ -17,7 +17,7 @@ namespace UserAndGameServerHandle {
 			bool isOldUser = false;
 			GameUserSptr gameUser = _session->GetGameUser();
 			// platform 정보를 읽는다, 신규 유저라면 use_select_platform에서 account 등 data를 생성한다.
-			auto platformError = DBWrapper::SelectPlatform(
+			auto platformError = DBWrapper::PlatformSelect(
 				loginData, gameUser
 				, OUT isOldUser, IN def_main_hero_id, IN def_main_frame_id, IN def_greeting_ment
 			);
@@ -25,11 +25,15 @@ namespace UserAndGameServerHandle {
 				return _session->SendError(platformError);
 			}
 
-			// todo : game 관련 data 읽어올 것.
-			auto gameError = DBWrapper::CreateGameUser(gameUser);
-			if (gameError.HasError()) {
-				return _session->SendError(gameError);
+			//신규유저는 생성부터.
+			if(isOldUser == false) {
+				auto gameError = DBWrapper::GameUserCreate(gameUser);
+				if (gameError.HasError()) {
+					return _session->SendError(gameError);
+				}
 			}
+
+			auto gameError = DBWrapper::GameUserSelect(gameUser);
 
 			// todo : render 지울 것.
 			gameUser->Render();

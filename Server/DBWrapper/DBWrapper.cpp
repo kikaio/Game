@@ -66,7 +66,7 @@ int32_t DBWrapper::DoDatabaseTest()
     return 0;
 }
 
-PacketError DBWrapper::SelectPlatform(const LoginData& _loginData, GameUserSptr _gameUser, bool& _is_old_user, int32_t _def_main_hero_id, int32_t _def_main_frame_id, string _def_main_greeting_ment)
+PacketError DBWrapper::PlatformSelect(const LoginData& _loginData, GameUserSptr _gameUser, bool& _is_old_user, int32_t _def_main_hero_id, int32_t _def_main_frame_id, string _def_main_greeting_ment)
 {
     DBConnectionSptr conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
     DBBind<5, 0> dbBinder(*conn, "call usp_platform_select(?, ?, ?, ?, ?);");
@@ -114,7 +114,7 @@ PacketError DBWrapper::SelectPlatform(const LoginData& _loginData, GameUserSptr 
     return PacketError();
 }
 
-PacketError DBWrapper::CreateGameUser(GameUserSptr _gameUser) {
+PacketError DBWrapper::GameUserCreate(GameUserSptr _gameUser) {
 
     // todo : aid 를 기준으로 신규 data를 생성하는 procedure 호출.
     auto conn = DBConnectionPool::Get().PopGameDB();
@@ -137,14 +137,59 @@ PacketError DBWrapper::CreateGameUser(GameUserSptr _gameUser) {
     binder.BindParam(2, def_item_str.c_str());
     binder.BindParam(3, def_costume_str.c_str());
 
-    binder.Execute();
+    if(binder.Execute() == false) {
+        return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::EXECUTE_FAILED);
+    }
     
     return PacketError();
 }
 
-PacketError DBWrapper::SelectGameUser(GameUserSptr _gameUser) {
+PacketError DBWrapper::GameUserSelect(GameUserSptr _gameUser) {
 
     //todo : select game user
+    auto conn = DBConnectionPool::Get().PopGameDB();
+    if(conn == nullptr) {
+        GS_ERROR_LOG("db conn pool is empty, check this, - SelectGameUser");
+        return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::CONNECTION_NOT_EXIST);
+    }
+
+    DBBind<1,0> binder(*conn, "call usp_gameuser_select(?)");
+    int64_t accountId = _gameUser->GetAccountId();
+    binder.BindParam(0, accountId);
+
+    if(binder.Execute() == false) {
+        return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::CONNECTION_NOT_EXIST);
+    }
+
+    // gameuser select
+    while(binder.Fetch()) {
+        GameUserRow row;
+        row.FromDB(binder);
+    }
+
+    ASSERT_CRASH(binder.HasNext());
+    
+    //characters -> 수집형 RPG의 영웅
+    while(binder.Fetch()) {
+        CharacterRow row;
+        row.FromDB(binder);
+    }
+
+    ASSERT_CRASH(binder.HasNext());
+
+    //items
+    while(binder.Fetch()) {
+        ItemRow row;
+        row.FromDB(binder);
+    }
+
+    ASSERT_CRASH(binder.HasNext());
+
+    //costumes
+    while (binder.Fetch()) {
+        CostumeRow row;
+        row.FromDB(binder);
+    }
 
     return PacketError();
 }
