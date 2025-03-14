@@ -161,10 +161,14 @@ PacketError DBWrapper::GameUserSelect(GameUserSptr _gameUser) {
         return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::CONNECTION_NOT_EXIST);
     }
 
+    GameUserRow gameUserRow;
+    vector<CharactersRow> characterRows;
+    vector<ItemRow> itemRows;
+    vector<CostumeRow> costumeRows;
+    
     // gameuser select
     while(binder.Fetch()) {
-        GameUserRow row;
-        row.FromDB(binder);
+        gameUserRow.FromDB(binder);
     }
 
     ASSERT_CRASH(binder.HasNext());
@@ -173,6 +177,7 @@ PacketError DBWrapper::GameUserSelect(GameUserSptr _gameUser) {
     while(binder.Fetch()) {
         CharacterRow row;
         row.FromDB(binder);
+        characterRows.push_back(row);
     }
 
     ASSERT_CRASH(binder.HasNext());
@@ -181,6 +186,7 @@ PacketError DBWrapper::GameUserSelect(GameUserSptr _gameUser) {
     while(binder.Fetch()) {
         ItemRow row;
         row.FromDB(binder);
+        itemRows.push_back(row);
     }
 
     ASSERT_CRASH(binder.HasNext());
@@ -189,6 +195,7 @@ PacketError DBWrapper::GameUserSelect(GameUserSptr _gameUser) {
     while (binder.Fetch()) {
         CostumeRow row;
         row.FromDB(binder);
+        costumeRows.push_back(row);
     }
 
     return PacketError();
