@@ -13,50 +13,56 @@ bool DummyProfile::InvalidGreetingMentCheck(const string& _ment)
 	return true;
 }
 
-AccountId_t DummyProfile::AccountId()
+int64_t DummyProfile::AccountId() const
 {
 	return accountId;
 }
 
-const string& DummyProfile::Nickname()
+const string& DummyProfile::Nickname() const
 {
 	return nickname;
 }
 
-const string& DummyProfile::GreetingMent()
+const string& DummyProfile::GreetingMent() const
 {
 	return greetingMent;
 }
 
-uint32_t DummyProfile::MainHeroId()
+uint32_t DummyProfile::MainHeroId() const
 {
 	return mainHeroId;
 }
 
-uint32_t DummyProfile::MainFrameId()
+uint32_t DummyProfile::MainFrameId() const
 {
 	return mainFrameId;
 }
 
-bool DummyProfile::ChangeNickname(const string& _name)
+bool DummyProfile::SetAccountId(int64_t _accountId)
+{
+	accountId = _accountId;
+	return true;
+}
+
+bool DummyProfile::SetNickname(const string& _name)
 {
 	nickname = _name;
 	return true;
 }
 
-bool DummyProfile::ChangeGreetingMent(const string& _ment)
+bool DummyProfile::SetGreetingMent(const string& _ment)
 {
 	greetingMent = _ment;
 	return true;
 }
 
-bool DummyProfile::ChangeMainFrameId(uint32_t _id)
+bool DummyProfile::SetMainFrameId(uint32_t _id)
 {
 	mainFrameId = _id;
 	return true;
 }
 
-bool DummyProfile::ChangeMainHeroId(uint32_t _id)
+bool DummyProfile::SetMainHeroId(uint32_t _id)
 {
 	mainHeroId = _id;
 	return true;

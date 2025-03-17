@@ -12,11 +12,11 @@ private:
 public:
 	void Render();
 public:
-	int64_t AccountId();
+	int64_t AccountId() const ;
 	void SetAccountId(int64_t _aid);
-	const string& GreetingMent();
-	const uint32_t& MainHeroId();
-	const uint32_t& MainFrameId();
+	const string& GreetingMent() const;
+	const uint32_t& MainHeroId() const;
+	const uint32_t& MainFrameId() const;
 public:
 	void InitGameProfile(ProfileRow profileRow);
 };

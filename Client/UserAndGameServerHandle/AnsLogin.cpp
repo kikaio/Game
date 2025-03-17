@@ -4,8 +4,13 @@
 namespace UserAndGameServerHandle {
 	bool AnsLogin(SessionSptr _session, UserAndGameServer::AnsLogin& _packet) {
 		LoginResultData loginRetData;
-		UserProfile userProfile;
-		ProtoConverter::FromPacket(_packet, OUT loginRetData, OUT userProfile);
+		DummyProfile dummyProfile;
+		Inventory inventory;
+		ProtoConverter::FromPacket(_packet
+			, OUT loginRetData
+			, OUT dummyProfile
+			, OUT inventory
+		);
 		
 		return true;
 	}

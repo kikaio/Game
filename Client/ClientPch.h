@@ -20,8 +20,6 @@
 #include "GameServerPacketHandler.h"
 #include "UserAndGameServerHandle.h"
 
-
-
 #include "ItemData.h"
 #include "CostumeData.h"
 #include "CharacterData.h"

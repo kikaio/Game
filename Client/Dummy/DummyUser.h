@@ -58,19 +58,9 @@ public:
 	void SetChatProfile(const ChatProfile& _chatProfile);
 	const ChatProfile& GetChatProfile();
 
+	void SetProfile(const DummyProfile& _profile);
+	DummyProfile& GetProfile();
+	
+	void SetInventory(const Inventory& _inven);
 	Inventory& GetInventory();
-
-	string GetNickname() {
-		return profile.Nickname();
-	}
-	string GetGreetingMent() {
-		return profile.GreetingMent();
-	}
-	bool SetNickname(string _name) {
-		return profile.ChangeNickname(_name);
-	}
-	bool SetGreetingMent(string _ment) {
-		return profile.ChangeGreetingMent(_ment);
-	}
-
 };

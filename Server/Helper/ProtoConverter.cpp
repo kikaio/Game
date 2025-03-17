@@ -7,15 +7,12 @@ void ProtoConverter::ToProto(const LoginResultData& _in, UserAndGameServer::Logi
 	return;
 }
 
-void ProtoConverter::ToProto(const UserProfile& _in, UserAndGameServer::UserProfile& _out)
+void ProtoConverter::ToProto(const GameProfile& _in, UserAndGameServer::GameProfile& _out)
 {
-	_out.set_profile_id(_in.profileId);
-	_out.set_account_lv(_in.accountLv);
-	_out.set_nick_name(_in.nickName);
-	_out.set_greeting_ment(_in.greetingMent);
-	_out.set_profile_hero_id(_in.profileHeroId);
-	_out.set_profile_frame_id(_in.profileFrameId);
-	_out.set_main_hero_id(_in.mainHeroId);
+	_out.set_account_id(_in.AccountId());
+	_out.set_greeting_ment(_in.GreetingMent());
+	_out.set_main_hero_id(_in.MainHeroId());
+	_out.set_main_frame_id(_in.MainFrameId());
 }
 
 void ProtoConverter::ToProto(const ChatProfile& _in, UserAndGameServer::ChatProfile& _out)
@@ -74,7 +71,7 @@ void ProtoConverter::ToProto(const Inventory& _in, UserAndGameServer::Inventory&
 
 void ProtoConverter::ToPacket(
 	IN const LoginResultData& _loginResultData
-	, IN const UserProfile& _profile
+	, IN const GameProfile& _profile
 	, IN const Inventory& _inventory
 	, UserAndGameServer::AnsLogin& _out
 )

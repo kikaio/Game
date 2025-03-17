@@ -43,9 +43,9 @@ namespace UserAndGameServerHandle {
 		LoginResultData loginResultData;
 		loginResultData.isSuccess = true;
 		//UserProfile& userProfile = gameUser->GetProfile();
-		UserProfile userProfile;
+		GameProfile& gameProfile = gameUser->GetProfile();
 		Inventory& inventory = gameUser->GetInventory();
-		ProtoConverter::ToPacket(IN loginResultData, IN userProfile, IN inventory, OUT _ans);
+		ProtoConverter::ToPacket(IN loginResultData, IN gameProfile, IN inventory, OUT _ans);
 		return _session->SendPacket(_ans);
 	}
 }

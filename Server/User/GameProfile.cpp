@@ -17,7 +17,7 @@ void GameProfile::Render()
     printf("==============================================\n");
 }
 
-int64_t GameProfile::AccountId()
+int64_t GameProfile::AccountId() const
 {
     return accountId;
 }
@@ -27,17 +27,17 @@ void GameProfile::SetAccountId(int64_t _aid)
     accountId = _aid;
 }
 
-const string& GameProfile::GreetingMent()
+const string& GameProfile::GreetingMent() const
 {
     return greetingMent;
 }
 
-const uint32_t& GameProfile::MainHeroId()
+const uint32_t& GameProfile::MainHeroId() const 
 {
     return mainHeroId;
 }
 
-const uint32_t& GameProfile::MainFrameId()
+const uint32_t& GameProfile::MainFrameId() const
 {
     return mainFrameId;
 }

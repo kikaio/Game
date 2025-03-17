@@ -5,7 +5,7 @@ class ProtoConverter {
 	// to proto
 public:
 	static void ToProto(const LoginResultData& _in, UserAndGameServer::LoginResultData& _out);
-	static void ToProto(const UserProfile& _in, UserAndGameServer::UserProfile& _out);
+	static void ToProto(const GameProfile& _in, UserAndGameServer::GameProfile& _out);
 
 	static void ToProto(const ChatProfile& _in, UserAndGameServer::ChatProfile& _out);
 	static void ToProto(const ChatData& _in, UserAndGameServer::ChatData& _out);
@@ -29,7 +29,7 @@ public:
 public:
 	static void ToPacket(
 		const LoginResultData& _loginResultData
-		, const UserProfile& _profile
+		, const GameProfile& _profile
 		, const Inventory& _inventory
 		, UserAndGameServer::AnsLogin& _out
 	);

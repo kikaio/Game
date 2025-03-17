@@ -84,6 +84,21 @@ const ChatProfile& DummyUser::GetChatProfile()
 	return chatProfile;
 }
 
+void DummyUser::SetProfile(const DummyProfile& _profile)
+{
+	profile = _profile;
+}
+
+DummyProfile& DummyUser::GetProfile()
+{
+	return profile;
+}
+
+void DummyUser::SetInventory(const Inventory& _inven)
+{
+	inventory = _inven;
+}
+
 Inventory& DummyUser::GetInventory()
 {
 	return inventory;

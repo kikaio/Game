@@ -12,10 +12,13 @@ public:
 	Costumes costumes;
 	Characters characters;
 public:
-	void initInventory(
-		const vector<ItemData>& _itemVect
-		, const vector<CostumeData>& _costumeVect
-		, const vector<CharacterData>& _characterVect
-	);
-public:
+	const Items& GetItems() const {
+		return items;
+	}
+	const Costumes GetCostumes() const {
+		return costumes;
+	}
+	const Characters GetCharacters() const {
+		return characters;
+	}
 };

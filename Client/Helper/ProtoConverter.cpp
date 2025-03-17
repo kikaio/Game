@@ -39,6 +39,46 @@ void ProtoConverter::ToProto(const ChatData& _chatData, UserAndGameServer::ReqCh
 	return;
 }
 
+void ProtoConverter::ToProto(const DummyProfile& _in, UserAndGameServer::GameProfile& _out)
+{
+	_out.set_account_id(_in.AccountId());
+	_out.set_greeting_ment(_in.GreetingMent());
+	_out.set_main_hero_id(_in.MainHeroId());
+	_out.set_main_frame_id(_in.MainFrameId());
+}
+
+void ProtoConverter::ToProto(const Inventory& _in, UserAndGameServer::Inventory& _out)
+{
+	const auto& items = _in.GetItems();
+	for (const auto& _pair : items) {
+		auto* _new_ele = _out.add_items();
+		ToProto(_pair.second, *_new_ele);
+	}
+	const auto& costumes= _in.GetCostumes();
+	for (const auto& _pair : costumes) {
+		auto* _new_ele = _out.add_costumes();
+		ToProto(_pair.second, *_new_ele);
+	}
+	const auto& characters = _in.GetCharacters();
+	for (const auto& _pair : characters) {
+		auto* _new_ele = _out.add_characters();
+		ToProto(_pair.second, *_new_ele);
+	}
+}
+
+void ProtoConverter::ToProto(const ItemData& _in, UserAndGameServer::ItemData& _out) {
+	_out.set_basis_id(_in.basisId);
+	_out.set_cnt(_in.cnt);
+	_out.set_cnt_prev(_in.cntPrev);
+}
+
+void ProtoConverter::ToProto(const CostumeData& _in, UserAndGameServer::CostumeData& _out) {
+	_out.set_basis_id(_in.basisId);
+}
+
+void ProtoConverter::ToProto(const CharacterData& _in, UserAndGameServer::CharacterData& _out) {
+	_out.set_basis_id(_in.basisId);
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma endregion
@@ -79,16 +119,46 @@ void ProtoConverter::FromProto(const UserAndGameServer::AnsChat& _in, ChatData& 
 	FromProto(_in.chat_data(), _out);
 }
 
-void ProtoConverter::FromProto(const UserAndGameServer::UserProfile& _in, UserProfile& _out) {
-	_out.profileId = _in.profile_id();
-	_out.accountLv = _in.account_lv();
-	_out.nickName = _in.nick_name();
-	_out.greetingMent = _in.greeting_ment();
-	_out.profileHeroId = _in.profile_hero_id();
-	_out.profileFrameId = _in.profile_frame_id();
-	_out.mainHeroId = _in.main_hero_id();
+void ProtoConverter::FromProto(const UserAndGameServer::GameProfile& _in, DummyProfile& _out) {
+	_out.SetAccountId(_in.account_id());
+	_out.SetGreetingMent(_in.greeting_ment());
+	_out.SetMainHeroId(_in.main_hero_id());
+	_out.SetMainFrameId(_in.main_frame_id());
 }
 
+void ProtoConverter::FromProto(const UserAndGameServer::Inventory& _in, Inventory& _out)
+{
+	for (const auto& _ele : _in.items()) {
+		ItemData _item;
+		FromProto(_ele, _item);
+		_out.items.emplace(_item.basisId, _item);
+	}
+	for (const auto& _ele : _in.costumes()) {
+		CostumeData _costume;
+		FromProto(_ele, _costume);
+		_out.costumes.emplace(_costume.basisId, _costume);
+	}
+	for (const auto& _ele : _in.characters()) {
+		CharacterData _character;
+		FromProto(_ele, _character);
+		_out.characters.emplace(_character.basisId, _character);
+	}
+}
+
+
+void ProtoConverter::FromProto(const UserAndGameServer::ItemData& _in, ItemData& _out) {
+	_out.basisId = _in.basis_id();
+	_out.cnt = _in.cnt();
+	_out.cntPrev = _in.cnt_prev();
+}
+
+void ProtoConverter::FromProto(const UserAndGameServer::CostumeData& _in, CostumeData& _out) {
+	_out.basisId = _in.basis_id();
+}
+
+void ProtoConverter::FromProto(const UserAndGameServer::CharacterData& _in, CharacterData& _out) {
+	_out.basisId = _in.basis_id();
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma endregion
@@ -96,9 +166,14 @@ void ProtoConverter::FromProto(const UserAndGameServer::UserProfile& _in, UserPr
 #pragma region from packet
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-void ProtoConverter::FromPacket(const UserAndGameServer::AnsLogin& _packet, OUT LoginResultData& _loginRet, OUT UserProfile& _profile) {
+void ProtoConverter::FromPacket(IN const UserAndGameServer::AnsLogin& _packet
+	, OUT LoginResultData& _loginRet
+	, OUT DummyProfile& _profile
+	, OUT Inventory& _inven
+) {
 	FromProto(_packet.login_result_data(), OUT _loginRet);
 	FromProto(_packet.user_profile(), OUT _profile);
+	FromProto(_packet.user_inventory(), OUT _inven);
 	return ;
 }
 

@@ -3,7 +3,7 @@
 struct DummyProfile
 {
 private:
-	AccountId_t accountId = 0;
+	int64_t accountId = 0;
 	string nickname = "";
 	string greetingMent = "default greeting ment";
 	uint32_t mainFrameId = 0;
@@ -12,16 +12,17 @@ private:
 	bool InvalidNicknameCheck(const string& _name);
 	bool InvalidGreetingMentCheck(const string& _ment);
 public:
-	AccountId_t AccountId();
-	const string& Nickname();
-	const string& GreetingMent();
-	uint32_t MainHeroId();
-	uint32_t MainFrameId();
+	int64_t AccountId() const;
+	const string& Nickname() const;
+	const string& GreetingMent() const;
+	uint32_t MainHeroId() const;
+	uint32_t MainFrameId() const;
 public:
-	bool ChangeNickname(const string& _name);
-	bool ChangeGreetingMent(const string& _ment);
-	bool ChangeMainFrameId(uint32_t _id);
-	bool ChangeMainHeroId(uint32_t _id);
+	bool SetAccountId(int64_t _accountId);
+	bool SetNickname(const string& _name);
+	bool SetGreetingMent(const string& _ment);
+	bool SetMainFrameId(uint32_t _id);
+	bool SetMainHeroId(uint32_t _id);
 public:
 	void Clear();
 };
