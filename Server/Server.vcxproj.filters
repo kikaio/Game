@@ -31,6 +31,9 @@
     <Filter Include="Helper">
       <UniqueIdentifier>{e1014f1b-b598-48fa-a420-2cf0914234b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="User\GameData">
+      <UniqueIdentifier>{76ffa1b7-91ff-4264-99f0-b2e12c1b1199}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Server.cpp">
@@ -44,12 +47,6 @@
     </ClCompile>
     <ClCompile Include="UserAndGameServerHandle\ReqChat.cpp">
       <Filter>Main\UserAndGameServerHandle</Filter>
-    </ClCompile>
-    <ClCompile Include="User\GameUser.cpp">
-      <Filter>User</Filter>
-    </ClCompile>
-    <ClCompile Include="User\GameProfile.cpp">
-      <Filter>User</Filter>
     </ClCompile>
     <ClCompile Include="DBWrapper\DBWrapper.cpp">
       <Filter>DBWrapper</Filter>
@@ -75,16 +72,25 @@
     <ClCompile Include="ConfigClass\GameConfig.cpp">
       <Filter>ConfigClass</Filter>
     </ClCompile>
-    <ClCompile Include="MonitorHelper.cpp">
-      <Filter>Helper</Filter>
-    </ClCompile>
     <ClCompile Include="ReqLogin.cpp">
       <Filter>Main\UserAndGameServerHandle</Filter>
     </ClCompile>
-    <ClCompile Include="ProtoConverter.cpp">
+    <ClCompile Include="User\GameProfile.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="User\GameUser.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="User\Inventory.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="Helper\LogHelper.cpp">
       <Filter>Helper</Filter>
     </ClCompile>
-    <ClCompile Include="LogHelper.cpp">
+    <ClCompile Include="Helper\MonitorHelper.cpp">
+      <Filter>Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Helper\ProtoConverter.cpp">
       <Filter>Helper</Filter>
     </ClCompile>
   </ItemGroup>
@@ -103,12 +109,6 @@
     </ClInclude>
     <ClInclude Include="ServerDefines.h">
       <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="User\GameUser.h">
-      <Filter>User</Filter>
-    </ClInclude>
-    <ClInclude Include="User\GameProfile.h">
-      <Filter>User</Filter>
     </ClInclude>
     <ClInclude Include="ServerEnums.h">
       <Filter>Main</Filter>
@@ -137,17 +137,35 @@
     <ClInclude Include="ConfigClass\GameConfig.h">
       <Filter>ConfigClass</Filter>
     </ClInclude>
-    <ClInclude Include="MonitorHelper.h">
-      <Filter>Helper</Filter>
-    </ClInclude>
-    <ClInclude Include="ProtoConverter.h">
-      <Filter>Helper</Filter>
-    </ClInclude>
-    <ClInclude Include="LogHelper.h">
-      <Filter>Helper</Filter>
-    </ClInclude>
     <ClInclude Include="ServerDBTypes.h">
       <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="User\GameData\CharacterData.h">
+      <Filter>User\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="User\GameData\CostumeData.h">
+      <Filter>User\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="User\GameData\ItemData.h">
+      <Filter>User\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="User\GameProfile.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="User\GameUser.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="User\Inventory.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper\LogHelper.h">
+      <Filter>Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper\MonitorHelper.h">
+      <Filter>Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper\ProtoConverter.h">
+      <Filter>Helper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

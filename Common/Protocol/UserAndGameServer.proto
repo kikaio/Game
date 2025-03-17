@@ -20,6 +20,26 @@ enum Protocol {
 	Login = 6;
 }
 
+message ItemData {
+	int64 basis_id = 1;
+	int64 cnt = 2;
+	int64 cnt_prev = 3;
+}
+
+message CostumeData {
+	int64 basis_id = 1;
+}
+
+message CharacterData {
+	int64 basis_id = 1;
+}
+
+message Inventory {
+	repeated ItemData items = 1;
+	repeated CostumeData costumes= 2;
+	repeated CharacterData characters = 3;
+}
+
 
 message UserProfile {
 	int32 profile_id = 1;
@@ -100,4 +120,5 @@ message ReqLogin {
 message AnsLogin {
 	LoginResultData login_result_data = 1;
 	UserProfile user_profile = 2;
+	Inventory user_inventory = 3;
 }

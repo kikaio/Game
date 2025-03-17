@@ -8,9 +8,15 @@ GameUser::GameUser() {
 
 void GameUser::Render() {
 	profile.Render();
+	inventory.Render();
 }
 GameProfile& GameUser::GetProfile() {
 	return profile;
+}
+
+Inventory& GameUser::GetInventory()
+{
+	return inventory;
 }
 
 int64_t GameUser::GetAccountId() {

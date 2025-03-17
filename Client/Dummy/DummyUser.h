@@ -48,6 +48,7 @@ public:
 
 private:
 	DummyProfile profile;
+	Inventory inventory;
 	LoginData loginData;
 	ChatProfile chatProfile;
 public:
@@ -56,6 +57,8 @@ public:
 
 	void SetChatProfile(const ChatProfile& _chatProfile);
 	const ChatProfile& GetChatProfile();
+
+	Inventory& GetInventory();
 
 	string GetNickname() {
 		return profile.Nickname();

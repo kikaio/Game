@@ -13,14 +13,12 @@ public:
 	void Render();
 public:
 	int64_t AccountId();
+	void SetAccountId(int64_t _aid);
 	const string& GreetingMent();
 	const uint32_t& MainHeroId();
 	const uint32_t& MainFrameId();
 public:
-	void SetAccountId(int64_t _accountId);
-	bool ChangeGreetingMent(string _newMent);
-	bool ChangeMainHeroId(uint32_t _newId);
-	bool ChangeMainFrameId(uint32_t _newId);
+	void InitGameProfile(ProfileRow profileRow);
 };
 
 

@@ -22,6 +22,11 @@ int64_t GameProfile::AccountId()
     return accountId;
 }
 
+void GameProfile::SetAccountId(int64_t _aid)
+{
+    accountId = _aid;
+}
+
 const string& GameProfile::GreetingMent()
 {
     return greetingMent;
@@ -36,26 +41,10 @@ const uint32_t& GameProfile::MainFrameId()
 {
     return mainFrameId;
 }
-void GameProfile::SetAccountId(int64_t _accountId) {
-    accountId = _accountId;
-}
-
-bool GameProfile::ChangeGreetingMent(string _newMent)
+void GameProfile::InitGameProfile(ProfileRow _profileRow)
 {
-    greetingMent = _newMent;
-    return true;
-}
-
-bool GameProfile::ChangeMainHeroId(uint32_t _newId)
-{
-    //todo : plan data check.
-    mainHeroId = _newId;
-    return true;
-}
-
-bool GameProfile::ChangeMainFrameId(uint32_t _newId)
-{
-    //todo : plan data check
-    mainFrameId = _newId;
-    return true;
+    accountId = _profileRow.aId;
+    greetingMent = _profileRow.greetingMent;
+    mainHeroId = _profileRow.mainHeroId;
+    mainFrameId = _profileRow.mainFrameId;
 }

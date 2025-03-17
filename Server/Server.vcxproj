@@ -79,11 +79,11 @@
     <OutDir>$(SolutionDir)$(Configuration)\Server\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Common\DB;$(SolutionDir)Common\Logging;$(SolutionDir)Common\Redis;$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir);$(ProjectDir)ConfigClass;$(ProjectDir)DBWrapper;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)MasterAndGameServerHandle;$(ProjectDir)PacketHandles;$(ProjectDir)Sessions;$(ProjectDir)User</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Common\DB;$(SolutionDir)Common\Logging;$(SolutionDir)Common\Redis;$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir);$(ProjectDir)ConfigClass;$(ProjectDir)DBWrapper;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)MasterAndGameServerHandle;$(ProjectDir)PacketHandles;$(ProjectDir)Sessions;$(ProjectDir)User;$(ProjectDir)User\GameData;$(ProjectDir)Helper</IncludePath>
     <OutDir>$(SolutionDir)$(Configuration)\Server\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Common\DB;$(SolutionDir)Common\Redis;$(SolutionDir)Common\Logging;$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir);$(ProjectDir)ConfigClass;$(ProjectDir)DBWrapper;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)MasterAndGameServerHandle;$(ProjectDir)PacketHandles;$(PorjectDir)Sessions;$(ProjectDir)User</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Random;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Job;$(SolutionDir)Common\DB;$(SolutionDir)Common\Redis;$(SolutionDir)Common\Logging;$(SolutionDir)Libraries\Include;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir);$(ProjectDir)ConfigClass;$(ProjectDir)DBWrapper;$(ProjectDir)UserAndGameServerHandle;$(ProjectDir)MasterAndGameServerHandle;$(ProjectDir)PacketHandles;$(PorjectDir)Sessions;$(ProjectDir)User;$(ProjectDir)User\GameData;$(ProjectDir)Helper</IncludePath>
     <OutDir>$(SolutionDir)$(Configuration)\Server\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -162,9 +162,10 @@
     <ClCompile Include="ConfigClass\GameConfig.cpp" />
     <ClCompile Include="ConfigClass\MasterConfig.cpp" />
     <ClCompile Include="DBWrapper\DBWrapper.cpp" />
-    <ClCompile Include="LogHelper.cpp" />
+    <ClCompile Include="Helper\LogHelper.cpp" />
+    <ClCompile Include="Helper\MonitorHelper.cpp" />
+    <ClCompile Include="Helper\ProtoConverter.cpp" />
     <ClCompile Include="MasterAndGameServerHandle\AnsMasterServerConnect.cpp" />
-    <ClCompile Include="MonitorHelper.cpp" />
     <ClCompile Include="PacketHandles\MasterPacketHandler.cpp" />
     <ClCompile Include="PacketHandles\ServerPacketHandler.cpp" />
     <ClCompile Include="pch.cpp">
@@ -173,7 +174,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ProtoConverter.cpp" />
     <ClCompile Include="ReqLogin.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="ServerPch.cpp" />
@@ -182,18 +182,19 @@
     <ClCompile Include="UserAndGameServerHandle\ReqChat.cpp" />
     <ClCompile Include="User\GameProfile.cpp" />
     <ClCompile Include="User\GameUser.cpp" />
+    <ClCompile Include="User\Inventory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConfigClass\GameConfig.h" />
     <ClInclude Include="ConfigClass\MasterConfig.h" />
     <ClInclude Include="DBWrapper\DBWrapper.h" />
-    <ClInclude Include="LogHelper.h" />
+    <ClInclude Include="Helper\LogHelper.h" />
+    <ClInclude Include="Helper\MonitorHelper.h" />
+    <ClInclude Include="Helper\ProtoConverter.h" />
     <ClInclude Include="MasterAndGameServerHandle\MasterAndGameServerHandle.h" />
-    <ClInclude Include="MonitorHelper.h" />
     <ClInclude Include="PacketHandles\MasterPacketHandler.h" />
     <ClInclude Include="PacketHandles\ServerPacketHandler.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="ProtoConverter.h" />
     <ClInclude Include="ServerDBTypes.h" />
     <ClInclude Include="ServerDefines.h" />
     <ClInclude Include="ServerEnums.h" />
@@ -202,8 +203,12 @@
     <ClInclude Include="Sessions\MasterSession.h" />
     <ClInclude Include="Sessions\UserSession.h" />
     <ClInclude Include="UserAndGameServerHandle\UserAndGameServerHandle.h" />
+    <ClInclude Include="User\GameData\CharacterData.h" />
+    <ClInclude Include="User\GameData\CostumeData.h" />
+    <ClInclude Include="User\GameData\ItemData.h" />
     <ClInclude Include="User\GameProfile.h" />
     <ClInclude Include="User\GameUser.h" />
+    <ClInclude Include="User\Inventory.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Configs\ServerConfig.json" />

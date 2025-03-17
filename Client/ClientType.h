@@ -1,11 +1,6 @@
 #pragma once
 
 
-DECL_REF_USING(GameServerSession);
-DECL_REF_USING(DumAct);
-DECL_REF_USING(DummyUser);
-
-
 struct UserProfile {
 	int32_t profileId = 0;
 	int32_t accountLv = 0;
@@ -38,3 +33,4 @@ struct ChatData {
 	ChatProfile chatProfile;
 	string msg = "";
 };
+

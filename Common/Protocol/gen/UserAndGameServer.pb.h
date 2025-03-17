@@ -47,7 +47,7 @@ struct TableStruct_UserAndGameServer_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[16]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[20]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -70,12 +70,24 @@ extern AnsPublicKeyDefaultTypeInternal _AnsPublicKey_default_instance_;
 class AnsTestMsg;
 struct AnsTestMsgDefaultTypeInternal;
 extern AnsTestMsgDefaultTypeInternal _AnsTestMsg_default_instance_;
+class CharacterData;
+struct CharacterDataDefaultTypeInternal;
+extern CharacterDataDefaultTypeInternal _CharacterData_default_instance_;
 class ChatData;
 struct ChatDataDefaultTypeInternal;
 extern ChatDataDefaultTypeInternal _ChatData_default_instance_;
 class ChatProfile;
 struct ChatProfileDefaultTypeInternal;
 extern ChatProfileDefaultTypeInternal _ChatProfile_default_instance_;
+class CostumeData;
+struct CostumeDataDefaultTypeInternal;
+extern CostumeDataDefaultTypeInternal _CostumeData_default_instance_;
+class Inventory;
+struct InventoryDefaultTypeInternal;
+extern InventoryDefaultTypeInternal _Inventory_default_instance_;
+class ItemData;
+struct ItemDataDefaultTypeInternal;
+extern ItemDataDefaultTypeInternal _ItemData_default_instance_;
 class LoginData;
 struct LoginDataDefaultTypeInternal;
 extern LoginDataDefaultTypeInternal _LoginData_default_instance_;
@@ -110,8 +122,12 @@ template<> ::UserAndGameServer::AnsConnect* Arena::CreateMaybeMessage<::UserAndG
 template<> ::UserAndGameServer::AnsLogin* Arena::CreateMaybeMessage<::UserAndGameServer::AnsLogin>(Arena*);
 template<> ::UserAndGameServer::AnsPublicKey* Arena::CreateMaybeMessage<::UserAndGameServer::AnsPublicKey>(Arena*);
 template<> ::UserAndGameServer::AnsTestMsg* Arena::CreateMaybeMessage<::UserAndGameServer::AnsTestMsg>(Arena*);
+template<> ::UserAndGameServer::CharacterData* Arena::CreateMaybeMessage<::UserAndGameServer::CharacterData>(Arena*);
 template<> ::UserAndGameServer::ChatData* Arena::CreateMaybeMessage<::UserAndGameServer::ChatData>(Arena*);
 template<> ::UserAndGameServer::ChatProfile* Arena::CreateMaybeMessage<::UserAndGameServer::ChatProfile>(Arena*);
+template<> ::UserAndGameServer::CostumeData* Arena::CreateMaybeMessage<::UserAndGameServer::CostumeData>(Arena*);
+template<> ::UserAndGameServer::Inventory* Arena::CreateMaybeMessage<::UserAndGameServer::Inventory>(Arena*);
+template<> ::UserAndGameServer::ItemData* Arena::CreateMaybeMessage<::UserAndGameServer::ItemData>(Arena*);
 template<> ::UserAndGameServer::LoginData* Arena::CreateMaybeMessage<::UserAndGameServer::LoginData>(Arena*);
 template<> ::UserAndGameServer::LoginResultData* Arena::CreateMaybeMessage<::UserAndGameServer::LoginResultData>(Arena*);
 template<> ::UserAndGameServer::NotiErrInfo* Arena::CreateMaybeMessage<::UserAndGameServer::NotiErrInfo>(Arena*);
@@ -184,6 +200,661 @@ inline bool Protocol_Parse(
 }
 // ===================================================================
 
+class ItemData final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:UserAndGameServer.ItemData) */ {
+ public:
+  inline ItemData() : ItemData(nullptr) {}
+  ~ItemData() override;
+  explicit constexpr ItemData(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ItemData(const ItemData& from);
+  ItemData(ItemData&& from) noexcept
+    : ItemData() {
+    *this = ::std::move(from);
+  }
+
+  inline ItemData& operator=(const ItemData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ItemData& operator=(ItemData&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ItemData& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ItemData* internal_default_instance() {
+    return reinterpret_cast<const ItemData*>(
+               &_ItemData_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(ItemData& a, ItemData& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ItemData* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ItemData* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ItemData* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ItemData>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ItemData& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ItemData& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ItemData* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "UserAndGameServer.ItemData";
+  }
+  protected:
+  explicit ItemData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBasisIdFieldNumber = 1,
+    kCntFieldNumber = 2,
+    kCntPrevFieldNumber = 3,
+  };
+  // int64 basis_id = 1;
+  void clear_basis_id();
+  int64_t basis_id() const;
+  void set_basis_id(int64_t value);
+  private:
+  int64_t _internal_basis_id() const;
+  void _internal_set_basis_id(int64_t value);
+  public:
+
+  // int64 cnt = 2;
+  void clear_cnt();
+  int64_t cnt() const;
+  void set_cnt(int64_t value);
+  private:
+  int64_t _internal_cnt() const;
+  void _internal_set_cnt(int64_t value);
+  public:
+
+  // int64 cnt_prev = 3;
+  void clear_cnt_prev();
+  int64_t cnt_prev() const;
+  void set_cnt_prev(int64_t value);
+  private:
+  int64_t _internal_cnt_prev() const;
+  void _internal_set_cnt_prev(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:UserAndGameServer.ItemData)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  int64_t basis_id_;
+  int64_t cnt_;
+  int64_t cnt_prev_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_UserAndGameServer_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CostumeData final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:UserAndGameServer.CostumeData) */ {
+ public:
+  inline CostumeData() : CostumeData(nullptr) {}
+  ~CostumeData() override;
+  explicit constexpr CostumeData(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CostumeData(const CostumeData& from);
+  CostumeData(CostumeData&& from) noexcept
+    : CostumeData() {
+    *this = ::std::move(from);
+  }
+
+  inline CostumeData& operator=(const CostumeData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CostumeData& operator=(CostumeData&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CostumeData& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CostumeData* internal_default_instance() {
+    return reinterpret_cast<const CostumeData*>(
+               &_CostumeData_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(CostumeData& a, CostumeData& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CostumeData* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CostumeData* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CostumeData* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CostumeData>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CostumeData& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CostumeData& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CostumeData* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "UserAndGameServer.CostumeData";
+  }
+  protected:
+  explicit CostumeData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBasisIdFieldNumber = 1,
+  };
+  // int64 basis_id = 1;
+  void clear_basis_id();
+  int64_t basis_id() const;
+  void set_basis_id(int64_t value);
+  private:
+  int64_t _internal_basis_id() const;
+  void _internal_set_basis_id(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:UserAndGameServer.CostumeData)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  int64_t basis_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_UserAndGameServer_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CharacterData final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:UserAndGameServer.CharacterData) */ {
+ public:
+  inline CharacterData() : CharacterData(nullptr) {}
+  ~CharacterData() override;
+  explicit constexpr CharacterData(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CharacterData(const CharacterData& from);
+  CharacterData(CharacterData&& from) noexcept
+    : CharacterData() {
+    *this = ::std::move(from);
+  }
+
+  inline CharacterData& operator=(const CharacterData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CharacterData& operator=(CharacterData&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CharacterData& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CharacterData* internal_default_instance() {
+    return reinterpret_cast<const CharacterData*>(
+               &_CharacterData_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(CharacterData& a, CharacterData& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CharacterData* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CharacterData* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CharacterData* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CharacterData>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CharacterData& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CharacterData& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CharacterData* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "UserAndGameServer.CharacterData";
+  }
+  protected:
+  explicit CharacterData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBasisIdFieldNumber = 1,
+  };
+  // int64 basis_id = 1;
+  void clear_basis_id();
+  int64_t basis_id() const;
+  void set_basis_id(int64_t value);
+  private:
+  int64_t _internal_basis_id() const;
+  void _internal_set_basis_id(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:UserAndGameServer.CharacterData)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  int64_t basis_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_UserAndGameServer_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Inventory final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:UserAndGameServer.Inventory) */ {
+ public:
+  inline Inventory() : Inventory(nullptr) {}
+  ~Inventory() override;
+  explicit constexpr Inventory(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Inventory(const Inventory& from);
+  Inventory(Inventory&& from) noexcept
+    : Inventory() {
+    *this = ::std::move(from);
+  }
+
+  inline Inventory& operator=(const Inventory& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Inventory& operator=(Inventory&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Inventory& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Inventory* internal_default_instance() {
+    return reinterpret_cast<const Inventory*>(
+               &_Inventory_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(Inventory& a, Inventory& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Inventory* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Inventory* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Inventory* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Inventory>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Inventory& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Inventory& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Inventory* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "UserAndGameServer.Inventory";
+  }
+  protected:
+  explicit Inventory(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kItemsFieldNumber = 1,
+    kCostumesFieldNumber = 2,
+    kCharactersFieldNumber = 3,
+  };
+  // repeated .UserAndGameServer.ItemData items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+  public:
+  void clear_items();
+  ::UserAndGameServer::ItemData* mutable_items(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::UserAndGameServer::ItemData >*
+      mutable_items();
+  private:
+  const ::UserAndGameServer::ItemData& _internal_items(int index) const;
+  ::UserAndGameServer::ItemData* _internal_add_items();
+  public:
+  const ::UserAndGameServer::ItemData& items(int index) const;
+  ::UserAndGameServer::ItemData* add_items();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::UserAndGameServer::ItemData >&
+      items() const;
+
+  // repeated .UserAndGameServer.CostumeData costumes = 2;
+  int costumes_size() const;
+  private:
+  int _internal_costumes_size() const;
+  public:
+  void clear_costumes();
+  ::UserAndGameServer::CostumeData* mutable_costumes(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::UserAndGameServer::CostumeData >*
+      mutable_costumes();
+  private:
+  const ::UserAndGameServer::CostumeData& _internal_costumes(int index) const;
+  ::UserAndGameServer::CostumeData* _internal_add_costumes();
+  public:
+  const ::UserAndGameServer::CostumeData& costumes(int index) const;
+  ::UserAndGameServer::CostumeData* add_costumes();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::UserAndGameServer::CostumeData >&
+      costumes() const;
+
+  // repeated .UserAndGameServer.CharacterData characters = 3;
+  int characters_size() const;
+  private:
+  int _internal_characters_size() const;
+  public:
+  void clear_characters();
+  ::UserAndGameServer::CharacterData* mutable_characters(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::UserAndGameServer::CharacterData >*
+      mutable_characters();
+  private:
+  const ::UserAndGameServer::CharacterData& _internal_characters(int index) const;
+  ::UserAndGameServer::CharacterData* _internal_add_characters();
+  public:
+  const ::UserAndGameServer::CharacterData& characters(int index) const;
+  ::UserAndGameServer::CharacterData* add_characters();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::UserAndGameServer::CharacterData >&
+      characters() const;
+
+  // @@protoc_insertion_point(class_scope:UserAndGameServer.Inventory)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::UserAndGameServer::ItemData > items_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::UserAndGameServer::CostumeData > costumes_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::UserAndGameServer::CharacterData > characters_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_UserAndGameServer_2eproto;
+};
+// -------------------------------------------------------------------
+
 class UserProfile final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:UserAndGameServer.UserProfile) */ {
  public:
@@ -232,7 +903,7 @@ class UserProfile final :
                &_UserProfile_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    4;
 
   friend void swap(UserProfile& a, UserProfile& b) {
     a.Swap(&b);
@@ -454,7 +1125,7 @@ class ChatProfile final :
                &_ChatProfile_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    5;
 
   friend void swap(ChatProfile& a, ChatProfile& b) {
     a.Swap(&b);
@@ -649,7 +1320,7 @@ class ChatData final :
                &_ChatData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    6;
 
   friend void swap(ChatData& a, ChatData& b) {
     a.Swap(&b);
@@ -831,7 +1502,7 @@ class LoginData final :
                &_LoginData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    7;
 
   friend void swap(LoginData& a, LoginData& b) {
     a.Swap(&b);
@@ -993,7 +1664,7 @@ class LoginResultData final :
                &_LoginResultData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    8;
 
   friend void swap(LoginResultData& a, LoginResultData& b) {
     a.Swap(&b);
@@ -1139,7 +1810,7 @@ class NotiErrInfo final :
                &_NotiErrInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    9;
 
   friend void swap(NotiErrInfo& a, NotiErrInfo& b) {
     a.Swap(&b);
@@ -1312,7 +1983,7 @@ class ReqPublicKey final :
                &_ReqPublicKey_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    10;
 
   friend void swap(ReqPublicKey& a, ReqPublicKey& b) {
     a.Swap(&b);
@@ -1463,7 +2134,7 @@ class AnsPublicKey final :
                &_AnsPublicKey_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    11;
 
   friend void swap(AnsPublicKey& a, AnsPublicKey& b) {
     a.Swap(&b);
@@ -1614,7 +2285,7 @@ class ReqConnect final :
                &_ReqConnect_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    12;
 
   friend void swap(ReqConnect& a, ReqConnect& b) {
     a.Swap(&b);
@@ -1765,7 +2436,7 @@ class AnsConnect final :
                &_AnsConnect_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    13;
 
   friend void swap(AnsConnect& a, AnsConnect& b) {
     a.Swap(&b);
@@ -1927,7 +2598,7 @@ class ReqTestMsg final :
                &_ReqTestMsg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    14;
 
   friend void swap(ReqTestMsg& a, ReqTestMsg& b) {
     a.Swap(&b);
@@ -2078,7 +2749,7 @@ class AnsTestMsg final :
                &_AnsTestMsg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    15;
 
   friend void swap(AnsTestMsg& a, AnsTestMsg& b) {
     a.Swap(&b);
@@ -2229,7 +2900,7 @@ class ReqChat final :
                &_ReqChat_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    16;
 
   friend void swap(ReqChat& a, ReqChat& b) {
     a.Swap(&b);
@@ -2384,7 +3055,7 @@ class AnsChat final :
                &_AnsChat_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    17;
 
   friend void swap(AnsChat& a, AnsChat& b) {
     a.Swap(&b);
@@ -2539,7 +3210,7 @@ class ReqLogin final :
                &_ReqLogin_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    18;
 
   friend void swap(ReqLogin& a, ReqLogin& b) {
     a.Swap(&b);
@@ -2694,7 +3365,7 @@ class AnsLogin final :
                &_AnsLogin_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    19;
 
   friend void swap(AnsLogin& a, AnsLogin& b) {
     a.Swap(&b);
@@ -2770,6 +3441,7 @@ class AnsLogin final :
   enum : int {
     kLoginResultDataFieldNumber = 1,
     kUserProfileFieldNumber = 2,
+    kUserInventoryFieldNumber = 3,
   };
   // .UserAndGameServer.LoginResultData login_result_data = 1;
   bool has_login_result_data() const;
@@ -2807,6 +3479,24 @@ class AnsLogin final :
       ::UserAndGameServer::UserProfile* user_profile);
   ::UserAndGameServer::UserProfile* unsafe_arena_release_user_profile();
 
+  // .UserAndGameServer.Inventory user_inventory = 3;
+  bool has_user_inventory() const;
+  private:
+  bool _internal_has_user_inventory() const;
+  public:
+  void clear_user_inventory();
+  const ::UserAndGameServer::Inventory& user_inventory() const;
+  PROTOBUF_NODISCARD ::UserAndGameServer::Inventory* release_user_inventory();
+  ::UserAndGameServer::Inventory* mutable_user_inventory();
+  void set_allocated_user_inventory(::UserAndGameServer::Inventory* user_inventory);
+  private:
+  const ::UserAndGameServer::Inventory& _internal_user_inventory() const;
+  ::UserAndGameServer::Inventory* _internal_mutable_user_inventory();
+  public:
+  void unsafe_arena_set_allocated_user_inventory(
+      ::UserAndGameServer::Inventory* user_inventory);
+  ::UserAndGameServer::Inventory* unsafe_arena_release_user_inventory();
+
   // @@protoc_insertion_point(class_scope:UserAndGameServer.AnsLogin)
  private:
   class _Internal;
@@ -2816,6 +3506,7 @@ class AnsLogin final :
   typedef void DestructorSkippable_;
   ::UserAndGameServer::LoginResultData* login_result_data_;
   ::UserAndGameServer::UserProfile* user_profile_;
+  ::UserAndGameServer::Inventory* user_inventory_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_UserAndGameServer_2eproto;
 };
@@ -2828,6 +3519,242 @@ class AnsLogin final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// ItemData
+
+// int64 basis_id = 1;
+inline void ItemData::clear_basis_id() {
+  basis_id_ = int64_t{0};
+}
+inline int64_t ItemData::_internal_basis_id() const {
+  return basis_id_;
+}
+inline int64_t ItemData::basis_id() const {
+  // @@protoc_insertion_point(field_get:UserAndGameServer.ItemData.basis_id)
+  return _internal_basis_id();
+}
+inline void ItemData::_internal_set_basis_id(int64_t value) {
+  
+  basis_id_ = value;
+}
+inline void ItemData::set_basis_id(int64_t value) {
+  _internal_set_basis_id(value);
+  // @@protoc_insertion_point(field_set:UserAndGameServer.ItemData.basis_id)
+}
+
+// int64 cnt = 2;
+inline void ItemData::clear_cnt() {
+  cnt_ = int64_t{0};
+}
+inline int64_t ItemData::_internal_cnt() const {
+  return cnt_;
+}
+inline int64_t ItemData::cnt() const {
+  // @@protoc_insertion_point(field_get:UserAndGameServer.ItemData.cnt)
+  return _internal_cnt();
+}
+inline void ItemData::_internal_set_cnt(int64_t value) {
+  
+  cnt_ = value;
+}
+inline void ItemData::set_cnt(int64_t value) {
+  _internal_set_cnt(value);
+  // @@protoc_insertion_point(field_set:UserAndGameServer.ItemData.cnt)
+}
+
+// int64 cnt_prev = 3;
+inline void ItemData::clear_cnt_prev() {
+  cnt_prev_ = int64_t{0};
+}
+inline int64_t ItemData::_internal_cnt_prev() const {
+  return cnt_prev_;
+}
+inline int64_t ItemData::cnt_prev() const {
+  // @@protoc_insertion_point(field_get:UserAndGameServer.ItemData.cnt_prev)
+  return _internal_cnt_prev();
+}
+inline void ItemData::_internal_set_cnt_prev(int64_t value) {
+  
+  cnt_prev_ = value;
+}
+inline void ItemData::set_cnt_prev(int64_t value) {
+  _internal_set_cnt_prev(value);
+  // @@protoc_insertion_point(field_set:UserAndGameServer.ItemData.cnt_prev)
+}
+
+// -------------------------------------------------------------------
+
+// CostumeData
+
+// int64 basis_id = 1;
+inline void CostumeData::clear_basis_id() {
+  basis_id_ = int64_t{0};
+}
+inline int64_t CostumeData::_internal_basis_id() const {
+  return basis_id_;
+}
+inline int64_t CostumeData::basis_id() const {
+  // @@protoc_insertion_point(field_get:UserAndGameServer.CostumeData.basis_id)
+  return _internal_basis_id();
+}
+inline void CostumeData::_internal_set_basis_id(int64_t value) {
+  
+  basis_id_ = value;
+}
+inline void CostumeData::set_basis_id(int64_t value) {
+  _internal_set_basis_id(value);
+  // @@protoc_insertion_point(field_set:UserAndGameServer.CostumeData.basis_id)
+}
+
+// -------------------------------------------------------------------
+
+// CharacterData
+
+// int64 basis_id = 1;
+inline void CharacterData::clear_basis_id() {
+  basis_id_ = int64_t{0};
+}
+inline int64_t CharacterData::_internal_basis_id() const {
+  return basis_id_;
+}
+inline int64_t CharacterData::basis_id() const {
+  // @@protoc_insertion_point(field_get:UserAndGameServer.CharacterData.basis_id)
+  return _internal_basis_id();
+}
+inline void CharacterData::_internal_set_basis_id(int64_t value) {
+  
+  basis_id_ = value;
+}
+inline void CharacterData::set_basis_id(int64_t value) {
+  _internal_set_basis_id(value);
+  // @@protoc_insertion_point(field_set:UserAndGameServer.CharacterData.basis_id)
+}
+
+// -------------------------------------------------------------------
+
+// Inventory
+
+// repeated .UserAndGameServer.ItemData items = 1;
+inline int Inventory::_internal_items_size() const {
+  return items_.size();
+}
+inline int Inventory::items_size() const {
+  return _internal_items_size();
+}
+inline void Inventory::clear_items() {
+  items_.Clear();
+}
+inline ::UserAndGameServer::ItemData* Inventory::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:UserAndGameServer.Inventory.items)
+  return items_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::UserAndGameServer::ItemData >*
+Inventory::mutable_items() {
+  // @@protoc_insertion_point(field_mutable_list:UserAndGameServer.Inventory.items)
+  return &items_;
+}
+inline const ::UserAndGameServer::ItemData& Inventory::_internal_items(int index) const {
+  return items_.Get(index);
+}
+inline const ::UserAndGameServer::ItemData& Inventory::items(int index) const {
+  // @@protoc_insertion_point(field_get:UserAndGameServer.Inventory.items)
+  return _internal_items(index);
+}
+inline ::UserAndGameServer::ItemData* Inventory::_internal_add_items() {
+  return items_.Add();
+}
+inline ::UserAndGameServer::ItemData* Inventory::add_items() {
+  ::UserAndGameServer::ItemData* _add = _internal_add_items();
+  // @@protoc_insertion_point(field_add:UserAndGameServer.Inventory.items)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::UserAndGameServer::ItemData >&
+Inventory::items() const {
+  // @@protoc_insertion_point(field_list:UserAndGameServer.Inventory.items)
+  return items_;
+}
+
+// repeated .UserAndGameServer.CostumeData costumes = 2;
+inline int Inventory::_internal_costumes_size() const {
+  return costumes_.size();
+}
+inline int Inventory::costumes_size() const {
+  return _internal_costumes_size();
+}
+inline void Inventory::clear_costumes() {
+  costumes_.Clear();
+}
+inline ::UserAndGameServer::CostumeData* Inventory::mutable_costumes(int index) {
+  // @@protoc_insertion_point(field_mutable:UserAndGameServer.Inventory.costumes)
+  return costumes_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::UserAndGameServer::CostumeData >*
+Inventory::mutable_costumes() {
+  // @@protoc_insertion_point(field_mutable_list:UserAndGameServer.Inventory.costumes)
+  return &costumes_;
+}
+inline const ::UserAndGameServer::CostumeData& Inventory::_internal_costumes(int index) const {
+  return costumes_.Get(index);
+}
+inline const ::UserAndGameServer::CostumeData& Inventory::costumes(int index) const {
+  // @@protoc_insertion_point(field_get:UserAndGameServer.Inventory.costumes)
+  return _internal_costumes(index);
+}
+inline ::UserAndGameServer::CostumeData* Inventory::_internal_add_costumes() {
+  return costumes_.Add();
+}
+inline ::UserAndGameServer::CostumeData* Inventory::add_costumes() {
+  ::UserAndGameServer::CostumeData* _add = _internal_add_costumes();
+  // @@protoc_insertion_point(field_add:UserAndGameServer.Inventory.costumes)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::UserAndGameServer::CostumeData >&
+Inventory::costumes() const {
+  // @@protoc_insertion_point(field_list:UserAndGameServer.Inventory.costumes)
+  return costumes_;
+}
+
+// repeated .UserAndGameServer.CharacterData characters = 3;
+inline int Inventory::_internal_characters_size() const {
+  return characters_.size();
+}
+inline int Inventory::characters_size() const {
+  return _internal_characters_size();
+}
+inline void Inventory::clear_characters() {
+  characters_.Clear();
+}
+inline ::UserAndGameServer::CharacterData* Inventory::mutable_characters(int index) {
+  // @@protoc_insertion_point(field_mutable:UserAndGameServer.Inventory.characters)
+  return characters_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::UserAndGameServer::CharacterData >*
+Inventory::mutable_characters() {
+  // @@protoc_insertion_point(field_mutable_list:UserAndGameServer.Inventory.characters)
+  return &characters_;
+}
+inline const ::UserAndGameServer::CharacterData& Inventory::_internal_characters(int index) const {
+  return characters_.Get(index);
+}
+inline const ::UserAndGameServer::CharacterData& Inventory::characters(int index) const {
+  // @@protoc_insertion_point(field_get:UserAndGameServer.Inventory.characters)
+  return _internal_characters(index);
+}
+inline ::UserAndGameServer::CharacterData* Inventory::_internal_add_characters() {
+  return characters_.Add();
+}
+inline ::UserAndGameServer::CharacterData* Inventory::add_characters() {
+  ::UserAndGameServer::CharacterData* _add = _internal_add_characters();
+  // @@protoc_insertion_point(field_add:UserAndGameServer.Inventory.characters)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::UserAndGameServer::CharacterData >&
+Inventory::characters() const {
+  // @@protoc_insertion_point(field_list:UserAndGameServer.Inventory.characters)
+  return characters_;
+}
+
+// -------------------------------------------------------------------
+
 // UserProfile
 
 // int32 profile_id = 1;
@@ -4342,9 +5269,107 @@ inline void AnsLogin::set_allocated_user_profile(::UserAndGameServer::UserProfil
   // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.AnsLogin.user_profile)
 }
 
+// .UserAndGameServer.Inventory user_inventory = 3;
+inline bool AnsLogin::_internal_has_user_inventory() const {
+  return this != internal_default_instance() && user_inventory_ != nullptr;
+}
+inline bool AnsLogin::has_user_inventory() const {
+  return _internal_has_user_inventory();
+}
+inline void AnsLogin::clear_user_inventory() {
+  if (GetArenaForAllocation() == nullptr && user_inventory_ != nullptr) {
+    delete user_inventory_;
+  }
+  user_inventory_ = nullptr;
+}
+inline const ::UserAndGameServer::Inventory& AnsLogin::_internal_user_inventory() const {
+  const ::UserAndGameServer::Inventory* p = user_inventory_;
+  return p != nullptr ? *p : reinterpret_cast<const ::UserAndGameServer::Inventory&>(
+      ::UserAndGameServer::_Inventory_default_instance_);
+}
+inline const ::UserAndGameServer::Inventory& AnsLogin::user_inventory() const {
+  // @@protoc_insertion_point(field_get:UserAndGameServer.AnsLogin.user_inventory)
+  return _internal_user_inventory();
+}
+inline void AnsLogin::unsafe_arena_set_allocated_user_inventory(
+    ::UserAndGameServer::Inventory* user_inventory) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(user_inventory_);
+  }
+  user_inventory_ = user_inventory;
+  if (user_inventory) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:UserAndGameServer.AnsLogin.user_inventory)
+}
+inline ::UserAndGameServer::Inventory* AnsLogin::release_user_inventory() {
+  
+  ::UserAndGameServer::Inventory* temp = user_inventory_;
+  user_inventory_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::UserAndGameServer::Inventory* AnsLogin::unsafe_arena_release_user_inventory() {
+  // @@protoc_insertion_point(field_release:UserAndGameServer.AnsLogin.user_inventory)
+  
+  ::UserAndGameServer::Inventory* temp = user_inventory_;
+  user_inventory_ = nullptr;
+  return temp;
+}
+inline ::UserAndGameServer::Inventory* AnsLogin::_internal_mutable_user_inventory() {
+  
+  if (user_inventory_ == nullptr) {
+    auto* p = CreateMaybeMessage<::UserAndGameServer::Inventory>(GetArenaForAllocation());
+    user_inventory_ = p;
+  }
+  return user_inventory_;
+}
+inline ::UserAndGameServer::Inventory* AnsLogin::mutable_user_inventory() {
+  ::UserAndGameServer::Inventory* _msg = _internal_mutable_user_inventory();
+  // @@protoc_insertion_point(field_mutable:UserAndGameServer.AnsLogin.user_inventory)
+  return _msg;
+}
+inline void AnsLogin::set_allocated_user_inventory(::UserAndGameServer::Inventory* user_inventory) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete user_inventory_;
+  }
+  if (user_inventory) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::UserAndGameServer::Inventory>::GetOwningArena(user_inventory);
+    if (message_arena != submessage_arena) {
+      user_inventory = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, user_inventory, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  user_inventory_ = user_inventory;
+  // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.AnsLogin.user_inventory)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

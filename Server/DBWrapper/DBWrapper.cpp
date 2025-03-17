@@ -100,16 +100,11 @@ PacketError DBWrapper::PlatformSelect(const LoginData& _loginData, GameUserSptr 
             summaryRow.FromDB(dbBinder, curColNo, OUT curColNo);
             profileRow.FromDB(dbBinder, curColNo, OUT curColNo);
 
-
-            GameProfile& profile = _gameUser->GetProfile();
-
             _gameUser->SetAccountId(platformRow.aId);
-            profile.ChangeGreetingMent(profileRow.greetingMent);
-            profile.ChangeMainHeroId(profileRow.mainHeroId);
-            profile.ChangeMainFrameId(profileRow.mainFrameId);
+            GameProfile& profile = _gameUser->GetProfile();
+            profile.InitGameProfile(profileRow);
         }
     }
-
 
     return PacketError();
 }
@@ -162,7 +157,7 @@ PacketError DBWrapper::GameUserSelect(GameUserSptr _gameUser) {
     }
 
     GameUserRow gameUserRow;
-    vector<CharactersRow> characterRows;
+    vector<CharacterRow> characterRows;
     vector<ItemRow> itemRows;
     vector<CostumeRow> costumeRows;
     
@@ -197,6 +192,13 @@ PacketError DBWrapper::GameUserSelect(GameUserSptr _gameUser) {
         row.FromDB(binder);
         costumeRows.push_back(row);
     }
+
+    auto& inven = _gameUser->GetInventory();
+    //user db inventory 적용
+    inven.SetGameUserId(gameUserRow.gameUserId);
+    inven.InitInventoryDatas(
+        itemRows, costumeRows, characterRows
+    );
 
     return PacketError();
 }

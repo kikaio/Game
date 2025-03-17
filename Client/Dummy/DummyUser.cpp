@@ -83,3 +83,8 @@ const ChatProfile& DummyUser::GetChatProfile()
 {
 	return chatProfile;
 }
+
+Inventory& DummyUser::GetInventory()
+{
+	return inventory;
+}

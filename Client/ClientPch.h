@@ -14,9 +14,18 @@
 #include "ClientDefine.h"
 #include "ClientType.h"
 
+#include "LogHelper.h"
+
 #include "GameServerSession.h"
 #include "GameServerPacketHandler.h"
 #include "UserAndGameServerHandle.h"
+
+
+
+#include "ItemData.h"
+#include "CostumeData.h"
+#include "CharacterData.h"
+#include "Inventory.h"
 
 #include "DummyProfile.h"
 #include "DummyUser.h"

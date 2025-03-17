@@ -1,11 +1,6 @@
 ﻿#include "pch.h"
 
-
 using namespace std;
-
-void PrintLn(const char* _msg) {
-	printf("%s\n", _msg);
-}
 
 atomic<bool> clientDoRunning = true;
 
@@ -16,10 +11,10 @@ void DoClientToGameServer(NetworkCoreSptr gameServerNetCore) {
 
 	ASSERT_CRASH(gameServerNetCore->Ready());
 	
-	printf("wsa standby.\n");
+	DUM_DEBUG_LOG("wsa standby.");
 
 	if (gameServerNetCore->ReadyToConnect(ip, port) == false) {
-		printf("ReadyToConnect failed\n");
+		DUM_DEBUG_LOG("ReadyToConnect failed.");
 		return ;
 	}
 

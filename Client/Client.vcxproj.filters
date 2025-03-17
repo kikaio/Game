@@ -16,6 +16,9 @@
     <Filter Include="Dummy\DumAct">
       <UniqueIdentifier>{572ab291-5a53-498d-9f16-99f8c90ba69d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Dummy\GameData">
+      <UniqueIdentifier>{883bfc7a-bcb7-4b9e-915e-87a2668362a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -45,14 +48,20 @@
     <ClCompile Include="Dummy\DummyProfile.cpp">
       <Filter>Dummy</Filter>
     </ClCompile>
-    <ClCompile Include="AnsLogin.cpp">
-      <Filter>UserAndGameServerHandle</Filter>
+    <ClCompile Include="Dummy\DumAct\DumAct.cpp">
+      <Filter>Dummy\DumAct</Filter>
     </ClCompile>
-    <ClCompile Include="ProtoConverter.cpp">
+    <ClCompile Include="Helper\ProtoConverter.cpp">
       <Filter>Helper</Filter>
     </ClCompile>
-    <ClCompile Include="DumAct.cpp">
-      <Filter>Dummy\DumAct</Filter>
+    <ClCompile Include="UserAndGameServerHandle\AnsLogin.cpp">
+      <Filter>UserAndGameServerHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="Dummy\Inventory.cpp">
+      <Filter>Dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="Helper\LogHelper.cpp">
+      <Filter>Helper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -86,11 +95,26 @@
     <ClInclude Include="Dummy\DummyProfile.h">
       <Filter>Dummy</Filter>
     </ClInclude>
-    <ClInclude Include="ProtoConverter.h">
+    <ClInclude Include="Dummy\DumAct\DumAct.h">
+      <Filter>Dummy\DumAct</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper\ProtoConverter.h">
       <Filter>Helper</Filter>
     </ClInclude>
-    <ClInclude Include="DumAct.h">
-      <Filter>Dummy\DumAct</Filter>
+    <ClInclude Include="Dummy\GameData\ItemData.h">
+      <Filter>Dummy\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="Dummy\GameData\CostumeData.h">
+      <Filter>Dummy\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="Dummy\GameData\CharacterData.h">
+      <Filter>Dummy\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="Dummy\Inventory.h">
+      <Filter>Dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper\LogHelper.h">
+      <Filter>Helper</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

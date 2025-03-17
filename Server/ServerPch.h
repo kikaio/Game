@@ -32,6 +32,12 @@
 #include "UserAndGameServerHandle.h"
 #include "MasterAndGameServerHandle.h"
 
+
+#include "ItemData.h"
+#include "CostumeData.h"
+#include "CharacterData.h"
+#include "Inventory.h"
+#include "GameProfile.h"
 #include "GameUser.h"
 #include "GameConfig.h"
 #include "MasterConfig.h"
