@@ -10,11 +10,11 @@ bool GameProfile::InvalidNickNameCheck(string& _name)
 
 void GameProfile::Render()
 {
-    printf("=========[game profile : %lld]========\n", accountId);
-    printf("greeting ment : %s\n", greetingMent.c_str());
-    printf("main hero id : %d\n", mainHeroId);
-    printf("main frame id : %d\n", mainFrameId);
-    printf("==============================================\n");
+    GS_DEBUG_LOG("=========[game profile : {}]================", accountId);
+    GS_DEBUG_LOG("greeting ment : {}", greetingMent);
+    GS_DEBUG_LOG("main hero id : {}", mainHeroId);
+    GS_DEBUG_LOG("main frame id : {}", mainFrameId);
+    GS_DEBUG_LOG("==============================================");
 }
 
 int64_t GameProfile::AccountId() const

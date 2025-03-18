@@ -6,7 +6,7 @@ LoggerSptr LogHelper::dumLogger = nullptr;
 
 LoggerSptr LogHelper::CreateDumLogger(string _dumLogPath)
 {
-	return LoggerSptr();
+	return std::make_shared<Logger>("dummy", _dumLogPath, true);
 }
 
 void LogHelper::Init(string _logFilePath)

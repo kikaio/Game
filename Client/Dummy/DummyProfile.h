@@ -25,4 +25,5 @@ public:
 	bool SetMainHeroId(uint32_t _id);
 public:
 	void Clear();
+	void Render();
 };

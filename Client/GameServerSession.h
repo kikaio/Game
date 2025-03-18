@@ -2,6 +2,8 @@
 
 class GameServerSession : public Session
 {
+private:
+	DummyUserWptr dummyUserWptr;
 protected:
 	//virtual void AfterSended(UInt32 _bytes) override {
 	//	return ;
@@ -21,4 +23,7 @@ protected:
 public:
 	bool SendPacketReqChat(UserAndGameServer::ReqChat& _packet);
 	bool SendPacketReqLogin(UserAndGameServer::ReqLogin& _packet);
+public:
+	void SetDummyUser(DummyUserSptr _dum);
+	DummyUserSptr GetDummyUser();
 };

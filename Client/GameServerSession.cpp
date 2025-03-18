@@ -22,3 +22,13 @@ bool GameServerSession::SendPacketReqLogin(UserAndGameServer::ReqLogin& _packet)
 	return TrySend(sendBuff);
 }
 
+void GameServerSession::SetDummyUser(DummyUserSptr _dum)
+{
+	dummyUserWptr = _dum;
+}
+
+DummyUserSptr GameServerSession::GetDummyUser()
+{
+	return dummyUserWptr.lock();
+}
+

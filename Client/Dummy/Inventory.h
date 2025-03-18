@@ -21,4 +21,6 @@ public:
 	const Characters GetCharacters() const {
 		return characters;
 	}
+public:
+	void Render();
 };

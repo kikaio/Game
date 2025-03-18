@@ -76,3 +76,13 @@ void DummyProfile::Clear()
 	mainFrameId = 0;
 	mainHeroId = 0;
 }
+
+void DummyProfile::Render()
+{
+	DUM_DEBUG_LOG("[Profile]=====================");
+	DUM_DEBUG_LOG("account id : {}", accountId);
+	DUM_DEBUG_LOG("nickname : {}", nickname);
+	DUM_DEBUG_LOG("greetingMent : {}", greetingMent);
+	DUM_DEBUG_LOG("main hero id : {}", mainHeroId);
+	DUM_DEBUG_LOG("main frame : {}", mainFrameId);
+}

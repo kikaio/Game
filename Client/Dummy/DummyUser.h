@@ -63,4 +63,7 @@ public:
 	
 	void SetInventory(const Inventory& _inven);
 	Inventory& GetInventory();
+
+public:
+	void Render();
 };

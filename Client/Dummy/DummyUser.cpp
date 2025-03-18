@@ -103,3 +103,10 @@ Inventory& DummyUser::GetInventory()
 {
 	return inventory;
 }
+
+void DummyUser::Render()
+{
+	DUM_DEBUG_LOG("Dummy Render======");
+	profile.Render();
+	inventory.Render();
+}

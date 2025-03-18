@@ -18,23 +18,6 @@ void DoClientToGameServer(NetworkCoreSptr gameServerNetCore) {
 		return ;
 	}
 
-	//this_thread::sleep_for(3s);
-	//dummyUser 제어를 위해 Manager에서 관리한다.
-	//gameServerNetCore->CreateSessionFactory = [] {
-	//	auto dumSession = MakeShared<GameServerSession>();
-	//	auto dummyUser = MakeShared<DummyUser>();
-	//	dummyUser->SetGameServerSession(dumSession);
-	//	DummyUserManager::Get().PushDummyUser(dummyUser);
-	//	//session disconnect 후처리 연결 필수.
-	//	dumSession->SetOnSessionDisconnectedFunc([dummyUser=dummyUser](){
-	//		dummyUser->OnGameServerSessionDisconnected();
-	//	});
-	//	return dumSession;
-	//};
-	//
-	//더미의 경우 act를 통해 connect 시도하는 것으로...
-	//gameServerNetCore->StartConnect(0);
-
 	UInt32 waitMilliSec = INFINITE;
 	while (true) {
 		gameServerNetCore->Dispatch(waitMilliSec);
@@ -56,6 +39,9 @@ int main()
 {
 
 	GameServerPacketHandler::Init();
+	
+	//logger 초기화
+	LogHelper::Init("logs/dummyLog.log");
 
 	NetworkCoreSptr gameServerNetCore = MakeShared<NetworkCore>();
 	//todo : chat server 용 net core 도 준비.

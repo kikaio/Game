@@ -19,6 +19,7 @@ void DumActGameServerConnect::DoAct(DummyUserSptr _dumSptr)
 
 		GameServerSessionSptr gsSession = MakeShared<GameServerSession>();
 		_dumSptr->SetGameServerSession(gsSession);
+		gsSession->SetDummyUser(_dumSptr);
 
 		gsSession->SetOnSessionConnectedFunc([_dumSptr = _dumSptr]() {
 			_dumSptr->OnGameServerSessionConnected();

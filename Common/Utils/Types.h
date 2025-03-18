@@ -26,6 +26,7 @@ using Atomic = std::atomic<T>;
 using Mutex = std::mutex;
 
 #define DECL_REF_USING(cName)				using cName##Sptr = std::shared_ptr<class cName>
+#define DECL_WREF_USING(cName)				using cName##Wptr = std::weak_ptr<class cName>
 
 DECL_REF_USING(Thread);
 DECL_REF_USING(NetAddr);

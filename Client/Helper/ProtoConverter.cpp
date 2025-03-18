@@ -171,9 +171,9 @@ void ProtoConverter::FromPacket(IN const UserAndGameServer::AnsLogin& _packet
 	, OUT DummyProfile& _profile
 	, OUT Inventory& _inven
 ) {
-	FromProto(_packet.login_result_data(), OUT _loginRet);
-	FromProto(_packet.user_profile(), OUT _profile);
-	FromProto(_packet.user_inventory(), OUT _inven);
+	FromProto(IN _packet.login_result_data(), OUT _loginRet);
+	FromProto(IN _packet.user_profile(), OUT _profile);
+	FromProto(IN _packet.user_inventory(), OUT _inven);
 	return ;
 }
 
