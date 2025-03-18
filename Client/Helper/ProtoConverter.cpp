@@ -97,6 +97,7 @@ void ProtoConverter::ToPacket(const ChatData& _chatData, UserAndGameServer::ReqC
 void ProtoConverter::FromProto(const UserAndGameServer::LoginResultData& _in, LoginResultData& _out)
 {
 	_out.isSuccess = _in.is_success();
+	_out.loginToken = _in.login_token();
 }
 
 void ProtoConverter::FromProto(const UserAndGameServer::ChatProfile& _in, ChatProfile& _out)

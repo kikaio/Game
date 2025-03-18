@@ -58,4 +58,5 @@ public:
 
 struct LoginResultData {
 	bool isSuccess = false;
+	string loginToken = "";
 };

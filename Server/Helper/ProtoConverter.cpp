@@ -4,6 +4,7 @@
 void ProtoConverter::ToProto(const LoginResultData& _in, UserAndGameServer::LoginResultData& _out)
 {
 	_out.set_is_success(_in.isSuccess);
+	_out.set_login_token(_in.loginToken);
 	return;
 }
 
@@ -106,7 +107,7 @@ void ProtoConverter::FromProto(const UserAndGameServer::LoginData& _in, LoginDat
 		return ;
 	}
 
-	_out.loginToken = _in.login_token;
+	_out.loginToken = _in.login_token();
 	return ;
 }
 

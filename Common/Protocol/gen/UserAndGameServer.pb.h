@@ -1716,8 +1716,23 @@ class LoginResultData final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kLoginTokenFieldNumber = 2,
     kIsSuccessFieldNumber = 1,
   };
+  // string login_token = 2;
+  void clear_login_token();
+  const std::string& login_token() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_login_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_login_token();
+  PROTOBUF_NODISCARD std::string* release_login_token();
+  void set_allocated_login_token(std::string* login_token);
+  private:
+  const std::string& _internal_login_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_login_token(const std::string& value);
+  std::string* _internal_mutable_login_token();
+  public:
+
   // bool is_success = 1;
   void clear_is_success();
   bool is_success() const;
@@ -1734,6 +1749,7 @@ class LoginResultData final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr login_token_;
   bool is_success_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_UserAndGameServer_2eproto;
@@ -4294,6 +4310,57 @@ inline void LoginResultData::_internal_set_is_success(bool value) {
 inline void LoginResultData::set_is_success(bool value) {
   _internal_set_is_success(value);
   // @@protoc_insertion_point(field_set:UserAndGameServer.LoginResultData.is_success)
+}
+
+// string login_token = 2;
+inline void LoginResultData::clear_login_token() {
+  login_token_.ClearToEmpty();
+}
+inline const std::string& LoginResultData::login_token() const {
+  // @@protoc_insertion_point(field_get:UserAndGameServer.LoginResultData.login_token)
+  return _internal_login_token();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void LoginResultData::set_login_token(ArgT0&& arg0, ArgT... args) {
+ 
+ login_token_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:UserAndGameServer.LoginResultData.login_token)
+}
+inline std::string* LoginResultData::mutable_login_token() {
+  std::string* _s = _internal_mutable_login_token();
+  // @@protoc_insertion_point(field_mutable:UserAndGameServer.LoginResultData.login_token)
+  return _s;
+}
+inline const std::string& LoginResultData::_internal_login_token() const {
+  return login_token_.Get();
+}
+inline void LoginResultData::_internal_set_login_token(const std::string& value) {
+  
+  login_token_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* LoginResultData::_internal_mutable_login_token() {
+  
+  return login_token_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* LoginResultData::release_login_token() {
+  // @@protoc_insertion_point(field_release:UserAndGameServer.LoginResultData.login_token)
+  return login_token_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void LoginResultData::set_allocated_login_token(std::string* login_token) {
+  if (login_token != nullptr) {
+    
+  } else {
+    
+  }
+  login_token_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), login_token,
+      GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (login_token_.IsDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited())) {
+    login_token_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.LoginResultData.login_token)
 }
 
 // -------------------------------------------------------------------

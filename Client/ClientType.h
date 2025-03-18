@@ -1,16 +1,6 @@
 #pragma once
 
 
-struct UserProfile {
-	int32_t profileId = 0;
-	int32_t accountLv = 0;
-	string nickName = "";
-	string greetingMent = "";
-	int32_t profileHeroId = 0;
-	int32_t profileFrameId = 0;
-	int32_t mainHeroId = 0;
-};
-
 struct ChatProfile {
 	int32_t profileId = 0;
 	string nickName = "";
@@ -27,6 +17,7 @@ struct LoginData {
 
 struct LoginResultData {
 	bool isSuccess = false;
+	string loginToken = "";
 };
 
 struct ChatData {
