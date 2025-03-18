@@ -9,6 +9,7 @@ void ProtoConverter::ToProto(const LoginData& _in, UserAndGameServer::LoginData&
 {
 	_out.set_s_id(_in.sId);
 	_out.set_login_platform(ENUM_TO_INT(_in.loginPlatform));
+	_out.set_login_token(_in.loginToken);
 }
 
 void ProtoConverter::ToProto(const ChatProfile& _in, UserAndGameServer::ChatProfile _out)
@@ -25,18 +26,6 @@ void ProtoConverter::ToProto(const ChatData& _in, UserAndGameServer::ChatData& _
 	_out.set_chat_type(ENUM_TO_INT(_in.chatType));
 	ToProto(_in.chatProfile, *_out.mutable_chat_profile());
 	_out.set_msg(_in.msg);
-}
-
-void ProtoConverter::ToProto(const LoginData& _loginData, UserAndGameServer::ReqLogin& _outProto)
-{
-	ToProto(_loginData, *_outProto.mutable_login_data());
-	return;
-}
-
-void ProtoConverter::ToProto(const ChatData& _chatData, UserAndGameServer::ReqChat& _outProto)
-{
-	ToProto(_chatData, *_outProto.mutable_chat_data());
-	return;
 }
 
 void ProtoConverter::ToProto(const DummyProfile& _in, UserAndGameServer::GameProfile& _out)
@@ -83,6 +72,24 @@ void ProtoConverter::ToProto(const CharacterData& _in, UserAndGameServer::Charac
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma endregion
 
+
+#pragma region to packet
+///////////////////////////////////////////////////////////////////////////////////////////
+
+void ProtoConverter::ToPacket(const LoginData& _loginData, UserAndGameServer::ReqLogin& _outProto)
+{
+	ToProto(_loginData, *_outProto.mutable_login_data());
+	return;
+}
+
+void ProtoConverter::ToPacket(const ChatData& _chatData, UserAndGameServer::ReqChat& _outProto)
+{
+	ToProto(_chatData, *_outProto.mutable_chat_data());
+	return;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma endregion to packet
 
 #pragma region from proto
 ///////////////////////////////////////////////////////////////////////////////////////////

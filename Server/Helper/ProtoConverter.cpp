@@ -102,7 +102,11 @@ void ProtoConverter::FromProto(const UserAndGameServer::LoginData& _in, LoginDat
 	}
 	else {
 		// todo : error logging
+		GS_ERROR_LOG("un expected login platform type : {}", _in.login_platform());
+		return ;
 	}
+
+	_out.loginToken = _in.login_token;
 	return ;
 }
 

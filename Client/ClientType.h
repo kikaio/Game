@@ -22,6 +22,7 @@ struct ChatProfile {
 struct LoginData {
 	string sId = "";
 	LOGIN_PLATFORM loginPlatform = LOGIN_PLATFORM::GUEST;
+	string loginToken = "";
 };
 
 struct LoginResultData {

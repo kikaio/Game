@@ -71,7 +71,7 @@ void DumActChat::DoAct(DummyUserSptr _dumSptr) {
 		chatData.chatType = chatType;
 		chatData.chatProfile = _dumSptr->GetChatProfile();
 		chatData.msg = chatMsg;
-		ProtoConverter::ToProto(chatData, _req);
+		ProtoConverter::ToPacket(chatData, _req);
 		auto _gsSession = _dumSptr->GetGameServerSession();
 		if (_gsSession->SendPacketReqChat(_req) == false) {
 			//todo : logging
@@ -111,7 +111,7 @@ void DumActLogin::DoAct(DummyUserSptr _dumSptr)
 	//지정된 delay 후 행동하도록.
 	ReserveAct(_dumSptr, [_dumSptr, this](){
 		UserAndGameServer::ReqLogin _req;
-		ProtoConverter::ToProto(_dumSptr->GetLoginData(), _req);
+		ProtoConverter::ToPacket(_dumSptr->GetLoginData(), _req);
 		auto gsSession = _dumSptr->GetGameServerSession();
 		if(gsSession->SendPacketReqLogin(_req) == false){
 			//todo : erro logging
