@@ -7,19 +7,22 @@ public:
 	string sId = "";
 	int32_t pType = 0;
 	int64_t aId = 0;
+	string token = 0;
+	string refreshToken = 0;
 	int64_t cDate = 0;
 	int64_t mDate = 0;
 public:
 	template<typename DB_BINDER>
-	void FromDB(DB_BINDER& _binder, int32_t _curColNo, OUT int32_t& _nextCol) {
-		_binder.GetInt64(_curColNo++, OUT pId);
-		_binder.GetStr(_curColNo++, OUT sId);
-		_binder.GetInt32(_curColNo++, OUT pType);
-		_binder.GetInt64(_curColNo++, OUT aId);
-		_binder.GetInt64(_curColNo++, OUT cDate);
-		_binder.GetInt64(_curColNo++, OUT mDate);
-		
-		_nextCol = _curColNo;
+	void FromDB(DB_BINDER& _binder) {
+		_binder.GetInt64(1, OUT pId);
+		_binder.GetStr(2, OUT sId);
+		_binder.GetInt32(3, OUT pType);
+		_binder.GetInt64(4, OUT aId);
+		_binder.GetStr(5, OUT token);
+		_binder.GetStr(6, OUT refreshToken);
+		_binder.GetInt64(7, OUT cDate);
+		_binder.GetInt64(8, OUT mDate);
+		return ;
 	}
 public:
 	void Render() {
@@ -36,11 +39,10 @@ public:
 	int64_t mDate = 0;
 public:
 	template<typename DB_BINDER>
-	void FromDB(DB_BINDER& _binder, int32_t _curColNo, OUT int32_t& _nextCol) {
-		_binder.GetInt64(_curColNo++, OUT aId);
-		_binder.GetInt64(_curColNo++, OUT cDate);
-		_binder.GetInt64(_curColNo++, OUT mDate);
-		_nextCol = _curColNo;
+	void FromDB(DB_BINDER& _binder) {
+		_binder.GetInt64(1, OUT aId);
+		_binder.GetInt64(2, OUT cDate);
+		_binder.GetInt64(3, OUT mDate);
 		return ;
 	}
 public:
@@ -59,13 +61,11 @@ public:
 	int64_t mDate = 0;
 public:
 	template<typename DB_BINDER> 
-	void FromDB(DB_BINDER& _binder, OUT int32_t _curColNo, OUT int32_t& _nextCol) {
-		_binder.GetInt64(_curColNo++, OUT sId);
-		_binder.GetInt64(_curColNo++, OUT aId);
-		_binder.GetInt64(_curColNo++, OUT cDate);
-		_binder.GetInt64(_curColNo++, OUT mDate);
-
-		_nextCol = _curColNo;
+	void FromDB(DB_BINDER& _binder) {
+		_binder.GetInt64(1, OUT sId);
+		_binder.GetInt64(2, OUT aId);
+		_binder.GetInt64(3, OUT cDate);
+		_binder.GetInt64(4, OUT mDate);
 		return ;
 	}
 public:
@@ -88,18 +88,18 @@ public:
 	char greetingMent2[50] = { 0, };
 public:
 	template<typename DB_BINDER>
-	void FromDB(DB_BINDER& _binder, OUT int32_t _curColNo, OUT int32_t& _nextCol) {
-		_binder.GetInt64(_curColNo++, OUT pId);
-		_binder.GetInt64(_curColNo++, OUT aId);
-		_binder.GetInt64(_curColNo++, OUT mainHeroId);
-		_binder.GetInt32(_curColNo++, OUT mainFrameId);
+	void FromDB(DB_BINDER& _binder) {
+		_binder.GetInt64(1, OUT pId);
+		_binder.GetInt64(2, OUT aId);
+		_binder.GetInt64(3, OUT mainHeroId);
+		_binder.GetInt32(4, OUT mainFrameId);
 		
-		_binder.GetStr(_curColNo++, OUT greetingMent);
+		_binder.GetStr(5, OUT greetingMent);
 
-		_binder.GetInt64(_curColNo++, OUT cDate);
-		_binder.GetInt64(_curColNo++, OUT mDate);
+		_binder.GetInt64(6, OUT cDate);
+		_binder.GetInt64(7, OUT mDate);
 
-		_nextCol = _curColNo;
+		return ;
 	}
 public:
 	void Render() {

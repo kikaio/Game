@@ -89,21 +89,50 @@ PacketError DBWrapper::PlatformSelect(const LoginData& _loginData, GameUserSptr 
         SummaryRow summaryRow;
         ProfileRow profileRow;
         while (dbBinder.Fetch()) {
-
-            int32_t curColNo = 1;
-
-            // false : 해당 유저가 신규 생성된 유저인 경우
-            dbBinder.GetBool(curColNo++, OUT _is_old_user);
-
-            platformRow.FromDB(dbBinder, curColNo, OUT curColNo);
-            accountRow.FromDB(dbBinder, curColNo, OUT curColNo);
-            summaryRow.FromDB(dbBinder, curColNo, OUT curColNo);
-            profileRow.FromDB(dbBinder, curColNo, OUT curColNo);
-
-            _gameUser->SetAccountId(platformRow.aId);
-            GameProfile& profile = _gameUser->GetProfile();
-            profile.InitGameProfile(profileRow);
+            dbBinder.GetBool(1, OUT _is_old_user);
         }
+
+        if(dbBinder.HasNext() == false) {
+            //todo : error
+            return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::RESULT_SET_MISMATCH);
+        }
+        
+        while(dbBinder.Fetch()) {
+            platformRow.FromDB(dbBinder);
+        }
+
+        if (dbBinder.HasNext() == false) {
+            //todo : error
+            return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::RESULT_SET_MISMATCH);
+        }
+
+        while (dbBinder.Fetch()) {
+            accountRow.FromDB(dbBinder);
+        }
+
+
+        if (dbBinder.HasNext() == false) {
+            //todo : error
+            return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::RESULT_SET_MISMATCH);
+        }
+
+        while (dbBinder.Fetch()) {
+            summaryRow.FromDB(dbBinder);
+        }
+
+        if (dbBinder.HasNext() == false) {
+            //todo : error
+            return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::RESULT_SET_MISMATCH);
+        }
+
+        while (dbBinder.Fetch()) {
+            profileRow.FromDB(dbBinder);
+        }
+
+        _gameUser->SetAccountId(platformRow.aId);
+        GameProfile& profile = _gameUser->GetProfile();
+        profile.InitGameProfile(profileRow);
+
     }
 
     return PacketError();
