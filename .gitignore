@@ -18,3 +18,4 @@ Debug/MasterServer/MasterServer.pdb
 Server/logs/
 Debug/Server/logs/
 Client/logs/dummyLog.log
+Libraries/Libs/Common/Debug/
