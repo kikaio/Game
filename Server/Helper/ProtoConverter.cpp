@@ -108,6 +108,7 @@ void ProtoConverter::FromProto(const UserAndGameServer::LoginData& _in, LoginDat
 	}
 
 	_out.loginToken = _in.login_token();
+	_out.refreshToken = _in.refresh_token();
 	return ;
 }
 

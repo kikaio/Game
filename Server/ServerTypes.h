@@ -54,6 +54,7 @@ public:
 	string sId = ""; // guest 인 경우 device key 가 온다.
 	LOGIN_PLATFORM loginPlatform = LOGIN_PLATFORM::GUEST;
 	string loginToken = "";
+	string refreshToken = "";
 };
 
 struct LoginResultData {

@@ -72,11 +72,15 @@ PacketError DBWrapper::PlatformSelect(const LoginData& _loginData, GameUserSptr 
     DBBind<5, 0> dbBinder(*conn, "call usp_platform_select(?, ?, ?, ?, ?);");
     
     int32_t platformVal = ENUM_TO_INT(_loginData.loginPlatform);
-    dbBinder.BindParam(0, IN _loginData.sId.c_str());
-    dbBinder.BindParam(1, IN platformVal);
-    dbBinder.BindParam(2, IN _def_main_hero_id);
-    dbBinder.BindParam(3, IN _def_main_frame_id);
-    dbBinder.BindParam(4, IN _def_main_greeting_ment.c_str());
+
+    int32_t bindIdx = 0;
+    dbBinder.BindParam(bindIdx++, IN _loginData.sId.c_str());
+    dbBinder.BindParam(bindIdx++, IN platformVal);
+    dbBinder.BindParam(bindIdx++, IN _loginData.loginToken.c_str());
+    dbBinder.BindParam(bindIdx++, IN _loginData.refreshToken.c_str());
+    dbBinder.BindParam(bindIdx++, IN _def_main_hero_id);
+    dbBinder.BindParam(bindIdx++, IN _def_main_frame_id);
+    dbBinder.BindParam(bindIdx++, IN _def_main_greeting_ment.c_str());
 
     {
         if (dbBinder.Execute() == false) {
