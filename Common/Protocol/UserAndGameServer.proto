@@ -18,6 +18,7 @@ enum Protocol {
 	TestMsg = 4;
 	Chat = 5;
 	Login = 6;
+	GameConn = 7;
 }
 
 message ItemData {
@@ -121,4 +122,11 @@ message AnsLogin {
 	LoginResultData login_result_data = 1;
 	GameProfile user_profile = 2;
 	Inventory user_inventory = 3;
+}
+
+message ReqGameConn {
+}
+
+message AnsGameConn {
+	string aes_key = 1;
 }

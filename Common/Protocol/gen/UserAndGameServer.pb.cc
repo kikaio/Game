@@ -279,8 +279,31 @@ struct AnsLoginDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT AnsLoginDefaultTypeInternal _AnsLogin_default_instance_;
+constexpr ReqGameConn::ReqGameConn(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized){}
+struct ReqGameConnDefaultTypeInternal {
+  constexpr ReqGameConnDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ReqGameConnDefaultTypeInternal() {}
+  union {
+    ReqGameConn _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ReqGameConnDefaultTypeInternal _ReqGameConn_default_instance_;
+constexpr AnsGameConn::AnsGameConn(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : aes_key_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct AnsGameConnDefaultTypeInternal {
+  constexpr AnsGameConnDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~AnsGameConnDefaultTypeInternal() {}
+  union {
+    AnsGameConn _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT AnsGameConnDefaultTypeInternal _AnsGameConn_default_instance_;
 }  // namespace UserAndGameServer
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_UserAndGameServer_2eproto[20];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_UserAndGameServer_2eproto[22];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_UserAndGameServer_2eproto[2];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_UserAndGameServer_2eproto = nullptr;
 
@@ -447,6 +470,19 @@ const uint32_t TableStruct_UserAndGameServer_2eproto::offsets[] PROTOBUF_SECTION
   PROTOBUF_FIELD_OFFSET(::UserAndGameServer::AnsLogin, login_result_data_),
   PROTOBUF_FIELD_OFFSET(::UserAndGameServer::AnsLogin, user_profile_),
   PROTOBUF_FIELD_OFFSET(::UserAndGameServer::AnsLogin, user_inventory_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::ReqGameConn, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::AnsGameConn, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::AnsGameConn, aes_key_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::UserAndGameServer::ItemData)},
@@ -469,6 +505,8 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 139, -1, -1, sizeof(::UserAndGameServer::AnsChat)},
   { 146, -1, -1, sizeof(::UserAndGameServer::ReqLogin)},
   { 153, -1, -1, sizeof(::UserAndGameServer::AnsLogin)},
+  { 162, -1, -1, sizeof(::UserAndGameServer::ReqGameConn)},
+  { 168, -1, -1, sizeof(::UserAndGameServer::AnsGameConn)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -492,6 +530,8 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::UserAndGameServer::_AnsChat_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::UserAndGameServer::_ReqLogin_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::UserAndGameServer::_AnsLogin_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::UserAndGameServer::_ReqGameConn_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::UserAndGameServer::_AnsGameConn_default_instance_),
 };
 
 const char descriptor_table_protodef_UserAndGameServer_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -531,17 +571,18 @@ const char descriptor_table_protodef_UserAndGameServer_2eproto[] PROTOBUF_SECTIO
   "\".UserAndGameServer.LoginResultData\0224\n\014u"
   "ser_profile\030\002 \001(\0132\036.UserAndGameServer.Ga"
   "meProfile\0224\n\016user_inventory\030\003 \001(\0132\034.User"
-  "AndGameServer.Inventory*D\n\007MsgType\022\024\n\020IN"
-  "VALID_MSG_TYPE\020\000\022\007\n\003Req\020\001\022\007\n\003Ans\020\002\022\010\n\004No"
-  "ti\020\003\022\007\n\003Err\020\004*k\n\010Protocol\022\024\n\020INVALID_PRO"
-  "TOCOL\020\000\022\013\n\007ErrInfo\020\001\022\r\n\tPublicKey\020\002\022\013\n\007C"
-  "onnect\020\003\022\013\n\007TestMsg\020\004\022\010\n\004Chat\020\005\022\t\n\005Login"
-  "\020\006b\006proto3"
+  "AndGameServer.Inventory\"\r\n\013ReqGameConn\"\036"
+  "\n\013AnsGameConn\022\017\n\007aes_key\030\001 \001(\t*D\n\007MsgTyp"
+  "e\022\024\n\020INVALID_MSG_TYPE\020\000\022\007\n\003Req\020\001\022\007\n\003Ans\020"
+  "\002\022\010\n\004Noti\020\003\022\007\n\003Err\020\004*y\n\010Protocol\022\024\n\020INVA"
+  "LID_PROTOCOL\020\000\022\013\n\007ErrInfo\020\001\022\r\n\tPublicKey"
+  "\020\002\022\013\n\007Connect\020\003\022\013\n\007TestMsg\020\004\022\010\n\004Chat\020\005\022\t"
+  "\n\005Login\020\006\022\014\n\010GameConn\020\007b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_UserAndGameServer_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_UserAndGameServer_2eproto = {
-  false, false, 1650, descriptor_table_protodef_UserAndGameServer_2eproto, "UserAndGameServer.proto", 
-  &descriptor_table_UserAndGameServer_2eproto_once, nullptr, 0, 20,
+  false, false, 1711, descriptor_table_protodef_UserAndGameServer_2eproto, "UserAndGameServer.proto", 
+  &descriptor_table_UserAndGameServer_2eproto_once, nullptr, 0, 22,
   schemas, file_default_instances, TableStruct_UserAndGameServer_2eproto::offsets,
   file_level_metadata_UserAndGameServer_2eproto, file_level_enum_descriptors_UserAndGameServer_2eproto, file_level_service_descriptors_UserAndGameServer_2eproto,
 };
@@ -582,6 +623,7 @@ bool Protocol_IsValid(int value) {
     case 4:
     case 5:
     case 6:
+    case 7:
       return true;
     default:
       return false;
@@ -5233,6 +5275,248 @@ void AnsLogin::InternalSwap(AnsLogin* other) {
       file_level_metadata_UserAndGameServer_2eproto[19]);
 }
 
+// ===================================================================
+
+class ReqGameConn::_Internal {
+ public:
+};
+
+ReqGameConn::ReqGameConn(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:UserAndGameServer.ReqGameConn)
+}
+ReqGameConn::ReqGameConn(const ReqGameConn& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:UserAndGameServer.ReqGameConn)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ReqGameConn::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ReqGameConn::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata ReqGameConn::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_UserAndGameServer_2eproto_getter, &descriptor_table_UserAndGameServer_2eproto_once,
+      file_level_metadata_UserAndGameServer_2eproto[20]);
+}
+
+// ===================================================================
+
+class AnsGameConn::_Internal {
+ public:
+};
+
+AnsGameConn::AnsGameConn(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:UserAndGameServer.AnsGameConn)
+}
+AnsGameConn::AnsGameConn(const AnsGameConn& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  aes_key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    aes_key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_aes_key().empty()) {
+    aes_key_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_aes_key(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:UserAndGameServer.AnsGameConn)
+}
+
+inline void AnsGameConn::SharedCtor() {
+aes_key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  aes_key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+AnsGameConn::~AnsGameConn() {
+  // @@protoc_insertion_point(destructor:UserAndGameServer.AnsGameConn)
+  if (GetArenaForAllocation() != nullptr) return;
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+inline void AnsGameConn::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  aes_key_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void AnsGameConn::ArenaDtor(void* object) {
+  AnsGameConn* _this = reinterpret_cast< AnsGameConn* >(object);
+  (void)_this;
+}
+void AnsGameConn::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void AnsGameConn::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void AnsGameConn::Clear() {
+// @@protoc_insertion_point(message_clear_start:UserAndGameServer.AnsGameConn)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  aes_key_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* AnsGameConn::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string aes_key = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_aes_key();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "UserAndGameServer.AnsGameConn.aes_key"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* AnsGameConn::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:UserAndGameServer.AnsGameConn)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string aes_key = 1;
+  if (!this->_internal_aes_key().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_aes_key().data(), static_cast<int>(this->_internal_aes_key().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "UserAndGameServer.AnsGameConn.aes_key");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_aes_key(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:UserAndGameServer.AnsGameConn)
+  return target;
+}
+
+size_t AnsGameConn::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:UserAndGameServer.AnsGameConn)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string aes_key = 1;
+  if (!this->_internal_aes_key().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_aes_key());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AnsGameConn::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    AnsGameConn::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AnsGameConn::GetClassData() const { return &_class_data_; }
+
+void AnsGameConn::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<AnsGameConn *>(to)->MergeFrom(
+      static_cast<const AnsGameConn &>(from));
+}
+
+
+void AnsGameConn::MergeFrom(const AnsGameConn& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:UserAndGameServer.AnsGameConn)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_aes_key().empty()) {
+    _internal_set_aes_key(from._internal_aes_key());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AnsGameConn::CopyFrom(const AnsGameConn& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:UserAndGameServer.AnsGameConn)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AnsGameConn::IsInitialized() const {
+  return true;
+}
+
+void AnsGameConn::InternalSwap(AnsGameConn* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &aes_key_, lhs_arena,
+      &other->aes_key_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AnsGameConn::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_UserAndGameServer_2eproto_getter, &descriptor_table_UserAndGameServer_2eproto_once,
+      file_level_metadata_UserAndGameServer_2eproto[21]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace UserAndGameServer
 PROTOBUF_NAMESPACE_OPEN
@@ -5295,6 +5579,12 @@ template<> PROTOBUF_NOINLINE ::UserAndGameServer::ReqLogin* Arena::CreateMaybeMe
 }
 template<> PROTOBUF_NOINLINE ::UserAndGameServer::AnsLogin* Arena::CreateMaybeMessage< ::UserAndGameServer::AnsLogin >(Arena* arena) {
   return Arena::CreateMessageInternal< ::UserAndGameServer::AnsLogin >(arena);
+}
+template<> PROTOBUF_NOINLINE ::UserAndGameServer::ReqGameConn* Arena::CreateMaybeMessage< ::UserAndGameServer::ReqGameConn >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::UserAndGameServer::ReqGameConn >(arena);
+}
+template<> PROTOBUF_NOINLINE ::UserAndGameServer::AnsGameConn* Arena::CreateMaybeMessage< ::UserAndGameServer::AnsGameConn >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::UserAndGameServer::AnsGameConn >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

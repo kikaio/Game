@@ -23,6 +23,7 @@
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/arena.h>
 #include <google/protobuf/arenastring.h>
+#include <google/protobuf/generated_message_bases.h>
 #include <google/protobuf/generated_message_table_driven.h>
 #include <google/protobuf/generated_message_util.h>
 #include <google/protobuf/metadata_lite.h>
@@ -47,7 +48,7 @@ struct TableStruct_UserAndGameServer_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[20]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[22]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -61,6 +62,9 @@ extern AnsChatDefaultTypeInternal _AnsChat_default_instance_;
 class AnsConnect;
 struct AnsConnectDefaultTypeInternal;
 extern AnsConnectDefaultTypeInternal _AnsConnect_default_instance_;
+class AnsGameConn;
+struct AnsGameConnDefaultTypeInternal;
+extern AnsGameConnDefaultTypeInternal _AnsGameConn_default_instance_;
 class AnsLogin;
 struct AnsLoginDefaultTypeInternal;
 extern AnsLoginDefaultTypeInternal _AnsLogin_default_instance_;
@@ -106,6 +110,9 @@ extern ReqChatDefaultTypeInternal _ReqChat_default_instance_;
 class ReqConnect;
 struct ReqConnectDefaultTypeInternal;
 extern ReqConnectDefaultTypeInternal _ReqConnect_default_instance_;
+class ReqGameConn;
+struct ReqGameConnDefaultTypeInternal;
+extern ReqGameConnDefaultTypeInternal _ReqGameConn_default_instance_;
 class ReqLogin;
 struct ReqLoginDefaultTypeInternal;
 extern ReqLoginDefaultTypeInternal _ReqLogin_default_instance_;
@@ -119,6 +126,7 @@ extern ReqTestMsgDefaultTypeInternal _ReqTestMsg_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::UserAndGameServer::AnsChat* Arena::CreateMaybeMessage<::UserAndGameServer::AnsChat>(Arena*);
 template<> ::UserAndGameServer::AnsConnect* Arena::CreateMaybeMessage<::UserAndGameServer::AnsConnect>(Arena*);
+template<> ::UserAndGameServer::AnsGameConn* Arena::CreateMaybeMessage<::UserAndGameServer::AnsGameConn>(Arena*);
 template<> ::UserAndGameServer::AnsLogin* Arena::CreateMaybeMessage<::UserAndGameServer::AnsLogin>(Arena*);
 template<> ::UserAndGameServer::AnsPublicKey* Arena::CreateMaybeMessage<::UserAndGameServer::AnsPublicKey>(Arena*);
 template<> ::UserAndGameServer::AnsTestMsg* Arena::CreateMaybeMessage<::UserAndGameServer::AnsTestMsg>(Arena*);
@@ -134,6 +142,7 @@ template<> ::UserAndGameServer::LoginResultData* Arena::CreateMaybeMessage<::Use
 template<> ::UserAndGameServer::NotiErrInfo* Arena::CreateMaybeMessage<::UserAndGameServer::NotiErrInfo>(Arena*);
 template<> ::UserAndGameServer::ReqChat* Arena::CreateMaybeMessage<::UserAndGameServer::ReqChat>(Arena*);
 template<> ::UserAndGameServer::ReqConnect* Arena::CreateMaybeMessage<::UserAndGameServer::ReqConnect>(Arena*);
+template<> ::UserAndGameServer::ReqGameConn* Arena::CreateMaybeMessage<::UserAndGameServer::ReqGameConn>(Arena*);
 template<> ::UserAndGameServer::ReqLogin* Arena::CreateMaybeMessage<::UserAndGameServer::ReqLogin>(Arena*);
 template<> ::UserAndGameServer::ReqPublicKey* Arena::CreateMaybeMessage<::UserAndGameServer::ReqPublicKey>(Arena*);
 template<> ::UserAndGameServer::ReqTestMsg* Arena::CreateMaybeMessage<::UserAndGameServer::ReqTestMsg>(Arena*);
@@ -176,12 +185,13 @@ enum Protocol : int {
   TestMsg = 4,
   Chat = 5,
   Login = 6,
+  GameConn = 7,
   Protocol_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   Protocol_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool Protocol_IsValid(int value);
 constexpr Protocol Protocol_MIN = INVALID_PROTOCOL;
-constexpr Protocol Protocol_MAX = Login;
+constexpr Protocol Protocol_MAX = GameConn;
 constexpr int Protocol_ARRAYSIZE = Protocol_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Protocol_descriptor();
@@ -3520,6 +3530,275 @@ class AnsLogin final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_UserAndGameServer_2eproto;
 };
+// -------------------------------------------------------------------
+
+class ReqGameConn final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:UserAndGameServer.ReqGameConn) */ {
+ public:
+  inline ReqGameConn() : ReqGameConn(nullptr) {}
+  explicit constexpr ReqGameConn(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ReqGameConn(const ReqGameConn& from);
+  ReqGameConn(ReqGameConn&& from) noexcept
+    : ReqGameConn() {
+    *this = ::std::move(from);
+  }
+
+  inline ReqGameConn& operator=(const ReqGameConn& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ReqGameConn& operator=(ReqGameConn&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ReqGameConn& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ReqGameConn* internal_default_instance() {
+    return reinterpret_cast<const ReqGameConn*>(
+               &_ReqGameConn_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    20;
+
+  friend void swap(ReqGameConn& a, ReqGameConn& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ReqGameConn* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ReqGameConn* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ReqGameConn* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ReqGameConn>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const ReqGameConn& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const ReqGameConn& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "UserAndGameServer.ReqGameConn";
+  }
+  protected:
+  explicit ReqGameConn(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:UserAndGameServer.ReqGameConn)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_UserAndGameServer_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AnsGameConn final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:UserAndGameServer.AnsGameConn) */ {
+ public:
+  inline AnsGameConn() : AnsGameConn(nullptr) {}
+  ~AnsGameConn() override;
+  explicit constexpr AnsGameConn(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AnsGameConn(const AnsGameConn& from);
+  AnsGameConn(AnsGameConn&& from) noexcept
+    : AnsGameConn() {
+    *this = ::std::move(from);
+  }
+
+  inline AnsGameConn& operator=(const AnsGameConn& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AnsGameConn& operator=(AnsGameConn&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AnsGameConn& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AnsGameConn* internal_default_instance() {
+    return reinterpret_cast<const AnsGameConn*>(
+               &_AnsGameConn_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    21;
+
+  friend void swap(AnsGameConn& a, AnsGameConn& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AnsGameConn* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AnsGameConn* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AnsGameConn* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AnsGameConn>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AnsGameConn& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const AnsGameConn& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AnsGameConn* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "UserAndGameServer.AnsGameConn";
+  }
+  protected:
+  explicit AnsGameConn(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAesKeyFieldNumber = 1,
+  };
+  // string aes_key = 1;
+  void clear_aes_key();
+  const std::string& aes_key() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_aes_key(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_aes_key();
+  PROTOBUF_NODISCARD std::string* release_aes_key();
+  void set_allocated_aes_key(std::string* aes_key);
+  private:
+  const std::string& _internal_aes_key() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_aes_key(const std::string& value);
+  std::string* _internal_mutable_aes_key();
+  public:
+
+  // @@protoc_insertion_point(class_scope:UserAndGameServer.AnsGameConn)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr aes_key_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_UserAndGameServer_2eproto;
+};
 // ===================================================================
 
 
@@ -5431,9 +5710,72 @@ inline void AnsLogin::set_allocated_user_inventory(::UserAndGameServer::Inventor
   // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.AnsLogin.user_inventory)
 }
 
+// -------------------------------------------------------------------
+
+// ReqGameConn
+
+// -------------------------------------------------------------------
+
+// AnsGameConn
+
+// string aes_key = 1;
+inline void AnsGameConn::clear_aes_key() {
+  aes_key_.ClearToEmpty();
+}
+inline const std::string& AnsGameConn::aes_key() const {
+  // @@protoc_insertion_point(field_get:UserAndGameServer.AnsGameConn.aes_key)
+  return _internal_aes_key();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void AnsGameConn::set_aes_key(ArgT0&& arg0, ArgT... args) {
+ 
+ aes_key_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:UserAndGameServer.AnsGameConn.aes_key)
+}
+inline std::string* AnsGameConn::mutable_aes_key() {
+  std::string* _s = _internal_mutable_aes_key();
+  // @@protoc_insertion_point(field_mutable:UserAndGameServer.AnsGameConn.aes_key)
+  return _s;
+}
+inline const std::string& AnsGameConn::_internal_aes_key() const {
+  return aes_key_.Get();
+}
+inline void AnsGameConn::_internal_set_aes_key(const std::string& value) {
+  
+  aes_key_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* AnsGameConn::_internal_mutable_aes_key() {
+  
+  return aes_key_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* AnsGameConn::release_aes_key() {
+  // @@protoc_insertion_point(field_release:UserAndGameServer.AnsGameConn.aes_key)
+  return aes_key_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void AnsGameConn::set_allocated_aes_key(std::string* aes_key) {
+  if (aes_key != nullptr) {
+    
+  } else {
+    
+  }
+  aes_key_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), aes_key,
+      GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (aes_key_.IsDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited())) {
+    aes_key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.AnsGameConn.aes_key)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
