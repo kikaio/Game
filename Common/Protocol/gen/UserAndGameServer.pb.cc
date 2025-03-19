@@ -118,6 +118,7 @@ constexpr LoginData::LoginData(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : s_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , login_token_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , refresh_token_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , login_platform_(0){}
 struct LoginDataDefaultTypeInternal {
   constexpr LoginDataDefaultTypeInternal()
@@ -355,6 +356,7 @@ const uint32_t TableStruct_UserAndGameServer_2eproto::offsets[] PROTOBUF_SECTION
   PROTOBUF_FIELD_OFFSET(::UserAndGameServer::LoginData, s_id_),
   PROTOBUF_FIELD_OFFSET(::UserAndGameServer::LoginData, login_platform_),
   PROTOBUF_FIELD_OFFSET(::UserAndGameServer::LoginData, login_token_),
+  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::LoginData, refresh_token_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::UserAndGameServer::LoginResultData, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -455,18 +457,18 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 42, -1, -1, sizeof(::UserAndGameServer::ChatProfile)},
   { 53, -1, -1, sizeof(::UserAndGameServer::ChatData)},
   { 62, -1, -1, sizeof(::UserAndGameServer::LoginData)},
-  { 71, -1, -1, sizeof(::UserAndGameServer::LoginResultData)},
-  { 79, -1, -1, sizeof(::UserAndGameServer::NotiErrInfo)},
-  { 88, -1, -1, sizeof(::UserAndGameServer::ReqPublicKey)},
-  { 95, -1, -1, sizeof(::UserAndGameServer::AnsPublicKey)},
-  { 102, -1, -1, sizeof(::UserAndGameServer::ReqConnect)},
-  { 109, -1, -1, sizeof(::UserAndGameServer::AnsConnect)},
-  { 117, -1, -1, sizeof(::UserAndGameServer::ReqTestMsg)},
-  { 124, -1, -1, sizeof(::UserAndGameServer::AnsTestMsg)},
-  { 131, -1, -1, sizeof(::UserAndGameServer::ReqChat)},
-  { 138, -1, -1, sizeof(::UserAndGameServer::AnsChat)},
-  { 145, -1, -1, sizeof(::UserAndGameServer::ReqLogin)},
-  { 152, -1, -1, sizeof(::UserAndGameServer::AnsLogin)},
+  { 72, -1, -1, sizeof(::UserAndGameServer::LoginResultData)},
+  { 80, -1, -1, sizeof(::UserAndGameServer::NotiErrInfo)},
+  { 89, -1, -1, sizeof(::UserAndGameServer::ReqPublicKey)},
+  { 96, -1, -1, sizeof(::UserAndGameServer::AnsPublicKey)},
+  { 103, -1, -1, sizeof(::UserAndGameServer::ReqConnect)},
+  { 110, -1, -1, sizeof(::UserAndGameServer::AnsConnect)},
+  { 118, -1, -1, sizeof(::UserAndGameServer::ReqTestMsg)},
+  { 125, -1, -1, sizeof(::UserAndGameServer::AnsTestMsg)},
+  { 132, -1, -1, sizeof(::UserAndGameServer::ReqChat)},
+  { 139, -1, -1, sizeof(::UserAndGameServer::AnsChat)},
+  { 146, -1, -1, sizeof(::UserAndGameServer::ReqLogin)},
+  { 153, -1, -1, sizeof(::UserAndGameServer::AnsLogin)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -509,35 +511,36 @@ const char descriptor_table_protodef_UserAndGameServer_2eproto[] PROTOBUF_SECTIO
   "\020profile_frame_id\030\004 \001(\005\022\024\n\014main_hero_id\030"
   "\005 \001(\005\"`\n\010ChatData\022\021\n\tchat_type\030\001 \001(\005\0224\n\014"
   "chat_profile\030\002 \001(\0132\036.UserAndGameServer.C"
-  "hatProfile\022\013\n\003msg\030\003 \001(\t\"F\n\tLoginData\022\014\n\004"
+  "hatProfile\022\013\n\003msg\030\003 \001(\t\"]\n\tLoginData\022\014\n\004"
   "s_id\030\001 \001(\t\022\026\n\016login_platform\030\002 \001(\005\022\023\n\013lo"
-  "gin_token\030\003 \001(\t\":\n\017LoginResultData\022\022\n\nis"
-  "_success\030\001 \001(\010\022\023\n\013login_token\030\002 \001(\t\"C\n\013N"
-  "otiErrInfo\022\016\n\006err_no\030\001 \001(\005\022\022\n\nerr_detail"
-  "\030\002 \001(\005\022\020\n\010err_desc\030\003 \001(\t\"!\n\014ReqPublicKey"
-  "\022\021\n\tdevice_id\030\001 \001(\t\"\"\n\014AnsPublicKey\022\022\n\np"
-  "ublic_key\030\001 \001(\t\"\037\n\nReqConnect\022\021\n\tdevice_"
-  "id\030\001 \001(\t\"4\n\nAnsConnect\022\022\n\nis_success\030\001 \001"
-  "(\010\022\022\n\nsession_id\030\002 \001(\t\"\031\n\nReqTestMsg\022\013\n\003"
-  "msg\030\001 \001(\t\"\031\n\nAnsTestMsg\022\013\n\003msg\030\001 \001(\t\"9\n\007"
-  "ReqChat\022.\n\tchat_data\030\001 \001(\0132\033.UserAndGame"
-  "Server.ChatData\"9\n\007AnsChat\022.\n\tchat_data\030"
-  "\001 \001(\0132\033.UserAndGameServer.ChatData\"<\n\010Re"
-  "qLogin\0220\n\nlogin_data\030\001 \001(\0132\034.UserAndGame"
-  "Server.LoginData\"\265\001\n\010AnsLogin\022=\n\021login_r"
-  "esult_data\030\001 \001(\0132\".UserAndGameServer.Log"
-  "inResultData\0224\n\014user_profile\030\002 \001(\0132\036.Use"
-  "rAndGameServer.GameProfile\0224\n\016user_inven"
-  "tory\030\003 \001(\0132\034.UserAndGameServer.Inventory"
-  "*D\n\007MsgType\022\024\n\020INVALID_MSG_TYPE\020\000\022\007\n\003Req"
-  "\020\001\022\007\n\003Ans\020\002\022\010\n\004Noti\020\003\022\007\n\003Err\020\004*k\n\010Protoc"
-  "ol\022\024\n\020INVALID_PROTOCOL\020\000\022\013\n\007ErrInfo\020\001\022\r\n"
-  "\tPublicKey\020\002\022\013\n\007Connect\020\003\022\013\n\007TestMsg\020\004\022\010"
-  "\n\004Chat\020\005\022\t\n\005Login\020\006b\006proto3"
+  "gin_token\030\003 \001(\t\022\025\n\rrefresh_token\030\004 \001(\t\":"
+  "\n\017LoginResultData\022\022\n\nis_success\030\001 \001(\010\022\023\n"
+  "\013login_token\030\002 \001(\t\"C\n\013NotiErrInfo\022\016\n\006err"
+  "_no\030\001 \001(\005\022\022\n\nerr_detail\030\002 \001(\005\022\020\n\010err_des"
+  "c\030\003 \001(\t\"!\n\014ReqPublicKey\022\021\n\tdevice_id\030\001 \001"
+  "(\t\"\"\n\014AnsPublicKey\022\022\n\npublic_key\030\001 \001(\t\"\037"
+  "\n\nReqConnect\022\021\n\tdevice_id\030\001 \001(\t\"4\n\nAnsCo"
+  "nnect\022\022\n\nis_success\030\001 \001(\010\022\022\n\nsession_id\030"
+  "\002 \001(\t\"\031\n\nReqTestMsg\022\013\n\003msg\030\001 \001(\t\"\031\n\nAnsT"
+  "estMsg\022\013\n\003msg\030\001 \001(\t\"9\n\007ReqChat\022.\n\tchat_d"
+  "ata\030\001 \001(\0132\033.UserAndGameServer.ChatData\"9"
+  "\n\007AnsChat\022.\n\tchat_data\030\001 \001(\0132\033.UserAndGa"
+  "meServer.ChatData\"<\n\010ReqLogin\0220\n\nlogin_d"
+  "ata\030\001 \001(\0132\034.UserAndGameServer.LoginData\""
+  "\265\001\n\010AnsLogin\022=\n\021login_result_data\030\001 \001(\0132"
+  "\".UserAndGameServer.LoginResultData\0224\n\014u"
+  "ser_profile\030\002 \001(\0132\036.UserAndGameServer.Ga"
+  "meProfile\0224\n\016user_inventory\030\003 \001(\0132\034.User"
+  "AndGameServer.Inventory*D\n\007MsgType\022\024\n\020IN"
+  "VALID_MSG_TYPE\020\000\022\007\n\003Req\020\001\022\007\n\003Ans\020\002\022\010\n\004No"
+  "ti\020\003\022\007\n\003Err\020\004*k\n\010Protocol\022\024\n\020INVALID_PRO"
+  "TOCOL\020\000\022\013\n\007ErrInfo\020\001\022\r\n\tPublicKey\020\002\022\013\n\007C"
+  "onnect\020\003\022\013\n\007TestMsg\020\004\022\010\n\004Chat\020\005\022\t\n\005Login"
+  "\020\006b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_UserAndGameServer_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_UserAndGameServer_2eproto = {
-  false, false, 1627, descriptor_table_protodef_UserAndGameServer_2eproto, "UserAndGameServer.proto", 
+  false, false, 1650, descriptor_table_protodef_UserAndGameServer_2eproto, "UserAndGameServer.proto", 
   &descriptor_table_UserAndGameServer_2eproto_once, nullptr, 0, 20,
   schemas, file_default_instances, TableStruct_UserAndGameServer_2eproto::offsets,
   file_level_metadata_UserAndGameServer_2eproto, file_level_enum_descriptors_UserAndGameServer_2eproto, file_level_service_descriptors_UserAndGameServer_2eproto,
@@ -2331,6 +2334,14 @@ LoginData::LoginData(const LoginData& from)
     login_token_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_login_token(), 
       GetArenaForAllocation());
   }
+  refresh_token_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    refresh_token_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_refresh_token().empty()) {
+    refresh_token_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_refresh_token(), 
+      GetArenaForAllocation());
+  }
   login_platform_ = from.login_platform_;
   // @@protoc_insertion_point(copy_constructor:UserAndGameServer.LoginData)
 }
@@ -2343,6 +2354,10 @@ s_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlready
 login_token_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   login_token_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+refresh_token_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  refresh_token_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 login_platform_ = 0;
 }
@@ -2358,6 +2373,7 @@ inline void LoginData::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   s_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   login_token_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  refresh_token_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void LoginData::ArenaDtor(void* object) {
@@ -2378,6 +2394,7 @@ void LoginData::Clear() {
 
   s_id_.ClearToEmpty();
   login_token_.ClearToEmpty();
+  refresh_token_.ClearToEmpty();
   login_platform_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -2412,6 +2429,16 @@ const char* LoginData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
           auto str = _internal_mutable_login_token();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "UserAndGameServer.LoginData.login_token"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string refresh_token = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_refresh_token();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "UserAndGameServer.LoginData.refresh_token"));
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2471,6 +2498,16 @@ uint8_t* LoginData::_InternalSerialize(
         3, this->_internal_login_token(), target);
   }
 
+  // string refresh_token = 4;
+  if (!this->_internal_refresh_token().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_refresh_token().data(), static_cast<int>(this->_internal_refresh_token().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "UserAndGameServer.LoginData.refresh_token");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_refresh_token(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2499,6 +2536,13 @@ size_t LoginData::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_login_token());
+  }
+
+  // string refresh_token = 4;
+  if (!this->_internal_refresh_token().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_refresh_token());
   }
 
   // int32 login_platform = 2;
@@ -2534,6 +2578,9 @@ void LoginData::MergeFrom(const LoginData& from) {
   if (!from._internal_login_token().empty()) {
     _internal_set_login_token(from._internal_login_token());
   }
+  if (!from._internal_refresh_token().empty()) {
+    _internal_set_refresh_token(from._internal_refresh_token());
+  }
   if (from._internal_login_platform() != 0) {
     _internal_set_login_platform(from._internal_login_platform());
   }
@@ -2565,6 +2612,11 @@ void LoginData::InternalSwap(LoginData* other) {
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       &login_token_, lhs_arena,
       &other->login_token_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &refresh_token_, lhs_arena,
+      &other->refresh_token_, rhs_arena
   );
   swap(login_platform_, other->login_platform_);
 }

@@ -66,6 +66,7 @@ message LoginData {
 	string s_id = 1;
 	int32 login_platform = 2;
 	string login_token = 3;
+	string refresh_token = 4;
 }
 
 message LoginResultData {

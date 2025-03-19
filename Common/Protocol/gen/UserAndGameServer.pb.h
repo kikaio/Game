@@ -1540,6 +1540,7 @@ class LoginData final :
   enum : int {
     kSIdFieldNumber = 1,
     kLoginTokenFieldNumber = 3,
+    kRefreshTokenFieldNumber = 4,
     kLoginPlatformFieldNumber = 2,
   };
   // string s_id = 1;
@@ -1570,6 +1571,20 @@ class LoginData final :
   std::string* _internal_mutable_login_token();
   public:
 
+  // string refresh_token = 4;
+  void clear_refresh_token();
+  const std::string& refresh_token() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_refresh_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_refresh_token();
+  PROTOBUF_NODISCARD std::string* release_refresh_token();
+  void set_allocated_refresh_token(std::string* refresh_token);
+  private:
+  const std::string& _internal_refresh_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_refresh_token(const std::string& value);
+  std::string* _internal_mutable_refresh_token();
+  public:
+
   // int32 login_platform = 2;
   void clear_login_platform();
   int32_t login_platform() const;
@@ -1588,6 +1603,7 @@ class LoginData final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr s_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr login_token_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr refresh_token_;
   int32_t login_platform_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_UserAndGameServer_2eproto;
@@ -4286,6 +4302,57 @@ inline void LoginData::set_allocated_login_token(std::string* login_token) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.LoginData.login_token)
+}
+
+// string refresh_token = 4;
+inline void LoginData::clear_refresh_token() {
+  refresh_token_.ClearToEmpty();
+}
+inline const std::string& LoginData::refresh_token() const {
+  // @@protoc_insertion_point(field_get:UserAndGameServer.LoginData.refresh_token)
+  return _internal_refresh_token();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void LoginData::set_refresh_token(ArgT0&& arg0, ArgT... args) {
+ 
+ refresh_token_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:UserAndGameServer.LoginData.refresh_token)
+}
+inline std::string* LoginData::mutable_refresh_token() {
+  std::string* _s = _internal_mutable_refresh_token();
+  // @@protoc_insertion_point(field_mutable:UserAndGameServer.LoginData.refresh_token)
+  return _s;
+}
+inline const std::string& LoginData::_internal_refresh_token() const {
+  return refresh_token_.Get();
+}
+inline void LoginData::_internal_set_refresh_token(const std::string& value) {
+  
+  refresh_token_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* LoginData::_internal_mutable_refresh_token() {
+  
+  return refresh_token_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* LoginData::release_refresh_token() {
+  // @@protoc_insertion_point(field_release:UserAndGameServer.LoginData.refresh_token)
+  return refresh_token_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void LoginData::set_allocated_refresh_token(std::string* refresh_token) {
+  if (refresh_token != nullptr) {
+    
+  } else {
+    
+  }
+  refresh_token_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), refresh_token,
+      GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (refresh_token_.IsDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited())) {
+    refresh_token_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.LoginData.refresh_token)
 }
 
 // -------------------------------------------------------------------
