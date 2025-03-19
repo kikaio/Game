@@ -83,13 +83,16 @@ void DumActChat::DoAct(DummyUserSptr _dumSptr) {
 }
 
 
-DumActSetLoginData::DumActSetLoginData(string _userKey, bool _isNewLogin)
+DumActSetLoginData::DumActSetLoginData(string _userKey, string _token, string _refresh_token, bool _isNewLogin)
  : isNewLogin(_isNewLogin)
 {
 	if (_userKey == "") {
 		_userKey = StrUtil::GetRandomStr(16);
 	}
 	loginData.sId = _userKey;
+	loginData.loginToken = _token;
+	loginData.refreshToken = _refresh_token;
+
 }
 
 void DumActSetLoginData::DoAct(DummyUserSptr _dumSptr)
@@ -111,15 +114,13 @@ void DumActLogin::DoAct(DummyUserSptr _dumSptr)
 	//지정된 delay 후 행동하도록.
 	ReserveAct(_dumSptr, [_dumSptr, this](){
 		UserAndGameServer::ReqLogin _req;
-		ProtoConverter::ToPacket(_dumSptr->GetLoginData(), _req);
+		ProtoConverter::ToPacket(IN _dumSptr->GetLoginData(), OUT _req);
 		auto gsSession = _dumSptr->GetGameServerSession();
 		if(gsSession->SendPacketReqLogin(_req) == false){
 			//todo : erro logging
 			return ;
 		}
-
 		return ;
 	});
-
 	return ;
 }

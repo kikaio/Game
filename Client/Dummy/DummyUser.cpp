@@ -104,9 +104,20 @@ Inventory& DummyUser::GetInventory()
 	return inventory;
 }
 
+void DummyUser::SetLoginResultData(const LoginResultData& _data)
+{
+	loginResultData = _data;
+}
+
+LoginResultData& DummyUser::GetLoginResultData()
+{
+	return loginResultData;
+}
+
 void DummyUser::Render()
 {
 	DUM_DEBUG_LOG("Dummy Render======");
+	loginResultData.Render();
 	profile.Render();
 	inventory.Render();
 }

@@ -50,6 +50,7 @@ private:
 	DummyProfile profile;
 	Inventory inventory;
 	LoginData loginData;
+	LoginResultData loginResultData;
 	ChatProfile chatProfile;
 public:
 	void SetLoginData(const LoginData& _loginData);
@@ -63,6 +64,9 @@ public:
 	
 	void SetInventory(const Inventory& _inven);
 	Inventory& GetInventory();
+
+	void SetLoginResultData(const LoginResultData& _data);
+	LoginResultData& GetLoginResultData();
 
 public:
 	void Render();

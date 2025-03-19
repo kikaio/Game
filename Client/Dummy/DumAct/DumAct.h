@@ -52,7 +52,7 @@ public:
 	LoginData loginData;
 	LoginData nextLoginData;
 public:
-	DumActSetLoginData(string _userKey, bool _isNewLogin);
+	DumActSetLoginData(string _userKey, string _token = "", string _refresh_token = "", bool _isNewLogin = true);
 protected:
 	void DoAct(DummyUserSptr _dumSptr) override;
 };

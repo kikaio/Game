@@ -7,8 +7,8 @@ public:
 	string sId = "";
 	int32_t pType = 0;
 	int64_t aId = 0;
-	string token = 0;
-	string refreshToken = 0;
+	string token = "";
+	string refreshToken = "";
 	int64_t cDate = 0;
 	int64_t mDate = 0;
 public:

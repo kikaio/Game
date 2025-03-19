@@ -7,7 +7,10 @@ namespace UserAndGameServerHandle {
 		GS_DEBUG_LOG("ReqLogin Called");
 		LoginData loginData;
 		ProtoConverter::FromPacket(_packet, OUT loginData);
-		GS_DEBUG_LOG("user key : {}, platform : {}", loginData.sId, ENUM_TO_STR(loginData.loginPlatform));
+		GS_DEBUG_LOG("user key : {}, platform : {}, token : {}, refresh token : {}"
+			, loginData.sId, ENUM_TO_STR(loginData.loginPlatform)
+			, loginData.loginToken, loginData.refreshToken
+		);
 		
 		GameUserSptr gameUser = _session->GetGameUser();
 		{
@@ -16,6 +19,13 @@ namespace UserAndGameServerHandle {
 			int def_main_frame_id = 1000;
 			string def_greeting_ment = "def greeting";
 			bool isOldUser = false;
+			//todo : gen token string
+			if(loginData.loginToken == "") {
+				loginData.loginToken = "dum_token";
+				loginData.refreshToken = "dum_refresh_token";
+			}
+			
+			
 			// platform 정보를 읽는다, 신규 유저라면 use_select_platform에서 account 등 data를 생성한다.
 			auto platformError = DBWrapper::PlatformSelect(
 				loginData, gameUser
@@ -42,7 +52,7 @@ namespace UserAndGameServerHandle {
 		UserAndGameServer::AnsLogin _ans;
 		LoginResultData loginResultData;
 		loginResultData.isSuccess = true;
-		//UserProfile& userProfile = gameUser->GetProfile();
+		loginResultData.loginToken = loginData.loginToken;
 		GameProfile& gameProfile = gameUser->GetProfile();
 		Inventory& inventory = gameUser->GetInventory();
 		ProtoConverter::ToPacket(IN loginResultData, IN gameProfile, IN inventory, OUT _ans);

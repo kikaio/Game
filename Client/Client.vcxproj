@@ -160,6 +160,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="ClientType.cpp" />
     <ClCompile Include="Dummy\DumAct\DumAct.cpp" />
     <ClCompile Include="Dummy\Inventory.cpp" />
     <ClCompile Include="GameServerPacketHandler.cpp" />

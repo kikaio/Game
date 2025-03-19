@@ -3,10 +3,9 @@
 
 namespace UserAndGameServerHandle {
 	bool AnsLogin(SessionSptr _session, UserAndGameServer::AnsLogin& _packet) {
-		auto gameSession = static_pointer_cast<GameServerSession>(_session);
-		auto dum = gameSession->GetDummyUser();
+		GET_GSESSION_AND_DUM;
 		if(dum != nullptr) {
-			LoginResultData loginRetData;
+			LoginResultData& loginRetData = dum->GetLoginResultData();
 			DummyProfile& dummyProfile = dum->GetProfile();;
 			Inventory& inventory = dum->GetInventory();
 			ProtoConverter::FromPacket(_packet

@@ -10,6 +10,7 @@ void ProtoConverter::ToProto(const LoginData& _in, UserAndGameServer::LoginData&
 	_out.set_s_id(_in.sId);
 	_out.set_login_platform(ENUM_TO_INT(_in.loginPlatform));
 	_out.set_login_token(_in.loginToken);
+	_out.set_refresh_token(_in.refreshToken);
 }
 
 void ProtoConverter::ToProto(const ChatProfile& _in, UserAndGameServer::ChatProfile _out)

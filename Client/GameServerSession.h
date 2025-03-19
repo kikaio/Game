@@ -1,5 +1,11 @@
 #pragma once
 
+#define GET_GSESSION_AND_DUM												\
+auto gameSession = static_pointer_cast<GameServerSession>(_session);		\
+auto dum = gameSession->GetDummyUser();										\
+
+
+
 class GameServerSession : public Session
 {
 private:

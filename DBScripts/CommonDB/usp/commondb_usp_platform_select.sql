@@ -24,7 +24,7 @@ BEGIN
 		VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 		set @new_a_id = LAST_INSERT_ID();
 
-		INSERT INTO `platforms` (`s_id`, `p_type`, `a_id`, `totken`, `refresh_token`) 
+		INSERT INTO `platforms` (`s_id`, `p_type`, `a_id`, `token`, `refresh_token`) 
 		VALUES (in_s_id, in_p_type, @new_a_id, in_token, in_refresh_token);
 		-- 신규생성 관련해서 한번에 생성해 준다.
 
@@ -33,9 +33,11 @@ BEGIN
 
 		INSERT INTO `summaries` (`a_id`) 
 		VALUES (@new_a_id);
-	ELSE THEN
+	ELSE
 		SELECT `a_id` FROM `platforms` 
 		WHERE `s_id` = in_s_id AND `p_type` = in_p_type INTO @new_a_id ;
+		UPDATE `platforms` SET `token` = in_token, `refresh_token` = in_refresh_token
+		WHERE `a_id` = @new_a_id;
 	END IF;
 	
 	SELECT @is_exist as is_old_user;
