@@ -4,6 +4,8 @@
 auto gameSession = static_pointer_cast<GameServerSession>(_session);		\
 auto dum = gameSession->GetDummyUser();										\
 
+#define DCLE_GAME_SERVER_SEND_FUNC(_protocolType, _protocolName) \
+bool SendPacket##_protocolType##_protocolName(UserAndGameServer::##_protocolType##_protocolName& _packet)
 
 
 class GameServerSession : public Session
@@ -27,8 +29,11 @@ protected:
 protected:
 	virtual bool OnPacketRecved(BYTE* _payloadPtr, uint32_t payloadBytes);
 public:
-	bool SendPacketReqChat(UserAndGameServer::ReqChat& _packet);
-	bool SendPacketReqLogin(UserAndGameServer::ReqLogin& _packet);
+	DCLE_GAME_SERVER_SEND_FUNC(Req, Chat);
+	DCLE_GAME_SERVER_SEND_FUNC(Req, Login);
+	DCLE_GAME_SERVER_SEND_FUNC(Req, GameConn);
+	//bool SendPacketReqChat(UserAndGameServer::ReqChat& _packet);
+	//bool SendPacketReqLogin(UserAndGameServer::ReqLogin& _packet);
 public:
 	void SetDummyUser(DummyUserSptr _dum);
 	DummyUserSptr GetDummyUser();

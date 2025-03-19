@@ -39,6 +39,7 @@ public: //server에 보낼 packet을 통해 sendBytes를 만드는 과정에 대
 	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet);
 	DECL_MAKE_SENDBUF_FROM_GAME_SERVER_PACKET(Req, Chat);
 	DECL_MAKE_SENDBUF_FROM_GAME_SERVER_PACKET(Req, Login);
+	DECL_MAKE_SENDBUF_FROM_GAME_SERVER_PACKET(Req, GameConn);
 };
 
 template<typename MSG_TYPE, typename P, typename T>

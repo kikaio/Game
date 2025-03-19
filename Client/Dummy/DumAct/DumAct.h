@@ -57,6 +57,13 @@ protected:
 	void DoAct(DummyUserSptr _dumSptr) override;
 };
 
+class DumActGameConn : public DumAct {
+public:
+	DumActGameConn(uint64_t _delayMsec);
+protected:
+	void DoAct(DummyUserSptr _dumSptr) override;
+};
+
 class DumActLogin : public DumAct {
 public:
 	DumActLogin(uint64_t _delayMsec);

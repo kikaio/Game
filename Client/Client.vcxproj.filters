@@ -66,6 +66,9 @@
     <ClCompile Include="ClientType.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="UserAndGameServerHandle\AnsGameConn.cpp">
+      <Filter>UserAndGameServerHandle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClientPch.h">

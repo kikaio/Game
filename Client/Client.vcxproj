@@ -177,6 +177,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="UserAndGameServerHandle\AnsChat.cpp" />
+    <ClCompile Include="UserAndGameServerHandle\AnsGameConn.cpp" />
     <ClCompile Include="UserAndGameServerHandle\AnsLogin.cpp" />
     <ClCompile Include="UserAndGameServerHandle\ReqTestMsg.cpp" />
   </ItemGroup>

@@ -10,4 +10,5 @@ namespace UserAndGameServerHandle {
 	DECL_GAME_SERVER_HANDLE(Req, TestMsg);
 	DECL_GAME_SERVER_HANDLE(Ans, Chat);
 	DECL_GAME_SERVER_HANDLE(Ans, Login);
+	DECL_GAME_SERVER_HANDLE(Ans, GameConn);
 }

@@ -112,6 +112,7 @@ void GameServerPacketHandler::Init()
 	REGIST_GAME_SERVER_HANDLE(Req, TestMsg);
 	REGIST_GAME_SERVER_HANDLE(Ans, Chat);
 	REGIST_GAME_SERVER_HANDLE(Ans, Login);
+	REGIST_GAME_SERVER_HANDLE(Ans, GameConn);
 	return;
 }
 

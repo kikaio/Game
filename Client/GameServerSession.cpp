@@ -1,6 +1,13 @@
 #include "pch.h"
 #include "GameServerSession.h"
 
+#define IMPL_GAME_SERVER_SEND_FUNC(_protoType, _protoName) \
+bool GameServerSession::SendPacket##_protoType##_protoName(UserAndGameServer::##_protoType##_protoName& _packet)		\
+{																														\
+	SendBufferSptr sendBuf = GameServerPacketHandler::MakeSendBufferFromPacket(_packet);								\
+	return TrySend(sendBuf);																							\
+}																														\
+
 
 bool GameServerSession::OnPacketRecved(BYTE* _payloadPtr, uint32_t _payloadLen)
 {
@@ -10,17 +17,6 @@ bool GameServerSession::OnPacketRecved(BYTE* _payloadPtr, uint32_t _payloadLen)
 	return true;
 }
 
-bool GameServerSession::SendPacketReqChat(UserAndGameServer::ReqChat& _packet)
-{
-	SendBufferSptr sendBuff = GameServerPacketHandler::MakeSendBufferFromPacket(_packet);
-	return TrySend(sendBuff);
-}
-
-bool GameServerSession::SendPacketReqLogin(UserAndGameServer::ReqLogin& _packet)
-{
-	SendBufferSptr sendBuff = GameServerPacketHandler::MakeSendBufferFromPacket(_packet);
-	return TrySend(sendBuff);
-}
 
 void GameServerSession::SetDummyUser(DummyUserSptr _dum)
 {
@@ -32,3 +28,18 @@ DummyUserSptr GameServerSession::GetDummyUser()
 	return dummyUserWptr.lock();
 }
 
+IMPL_GAME_SERVER_SEND_FUNC(Req, Chat);
+IMPL_GAME_SERVER_SEND_FUNC(Req, Login);
+IMPL_GAME_SERVER_SEND_FUNC(Req, GameConn);
+
+//bool GameServerSession::SendPacketReqChat(UserAndGameServer::ReqChat& _packet)
+//{
+//	SendBufferSptr sendBuff = GameServerPacketHandler::MakeSendBufferFromPacket(_packet);
+//	return TrySend(sendBuff);
+//}
+//
+//bool GameServerSession::SendPacketReqLogin(UserAndGameServer::ReqLogin& _packet)
+//{
+//	SendBufferSptr sendBuff = GameServerPacketHandler::MakeSendBufferFromPacket(_packet);
+//	return TrySend(sendBuff);
+//}

@@ -186,6 +186,11 @@ void ProtoConverter::FromPacket(IN const UserAndGameServer::AnsLogin& _packet
 	return ;
 }
 
+void ProtoConverter::FromPacket(IN const UserAndGameServer::AnsGameConn& _packet, OUT string& _aesKey)
+{
+	_aesKey = _packet.aes_key();
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma endregion

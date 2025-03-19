@@ -104,6 +104,24 @@ void DumActSetLoginData::DoAct(DummyUserSptr _dumSptr)
 	return ;
 }
 
+DumActGameConn::DumActGameConn(uint64_t _delayMsec)
+{
+	actDelayMsec = _delayMsec;
+}
+
+void DumActGameConn::DoAct(DummyUserSptr _dumSptr)
+{
+	ReserveAct(_dumSptr, [_dumSptr]() {
+		UserAndGameServer::ReqGameConn _req;
+		auto gsSession = _dumSptr->GetGameServerSession();
+		if(gsSession->SendPacketReqGameConn(_req) == false) {
+			//todo : error logging
+			return ;
+		}
+	});
+	return ;
+}
+
 DumActLogin::DumActLogin(uint64_t _delayMsec)
 {
 	actDelayMsec = _delayMsec;
