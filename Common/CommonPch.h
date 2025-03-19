@@ -93,6 +93,7 @@ using namespace std;
 
 #include "IocpObj.h"
 #include "Listener.h"
+#include "SessionFilter.h"
 #include "Session.h"
 #include "SessionManager.h"
 #include "IocpEvent.h"

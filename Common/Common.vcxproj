@@ -196,6 +196,7 @@
     <ClInclude Include="Network\NetworkCore.h" />
     <ClInclude Include="Network\Session\Listener.h" />
     <ClInclude Include="Network\Session\Session.h" />
+    <ClInclude Include="Network\Session\SessionFilter.h" />
     <ClInclude Include="Network\Session\SessionManager.h" />
     <ClInclude Include="Network\SocketUtil.h" />
     <ClInclude Include="Network\WsaReady.h" />
@@ -255,6 +256,7 @@
     <ClCompile Include="Network\NetworkCore.cpp" />
     <ClCompile Include="Network\Session\Listener.cpp" />
     <ClCompile Include="Network\Session\Session.cpp" />
+    <ClCompile Include="Network\Session\SessionFilter.cpp" />
     <ClCompile Include="Network\Session\SessionManager.cpp" />
     <ClCompile Include="Network\SocketUtil.cpp" />
     <ClCompile Include="Network\WsaReady.cpp" />

@@ -225,6 +225,9 @@
     <ClInclude Include="Logger.h">
       <Filter>Logging</Filter>
     </ClInclude>
+    <ClInclude Include="Network\Session\SessionFilter.h">
+      <Filter>Network\Session</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -379,6 +382,9 @@
     </ClCompile>
     <ClCompile Include="Logger.cpp">
       <Filter>Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Session\SessionFilter.cpp">
+      <Filter>Network\Session</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
