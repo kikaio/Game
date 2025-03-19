@@ -19,3 +19,5 @@ Server/logs/
 Debug/Server/logs/
 Client/logs/dummyLog.log
 Libraries/Libs/Common/Debug/
+Debug/MasterServer/Configs/ServerConfig.json
+Debug/Server/Configs/ServerConfig.json
