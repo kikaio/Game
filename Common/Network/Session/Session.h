@@ -12,6 +12,10 @@ public:
 	virtual ~Session();
 private:
 	string sId;
+	SESSION_FILTER sessionFilter = SESSION_FILTER::NONE;
+private:
+	string GetEncryptKey();
+	string GetDecryptKey();
 protected:
 	virtual int32_t AfterRecved(BYTE* _buf, UInt32 _dataSize) override final ;
 	virtual void AfterConnected() override final;
@@ -20,6 +24,10 @@ protected:
 	virtual bool OnPacketRecved(BYTE* _payloadPtr, uint32_t payloadBytes);
 	OnSessionDisconnectedFunc onSessionDisconenctedFunc = []() {};
 	OnSessionConnectedFunc onSessionConenctedFunc = [](){};
+public:
+	virtual bool TrySend(SendBufferSptr _sendBuffer) override final;
+public:
+	void SetSessionFilter(SESSION_FILTER _filter);
 public: 
 	void SetOnSessionDisconnectedFunc(OnSessionDisconnectedFunc _func);
 	void SetOnSessionConnectedFunc(OnSessionConnectedFunc _func);
