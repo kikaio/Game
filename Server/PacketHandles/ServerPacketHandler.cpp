@@ -96,6 +96,7 @@ void ServerPacketHandler::Init()
 	//});
 	REGIST_USER_PACKET_HANDLE(Req, Chat);
 	REGIST_USER_PACKET_HANDLE(Req, Login);
+	REGIST_USER_PACKET_HANDLE(Req, GameConn);
 }
 
 void ServerPacketHandler::RegistPacketFunc(UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, PacketFunc* _packetHandle)
@@ -158,3 +159,4 @@ bool ServerPacketHandler::HandlePayload(SessionSptr _session, BYTE* _buf, uint32
 IMPL_MAKE_PACKET_FUNC(ServerPacketHandler, Noti, ErrInfo);
 IMPL_MAKE_PACKET_FUNC(ServerPacketHandler, Ans, Chat);
 IMPL_MAKE_PACKET_FUNC(ServerPacketHandler, Ans, Login);
+IMPL_MAKE_PACKET_FUNC(ServerPacketHandler, Ans, GameConn);

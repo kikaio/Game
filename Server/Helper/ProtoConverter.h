@@ -35,7 +35,7 @@ public:
 	);
 	static void ToPacket(const ChatData& _chatData, UserAndGameServer::AnsChat& _out);
 	static void ToPacket(const PacketError& _packetError, UserAndGameServer::NotiErrInfo& _out);
-
+	static void ToPacket(const string& _aesKey, UserAndGameServer::AnsGameConn& _out);
 	// from proto packet
 public:
 	static void FromPacket(const UserAndGameServer::ReqLogin& _in, LoginData& _loginData);

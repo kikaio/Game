@@ -48,3 +48,4 @@ bool UserSession::SendError(const PacketError& _err) {
 IMPL_USER_SESSION_SEND_PACKET(Noti, ErrInfo);
 IMPL_USER_SESSION_SEND_PACKET(Ans, Chat);
 IMPL_USER_SESSION_SEND_PACKET(Ans, Login);
+IMPL_USER_SESSION_SEND_PACKET(Ans, GameConn);

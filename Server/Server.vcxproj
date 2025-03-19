@@ -174,12 +174,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ReqLogin.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="ServerPch.cpp" />
     <ClCompile Include="Sessions\MasterSession.cpp" />
     <ClCompile Include="Sessions\UserSession.cpp" />
     <ClCompile Include="UserAndGameServerHandle\ReqChat.cpp" />
+    <ClCompile Include="UserAndGameServerHandle\ReqGameConn.cpp" />
+    <ClCompile Include="UserAndGameServerHandle\ReqLogin.cpp" />
     <ClCompile Include="User\GameProfile.cpp" />
     <ClCompile Include="User\GameUser.cpp" />
     <ClCompile Include="User\Inventory.cpp" />

@@ -72,9 +72,6 @@
     <ClCompile Include="ConfigClass\GameConfig.cpp">
       <Filter>ConfigClass</Filter>
     </ClCompile>
-    <ClCompile Include="ReqLogin.cpp">
-      <Filter>Main\UserAndGameServerHandle</Filter>
-    </ClCompile>
     <ClCompile Include="User\GameProfile.cpp">
       <Filter>User</Filter>
     </ClCompile>
@@ -92,6 +89,12 @@
     </ClCompile>
     <ClCompile Include="Helper\ProtoConverter.cpp">
       <Filter>Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="UserAndGameServerHandle\ReqLogin.cpp">
+      <Filter>Main\UserAndGameServerHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="UserAndGameServerHandle\ReqGameConn.cpp">
+      <Filter>Main\UserAndGameServerHandle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
