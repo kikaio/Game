@@ -51,9 +51,8 @@ int32_t Session::AfterRecved(BYTE* _buf, UInt32 _dataSize)
 bool Session::TrySend(SendBufferSptr _sendBuffer)
 {
 	PacketHeader* header = reinterpret_cast<PacketHeader*>(_sendBuffer->Buffer());
-	BYTE* payload = reinterpret_cast<BYTE*>(++header);
 	int32_t payloadLen = *header;
-
+	BYTE* payload = reinterpret_cast<BYTE*>(++header);
 	sessionFilter.Encrypt(payload, payloadLen, GetCryptKey());
 	// todo : session filter
 	return IocpObj::TrySend(_sendBuffer);

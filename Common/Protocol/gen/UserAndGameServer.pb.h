@@ -3772,20 +3772,20 @@ class AnsGameConn final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kAesKeyFieldNumber = 1,
+    kEncryptKeyFieldNumber = 1,
   };
-  // string aes_key = 1;
-  void clear_aes_key();
-  const std::string& aes_key() const;
+  // string encrypt_key = 1;
+  void clear_encrypt_key();
+  const std::string& encrypt_key() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_aes_key(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_aes_key();
-  PROTOBUF_NODISCARD std::string* release_aes_key();
-  void set_allocated_aes_key(std::string* aes_key);
+  void set_encrypt_key(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_encrypt_key();
+  PROTOBUF_NODISCARD std::string* release_encrypt_key();
+  void set_allocated_encrypt_key(std::string* encrypt_key);
   private:
-  const std::string& _internal_aes_key() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_aes_key(const std::string& value);
-  std::string* _internal_mutable_aes_key();
+  const std::string& _internal_encrypt_key() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_encrypt_key(const std::string& value);
+  std::string* _internal_mutable_encrypt_key();
   public:
 
   // @@protoc_insertion_point(class_scope:UserAndGameServer.AnsGameConn)
@@ -3795,7 +3795,7 @@ class AnsGameConn final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr aes_key_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr encrypt_key_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_UserAndGameServer_2eproto;
 };
@@ -5718,55 +5718,55 @@ inline void AnsLogin::set_allocated_user_inventory(::UserAndGameServer::Inventor
 
 // AnsGameConn
 
-// string aes_key = 1;
-inline void AnsGameConn::clear_aes_key() {
-  aes_key_.ClearToEmpty();
+// string encrypt_key = 1;
+inline void AnsGameConn::clear_encrypt_key() {
+  encrypt_key_.ClearToEmpty();
 }
-inline const std::string& AnsGameConn::aes_key() const {
-  // @@protoc_insertion_point(field_get:UserAndGameServer.AnsGameConn.aes_key)
-  return _internal_aes_key();
+inline const std::string& AnsGameConn::encrypt_key() const {
+  // @@protoc_insertion_point(field_get:UserAndGameServer.AnsGameConn.encrypt_key)
+  return _internal_encrypt_key();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void AnsGameConn::set_aes_key(ArgT0&& arg0, ArgT... args) {
+void AnsGameConn::set_encrypt_key(ArgT0&& arg0, ArgT... args) {
  
- aes_key_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:UserAndGameServer.AnsGameConn.aes_key)
+ encrypt_key_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:UserAndGameServer.AnsGameConn.encrypt_key)
 }
-inline std::string* AnsGameConn::mutable_aes_key() {
-  std::string* _s = _internal_mutable_aes_key();
-  // @@protoc_insertion_point(field_mutable:UserAndGameServer.AnsGameConn.aes_key)
+inline std::string* AnsGameConn::mutable_encrypt_key() {
+  std::string* _s = _internal_mutable_encrypt_key();
+  // @@protoc_insertion_point(field_mutable:UserAndGameServer.AnsGameConn.encrypt_key)
   return _s;
 }
-inline const std::string& AnsGameConn::_internal_aes_key() const {
-  return aes_key_.Get();
+inline const std::string& AnsGameConn::_internal_encrypt_key() const {
+  return encrypt_key_.Get();
 }
-inline void AnsGameConn::_internal_set_aes_key(const std::string& value) {
+inline void AnsGameConn::_internal_set_encrypt_key(const std::string& value) {
   
-  aes_key_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+  encrypt_key_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
 }
-inline std::string* AnsGameConn::_internal_mutable_aes_key() {
+inline std::string* AnsGameConn::_internal_mutable_encrypt_key() {
   
-  return aes_key_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+  return encrypt_key_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
-inline std::string* AnsGameConn::release_aes_key() {
-  // @@protoc_insertion_point(field_release:UserAndGameServer.AnsGameConn.aes_key)
-  return aes_key_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+inline std::string* AnsGameConn::release_encrypt_key() {
+  // @@protoc_insertion_point(field_release:UserAndGameServer.AnsGameConn.encrypt_key)
+  return encrypt_key_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
-inline void AnsGameConn::set_allocated_aes_key(std::string* aes_key) {
-  if (aes_key != nullptr) {
+inline void AnsGameConn::set_allocated_encrypt_key(std::string* encrypt_key) {
+  if (encrypt_key != nullptr) {
     
   } else {
     
   }
-  aes_key_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), aes_key,
+  encrypt_key_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), encrypt_key,
       GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (aes_key_.IsDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited())) {
-    aes_key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+  if (encrypt_key_.IsDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited())) {
+    encrypt_key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.AnsGameConn.aes_key)
+  // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.AnsGameConn.encrypt_key)
 }
 
 #ifdef __GNUC__

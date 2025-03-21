@@ -7,7 +7,8 @@ namespace UserAndGameServerHandle {
 		GS_DEBUG_LOG("ReqGameConn Called");
 
 		UserAndGameServer::AnsGameConn _ans;
-		string encryptKey = "dummy_aes_key";
+		string encryptKey = StrUtil::GetRandomStr(16);
+		GS_DEBUG_LOG("sesison gen encrypt key : {}", encryptKey);
 		ProtoConverter::ToPacket(IN encryptKey, OUT _ans);
 		bool ret = _session->SendPacket(_ans);
 		_session->SetFilterMode(SESSION_FILTER::XOR);

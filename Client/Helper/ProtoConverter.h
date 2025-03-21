@@ -42,6 +42,6 @@ public:
 		, OUT Inventory& _inven
 	);
 	static void FromPacket(IN const UserAndGameServer::AnsGameConn& _packet,
-		OUT string& _aesKey
+		OUT string& _encryptKey
 	);
 };

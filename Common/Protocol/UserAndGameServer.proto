@@ -128,5 +128,5 @@ message ReqGameConn {
 }
 
 message AnsGameConn {
-	string aes_key = 1;
+	string encrypt_key = 1;
 }

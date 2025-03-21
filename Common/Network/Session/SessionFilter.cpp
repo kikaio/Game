@@ -1,8 +1,6 @@
 #include "pch.h"
 #include "SessionFilter.h"
 
-#include <Krypt/Krypt.hpp>
-
 bool SessionFilter::EncryptXor(BYTE* _buf, int32_t _size, const string& _key)
 {
 	if (_key.length() == 0) {
@@ -10,8 +8,7 @@ bool SessionFilter::EncryptXor(BYTE* _buf, int32_t _size, const string& _key)
 	}
 	int keyIdx = 0;
 	for (int idx = 0; idx < _size; idx++) {
-		BYTE* _c = _buf + idx;
-		*_c = *_c ^ _key[keyIdx++];
+		_buf[idx] = _buf[idx] ^ _key[keyIdx++];
 		keyIdx %= _key.size();
 	}
 	return true;
@@ -24,8 +21,7 @@ bool SessionFilter::DecryptXor(BYTE* _buf, int32_t _size, const string& _key)
 	}
 	int keyIdx = 0;
 	for (int idx = 0; idx < _size; idx++) {
-		BYTE* _c = _buf + idx;
-		*_c = *_c ^ _key[keyIdx++];
+		_buf[idx] = _buf[idx] ^ _key[keyIdx++];
 		keyIdx %= _key.size();
 	}
 	return true;

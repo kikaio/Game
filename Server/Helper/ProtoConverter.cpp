@@ -93,9 +93,9 @@ void ProtoConverter::ToPacket(const PacketError& _packetError, UserAndGameServer
 	_out.set_err_desc(_packetError.err_desc);
 }
 
-void ProtoConverter::ToPacket(const string& _aesKey, UserAndGameServer::AnsGameConn& _out)
+void ProtoConverter::ToPacket(const string& _encryptKey, UserAndGameServer::AnsGameConn& _out)
 {
-	_out.set_aes_key(_aesKey);
+	_out.set_encrypt_key(_encryptKey);
 }
 
 

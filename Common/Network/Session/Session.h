@@ -15,7 +15,7 @@ private:
 private:
 	string sId;
 	string encryptKey = "";
-private:
+public:
 	void SetCryptKey(const string& _key);
 	const string& GetCryptKey();
 protected:

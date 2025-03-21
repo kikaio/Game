@@ -186,9 +186,9 @@ void ProtoConverter::FromPacket(IN const UserAndGameServer::AnsLogin& _packet
 	return ;
 }
 
-void ProtoConverter::FromPacket(IN const UserAndGameServer::AnsGameConn& _packet, OUT string& _aesKey)
+void ProtoConverter::FromPacket(IN const UserAndGameServer::AnsGameConn& _packet, OUT string& _encryptKey)
 {
-	_aesKey = _packet.aes_key();
+	_encryptKey = _packet.encrypt_key();
 }
 
 

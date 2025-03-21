@@ -292,7 +292,7 @@ struct ReqGameConnDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ReqGameConnDefaultTypeInternal _ReqGameConn_default_instance_;
 constexpr AnsGameConn::AnsGameConn(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : aes_key_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+  : encrypt_key_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
 struct AnsGameConnDefaultTypeInternal {
   constexpr AnsGameConnDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -482,7 +482,7 @@ const uint32_t TableStruct_UserAndGameServer_2eproto::offsets[] PROTOBUF_SECTION
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::AnsGameConn, aes_key_),
+  PROTOBUF_FIELD_OFFSET(::UserAndGameServer::AnsGameConn, encrypt_key_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::UserAndGameServer::ItemData)},
@@ -571,17 +571,17 @@ const char descriptor_table_protodef_UserAndGameServer_2eproto[] PROTOBUF_SECTIO
   "\".UserAndGameServer.LoginResultData\0224\n\014u"
   "ser_profile\030\002 \001(\0132\036.UserAndGameServer.Ga"
   "meProfile\0224\n\016user_inventory\030\003 \001(\0132\034.User"
-  "AndGameServer.Inventory\"\r\n\013ReqGameConn\"\036"
-  "\n\013AnsGameConn\022\017\n\007aes_key\030\001 \001(\t*D\n\007MsgTyp"
-  "e\022\024\n\020INVALID_MSG_TYPE\020\000\022\007\n\003Req\020\001\022\007\n\003Ans\020"
-  "\002\022\010\n\004Noti\020\003\022\007\n\003Err\020\004*y\n\010Protocol\022\024\n\020INVA"
-  "LID_PROTOCOL\020\000\022\013\n\007ErrInfo\020\001\022\r\n\tPublicKey"
-  "\020\002\022\013\n\007Connect\020\003\022\013\n\007TestMsg\020\004\022\010\n\004Chat\020\005\022\t"
-  "\n\005Login\020\006\022\014\n\010GameConn\020\007b\006proto3"
+  "AndGameServer.Inventory\"\r\n\013ReqGameConn\"\""
+  "\n\013AnsGameConn\022\023\n\013encrypt_key\030\001 \001(\t*D\n\007Ms"
+  "gType\022\024\n\020INVALID_MSG_TYPE\020\000\022\007\n\003Req\020\001\022\007\n\003"
+  "Ans\020\002\022\010\n\004Noti\020\003\022\007\n\003Err\020\004*y\n\010Protocol\022\024\n\020"
+  "INVALID_PROTOCOL\020\000\022\013\n\007ErrInfo\020\001\022\r\n\tPubli"
+  "cKey\020\002\022\013\n\007Connect\020\003\022\013\n\007TestMsg\020\004\022\010\n\004Chat"
+  "\020\005\022\t\n\005Login\020\006\022\014\n\010GameConn\020\007b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_UserAndGameServer_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_UserAndGameServer_2eproto = {
-  false, false, 1711, descriptor_table_protodef_UserAndGameServer_2eproto, "UserAndGameServer.proto", 
+  false, false, 1715, descriptor_table_protodef_UserAndGameServer_2eproto, "UserAndGameServer.proto", 
   &descriptor_table_UserAndGameServer_2eproto_once, nullptr, 0, 22,
   schemas, file_default_instances, TableStruct_UserAndGameServer_2eproto::offsets,
   file_level_metadata_UserAndGameServer_2eproto, file_level_enum_descriptors_UserAndGameServer_2eproto, file_level_service_descriptors_UserAndGameServer_2eproto,
@@ -5332,21 +5332,21 @@ AnsGameConn::AnsGameConn(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 AnsGameConn::AnsGameConn(const AnsGameConn& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  aes_key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  encrypt_key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    aes_key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+    encrypt_key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_aes_key().empty()) {
-    aes_key_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_aes_key(), 
+  if (!from._internal_encrypt_key().empty()) {
+    encrypt_key_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_encrypt_key(), 
       GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:UserAndGameServer.AnsGameConn)
 }
 
 inline void AnsGameConn::SharedCtor() {
-aes_key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+encrypt_key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  aes_key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+  encrypt_key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
@@ -5359,7 +5359,7 @@ AnsGameConn::~AnsGameConn() {
 
 inline void AnsGameConn::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  aes_key_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  encrypt_key_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void AnsGameConn::ArenaDtor(void* object) {
@@ -5378,7 +5378,7 @@ void AnsGameConn::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  aes_key_.ClearToEmpty();
+  encrypt_key_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5388,12 +5388,12 @@ const char* AnsGameConn::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
     uint32_t tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // string aes_key = 1;
+      // string encrypt_key = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_aes_key();
+          auto str = _internal_mutable_encrypt_key();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "UserAndGameServer.AnsGameConn.aes_key"));
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "UserAndGameServer.AnsGameConn.encrypt_key"));
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -5427,14 +5427,14 @@ uint8_t* AnsGameConn::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string aes_key = 1;
-  if (!this->_internal_aes_key().empty()) {
+  // string encrypt_key = 1;
+  if (!this->_internal_encrypt_key().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_aes_key().data(), static_cast<int>(this->_internal_aes_key().length()),
+      this->_internal_encrypt_key().data(), static_cast<int>(this->_internal_encrypt_key().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "UserAndGameServer.AnsGameConn.aes_key");
+      "UserAndGameServer.AnsGameConn.encrypt_key");
     target = stream->WriteStringMaybeAliased(
-        1, this->_internal_aes_key(), target);
+        1, this->_internal_encrypt_key(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -5453,11 +5453,11 @@ size_t AnsGameConn::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string aes_key = 1;
-  if (!this->_internal_aes_key().empty()) {
+  // string encrypt_key = 1;
+  if (!this->_internal_encrypt_key().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_aes_key());
+        this->_internal_encrypt_key());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -5482,8 +5482,8 @@ void AnsGameConn::MergeFrom(const AnsGameConn& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_aes_key().empty()) {
-    _internal_set_aes_key(from._internal_aes_key());
+  if (!from._internal_encrypt_key().empty()) {
+    _internal_set_encrypt_key(from._internal_encrypt_key());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -5506,8 +5506,8 @@ void AnsGameConn::InternalSwap(AnsGameConn* other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &aes_key_, lhs_arena,
-      &other->aes_key_, rhs_arena
+      &encrypt_key_, lhs_arena,
+      &other->encrypt_key_, rhs_arena
   );
 }
 
