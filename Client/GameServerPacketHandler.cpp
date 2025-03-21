@@ -124,26 +124,36 @@ bool GameServerPacketHandler::HandlePayload(SessionSptr _session, BYTE* _buf, ui
 	
 	UserAndGameServer::Protocol protocol = UserAndGameServer::Protocol::INVALID_PROTOCOL;
 	br >> protocol;
-
+	bool ret = false;
 	switch(msgType) {
 	case UserAndGameServer::MsgType::Req: {
-		return HandleUserAndGameServerReq(_session, msgType, protocol, &br);
+		ret = HandleUserAndGameServerReq(_session, msgType, protocol, &br);
+		break;
 	}
 	case UserAndGameServer::MsgType::Ans: {
-		return HandleUserAndGameServerAns(_session, msgType, protocol, &br);
+		ret = HandleUserAndGameServerAns(_session, msgType, protocol, &br);
 		break;
 	}
 	case UserAndGameServer::MsgType::Noti : {
-		return HandleUserAndGameServerNoti(_session, msgType, protocol, &br);
+		ret = HandleUserAndGameServerNoti(_session, msgType, protocol, &br);
 		break;
 	}
 	case UserAndGameServer::MsgType::Err: {
-		return HandleUserAndGameServerErr(_session, msgType, protocol, &br);
+		ret = HandleUserAndGameServerErr(_session, msgType, protocol, &br);
 		break;
 	}
 	default: {
 		break;
 	}
 	}
-	return false;
+
+	//todo : dum에게 어떤 packet에 대한 처리가 완료되었는지 통보.
+	if(ret == true) {
+		GameServerSessionSptr _gsSession = static_pointer_cast<GameServerSession>(_session);
+		auto dummy = _gsSession->GetDummyUser();
+		if(dummy != nullptr) {
+			dummy->RecvGameServerProtocol(msgType, protocol);
+		}
+	}
+	return ret;
 }
