@@ -11,11 +11,13 @@ public:
 	Session();
 	virtual ~Session();
 private:
-	string sId;
-	SESSION_FILTER sessionFilter = SESSION_FILTER::NONE;
+	SessionFilter sessionFilter; //session filter를 각 session들이 지닌다.
 private:
-	string GetEncryptKey();
-	string GetDecryptKey();
+	string sId;
+	string encryptKey = "";
+private:
+	void SetCryptKey(const string& _key);
+	const string& GetCryptKey();
 protected:
 	virtual int32_t AfterRecved(BYTE* _buf, UInt32 _dataSize) override final ;
 	virtual void AfterConnected() override final;
@@ -26,8 +28,6 @@ protected:
 	OnSessionConnectedFunc onSessionConenctedFunc = [](){};
 public:
 	virtual bool TrySend(SendBufferSptr _sendBuffer) override final;
-public:
-	void SetSessionFilter(SESSION_FILTER _filter);
 public: 
 	void SetOnSessionDisconnectedFunc(OnSessionDisconnectedFunc _func);
 	void SetOnSessionConnectedFunc(OnSessionConnectedFunc _func);
@@ -42,5 +42,7 @@ public:
 	const string& GetSId() const  {
 		return sId;
 	}
-
+	void SetFilterMode(SESSION_FILTER _mode) {
+		sessionFilter.SetFilter(_mode);
+	}
 };

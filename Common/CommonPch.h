@@ -52,7 +52,6 @@ using namespace std;
 
 #include <sw/redis++/redis++.h>
 
-
 #include "Types.h"
 #include "CommonDefines.h"
 #include "Memory.h"

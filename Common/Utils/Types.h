@@ -74,6 +74,5 @@ enum class CHAT_TYPE {
 
 enum class SESSION_FILTER {
 	NONE,
-	RSA,
-	AES
+	XOR
 };
