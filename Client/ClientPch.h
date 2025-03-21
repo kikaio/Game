@@ -25,6 +25,7 @@
 #include "CharacterData.h"
 #include "Inventory.h"
 
+#include "ProtocolCallbacMap.h"
 #include "DummyProfile.h"
 #include "DummyUser.h"
 #include "DumAct.h"

@@ -122,5 +122,8 @@
     <ClInclude Include="Helper\LogHelper.h">
       <Filter>Helper</Filter>
     </ClInclude>
+    <ClInclude Include="Dummy\DumAct\ProtocolCallbacMap.h">
+      <Filter>Dummy</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

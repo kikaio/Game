@@ -184,6 +184,7 @@
   <ItemGroup>
     <ClInclude Include="ClientDefine.h" />
     <ClInclude Include="Dummy\DumAct\DumAct.h" />
+    <ClInclude Include="Dummy\DumAct\ProtocolCallbacMap.h" />
     <ClInclude Include="Dummy\GameData\CharacterData.h" />
     <ClInclude Include="Dummy\GameData\CostumeData.h" />
     <ClInclude Include="Dummy\GameData\ItemData.h" />
