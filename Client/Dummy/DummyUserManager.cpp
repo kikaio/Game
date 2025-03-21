@@ -11,6 +11,11 @@ bool DummyUserManager::LoadScenarioFromFile()
 	}
 	{
 		//LoginData 설정
+		auto _dumActSptr = MakeShared<DumActGameConn>(100);
+		dumActs.push_back(_dumActSptr);
+	}
+	{
+		//LoginData 설정
 		auto _dumActSptr = MakeShared<DumActSetLoginData>("testDummy");
 		dumActs.push_back(_dumActSptr);
 	}

@@ -31,6 +31,7 @@ public:
 #pragma region network 관련
 public:
 	NetworkCoreSptr gameServerNetCore = nullptr;
+	ProtocolCallbackMap gameServerProtoCallback; //game server 용 protocol callback 담당.
 private:
 	GameServerSessionSptr gameServerSession;
 public:
@@ -42,6 +43,15 @@ public:
 public:
 	void OnGameServerSessionDisconnected();
 	void OnGameServerSessionConnected();
+public:
+	template<typename MSG_TYPE, typename PROTO_TYPE>
+	void ReserveGameServerProtocol(MSG_TYPE _msg, PROTO_TYPE _proto, DUM_PROTOCOL_CB&& _cb) {
+		gameServerProtoCallback.ReserveCallback(_msg, _proto, std::move(_cb));
+	}
+	template<typename MSG_TYPE, typename PROTO_TYPE>
+	void RecvGameServerProtocol(MSG_TYPE _msg, PROTO_TYPE _proto) {
+		gameServerProtoCallback.RecvProtocol(_msg, _proto);
+	}
 
 #pragma endregion 
 

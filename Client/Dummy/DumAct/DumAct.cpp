@@ -118,6 +118,13 @@ void DumActGameConn::DoAct(DummyUserSptr _dumSptr)
 			//todo : error logging
 			return ;
 		}
+		//callback 등록
+		_dumSptr->ReserveGameServerProtocol(
+			UserAndGameServer::Ans, UserAndGameServer::GameConn
+			, [_dumSptr](){
+				DUM_DEBUG_LOG("dum recv AnsGameConn");
+				_dumSptr->DoDumAct();
+		});
 	});
 	return ;
 }
@@ -138,6 +145,13 @@ void DumActLogin::DoAct(DummyUserSptr _dumSptr)
 			//todo : erro logging
 			return ;
 		}
+		//callback 등록
+		_dumSptr->ReserveGameServerProtocol(
+			UserAndGameServer::Ans, UserAndGameServer::Login
+			, [_dumSptr]() {
+				DUM_DEBUG_LOG("dum recv AnsLogin");
+				_dumSptr->DoDumAct();
+		});
 		return ;
 	});
 	return ;
