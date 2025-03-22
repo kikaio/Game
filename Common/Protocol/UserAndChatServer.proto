@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package UserAndGameServer;
+
+enum MsgType {
+	INVALID_MSG_TYPE = 0;
+	Req = 1;
+	Ans = 2;
+	Noti = 3;
+	Err = 4;
+}
+
+enum Protocol {
+	INVALID_PROTOCOL = 0;
+	Chat = 1;
+}
+
+message ChatProfile {
+	int32 profile_id = 1;
+	string nick_name = 2;
+	int32 profile_hero_id = 3;
+	int32 profile_frame_id = 4;
+}
+
+message ChatData {
+	ChatProfile chat_profile = 1;
+	int32 chat_type = 2;
+	string msg = 3;
+}
+
+message ReqChat {
+	ChatData chat_data = 1;
+}
+
+message NotiChat {
+	ChatData chat_data = 1;
+}
