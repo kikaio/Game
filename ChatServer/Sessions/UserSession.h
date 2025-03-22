@@ -1,5 +1,6 @@
 #pragma once
 
-class UserSession {
-
+class UserSession : public Session {
+private :
+	ChatUserSptr chatUser = nullptr;
 };

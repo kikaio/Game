@@ -272,31 +272,31 @@ class ChatProfile final :
   std::string* _internal_mutable_nick_name();
   public:
 
-  // int32 profile_id = 1;
+  // int64 profile_id = 1;
   void clear_profile_id();
-  int32_t profile_id() const;
-  void set_profile_id(int32_t value);
+  int64_t profile_id() const;
+  void set_profile_id(int64_t value);
   private:
-  int32_t _internal_profile_id() const;
-  void _internal_set_profile_id(int32_t value);
+  int64_t _internal_profile_id() const;
+  void _internal_set_profile_id(int64_t value);
   public:
 
-  // int32 profile_hero_id = 3;
+  // int64 profile_hero_id = 3;
   void clear_profile_hero_id();
-  int32_t profile_hero_id() const;
-  void set_profile_hero_id(int32_t value);
+  int64_t profile_hero_id() const;
+  void set_profile_hero_id(int64_t value);
   private:
-  int32_t _internal_profile_hero_id() const;
-  void _internal_set_profile_hero_id(int32_t value);
+  int64_t _internal_profile_hero_id() const;
+  void _internal_set_profile_hero_id(int64_t value);
   public:
 
-  // int32 profile_frame_id = 4;
+  // int64 profile_frame_id = 4;
   void clear_profile_frame_id();
-  int32_t profile_frame_id() const;
-  void set_profile_frame_id(int32_t value);
+  int64_t profile_frame_id() const;
+  void set_profile_frame_id(int64_t value);
   private:
-  int32_t _internal_profile_frame_id() const;
-  void _internal_set_profile_frame_id(int32_t value);
+  int64_t _internal_profile_frame_id() const;
+  void _internal_set_profile_frame_id(int64_t value);
   public:
 
   // @@protoc_insertion_point(class_scope:UserAndGameServer.ChatProfile)
@@ -307,9 +307,9 @@ class ChatProfile final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr nick_name_;
-  int32_t profile_id_;
-  int32_t profile_hero_id_;
-  int32_t profile_frame_id_;
+  int64_t profile_id_;
+  int64_t profile_hero_id_;
+  int64_t profile_frame_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_UserAndChatServer_2eproto;
 };
@@ -816,22 +816,22 @@ class NotiChat final :
 #endif  // __GNUC__
 // ChatProfile
 
-// int32 profile_id = 1;
+// int64 profile_id = 1;
 inline void ChatProfile::clear_profile_id() {
-  profile_id_ = 0;
+  profile_id_ = int64_t{0};
 }
-inline int32_t ChatProfile::_internal_profile_id() const {
+inline int64_t ChatProfile::_internal_profile_id() const {
   return profile_id_;
 }
-inline int32_t ChatProfile::profile_id() const {
+inline int64_t ChatProfile::profile_id() const {
   // @@protoc_insertion_point(field_get:UserAndGameServer.ChatProfile.profile_id)
   return _internal_profile_id();
 }
-inline void ChatProfile::_internal_set_profile_id(int32_t value) {
+inline void ChatProfile::_internal_set_profile_id(int64_t value) {
   
   profile_id_ = value;
 }
-inline void ChatProfile::set_profile_id(int32_t value) {
+inline void ChatProfile::set_profile_id(int64_t value) {
   _internal_set_profile_id(value);
   // @@protoc_insertion_point(field_set:UserAndGameServer.ChatProfile.profile_id)
 }
@@ -887,42 +887,42 @@ inline void ChatProfile::set_allocated_nick_name(std::string* nick_name) {
   // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.ChatProfile.nick_name)
 }
 
-// int32 profile_hero_id = 3;
+// int64 profile_hero_id = 3;
 inline void ChatProfile::clear_profile_hero_id() {
-  profile_hero_id_ = 0;
+  profile_hero_id_ = int64_t{0};
 }
-inline int32_t ChatProfile::_internal_profile_hero_id() const {
+inline int64_t ChatProfile::_internal_profile_hero_id() const {
   return profile_hero_id_;
 }
-inline int32_t ChatProfile::profile_hero_id() const {
+inline int64_t ChatProfile::profile_hero_id() const {
   // @@protoc_insertion_point(field_get:UserAndGameServer.ChatProfile.profile_hero_id)
   return _internal_profile_hero_id();
 }
-inline void ChatProfile::_internal_set_profile_hero_id(int32_t value) {
+inline void ChatProfile::_internal_set_profile_hero_id(int64_t value) {
   
   profile_hero_id_ = value;
 }
-inline void ChatProfile::set_profile_hero_id(int32_t value) {
+inline void ChatProfile::set_profile_hero_id(int64_t value) {
   _internal_set_profile_hero_id(value);
   // @@protoc_insertion_point(field_set:UserAndGameServer.ChatProfile.profile_hero_id)
 }
 
-// int32 profile_frame_id = 4;
+// int64 profile_frame_id = 4;
 inline void ChatProfile::clear_profile_frame_id() {
-  profile_frame_id_ = 0;
+  profile_frame_id_ = int64_t{0};
 }
-inline int32_t ChatProfile::_internal_profile_frame_id() const {
+inline int64_t ChatProfile::_internal_profile_frame_id() const {
   return profile_frame_id_;
 }
-inline int32_t ChatProfile::profile_frame_id() const {
+inline int64_t ChatProfile::profile_frame_id() const {
   // @@protoc_insertion_point(field_get:UserAndGameServer.ChatProfile.profile_frame_id)
   return _internal_profile_frame_id();
 }
-inline void ChatProfile::_internal_set_profile_frame_id(int32_t value) {
+inline void ChatProfile::_internal_set_profile_frame_id(int64_t value) {
   
   profile_frame_id_ = value;
 }
-inline void ChatProfile::set_profile_frame_id(int32_t value) {
+inline void ChatProfile::set_profile_frame_id(int64_t value) {
   _internal_set_profile_frame_id(value);
   // @@protoc_insertion_point(field_set:UserAndGameServer.ChatProfile.profile_frame_id)
 }
