@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Main">
+      <UniqueIdentifier>{14e121e4-ec97-49ba-b592-5fd99353cf33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ConfigClass">
+      <UniqueIdentifier>{22b6c312-861b-47a7-878e-68289a1f1825}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Configs">
+      <UniqueIdentifier>{0cd9cbf5-7e8b-47cf-a91f-e93349c4bbce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helper">
+      <UniqueIdentifier>{c1502027-6287-42fd-87c3-7d411eab1672}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User">
+      <UniqueIdentifier>{d34eb5a1-63d1-4807-ad9c-6b64cb01ca07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User\UserData">
+      <UniqueIdentifier>{535810fb-e1b8-4f28-bc98-d15274ff8cce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sessions">
+      <UniqueIdentifier>{8778fd48-c724-4053-9d4e-db87374081d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PacketDiscriminator">
+      <UniqueIdentifier>{e51a10b0-2233-4c24-b6be-9c42de0a1a41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PacketHandles">
+      <UniqueIdentifier>{e3efa821-f6a5-4cf1-b219-da4abf7c18df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PacketHandles\UserAndChatPacketHandles">
+      <UniqueIdentifier>{f7c2dcca-989a-4762-9d26-21d0d181d717}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ChatServer.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Helper\ProtoConverter.cpp">
+      <Filter>Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="User\UserData\ChatProfile.cpp">
+      <Filter>User\UserData</Filter>
+    </ClCompile>
+    <ClCompile Include="User\ChatUser.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="Sessions\UserSession.cpp">
+      <Filter>Sessions</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketDiscriminator\UserPacketDiscriminator.cpp">
+      <Filter>PacketDiscriminator</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigClass\ChatConfig.h">
+      <Filter>ConfigClass</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigClass\MasterConfig.h">
+      <Filter>ConfigClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper\ProtoConverter.h">
+      <Filter>Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="User\UserData\ChatProfile.h">
+      <Filter>User\UserData</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ChatUser.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="Sessions\UserSession.h">
+      <Filter>Sessions</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketDiscriminator\UserPacketDiscriminator.h">
+      <Filter>PacketDiscriminator</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketHandles\UserAndChatPacketHandles\UserAndChatPacketHandle.h">
+      <Filter>PacketHandles\UserAndChatPacketHandles</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatServerPch.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configs\ServerConfig.json">
+      <Filter>Configs</Filter>
+    </None>
+  </ItemGroup>
+</Project>
