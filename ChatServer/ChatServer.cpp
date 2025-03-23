@@ -3,13 +3,68 @@
 
 #include "pch.h"
 
+
+static MasterConfig masterConfig;
+static ChatConfig chatConfig;
+
+void StartMasterThread();
+void StartChatThread();
+
+void InitConfig();
+
 int main()
 {
-	LogHelper::Init("logs", "info");
+	InitConfig();
 
-	CS_DEBUG_LOG("test_chat logger");
-	MS_DEBUG_LOG("test_master logger");
+	ThreadManager::Get().PushThread(StartMasterThread
+		, "for master server"
+		, "thread about with master server"
+	);
 
-	CS_INFO_LOG("test_chat info logger");
-	MS_INFO_LOG("test_master info logger");
+	ThreadManager::Get().PushThread(StartChatThread
+		, "for chat server role"
+		, "thread about with chat server"
+	);
+
+	ThreadManager::Get().StartAll();
+
+	ThreadManager::Get().JoinAll();
+
+	CS_DEBUG_LOG("chat server fin");
+	return 0;
+}
+void InitConfig() {
+	JsonReader jr;
+	string configFilePath = "./configs/ServerConfig.json";
+	jr.ReadFile(configFilePath.c_str());
+
+	rapidjson::Value masterValue(rapidjson::kObjectType);
+	jr.GetObjectW("master", masterValue);
+	masterConfig.Init(masterValue);
+		
+	rapidjson::Value chatValue(rapidjson::kObjectType);
+	jr.GetObjectW("chat", chatValue);
+	chatConfig.Init(chatValue);
+
+
+	rapidjson::Value mongoDBValue(rapidjson::kObjectType);
+	jr.GetObjectW("mongo_db", mongoDBValue);
+
+	rapidjson::Value redisDBValues(rapidjson::kArrayType);
+	jr.GetObjectW("redis", redisDBValues);
+	for(auto _iter = redisDBValues.Begin(); _iter != redisDBValues.End(); _iter++) {
+		const auto& _val = *_iter;
+		//todo : init for redis
+	}
+
+	const string logFolderPath = "logs";
+	LogHelper::Init(logFolderPath, "debug");
+}
+
+void StartMasterThread() {
+	return ;
+}
+
+void StartChatThread() {
+	return ;
 }

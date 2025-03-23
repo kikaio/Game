@@ -39,9 +39,9 @@ void InitConfigs() {
     jr.GetObjectW("master", OUT masterValue);
     masterConf.Init(masterValue);
 
-    rapidjson::Value masterValue(kObjectType);
-    jr.GetObjectW("master", OUT masterValue);
-    chatConf.Init(masterValue);
+    rapidjson::Value chatValue(kObjectType);
+    jr.GetObjectW("chat", OUT masterValue);
+    chatConf.Init(chatValue);
 
     rapidjson::Value gameValue(kObjectType);
     jr.GetObjectW("game", OUT gameValue);

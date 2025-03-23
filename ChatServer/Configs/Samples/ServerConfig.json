@@ -1,0 +1,22 @@
+{
+	"redis": [
+		{
+			"name": "PubSub",
+			"host": "127.0.0.1",
+			"port": 6379,
+			"db_no": 0,
+			"pool_cnt": 1
+		}
+	],
+	"mongo_db" : {
+		"name": ""
+	},
+	"master" : {
+		"host": "127.0.0.1:33301"
+	},
+	"chat":{
+		"listen_port":23301,
+		"accept_cnt":10,
+		"back_log":100
+	}
+}
