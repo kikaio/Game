@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ConfigClass\ChatConfig.cpp" />
     <ClCompile Include="ConfigClass\GameConfig.cpp" />
     <ClCompile Include="ConfigClass\MasterConfig.cpp" />
     <ClCompile Include="DBWrapper\DBWrapper.cpp" />
@@ -186,6 +187,7 @@
     <ClCompile Include="User\Inventory.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConfigClass\ChatConfig.h" />
     <ClInclude Include="ConfigClass\GameConfig.h" />
     <ClInclude Include="ConfigClass\MasterConfig.h" />
     <ClInclude Include="DBWrapper\DBWrapper.h" />

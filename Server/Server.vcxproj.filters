@@ -96,6 +96,9 @@
     <ClCompile Include="UserAndGameServerHandle\ReqGameConn.cpp">
       <Filter>Main\UserAndGameServerHandle</Filter>
     </ClCompile>
+    <ClCompile Include="ConfigClass\ChatConfig.cpp">
+      <Filter>ConfigClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ServerPch.h">
@@ -169,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="Helper\ProtoConverter.h">
       <Filter>Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigClass\ChatConfig.h">
+      <Filter>ConfigClass</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
