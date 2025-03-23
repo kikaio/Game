@@ -25,3 +25,5 @@ Debug/Client/logs/dummyLog.log
 ChatServer/x64/Debug/
 x64/
 ChatServer/Configs/ServerConfig.json
+Debug/ChatServer/logs/chat.log
+Debug/ChatServer/logs/master.log
