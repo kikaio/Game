@@ -17,6 +17,7 @@ int32_t DoServerLogic();
 
 static GameConfig gameConf;
 static MasterConfig masterConf;
+static ChatConfig chatConf;
 
 int main()
 {
@@ -37,6 +38,10 @@ void InitConfigs() {
     rapidjson::Value masterValue(kObjectType);
     jr.GetObjectW("master", OUT masterValue);
     masterConf.Init(masterValue);
+
+    rapidjson::Value masterValue(kObjectType);
+    jr.GetObjectW("master", OUT masterValue);
+    chatConf.Init(masterValue);
 
     rapidjson::Value gameValue(kObjectType);
     jr.GetObjectW("game", OUT gameValue);

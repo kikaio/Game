@@ -41,6 +41,7 @@
 #include "GameUser.h"
 #include "GameConfig.h"
 #include "MasterConfig.h"
+#include "ChatConfig.h"
 
 #include "DBWrapper.h"
 

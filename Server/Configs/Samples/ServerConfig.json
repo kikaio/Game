@@ -46,6 +46,9 @@
 	"master" : {
 		"host": "127.0.0.1:33301"
 	}, 
+	"chat" : {
+		"host": "127.0.0.1:23301"
+	}, 
 	"game": {
 		"no": 1,
 		"name" : "game_instance",
