@@ -5,5 +5,11 @@
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	LogHelper::Init("logs", "info");
+
+	CS_DEBUG_LOG("test_chat logger");
+	MS_DEBUG_LOG("test_master logger");
+
+	CS_INFO_LOG("test_chat info logger");
+	MS_INFO_LOG("test_master info logger");
 }

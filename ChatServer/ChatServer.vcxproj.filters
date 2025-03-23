@@ -54,6 +54,15 @@
     <ClCompile Include="PacketDiscriminator\UserPacketDiscriminator.cpp">
       <Filter>PacketDiscriminator</Filter>
     </ClCompile>
+    <ClCompile Include="ConfigClass\ChatConfig.cpp">
+      <Filter>ConfigClass</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigClass\MasterConfig.cpp">
+      <Filter>ConfigClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Helper\LogHelper.cpp">
+      <Filter>Helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -84,6 +93,12 @@
       <Filter>PacketHandles\UserAndChatPacketHandles</Filter>
     </ClInclude>
     <ClInclude Include="ChatServerPch.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper\LogHelper.h">
+      <Filter>Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatTypes.h">
       <Filter>Main</Filter>
     </ClInclude>
   </ItemGroup>
