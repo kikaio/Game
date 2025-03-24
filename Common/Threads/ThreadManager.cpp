@@ -63,3 +63,6 @@ void ThreadManager::DoDitributeJob()
 	JobTimer::Get().Distribute(now);
 }
 
+void ThreadManager::Clear() {
+	threads.clear();
+}

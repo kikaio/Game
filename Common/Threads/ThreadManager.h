@@ -19,6 +19,8 @@ public:
 public:
 	void DoGlobalQueueWork();
 	void DoDitributeJob();
+public:
+	void Clear();
 };
 
 

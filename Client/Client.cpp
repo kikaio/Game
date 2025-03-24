@@ -82,6 +82,7 @@ int main()
 	}
 
 	ThreadManager::Get().JoinAll();
+	ThreadManager::Get().Clear();
 
 	return 0;
 }

@@ -29,6 +29,7 @@ int main()
 	ThreadManager::Get().StartAll();
 
 	ThreadManager::Get().JoinAll();
+	ThreadManager::Get().Clear();
 
 	CS_DEBUG_LOG("chat server fin");
 	return 0;

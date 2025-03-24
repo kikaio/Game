@@ -25,6 +25,7 @@ int main()
     InitConfigs();
     int32_t ret = DoServerLogic();
     ThreadManager::Get().JoinAll();
+    ThreadManager::Get().Clear();
     GS_DEBUG_LOG("Server Main Thread Finished");
 
     return ret;
