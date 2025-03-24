@@ -40,7 +40,7 @@ void Init() {
 	string configPath = "./Configs/ServerConfig.json";
 	jr.ReadFile(configPath.c_str());
 	rapidjson::Value masterConfigVal(kObjectType);
-	ASSERT_CRASH(jr.GetObject("master_config", OUT masterConfigVal));
+	ASSERT_CRASH(jr.GetObject("master", OUT masterConfigVal));
 
 	masterConfig.ReadFromJson(masterConfigVal);
 	masterConfig.Render();
@@ -61,7 +61,26 @@ void Init() {
 void DoChatServerNetworking() {
 
 	ChatServerDiscriminator::Init();
-	
+	NetworkCoreSptr chatCoreSptr = MakeShared<NetworkCore>();
+	ASSERT_CRASH(chatCoreSptr->Ready());
+	chatCoreSptr->CreateSessionFactory = []() {
+		auto chatServer = MakeShared<ChatServerSession>();
+		chatServer->SetOnSessionConnectedFunc([]() {
+			});
+		return chatServer;
+	};
+	ListenerSptr listener = MakeShared<Listener>(masterConfig.ChatListenPort());
+	ASSERT_CRASH(chatCoreSptr->ReadyToAccept(listener
+		, masterConfig.ChatBackLog(), masterConfig.ChatAcceptCnt())
+	);
+	printf("accept ready\n");
+
+	printf("master and chat wsa ready\n");
+
+	while (true) {
+		chatCoreSptr->Dispatch(INFINITE);
+	}
+
 	return ;
 }
 
@@ -78,9 +97,9 @@ void DoGameServerNetworking() {
 		return gameServer;
 		};
 
-	ListenerSptr gameListener = MakeShared<Listener>(masterConfig.ListenPort());
+	ListenerSptr gameListener = MakeShared<Listener>(masterConfig.GameListenPort());
 	ASSERT_CRASH(gameCoreSptr->ReadyToAccept(gameListener
-		, masterConfig.BackLog(), masterConfig.AcceptCnt())
+		, masterConfig.GameBackLog(), masterConfig.GameAcceptCnt())
 	);
 	printf("accept ready\n");
 

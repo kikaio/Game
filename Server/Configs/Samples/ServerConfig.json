@@ -52,7 +52,7 @@
 	"game": {
 		"no": 1,
 		"name" : "game_instance",
-		"listen_port": 33302,
+		"listen_port": 43301,
 		"accept_cnt": 1,
 		"back_log": 100
 	}
