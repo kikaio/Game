@@ -31,15 +31,3 @@ DummyUserSptr GameServerSession::GetDummyUser()
 IMPL_GAME_SERVER_SEND_FUNC(Req, Chat);
 IMPL_GAME_SERVER_SEND_FUNC(Req, Login);
 IMPL_GAME_SERVER_SEND_FUNC(Req, GameConn);
-
-//bool GameServerSession::SendPacketReqChat(UserAndGameServer::ReqChat& _packet)
-//{
-//	SendBufferSptr sendBuff = GameServerPacketHandler::MakeSendBufferFromPacket(_packet);
-//	return TrySend(sendBuff);
-//}
-//
-//bool GameServerSession::SendPacketReqLogin(UserAndGameServer::ReqLogin& _packet)
-//{
-//	SendBufferSptr sendBuff = GameServerPacketHandler::MakeSendBufferFromPacket(_packet);
-//	return TrySend(sendBuff);
-//}

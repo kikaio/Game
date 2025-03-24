@@ -43,5 +43,7 @@ public:
 	);
 	static void FromPacket(IN const UserAndGameServer::AnsGameConn& _packet,
 		OUT string& _encryptKey
+		, OUT string& _chatHost
+		, OUT int16_t& _chatPort
 	);
 };

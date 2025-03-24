@@ -8,6 +8,11 @@ void DummyUser::ClearUser()
 	gameServerSession = nullptr;
 
 }
+void DummyUser::SetChatServerInfo(const string& _host, int16_t _port) {
+	chatHost = _host;
+	chatPort = _port;
+	return ;
+}
 
 bool DummyUser::IsConnected()
 {

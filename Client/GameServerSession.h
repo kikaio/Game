@@ -12,28 +12,13 @@ class GameServerSession : public Session
 {
 private:
 	DummyUserWptr dummyUserWptr;
-protected:
-	//virtual void AfterSended(UInt32 _bytes) override {
-	//	return ;
-	//}
 
-	//virtual void AfterConnected() override {
-	//	static const int testMsgLen = 6;
-	//	static BYTE testMsg[] = { "hello~" };
-	//	SendBufferSptr sendBufferSptr = SendBufferManager::Get().Open(BUF_4096);
-	//	memcpy(sendBufferSptr->Buffer(), testMsg, testMsgLen);
-	//	sendBufferSptr->Close(testMsgLen);
-	//	TrySend(sendBufferSptr);
-	//	return;
-	//}
 protected:
 	virtual bool OnPacketRecved(BYTE* _payloadPtr, uint32_t payloadBytes);
 public:
 	DCLE_GAME_SERVER_SEND_FUNC(Req, Chat);
 	DCLE_GAME_SERVER_SEND_FUNC(Req, Login);
 	DCLE_GAME_SERVER_SEND_FUNC(Req, GameConn);
-	//bool SendPacketReqChat(UserAndGameServer::ReqChat& _packet);
-	//bool SendPacketReqLogin(UserAndGameServer::ReqLogin& _packet);
 public:
 	void SetDummyUser(DummyUserSptr _dum);
 	DummyUserSptr GetDummyUser();

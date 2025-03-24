@@ -33,8 +33,11 @@ public:
 	NetworkCoreSptr gameServerNetCore = nullptr;
 	ProtocolCallbackMap gameServerProtoCallback; //game server 용 protocol callback 담당.
 private:
-	GameServerSessionSptr gameServerSession;
+	GameServerSessionSptr gameServerSession = nullptr;
+	string chatHost = "";
+	int32_t chatPort = 0;
 public:
+	void SetChatServerInfo(const string& _host, int16_t _port);
 	bool IsConnected();
 	void SetGameServerSession(GameServerSessionSptr _dummySession);
 	GameServerSessionSptr GetGameServerSession() {
