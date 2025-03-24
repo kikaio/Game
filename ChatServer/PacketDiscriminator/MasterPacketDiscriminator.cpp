@@ -20,7 +20,7 @@
 }
 
 
-#define MASTER_IMPL_MAKE_SENDBUF_FROM_PACKET(_msgType, _protocolName)																				\
+#define IMPL_MAKE_MASTER_SERVER_PACKET_SENDBUF(_msgType, _protocolName)																				\
 SendBufferSptr MasterPacketDiscriminator::MakePacket##_msgType##_protocolName(const MasterAndChatServer::##_msgType##_protocolName& _packet)		\
 {																																					\
 	return MakeProtoSendBuffer(MasterAndChatServer::MsgType::##_msgType, MasterAndChatServer::Protocol::##_protocolName, _packet);					\
@@ -103,6 +103,7 @@ void MasterPacketDiscriminator::AbusingRecord(SessionSptr _session
 void MasterPacketDiscriminator::Init()
 {
 	REGIST_MASTER_PACKET_HANDLE(Noti, ErrInfo);
+	REGIST_MASTER_PACKET_HANDLE(Ans, ChatConnectMaster);
 }
 
 
@@ -168,5 +169,5 @@ bool MasterPacketDiscriminator::HandlePayload(SessionSptr _session, BYTE* _buf, 
 
 
 //내가 보내는 것들에 대한 define
-MASTER_IMPL_MAKE_SENDBUF_FROM_PACKET(Req, ChatConnectMaster);
+IMPL_MAKE_MASTER_SERVER_PACKET_SENDBUF(Req, ChatConnectMaster);
 

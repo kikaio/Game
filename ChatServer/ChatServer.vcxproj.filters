@@ -75,6 +75,9 @@
     <ClCompile Include="PacketHandles\MasterAndChatPacketHandles\NotiErrInfo.cpp">
       <Filter>PacketHandles\MasterAndChatPacketHandles</Filter>
     </ClCompile>
+    <ClCompile Include="PacketHandles\MasterAndChatPacketHandles\AnsChatConnectMaster.cpp">
+      <Filter>PacketHandles\MasterAndChatPacketHandles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

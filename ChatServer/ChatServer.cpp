@@ -63,6 +63,7 @@ void InitConfig() {
 }
 
 void StartMasterThread() {
+
 	NetworkCoreSptr masterNet = MakeShared<NetworkCore>();
 	this_thread::sleep_for(3s);
 	const string& host = masterConfig.GetHost();
@@ -74,9 +75,22 @@ void StartMasterThread() {
 	ASSERT_CRASH(masterNet->ReadyToConnect(host, port));
 
 	masterNet->CreateSessionFactory = [serverNo, serverName](){
-		MasterServerSessionSptr _session = MakeShared<MasterServerSession>();
+		auto _session = MakeShared<MasterServerSession>();
+		_session->SetOnSessionConnectedFunc([_session, serverNo, serverName](){
+			MS_DEBUG_LOG("chat server connected to master server! - serverNo : {}, serverName : {}", serverNo, serverName);
+			MasterAndChatServer::ReqChatConnectMaster _packet;
+			_packet.set_server_name(serverName.c_str());
+			_packet.set_server_no(serverNo);
+			_session->SendPacket(_packet);
+
+		});
 		return _session;
 	};
+	masterNet->StartConnect(1);
+	UInt32 waitMilliSec = INFINITE;
+	while (true) {
+		masterNet->Dispatch(waitMilliSec);
+	}
 
 	return ;
 }

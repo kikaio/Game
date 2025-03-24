@@ -2,7 +2,7 @@
 
 #define MASTER_PROTOCOL_FUN_MAP map<MasterAndChatServer::Protocol, PacketFunc*> 
 
-#define MASTER_DECL_MAKE_SENDBUF_FROM_PACKET(_msgType, _protocolName) \
+#define DECL_MAKE_MASTER_SERVER_PACKET_SENDBUF(_msgType, _protocolName) \
 	static SendBufferSptr MakePacket##_msgType##_protocolName(const MasterAndChatServer::##_msgType##_protocolName& _packet)		\
 
 class MasterPacketDiscriminator {
@@ -27,7 +27,7 @@ public:
 	template<typename MSG_TYPE, typename P, typename T>
 	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet);
 public: //해당 packet에 대해서 sendbuffer를 생성하는 함수들.
-	MASTER_DECL_MAKE_SENDBUF_FROM_PACKET(Req, ChatConnectMaster);
+	DECL_MAKE_MASTER_SERVER_PACKET_SENDBUF(Req, ChatConnectMaster);
 };
 
 

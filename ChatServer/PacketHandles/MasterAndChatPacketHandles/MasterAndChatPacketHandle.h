@@ -5,4 +5,5 @@
 
 namespace MasterAndChatPacketHandle {
 	DECL_MASTER_AND_CHAT_PACKET_HANDLE(Noti, ErrInfo);
+	DECL_MASTER_AND_CHAT_PACKET_HANDLE(Ans, ChatConnectMaster);
 }
