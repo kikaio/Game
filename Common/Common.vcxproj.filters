@@ -228,6 +228,12 @@
     <ClInclude Include="Network\Session\SessionFilter.h">
       <Filter>Network\Session</Filter>
     </ClInclude>
+    <ClInclude Include="Protocol\gen\MasterAndChatServer.pb.h">
+      <Filter>Protocol\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\gen\UserAndChatServer.pb.h">
+      <Filter>Protocol\gen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -386,6 +392,12 @@
     <ClCompile Include="Network\Session\SessionFilter.cpp">
       <Filter>Network\Session</Filter>
     </ClCompile>
+    <ClCompile Include="Protocol\gen\MasterAndChatServer.pb.cc">
+      <Filter>Protocol\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\gen\UserAndChatServer.pb.cc">
+      <Filter>Protocol\gen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Protocol\UserAndGameServer.proto">
@@ -395,6 +407,9 @@
       <Filter>Protocol</Filter>
     </None>
     <None Include="Protocol\UserAndChatServer.proto">
+      <Filter>Protocol</Filter>
+    </None>
+    <None Include="Protocol\MasterAndChatServer.proto">
       <Filter>Protocol</Filter>
     </None>
   </ItemGroup>

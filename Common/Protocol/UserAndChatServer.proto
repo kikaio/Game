@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package UserAndGameServer;
+package UserAndChatServer;
 
 enum MsgType {
 	INVALID_MSG_TYPE = 0;

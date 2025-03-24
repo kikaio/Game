@@ -201,7 +201,9 @@
     <ClInclude Include="Network\SocketUtil.h" />
     <ClInclude Include="Network\WsaReady.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Protocol\gen\MasterAndChatServer.pb.h" />
     <ClInclude Include="Protocol\gen\MasterAndGameServer.pb.h" />
+    <ClInclude Include="Protocol\gen\UserAndChatServer.pb.h" />
     <ClInclude Include="Protocol\gen\UserAndGameServer.pb.h" />
     <ClInclude Include="Random\Random.h" />
     <ClInclude Include="Redis\RedisConfig.h" />
@@ -266,10 +268,18 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Protocol\gen\MasterAndChatServer.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Protocol\gen\MasterAndGameServer.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Protocol\gen\UserAndChatServer.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Protocol\gen\UserAndGameServer.pb.cc">
@@ -293,6 +303,7 @@
     <ClCompile Include="Utils\StrUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Protocol\MasterAndChatServer.proto" />
     <None Include="Protocol\MasterAndGameServer.proto" />
     <None Include="Protocol\UserAndChatServer.proto" />
     <None Include="Protocol\UserAndGameServer.proto" />
