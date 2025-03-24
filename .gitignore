@@ -28,3 +28,5 @@ ChatServer/Configs/ServerConfig.json
 Debug/ChatServer/logs/chat.log
 Debug/ChatServer/logs/master.log
 Debug/ChatServer/
+ChatServer/logs/chat.log
+ChatServer/logs/master.log
