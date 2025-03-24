@@ -1,16 +1,16 @@
 #pragma once
 
-#define MASTER_PROTOCOL_FUN_MAP map<MasterAndChatServer::Protocol, PacketFunc*> 
+#define CHAT_PACKET_FUNC_MAP std::map<MasterAndChatServer::Protocol, PacketFunc*>
 
-#define MASTER_DECL_MAKE_SENDBUF_FROM_PACKET(_msgType, _protocolName) \
-	static SendBufferSptr MakePacket##_msgType##_protocolName(const MasterAndChatServer::##_msgType##_protocolName& _packet)		\
+#define DECL_CHAT_PACKET_SEND_BUF(_msgType, _protocolType)																	\
+static SendBufferSptr MakePacket##_msgType##_protocolType(const MasterAndChatServer::##_msgType##_protocolType& _packet)	\
 
-class MasterPacketDiscriminator {
+class ChatServerDiscriminator {
 private:
-	static MASTER_PROTOCOL_FUN_MAP  reqMap;	//받은 req를 handle
-	static MASTER_PROTOCOL_FUN_MAP  ansMap;  //받은 ans를 handle
-	static MASTER_PROTOCOL_FUN_MAP  notiMap;  //받은 noti를 handle
-	static MASTER_PROTOCOL_FUN_MAP  errMap;  //받은 err를 handle
+	static CHAT_PACKET_FUNC_MAP reqMap;	//받은 req를 handle
+	static CHAT_PACKET_FUNC_MAP ansMap;  //받은 ans를 handle
+	static CHAT_PACKET_FUNC_MAP notiMap;  //받은 noti를 handle
+	static CHAT_PACKET_FUNC_MAP errMap;  //받은 err를 handle
 private:
 	static bool DiscriminateReq(SessionSptr _session, MasterAndChatServer::MsgType _msgType, MasterAndChatServer::Protocol _protocol, BufReader* _brPtr);
 	static bool DiscriminateAns(SessionSptr _session, MasterAndChatServer::MsgType _msgType, MasterAndChatServer::Protocol _protocol, BufReader* _brPtr);
@@ -25,15 +25,13 @@ public:
 	static bool HandlePayload(SessionSptr _session, BYTE* _buf, uint32_t _size);
 public:
 	template<typename MSG_TYPE, typename P, typename T>
-	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet);
-public: //해당 packet에 대해서 sendbuffer를 생성하는 함수들.
-	MASTER_DECL_MAKE_SENDBUF_FROM_PACKET(Req, ChatConnectMaster);
+	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, const T& _packet);
+public: //해당 packet에 대해서 전송해주는 함수들.
+	DECL_CHAT_PACKET_SEND_BUF(Ans, ChatConnectMaster);
 };
 
-
-
 template<typename MSG_TYPE, typename P, typename T>
-SendBufferSptr MasterPacketDiscriminator::MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet) {
+inline SendBufferSptr ChatServerDiscriminator::MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, const T& _packet) {
 
 	uint16_t byteLen = _packet.ByteSizeLong();
 	uint32_t headerVal = sizeof(MSG_TYPE) + sizeof(P) + byteLen;

@@ -1,3 +1,8 @@
 #pragma once
-#include "pch.h"
-using ServerSessionSptr = std::shared_ptr<class ServerSession>;
+
+DECL_REF_USING(ServerSession);
+DECL_WREF_USING(ServerSession);
+
+DECL_REF_USING(ChatServerSession);
+DECL_WREF_USING(ChatServerSession);
+

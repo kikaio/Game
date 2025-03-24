@@ -22,6 +22,9 @@
     <Filter Include="ConfigClass">
       <UniqueIdentifier>{612a9910-f3ce-4023-8361-7a329c95e6c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Main\MasterAndChatServerHandles">
+      <UniqueIdentifier>{b29cf053-4cb2-4a8e-ad08-fba30ba828d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MasterServer.cpp">
@@ -36,14 +39,20 @@
     <ClCompile Include="Sessions\ServerSession.cpp">
       <Filter>Sessions</Filter>
     </ClCompile>
-    <ClCompile Include="MasterTypes.h">
-      <Filter>Main</Filter>
-    </ClCompile>
     <ClCompile Include="MasterAndGameServerHandle\ReqMasterServerConnect.cpp">
       <Filter>Main\MasterAndGameServerHandle</Filter>
     </ClCompile>
     <ClCompile Include="PacketHandles\GamePacketHandler.cpp">
       <Filter>PacketHandles</Filter>
+    </ClCompile>
+    <ClCompile Include="Sessions\ChatServerSession.cpp">
+      <Filter>Sessions</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketHandles\ChatServerDiscriminator.cpp">
+      <Filter>PacketHandles</Filter>
+    </ClCompile>
+    <ClCompile Include="MasterAndChatServerHandles\ReqChatConnectMaster.cpp">
+      <Filter>Main\MasterAndChatServerHandles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +79,18 @@
     </ClInclude>
     <ClInclude Include="ConfigClass\MasterConfig.h">
       <Filter>ConfigClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Sessions\ChatServerSession.h">
+      <Filter>Sessions</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketHandles\ChatServerDiscriminator.h">
+      <Filter>PacketHandles</Filter>
+    </ClInclude>
+    <ClInclude Include="MasterAndChatServerHandles\MasterAndChatServerHandle.h">
+      <Filter>Main\MasterAndChatServerHandles</Filter>
+    </ClInclude>
+    <ClInclude Include="MasterTypes.h">
+      <Filter>Main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

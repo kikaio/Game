@@ -21,14 +21,18 @@
 using namespace std;
 
 #include "CommonPch.h"
-#include "MasterDefines.h"
 #include "MasterTypes.h"
-
+#include "MasterDefines.h"
 #include "MasterConfig.h"
 
 #include "DBWrapper.h"
 
-#include "ServerSession.h"
+#include "MasterAndChatServerHandle.h"
 #include "MasterAndGameServerHandle.h"
+
+#include "ChatServerDiscriminator.h"
 #include "GamePacketHandler.h"
+
+#include "ChatServerSession.h"
+#include "ServerSession.h"
 

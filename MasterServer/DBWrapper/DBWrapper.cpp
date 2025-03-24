@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "DBWrapper.h"
-#include "DBWrapper.h"
 
 bool DBWrapper::ReadDBConfigFile()
 {

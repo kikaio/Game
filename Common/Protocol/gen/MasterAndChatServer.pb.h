@@ -55,20 +55,20 @@ struct TableStruct_MasterAndChatServer_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_MasterAndChatServer_2eproto;
 namespace MasterAndChatServer {
-class AnsMasterServerConnect;
-struct AnsMasterServerConnectDefaultTypeInternal;
-extern AnsMasterServerConnectDefaultTypeInternal _AnsMasterServerConnect_default_instance_;
+class AnsChatConnectMaster;
+struct AnsChatConnectMasterDefaultTypeInternal;
+extern AnsChatConnectMasterDefaultTypeInternal _AnsChatConnectMaster_default_instance_;
 class NotiErrInfo;
 struct NotiErrInfoDefaultTypeInternal;
 extern NotiErrInfoDefaultTypeInternal _NotiErrInfo_default_instance_;
-class ReqMasterServerConnect;
-struct ReqMasterServerConnectDefaultTypeInternal;
-extern ReqMasterServerConnectDefaultTypeInternal _ReqMasterServerConnect_default_instance_;
+class ReqChatConnectMaster;
+struct ReqChatConnectMasterDefaultTypeInternal;
+extern ReqChatConnectMasterDefaultTypeInternal _ReqChatConnectMaster_default_instance_;
 }  // namespace MasterAndChatServer
 PROTOBUF_NAMESPACE_OPEN
-template<> ::MasterAndChatServer::AnsMasterServerConnect* Arena::CreateMaybeMessage<::MasterAndChatServer::AnsMasterServerConnect>(Arena*);
+template<> ::MasterAndChatServer::AnsChatConnectMaster* Arena::CreateMaybeMessage<::MasterAndChatServer::AnsChatConnectMaster>(Arena*);
 template<> ::MasterAndChatServer::NotiErrInfo* Arena::CreateMaybeMessage<::MasterAndChatServer::NotiErrInfo>(Arena*);
-template<> ::MasterAndChatServer::ReqMasterServerConnect* Arena::CreateMaybeMessage<::MasterAndChatServer::ReqMasterServerConnect>(Arena*);
+template<> ::MasterAndChatServer::ReqChatConnectMaster* Arena::CreateMaybeMessage<::MasterAndChatServer::ReqChatConnectMaster>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace MasterAndChatServer {
 
@@ -103,13 +103,13 @@ inline bool MsgType_Parse(
 enum Protocol : int {
   INVALID_PROTOCOL = 0,
   ErrInfo = 1,
-  MasterServerConnect = 2,
+  ChatConnectMaster = 2,
   Protocol_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   Protocol_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool Protocol_IsValid(int value);
 constexpr Protocol Protocol_MIN = INVALID_PROTOCOL;
-constexpr Protocol Protocol_MAX = MasterServerConnect;
+constexpr Protocol Protocol_MAX = ChatConnectMaster;
 constexpr int Protocol_ARRAYSIZE = Protocol_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Protocol_descriptor();
@@ -301,24 +301,24 @@ class NotiErrInfo final :
 };
 // -------------------------------------------------------------------
 
-class ReqMasterServerConnect final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:MasterAndChatServer.ReqMasterServerConnect) */ {
+class ReqChatConnectMaster final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:MasterAndChatServer.ReqChatConnectMaster) */ {
  public:
-  inline ReqMasterServerConnect() : ReqMasterServerConnect(nullptr) {}
-  ~ReqMasterServerConnect() override;
-  explicit constexpr ReqMasterServerConnect(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline ReqChatConnectMaster() : ReqChatConnectMaster(nullptr) {}
+  ~ReqChatConnectMaster() override;
+  explicit constexpr ReqChatConnectMaster(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  ReqMasterServerConnect(const ReqMasterServerConnect& from);
-  ReqMasterServerConnect(ReqMasterServerConnect&& from) noexcept
-    : ReqMasterServerConnect() {
+  ReqChatConnectMaster(const ReqChatConnectMaster& from);
+  ReqChatConnectMaster(ReqChatConnectMaster&& from) noexcept
+    : ReqChatConnectMaster() {
     *this = ::std::move(from);
   }
 
-  inline ReqMasterServerConnect& operator=(const ReqMasterServerConnect& from) {
+  inline ReqChatConnectMaster& operator=(const ReqChatConnectMaster& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ReqMasterServerConnect& operator=(ReqMasterServerConnect&& from) noexcept {
+  inline ReqChatConnectMaster& operator=(ReqChatConnectMaster&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -341,20 +341,20 @@ class ReqMasterServerConnect final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const ReqMasterServerConnect& default_instance() {
+  static const ReqChatConnectMaster& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ReqMasterServerConnect* internal_default_instance() {
-    return reinterpret_cast<const ReqMasterServerConnect*>(
-               &_ReqMasterServerConnect_default_instance_);
+  static inline const ReqChatConnectMaster* internal_default_instance() {
+    return reinterpret_cast<const ReqChatConnectMaster*>(
+               &_ReqChatConnectMaster_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(ReqMasterServerConnect& a, ReqMasterServerConnect& b) {
+  friend void swap(ReqChatConnectMaster& a, ReqChatConnectMaster& b) {
     a.Swap(&b);
   }
-  inline void Swap(ReqMasterServerConnect* other) {
+  inline void Swap(ReqChatConnectMaster* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -367,7 +367,7 @@ class ReqMasterServerConnect final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ReqMasterServerConnect* other) {
+  void UnsafeArenaSwap(ReqChatConnectMaster* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -375,13 +375,13 @@ class ReqMasterServerConnect final :
 
   // implements Message ----------------------------------------------
 
-  ReqMasterServerConnect* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ReqMasterServerConnect>(arena);
+  ReqChatConnectMaster* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ReqChatConnectMaster>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const ReqMasterServerConnect& from);
+  void CopyFrom(const ReqChatConnectMaster& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const ReqMasterServerConnect& from);
+  void MergeFrom(const ReqChatConnectMaster& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -398,15 +398,15 @@ class ReqMasterServerConnect final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(ReqMasterServerConnect* other);
+  void InternalSwap(ReqChatConnectMaster* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "MasterAndChatServer.ReqMasterServerConnect";
+    return "MasterAndChatServer.ReqChatConnectMaster";
   }
   protected:
-  explicit ReqMasterServerConnect(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit ReqChatConnectMaster(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   private:
   static void ArenaDtor(void* object);
@@ -423,64 +423,64 @@ class ReqMasterServerConnect final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kGameServerNameFieldNumber = 2,
-    kGameServerNoFieldNumber = 1,
+    kServerNameFieldNumber = 2,
+    kServerNoFieldNumber = 1,
   };
-  // string game_server_name = 2;
-  void clear_game_server_name();
-  const std::string& game_server_name() const;
+  // string server_name = 2;
+  void clear_server_name();
+  const std::string& server_name() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_game_server_name(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_game_server_name();
-  PROTOBUF_NODISCARD std::string* release_game_server_name();
-  void set_allocated_game_server_name(std::string* game_server_name);
+  void set_server_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_server_name();
+  PROTOBUF_NODISCARD std::string* release_server_name();
+  void set_allocated_server_name(std::string* server_name);
   private:
-  const std::string& _internal_game_server_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_game_server_name(const std::string& value);
-  std::string* _internal_mutable_game_server_name();
+  const std::string& _internal_server_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_server_name(const std::string& value);
+  std::string* _internal_mutable_server_name();
   public:
 
-  // int32 game_server_no = 1;
-  void clear_game_server_no();
-  int32_t game_server_no() const;
-  void set_game_server_no(int32_t value);
+  // int32 server_no = 1;
+  void clear_server_no();
+  int32_t server_no() const;
+  void set_server_no(int32_t value);
   private:
-  int32_t _internal_game_server_no() const;
-  void _internal_set_game_server_no(int32_t value);
+  int32_t _internal_server_no() const;
+  void _internal_set_server_no(int32_t value);
   public:
 
-  // @@protoc_insertion_point(class_scope:MasterAndChatServer.ReqMasterServerConnect)
+  // @@protoc_insertion_point(class_scope:MasterAndChatServer.ReqChatConnectMaster)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr game_server_name_;
-  int32_t game_server_no_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr server_name_;
+  int32_t server_no_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_MasterAndChatServer_2eproto;
 };
 // -------------------------------------------------------------------
 
-class AnsMasterServerConnect final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:MasterAndChatServer.AnsMasterServerConnect) */ {
+class AnsChatConnectMaster final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:MasterAndChatServer.AnsChatConnectMaster) */ {
  public:
-  inline AnsMasterServerConnect() : AnsMasterServerConnect(nullptr) {}
-  ~AnsMasterServerConnect() override;
-  explicit constexpr AnsMasterServerConnect(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline AnsChatConnectMaster() : AnsChatConnectMaster(nullptr) {}
+  ~AnsChatConnectMaster() override;
+  explicit constexpr AnsChatConnectMaster(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  AnsMasterServerConnect(const AnsMasterServerConnect& from);
-  AnsMasterServerConnect(AnsMasterServerConnect&& from) noexcept
-    : AnsMasterServerConnect() {
+  AnsChatConnectMaster(const AnsChatConnectMaster& from);
+  AnsChatConnectMaster(AnsChatConnectMaster&& from) noexcept
+    : AnsChatConnectMaster() {
     *this = ::std::move(from);
   }
 
-  inline AnsMasterServerConnect& operator=(const AnsMasterServerConnect& from) {
+  inline AnsChatConnectMaster& operator=(const AnsChatConnectMaster& from) {
     CopyFrom(from);
     return *this;
   }
-  inline AnsMasterServerConnect& operator=(AnsMasterServerConnect&& from) noexcept {
+  inline AnsChatConnectMaster& operator=(AnsChatConnectMaster&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -503,20 +503,20 @@ class AnsMasterServerConnect final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const AnsMasterServerConnect& default_instance() {
+  static const AnsChatConnectMaster& default_instance() {
     return *internal_default_instance();
   }
-  static inline const AnsMasterServerConnect* internal_default_instance() {
-    return reinterpret_cast<const AnsMasterServerConnect*>(
-               &_AnsMasterServerConnect_default_instance_);
+  static inline const AnsChatConnectMaster* internal_default_instance() {
+    return reinterpret_cast<const AnsChatConnectMaster*>(
+               &_AnsChatConnectMaster_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     2;
 
-  friend void swap(AnsMasterServerConnect& a, AnsMasterServerConnect& b) {
+  friend void swap(AnsChatConnectMaster& a, AnsChatConnectMaster& b) {
     a.Swap(&b);
   }
-  inline void Swap(AnsMasterServerConnect* other) {
+  inline void Swap(AnsChatConnectMaster* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -529,7 +529,7 @@ class AnsMasterServerConnect final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(AnsMasterServerConnect* other) {
+  void UnsafeArenaSwap(AnsChatConnectMaster* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -537,13 +537,13 @@ class AnsMasterServerConnect final :
 
   // implements Message ----------------------------------------------
 
-  AnsMasterServerConnect* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<AnsMasterServerConnect>(arena);
+  AnsChatConnectMaster* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AnsChatConnectMaster>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const AnsMasterServerConnect& from);
+  void CopyFrom(const AnsChatConnectMaster& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const AnsMasterServerConnect& from);
+  void MergeFrom(const AnsChatConnectMaster& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -560,15 +560,15 @@ class AnsMasterServerConnect final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(AnsMasterServerConnect* other);
+  void InternalSwap(AnsChatConnectMaster* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "MasterAndChatServer.AnsMasterServerConnect";
+    return "MasterAndChatServer.AnsChatConnectMaster";
   }
   protected:
-  explicit AnsMasterServerConnect(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit AnsChatConnectMaster(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   private:
   static void ArenaDtor(void* object);
@@ -596,7 +596,7 @@ class AnsMasterServerConnect final :
   void _internal_set_is_success(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:MasterAndChatServer.AnsMasterServerConnect)
+  // @@protoc_insertion_point(class_scope:MasterAndChatServer.AnsChatConnectMaster)
  private:
   class _Internal;
 
@@ -711,101 +711,101 @@ inline void NotiErrInfo::set_allocated_err_desc(std::string* err_desc) {
 
 // -------------------------------------------------------------------
 
-// ReqMasterServerConnect
+// ReqChatConnectMaster
 
-// int32 game_server_no = 1;
-inline void ReqMasterServerConnect::clear_game_server_no() {
-  game_server_no_ = 0;
+// int32 server_no = 1;
+inline void ReqChatConnectMaster::clear_server_no() {
+  server_no_ = 0;
 }
-inline int32_t ReqMasterServerConnect::_internal_game_server_no() const {
-  return game_server_no_;
+inline int32_t ReqChatConnectMaster::_internal_server_no() const {
+  return server_no_;
 }
-inline int32_t ReqMasterServerConnect::game_server_no() const {
-  // @@protoc_insertion_point(field_get:MasterAndChatServer.ReqMasterServerConnect.game_server_no)
-  return _internal_game_server_no();
+inline int32_t ReqChatConnectMaster::server_no() const {
+  // @@protoc_insertion_point(field_get:MasterAndChatServer.ReqChatConnectMaster.server_no)
+  return _internal_server_no();
 }
-inline void ReqMasterServerConnect::_internal_set_game_server_no(int32_t value) {
+inline void ReqChatConnectMaster::_internal_set_server_no(int32_t value) {
   
-  game_server_no_ = value;
+  server_no_ = value;
 }
-inline void ReqMasterServerConnect::set_game_server_no(int32_t value) {
-  _internal_set_game_server_no(value);
-  // @@protoc_insertion_point(field_set:MasterAndChatServer.ReqMasterServerConnect.game_server_no)
+inline void ReqChatConnectMaster::set_server_no(int32_t value) {
+  _internal_set_server_no(value);
+  // @@protoc_insertion_point(field_set:MasterAndChatServer.ReqChatConnectMaster.server_no)
 }
 
-// string game_server_name = 2;
-inline void ReqMasterServerConnect::clear_game_server_name() {
-  game_server_name_.ClearToEmpty();
+// string server_name = 2;
+inline void ReqChatConnectMaster::clear_server_name() {
+  server_name_.ClearToEmpty();
 }
-inline const std::string& ReqMasterServerConnect::game_server_name() const {
-  // @@protoc_insertion_point(field_get:MasterAndChatServer.ReqMasterServerConnect.game_server_name)
-  return _internal_game_server_name();
+inline const std::string& ReqChatConnectMaster::server_name() const {
+  // @@protoc_insertion_point(field_get:MasterAndChatServer.ReqChatConnectMaster.server_name)
+  return _internal_server_name();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void ReqMasterServerConnect::set_game_server_name(ArgT0&& arg0, ArgT... args) {
+void ReqChatConnectMaster::set_server_name(ArgT0&& arg0, ArgT... args) {
  
- game_server_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:MasterAndChatServer.ReqMasterServerConnect.game_server_name)
+ server_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:MasterAndChatServer.ReqChatConnectMaster.server_name)
 }
-inline std::string* ReqMasterServerConnect::mutable_game_server_name() {
-  std::string* _s = _internal_mutable_game_server_name();
-  // @@protoc_insertion_point(field_mutable:MasterAndChatServer.ReqMasterServerConnect.game_server_name)
+inline std::string* ReqChatConnectMaster::mutable_server_name() {
+  std::string* _s = _internal_mutable_server_name();
+  // @@protoc_insertion_point(field_mutable:MasterAndChatServer.ReqChatConnectMaster.server_name)
   return _s;
 }
-inline const std::string& ReqMasterServerConnect::_internal_game_server_name() const {
-  return game_server_name_.Get();
+inline const std::string& ReqChatConnectMaster::_internal_server_name() const {
+  return server_name_.Get();
 }
-inline void ReqMasterServerConnect::_internal_set_game_server_name(const std::string& value) {
+inline void ReqChatConnectMaster::_internal_set_server_name(const std::string& value) {
   
-  game_server_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+  server_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
 }
-inline std::string* ReqMasterServerConnect::_internal_mutable_game_server_name() {
+inline std::string* ReqChatConnectMaster::_internal_mutable_server_name() {
   
-  return game_server_name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+  return server_name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
-inline std::string* ReqMasterServerConnect::release_game_server_name() {
-  // @@protoc_insertion_point(field_release:MasterAndChatServer.ReqMasterServerConnect.game_server_name)
-  return game_server_name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+inline std::string* ReqChatConnectMaster::release_server_name() {
+  // @@protoc_insertion_point(field_release:MasterAndChatServer.ReqChatConnectMaster.server_name)
+  return server_name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
-inline void ReqMasterServerConnect::set_allocated_game_server_name(std::string* game_server_name) {
-  if (game_server_name != nullptr) {
+inline void ReqChatConnectMaster::set_allocated_server_name(std::string* server_name) {
+  if (server_name != nullptr) {
     
   } else {
     
   }
-  game_server_name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), game_server_name,
+  server_name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), server_name,
       GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (game_server_name_.IsDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited())) {
-    game_server_name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+  if (server_name_.IsDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited())) {
+    server_name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:MasterAndChatServer.ReqMasterServerConnect.game_server_name)
+  // @@protoc_insertion_point(field_set_allocated:MasterAndChatServer.ReqChatConnectMaster.server_name)
 }
 
 // -------------------------------------------------------------------
 
-// AnsMasterServerConnect
+// AnsChatConnectMaster
 
 // bool is_success = 1;
-inline void AnsMasterServerConnect::clear_is_success() {
+inline void AnsChatConnectMaster::clear_is_success() {
   is_success_ = false;
 }
-inline bool AnsMasterServerConnect::_internal_is_success() const {
+inline bool AnsChatConnectMaster::_internal_is_success() const {
   return is_success_;
 }
-inline bool AnsMasterServerConnect::is_success() const {
-  // @@protoc_insertion_point(field_get:MasterAndChatServer.AnsMasterServerConnect.is_success)
+inline bool AnsChatConnectMaster::is_success() const {
+  // @@protoc_insertion_point(field_get:MasterAndChatServer.AnsChatConnectMaster.is_success)
   return _internal_is_success();
 }
-inline void AnsMasterServerConnect::_internal_set_is_success(bool value) {
+inline void AnsChatConnectMaster::_internal_set_is_success(bool value) {
   
   is_success_ = value;
 }
-inline void AnsMasterServerConnect::set_is_success(bool value) {
+inline void AnsChatConnectMaster::set_is_success(bool value) {
   _internal_set_is_success(value);
-  // @@protoc_insertion_point(field_set:MasterAndChatServer.AnsMasterServerConnect.is_success)
+  // @@protoc_insertion_point(field_set:MasterAndChatServer.AnsChatConnectMaster.is_success)
 }
 
 #ifdef __GNUC__

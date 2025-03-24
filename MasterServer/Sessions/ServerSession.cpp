@@ -1,7 +1,16 @@
 #include "pch.h"
 #include "ServerSession.h"
-#include "GamePacketHandler.h"
-#include "MasterDefines.h"
+
+#define IMPL_SERVER_SESSION_SEND_GAME_PACKET(_msgType, _protocolName)								\
+bool ServerSession::SendPacket(const MasterAndGameServer::##_msgType##_protocolName& _packet)		\
+{																									\
+	SendBufferSptr sendBuf = GamePacketHandler::MakePacket##_msgType##_protocolName(_packet);		\
+	return TrySend(sendBuf);																		\
+}																									\
+
+
+
+
 
 ServerSession::~ServerSession()
 {
@@ -18,4 +27,6 @@ bool ServerSession::OnPacketRecved(BYTE* _payloadPtr, uint32_t _payloadBytes)
 }
 
 
-IMPL_SERVER_SESSION_SEND_GAME_PACKET(Ans, MasterServerConnect);
+bool ServerSession::SendPacket(const MasterAndGameServer::AnsMasterServerConnect& _packet) {
+	SendBufferSptr sendBuf = GamePacketHandler::MakePacketAnsMasterServerConnect(_packet); return TrySend(sendBuf);
+};

@@ -13,7 +13,7 @@ enum MsgType {
 enum Protocol {
 	INVALID_PROTOCOL = 0;
 	ErrInfo = 1;
-	MasterServerConnect = 2;
+	ChatConnectMaster = 2;
 }
 
 message NotiErrInfo {
@@ -22,11 +22,11 @@ message NotiErrInfo {
 	string err_desc = 3;
 }
 
-message ReqMasterServerConnect{
-	int32 game_server_no = 1;
-	string game_server_name = 2;
+message ReqChatConnectMaster{
+	int32 server_no = 1;
+	string server_name = 2;
 }
 
-message AnsMasterServerConnect {
+message AnsChatConnectMaster{
 	bool is_success = 1;
 }

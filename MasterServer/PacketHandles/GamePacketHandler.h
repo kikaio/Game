@@ -1,11 +1,18 @@
 #pragma once
 
+#define GAME_PACKET_FUNC_MAP std::map<MasterAndGameServer::Protocol, PacketFunc*>
+
+#define DECL_MAKE_GAME_PACKET_SENDBUF(_msgType, _protocolName)																		\
+	static SendBufferSptr MakePacket##_msgType##_protocolName(const MasterAndGameServer::##_msgType##_protocolName& _packet)		\
+
+
+
 class GamePacketHandler {
 private:
-	static std::map<MasterAndGameServer::Protocol, PacketFunc*> reqMap;	//받은 req를 handle
-	static std::map<MasterAndGameServer::Protocol, PacketFunc*> ansMap;  //받은 ans를 handle
-	static std::map<MasterAndGameServer::Protocol, PacketFunc*> notiMap;  //받은 noti를 handle
-	static std::map<MasterAndGameServer::Protocol, PacketFunc*> errMap;  //받은 err를 handle
+	static GAME_PACKET_FUNC_MAP  reqMap;	//받은 req를 handle
+	static GAME_PACKET_FUNC_MAP  ansMap;  //받은 ans를 handle
+	static GAME_PACKET_FUNC_MAP  notiMap;  //받은 noti를 handle
+	static GAME_PACKET_FUNC_MAP  errMap;  //받은 err를 handle
 private:
 	static bool HandleMasterAndGameServerReq(SessionSptr _session, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol, BufReader* _brPtr);
 	static bool HandleMasterAndGameServerAns(SessionSptr _session, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol, BufReader* _brPtr);
@@ -20,14 +27,14 @@ public:
 	static bool HandlePayload(SessionSptr _session, BYTE* _buf, uint32_t _size);
 public:
 	template<typename MSG_TYPE, typename P, typename T>
-	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet);
+	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, const T& _packet);
 public: //해당 packet에 대해서 전송해주는 함수들.
 	//static SendBufferSptr MakePacketAnsMasterServerConnect(MasterAndGameServer::AnsMasterServerConnect& _packet);
-	DECL_MAKE_SENDBUF_FROM_GAME_PACKET(Ans, MasterServerConnect);
+	DECL_MAKE_GAME_PACKET_SENDBUF(Ans, MasterServerConnect);
 };
 
 template<typename MSG_TYPE, typename P, typename T>
-inline SendBufferSptr GamePacketHandler::MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet) {
+inline SendBufferSptr GamePacketHandler::MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, const T& _packet) {
 
 	uint16_t byteLen = _packet.ByteSizeLong();
 	uint32_t headerVal = sizeof(MSG_TYPE) + sizeof(P) + byteLen;

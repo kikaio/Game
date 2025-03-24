@@ -20,11 +20,11 @@
 }
 
 
-#define MASTER_IMPL_MAKE_SENDBUF_FROM_PACKET(_className, _msgType, _protocolName)													\
-SendBufferSptr _className::MakePacket##_msgType##_protocolName(const MasterAndChatServer::##_msgType##_protocolName& _packet)		\
-{																																	\
-	return MakeProtoSendBuffer(MasterAndChatServer::MsgType::##_msgType, MasterAndChatServer::Protocol::##_protocolName, _packet);	\
-}																																	\
+#define MASTER_IMPL_MAKE_SENDBUF_FROM_PACKET(_msgType, _protocolName)																				\
+SendBufferSptr MasterPacketDiscriminator::MakePacket##_msgType##_protocolName(const MasterAndChatServer::##_msgType##_protocolName& _packet)		\
+{																																					\
+	return MakeProtoSendBuffer(MasterAndChatServer::MsgType::##_msgType, MasterAndChatServer::Protocol::##_protocolName, _packet);					\
+}																																					\
 
 
 
@@ -168,5 +168,5 @@ bool MasterPacketDiscriminator::HandlePayload(SessionSptr _session, BYTE* _buf, 
 
 
 //내가 보내는 것들에 대한 define
-MASTER_IMPL_MAKE_SENDBUF_FROM_PACKET(MasterPacketDiscriminator, Req, MasterServerConnect);
+MASTER_IMPL_MAKE_SENDBUF_FROM_PACKET(Req, ChatConnectMaster);
 

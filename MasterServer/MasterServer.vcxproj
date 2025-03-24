@@ -76,7 +76,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Configuration)\MasterServer\</OutDir>
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\DB;$(SolutionDir)Common\Job;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Logging;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Redis;$(SolutionDir)Common\Random;$(SolutionDir)Libraries\Include\;$(SolutionDir)Libraries\Include\magic_enum;$(SolutionDir)Libraries\Include\rapidjson;$(ProjectDir);$(ProjectDir)Configs;$(ProjectDir)ConfigClass;$(ProjectDir)DBWrapper;$(ProjectDir)MasterAndGameServerHandle;$(ProjectDir)PacketHandles;$(ProjectDir)Sessions</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\DB;$(SolutionDir)Common\Job;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Logging;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Redis;$(SolutionDir)Common\Random;$(SolutionDir)Libraries\Include\;$(SolutionDir)Libraries\Include\magic_enum;$(SolutionDir)Libraries\Include\rapidjson;$(ProjectDir);$(ProjectDir)Configs;$(ProjectDir)ConfigClass;$(ProjectDir)DBWrapper;$(ProjectDir)MasterAndChatServerHandles;$(ProjectDir)MasterAndGameServerHandle;$(ProjectDir)PacketHandles;$(ProjectDir)Sessions</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\MasterServer\</OutDir>
@@ -84,7 +84,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)$(Configuration)\MasterServer\</OutDir>
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\DB;$(SolutionDir)Common\Job;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Logging;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Redis;$(SolutionDir)Common\Random;$(SolutionDir)Libraries\Include\;$(SolutionDir)Libraries\Include\magic_enum;$(SolutionDir)Libraries\Include\rapidjson;$(ProjectDir);$(ProjectDir)Configs;$(ProjectDir)ConfigClass;$(ProjectDir)DBWrapper;$(ProjectDir)MasterAndGameServerHandle;$(ProjectDir)PacketHandles;$(ProjectDir)Sessions</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\DB;$(SolutionDir)Common\Job;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Logging;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Common\Redis;$(SolutionDir)Common\Random;$(SolutionDir)Libraries\Include\;$(SolutionDir)Libraries\Include\magic_enum;$(SolutionDir)Libraries\Include\rapidjson;$(ProjectDir);$(ProjectDir)Configs;$(ProjectDir)ConfigClass;$(ProjectDir)DBWrapper;$(ProjectDir)MasterAndChatServerHandles;$(ProjectDir)MasterAndGameServerHandle;$(ProjectDir)PacketHandles;$(ProjectDir)Sessions</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -160,9 +160,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DBWrapper\DBWrapper.cpp" />
+    <ClCompile Include="MasterAndChatServerHandles\ReqChatConnectMaster.cpp" />
     <ClCompile Include="MasterAndGameServerHandle\ReqMasterServerConnect.cpp" />
     <ClCompile Include="MasterServer.cpp" />
-    <ClCompile Include="MasterTypes.h" />
+    <ClInclude Include="MasterTypes.h" />
+    <ClCompile Include="PacketHandles\ChatServerDiscriminator.cpp" />
     <ClCompile Include="PacketHandles\GamePacketHandler.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -170,16 +172,20 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Sessions\ChatServerSession.cpp" />
     <ClCompile Include="Sessions\ServerSession.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConfigClass\MasterConfig.h" />
     <ClInclude Include="DBWrapper\DBWrapper.h" />
+    <ClInclude Include="MasterAndChatServerHandles\MasterAndChatServerHandle.h" />
     <ClInclude Include="MasterAndGameServerHandle\MasterAndGameServerHandle.h" />
     <ClInclude Include="MasterDefines.h" />
     <ClInclude Include="MasterServerPch.h" />
+    <ClInclude Include="PacketHandles\ChatServerDiscriminator.h" />
     <ClInclude Include="PacketHandles\GamePacketHandler.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Sessions\ChatServerSession.h" />
     <ClInclude Include="Sessions\ServerSession.h" />
   </ItemGroup>
   <ItemGroup>

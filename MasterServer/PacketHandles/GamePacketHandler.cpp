@@ -1,9 +1,5 @@
 #include "pch.h"
 #include "GamePacketHandler.h"
-#include "MasterDefines.h"
-#include "ServerSession.h"
-#include "MasterAndGameServerHandle.h"
-
 
 // handler 함수 지정용 define
 #define REGIST_GAME_PACKET_FUNC(_msgType, _protocol, _func)																\
@@ -12,7 +8,7 @@
 }																														\
 
 
-#define REGIST_HANDLE_GAME_PACKET_FUNC(_msgType, _protocol, _func)																\
+#define REGIST_HANDLE_GAME_PACKET_FUNC(_msgType, _protocol)																		\
 {																																\
 	REGIST_GAME_PACKET_FUNC(_msgType, _protocol, [](SessionSptr _session, BufReader* _brPtr){									\
 		MasterAndGameServer::##_msgType##_protocol packet;																		\
@@ -23,12 +19,23 @@
 }
 
 
-map<MasterAndGameServer::Protocol, PacketFunc*> GamePacketHandler::reqMap;
-map<MasterAndGameServer::Protocol, PacketFunc*> GamePacketHandler::ansMap;
-map<MasterAndGameServer::Protocol, PacketFunc*> GamePacketHandler::notiMap;
-map<MasterAndGameServer::Protocol, PacketFunc*> GamePacketHandler::errMap;
 
-bool GamePacketHandler::HandleMasterAndGameServerReq(SessionSptr _session, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol, BufReader* _brPtr)
+#define IMPL_MAKE_GAME_PACKET_FUNC(_msgType, _protocolName)																				\
+SendBufferSptr GamePacketHandler::MakePacket##_msgType##_protocolName(const MasterAndGameServer::##_msgType##_protocolName& _packet)	\
+{																																		\
+	return MakeProtoSendBuffer(MasterAndGameServer::MsgType::##_msgType, MasterAndGameServer::Protocol::##_protocolName, _packet);		\
+}																																		\
+
+
+GAME_PACKET_FUNC_MAP GamePacketHandler::reqMap;
+GAME_PACKET_FUNC_MAP GamePacketHandler::ansMap;
+GAME_PACKET_FUNC_MAP GamePacketHandler::notiMap;
+GAME_PACKET_FUNC_MAP GamePacketHandler::errMap;
+
+bool GamePacketHandler::HandleMasterAndGameServerReq(SessionSptr _session
+	, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol
+	, BufReader* _brPtr
+	)
 {
 	auto finder = reqMap.find(_protocol);
 	if (finder == reqMap.end()) {
@@ -38,7 +45,10 @@ bool GamePacketHandler::HandleMasterAndGameServerReq(SessionSptr _session, Maste
 	return reqMap[_protocol](_session, _brPtr);
 }
 
-bool GamePacketHandler::HandleMasterAndGameServerAns(SessionSptr _session, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol, BufReader* _brPtr)
+bool GamePacketHandler::HandleMasterAndGameServerAns(SessionSptr _session
+	, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol
+	, BufReader* _brPtr
+	)
 {
 	auto finder = ansMap.find(_protocol);
 	if (finder == ansMap.end()) {
@@ -48,7 +58,10 @@ bool GamePacketHandler::HandleMasterAndGameServerAns(SessionSptr _session, Maste
 	return ansMap[_protocol](_session, _brPtr);
 }
 
-bool GamePacketHandler::HandleMasterAndGameServerNoti(SessionSptr _session, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol, BufReader* _brPtr)
+bool GamePacketHandler::HandleMasterAndGameServerNoti(SessionSptr _session
+	, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol
+	, BufReader* _brPtr
+	)
 {
 	auto finder = notiMap.find(_protocol);
 	if (finder == notiMap.end()) {
@@ -58,7 +71,10 @@ bool GamePacketHandler::HandleMasterAndGameServerNoti(SessionSptr _session, Mast
 	return notiMap[_protocol](_session, _brPtr);
 }
 
-bool GamePacketHandler::HandleMasterAndGameServerErr(SessionSptr _session, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol, BufReader* _brPtr)
+bool GamePacketHandler::HandleMasterAndGameServerErr(SessionSptr _session
+	, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol
+	, BufReader* _brPtr
+	)
 {
 	auto finder = errMap.find(_protocol);
 	if (finder == errMap.end()) {
@@ -145,8 +161,6 @@ bool GamePacketHandler::HandlePayload(SessionSptr _session, BYTE* _buf, uint32_t
 	return true;
 }
 
-IMPL_MAKE_PACKET_GAME_FUNC(GamePacketHandler, Ans, MasterServerConnect);
 
-//SendBufferSptr GamePacketHandler::MakePacketAnsMasterServerConnect(MasterAndGameServer::AnsMasterServerConnect& _packet) {
-//	return MakeProtoSendBuffer(MasterAndGameServer::MsgType::Ans, MasterAndGameServer::Protocol::MasterServerConnect, _packet);
-//};
+IMPL_MAKE_GAME_PACKET_FUNC(Ans, MasterServerConnect);
+
