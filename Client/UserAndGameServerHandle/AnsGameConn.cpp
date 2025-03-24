@@ -12,7 +12,7 @@ namespace UserAndGameServerHandle {
 			DUM_DEBUG_LOG("server send encrypt key : {}", encryptKey);
 			_session->SetFilterMode(SESSION_FILTER::XOR);
 			_session->SetCryptKey(encryptKey);
-			dum->SetChatInfo(chatHost, chatPort);
+			dum->SetChatServerInfo(chatHost, chatPort);
 		}
 		return true;
 	}

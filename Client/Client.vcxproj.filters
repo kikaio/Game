@@ -19,18 +19,18 @@
     <Filter Include="Dummy\GameData">
       <UniqueIdentifier>{883bfc7a-bcb7-4b9e-915e-87a2668362a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sessions">
+      <UniqueIdentifier>{c0d74563-bbfd-46ea-92e5-922eb2f45793}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Discriminators">
+      <UniqueIdentifier>{1afe7b42-4b3e-422a-a3ed-e2a35c0d25a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="GameServerSession.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="GameServerPacketHandler.cpp">
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="UserAndGameServerHandle\ReqTestMsg.cpp">
@@ -69,18 +69,24 @@
     <ClCompile Include="UserAndGameServerHandle\AnsGameConn.cpp">
       <Filter>UserAndGameServerHandle</Filter>
     </ClCompile>
+    <ClCompile Include="Sessions\GameServerSession.cpp">
+      <Filter>Sessions</Filter>
+    </ClCompile>
+    <ClCompile Include="Sessions\ChatServerSession.cpp">
+      <Filter>Sessions</Filter>
+    </ClCompile>
+    <ClCompile Include="Discriminators\ChatServerDiscriminator.cpp">
+      <Filter>Discriminators</Filter>
+    </ClCompile>
+    <ClCompile Include="Discriminators\GameServerPacketHandler.cpp">
+      <Filter>Discriminators</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClientPch.h">
       <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
-      <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="GameServerSession.h">
-      <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="GameServerPacketHandler.h">
       <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="UserAndGameServerHandle\UserAndGameServerHandle.h">
@@ -124,6 +130,18 @@
     </ClInclude>
     <ClInclude Include="Dummy\DumAct\ProtocolCallbacMap.h">
       <Filter>Dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="Sessions\GameServerSession.h">
+      <Filter>Sessions</Filter>
+    </ClInclude>
+    <ClInclude Include="Sessions\ChatServerSession.h">
+      <Filter>Sessions</Filter>
+    </ClInclude>
+    <ClInclude Include="Discriminators\ChatServerDiscriminator.h">
+      <Filter>Discriminators</Filter>
+    </ClInclude>
+    <ClInclude Include="Discriminators\GameServerPacketHandler.h">
+      <Filter>Discriminators</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

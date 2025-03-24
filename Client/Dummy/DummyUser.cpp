@@ -70,6 +70,19 @@ void DummyUser::OnGameServerSessionConnected()
 	DoDumAct();
 }
 
+bool DummyUser::IsChatConnected() {
+	return chatServerSession->IsConnected();
+}
+
+void DummyUser::OnChatServerSessionDisconnected() {
+	return;
+}
+
+void DummyUser::OnChatServerSessionConnected() {
+	return;
+}
+
+
 void DummyUser::SetLoginData(const LoginData& _loginData)
 {
 	loginData = _loginData;

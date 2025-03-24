@@ -17,8 +17,12 @@
 #include "LogHelper.h"
 
 #include "GameServerSession.h"
+#include "ChatServerSession.h"
 #include "GameServerPacketHandler.h"
 #include "UserAndGameServerHandle.h"
+
+#include "ChatServerDiscriminator.h"
+
 
 #include "ItemData.h"
 #include "CostumeData.h"

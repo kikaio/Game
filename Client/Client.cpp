@@ -6,12 +6,13 @@ atomic<bool> clientDoRunning = true;
 
 void DoClientToGameServer(NetworkCoreSptr gameServerNetCore) {
 
+	GameServerPacketHandler::Init();
 	string ip = "127.0.0.1";
 	int port = 7777;
 
 	ASSERT_CRASH(gameServerNetCore->Ready());
-	
-	DUM_DEBUG_LOG("wsa standby.");
+
+	DUM_DEBUG_LOG("game wsa standby.");
 
 	if (gameServerNetCore->ReadyToConnect(ip, port) == false) {
 		DUM_DEBUG_LOG("ReadyToConnect failed.");
@@ -21,6 +22,24 @@ void DoClientToGameServer(NetworkCoreSptr gameServerNetCore) {
 	UInt32 waitMilliSec = INFINITE;
 	while (true) {
 		gameServerNetCore->Dispatch(waitMilliSec);
+	}
+}
+void DoClientToChatServer(NetworkCoreSptr _netCore) {
+
+	ChatServerDiscriminator::Init();
+	ASSERT_CRASH(_netCore->Ready());
+	string ip = "127.0.0.1";
+	int port = 8888;
+
+	DUM_DEBUG_LOG("chat wsa standby.");
+	if (_netCore->ReadyToConnect(ip, port) == false) {
+		DUM_DEBUG_LOG("ReadyToConnect failed.");
+		return;
+	}
+
+	int32_t waitMilliSec = INFINITE;
+	while (true) {
+		_netCore->Dispatch(waitMilliSec);
 	}
 }
 
@@ -37,13 +56,11 @@ void DoWorkerThread() {
 
 int main()
 {
-
-	GameServerPacketHandler::Init();
-	
 	//logger 초기화
 	LogHelper::Init("logs/dummyLog.log");
 
 	NetworkCoreSptr gameServerNetCore = MakeShared<NetworkCore>();
+	NetworkCoreSptr chatServerNetCore = MakeShared<NetworkCore>();
 	//todo : chat server 용 net core 도 준비.
 	int dummyUserCnt = 1;
 
@@ -51,6 +68,7 @@ int main()
 	for (int i = 0; i < dummyUserCnt; ++i) {
 		auto dummyUser = MakeShared<DummyUser>();
 		dummyUser->gameServerNetCore = gameServerNetCore;
+		dummyUser->chatServerNetCore = chatServerNetCore;
 		DummyUserManager::Get().PushDummyUser(dummyUser);
 	}
 
@@ -62,6 +80,14 @@ int main()
 		}
 		, "DoClientToGameServer", "iocp port dispatch while shutdown"
 	);
+
+	ThreadManager::Get().PushAndStart(
+		[chatServerNetCore]() {
+			DoClientToChatServer(chatServerNetCore);
+		}
+		, "DoClientToChatServer", "iocp port dispatch while shutdown"
+	);
+
 
 	//worker thread 및 job timer 준비
 	int workerThreadCnt = 1;

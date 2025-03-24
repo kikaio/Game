@@ -34,10 +34,7 @@ public:
 	ProtocolCallbackMap gameServerProtoCallback; //game server 용 protocol callback 담당.
 private:
 	GameServerSessionSptr gameServerSession = nullptr;
-	string chatHost = "";
-	int32_t chatPort = 0;
 public:
-	void SetChatServerInfo(const string& _host, int16_t _port);
 	bool IsConnected();
 	void SetGameServerSession(GameServerSessionSptr _dummySession);
 	GameServerSessionSptr GetGameServerSession() {
@@ -56,6 +53,38 @@ public:
 		gameServerProtoCallback.RecvProtocol(_msg, _proto);
 	}
 
+#pragma endregion 
+
+#pragma region chat server network 관련
+public:
+	NetworkCoreSptr chatServerNetCore = nullptr;
+	ProtocolCallbackMap chatServerProtoCallback; //game server 용 protocol callback 담당.
+private:
+	ChatServerSessionSptr chatServerSession = nullptr;
+	string chatHost = "";
+	int32_t chatPort = 0;
+public:
+	void SetChatServerInfo(const string& _host, int16_t _port);
+	void SetChatServerSession(ChatServerSessionSptr _session) {
+		chatServerSession = _session;
+	}
+	ChatServerSessionSptr GetChatServerSession() {
+		return chatServerSession;
+	}
+public:
+	bool IsChatConnected();
+public:
+	void OnChatServerSessionDisconnected();
+	void OnChatServerSessionConnected();
+public:
+	template<typename MSG_TYPE, typename PROTO_TYPE>
+	void ReserveChatServerProtocol(MSG_TYPE _msg, PROTO_TYPE _proto, DUM_PROTOCOL_CB&& _cb) {
+		chatServerProtoCallback.ReserveCallback(_msg, _proto, std::move(_cb));
+	}
+	template<typename MSG_TYPE, typename PROTO_TYPE>
+	void RecvChatServerProtocol(MSG_TYPE _msg, PROTO_TYPE _proto) {
+		chatServerProtoCallback.RecvProtocol(_msg, _proto);
+	}
 #pragma endregion 
 
 

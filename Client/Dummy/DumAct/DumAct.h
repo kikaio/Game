@@ -70,3 +70,10 @@ public:
 protected:
 	void DoAct(DummyUserSptr _dumSptr) override;
 };
+
+class DumActChatConn : public DumAct {
+public:
+	DumActChatConn(uint64_t _delayMsec);
+protected:
+	void DoAct(DummyUserSptr _dumSptr) override;
+};

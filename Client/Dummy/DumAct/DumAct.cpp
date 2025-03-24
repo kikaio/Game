@@ -156,3 +156,37 @@ void DumActLogin::DoAct(DummyUserSptr _dumSptr)
 	});
 	return ;
 }
+
+DumActChatConn::DumActChatConn(uint64_t _delayMsec)
+{
+	actDelayMsec = _delayMsec;
+}
+
+void DumActChatConn::DoAct(DummyUserSptr _dumSptr)
+{
+	ReserveAct(_dumSptr, [_dumSptr, this]() {
+
+		auto _session = MakeShared<ChatServerSession>();
+		_dumSptr->SetChatServerSession(_session);
+		_session->SetDummyUser(_dumSptr);
+
+		_session->SetOnSessionConnectedFunc([_dumSptr = _dumSptr]() {
+			_dumSptr->OnChatServerSessionConnected();
+			});
+		_session->SetOnSessionDisconnectedFunc([_dumSptr = _dumSptr]() {
+			_dumSptr->OnChatServerSessionDisconnected();
+			});
+		_session->Net()->SetAddrAny(0);
+		if (_session->Bind() == false) {
+			printf("[dummy:%d]bind failed.. err : %d\n", _dumSptr->GetDummyIdx(), WSAGetLastError());
+			return;
+		}
+		IocpCoreSptr iocpCoreSptr = _dumSptr->chatServerNetCore->GetIocpCore();
+		_session->SetSockOpts();
+		_session->SetNetCore(_dumSptr->chatServerNetCore);
+		_session->SetIocpCore(iocpCoreSptr);
+		iocpCoreSptr->RegistToIocp(_session->Sock());
+		_session->TryConnect();
+	});
+	return;
+}
