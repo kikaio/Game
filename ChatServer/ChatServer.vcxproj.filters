@@ -31,6 +31,9 @@
     <Filter Include="PacketHandles\UserAndChatPacketHandles">
       <UniqueIdentifier>{f7c2dcca-989a-4762-9d26-21d0d181d717}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PacketHandles\MasterAndChatPacketHandles">
+      <UniqueIdentifier>{b509abfa-2f8c-4768-80f4-120a6b0d7177}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChatServer.cpp">
@@ -62,6 +65,15 @@
     </ClCompile>
     <ClCompile Include="Helper\LogHelper.cpp">
       <Filter>Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketDiscriminator\MasterPacketDiscriminator.cpp">
+      <Filter>PacketDiscriminator</Filter>
+    </ClCompile>
+    <ClCompile Include="Sessions\MasterServerSession.cpp">
+      <Filter>Sessions</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketHandles\MasterAndChatPacketHandles\NotiErrInfo.cpp">
+      <Filter>PacketHandles\MasterAndChatPacketHandles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +112,15 @@
     </ClInclude>
     <ClInclude Include="ChatTypes.h">
       <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketDiscriminator\MasterPacketDiscriminator.h">
+      <Filter>PacketDiscriminator</Filter>
+    </ClInclude>
+    <ClInclude Include="Sessions\MasterServerSession.h">
+      <Filter>Sessions</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketHandles\MasterAndChatPacketHandles\MasterAndChatPacketHandle.h">
+      <Filter>PacketHandles\MasterAndChatPacketHandles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -17,8 +17,12 @@
 #include "ProtoConverter.h"
 
 #include "UserAndChatPacketHandle.h"
+#include "MasterAndChatPacketHandle.h"
+
 #include "UserPacketDiscriminator.h"
+#include "MasterPacketDiscriminator.h"
 
 #include "UserSession.h"
+#include "MasterServerSession.h"
 #include "ChatProfile.h"
 #include "ChatUser.h"

@@ -63,9 +63,25 @@ void InitConfig() {
 }
 
 void StartMasterThread() {
+	NetworkCoreSptr masterNet = MakeShared<NetworkCore>();
+	this_thread::sleep_for(3s);
+	const string& host = masterConfig.GetHost();
+	int16_t port = masterConfig.GetPort();
+	int32_t serverNo = 1;
+	string serverName = "chat_instance";
+	MasterPacketDiscriminator::Init();
+	ASSERT_CRASH(masterNet->Ready(1));
+	ASSERT_CRASH(masterNet->ReadyToConnect(host, port));
+
+	masterNet->CreateSessionFactory = [serverNo, serverName](){
+		MasterServerSessionSptr _session = MakeShared<MasterServerSession>();
+		return _session;
+	};
+
 	return ;
 }
 
 void StartChatThread() {
+	NetworkCoreSptr chatNet = MakeShared<NetworkCore>();
 	return ;
 }

@@ -7,5 +7,12 @@ private:
 public:
 	void Init(rapidjson::Value& _val);
 public:
+	const string& GetHost() {
+		return hostStr;
+	}
+	int16_t GetPort() {
+		return port;
+	}
+public:
 	void Render();
 };
