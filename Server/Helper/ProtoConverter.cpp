@@ -93,9 +93,11 @@ void ProtoConverter::ToPacket(const PacketError& _packetError, UserAndGameServer
 	_out.set_err_desc(_packetError.err_desc);
 }
 
-void ProtoConverter::ToPacket(const string& _encryptKey, UserAndGameServer::AnsGameConn& _out)
+void ProtoConverter::ToPacket(const string& _encryptKey, const string& _chatHost, int16_t _chatPort, UserAndGameServer::AnsGameConn& _out)
 {
 	_out.set_encrypt_key(_encryptKey);
+	_out.set_chat_host(_chatHost);
+	_out.set_chat_port(_chatPort);
 }
 
 
