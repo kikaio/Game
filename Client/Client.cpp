@@ -4,64 +4,24 @@ using namespace std;
 
 atomic<bool> clientDoRunning = true;
 
-void DoClientToGameServer(NetworkCoreSptr _netCore) {
+static ClientConfig clientConfig;
+static ChatConfig chatConfig;
+static GameConfig gameConfig;
+static MasterConfig masterConfig;
 
-	GameServerPacketHandler::Init();
-	ASSERT_CRASH(_netCore->Ready());
-	string ip = "127.0.0.1";
-	int port = 7777;
-
-	DUM_DEBUG_LOG("game wsa standby.");
-
-	if (_netCore->ReadyToConnect(ip, port) == false) {
-		DUM_DEBUG_LOG("ReadyToConnect failed.");
-		return ;
-	}
-
-	UInt32 waitMilliSec = INFINITE;
-	while (true) {
-		_netCore->Dispatch(waitMilliSec);
-	}
-}
-void DoClientToChatServer(NetworkCoreSptr _netCore) {
-
-	ChatServerDiscriminator::Init();
-	ASSERT_CRASH(_netCore->Ready());
-	string ip = "127.0.0.1";
-	int port = 8888;
-
-	DUM_DEBUG_LOG("chat wsa standby.");
-	if (_netCore->ReadyToConnect(ip, port) == false) {
-		DUM_DEBUG_LOG("ReadyToConnect failed.");
-		return;
-	}
-
-	int32_t waitMilliSec = INFINITE;
-	while (true) {
-		_netCore->Dispatch(waitMilliSec);
-	}
-}
-
-void DoWorkerThread() {
-	
-	uint64_t workerTick = 100;
-	while(clientDoRunning) {
-		LEndTickCount = ::GetTickCount64() + workerTick;
-		ThreadManager::Get().DoGlobalQueueWork();
-		ThreadManager::Get().DoDitributeJob();
-	}
-}
-
+void Init();
+void DoClientToGameServer(NetworkCoreSptr _netCore);
+void DoClientToChatServer(NetworkCoreSptr _netCore);
+void DoWorkerThread();
 
 int main()
 {
-	//logger 초기화
-	LogHelper::Init("logs/dummyLog.log");
+	Init();
 
 	NetworkCoreSptr gameServerNetCore = MakeShared<NetworkCore>();
 	NetworkCoreSptr chatServerNetCore = MakeShared<NetworkCore>();
 	//todo : chat server 용 net core 도 준비.
-	int dummyUserCnt = 1;
+	int32_t dummyUserCnt = clientConfig.DummyCnt();
 
 	//dummy user 생성
 	for (int i = 0; i < dummyUserCnt; ++i) {
@@ -110,4 +70,76 @@ int main()
 	ThreadManager::Get().Clear();
 
 	return 0;
+}
+
+void Init() {
+	
+	//logger 초기화
+	LogHelper::Init("logs/dummyLog.log");
+
+	JsonReader jr;
+	jr.ReadFile("./Configs/ClientConfig.json");
+	rapidjson::Value clientVal(kObjectType);
+	jr.GetObject("client", OUT clientVal);
+	clientConfig.Init(clientVal);
+
+	rapidjson::Value chatVal(kObjectType);
+	jr.GetObject("chat", OUT chatVal);
+	chatConfig.Init(chatVal);
+
+	rapidjson::Value gameVal(kObjectType);
+	jr.GetObject("game", OUT gameVal);
+	gameConfig.Init(gameVal);
+
+	rapidjson::Value masterVal(kObjectType);
+	jr.GetObject("master", OUT masterVal);
+	masterConfig.Init(masterVal);
+
+	return ;
+}
+
+
+void DoClientToGameServer(NetworkCoreSptr _netCore) {
+
+	GameServerPacketHandler::Init();
+	ASSERT_CRASH(_netCore->Ready(gameConfig.IocpThreadCnt()));
+	gameConfig.Host();
+
+	DUM_DEBUG_LOG("game wsa standby.");
+
+	if (_netCore->ReadyToConnect(gameConfig.Host(), gameConfig.Port()) == false) {
+		DUM_DEBUG_LOG("ReadyToConnect failed.");
+		return;
+	}
+
+	UInt32 waitMilliSec = INFINITE;
+	while (true) {
+		_netCore->Dispatch(waitMilliSec);
+	}
+}
+void DoClientToChatServer(NetworkCoreSptr _netCore) {
+
+	ChatServerDiscriminator::Init();
+	ASSERT_CRASH(_netCore->Ready(chatConfig.IocpThreadCnt()));
+
+	DUM_DEBUG_LOG("chat wsa standby.");
+	if (_netCore->ReadyToConnect(chatConfig.Host(), chatConfig.Port()) == false) {
+		DUM_DEBUG_LOG("ReadyToConnect failed.");
+		return;
+	}
+
+	int32_t waitMilliSec = INFINITE;
+	while (true) {
+		_netCore->Dispatch(waitMilliSec);
+	}
+}
+
+void DoWorkerThread() {
+
+	uint64_t workerTick = 100;
+	while (clientDoRunning) {
+		LEndTickCount = ::GetTickCount64() + workerTick;
+		ThreadManager::Get().DoGlobalQueueWork();
+		ThreadManager::Get().DoDitributeJob();
+	}
 }

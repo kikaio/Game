@@ -41,7 +41,7 @@ void InitConfigs() {
     masterConf.Init(masterValue);
 
     rapidjson::Value chatValue(kObjectType);
-    jr.GetObjectW("chat", OUT masterValue);
+    jr.GetObjectW("chat", OUT chatValue);
     chatConf.Init(chatValue);
 
     rapidjson::Value gameValue(kObjectType);
