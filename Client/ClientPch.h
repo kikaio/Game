@@ -14,6 +14,11 @@
 #include "ClientDefine.h"
 #include "ClientType.h"
 
+#include "MasterConfig.h"
+#include "GameConfig.h"
+#include "ChatConfig.h"
+#include "ClientConfig.h"
+
 #include "LogHelper.h"
 
 #include "GameServerSession.h"

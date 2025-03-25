@@ -1,0 +1,22 @@
+{
+	"client" : {
+		"dummy_cnt" : 1,
+		"worker_thread_cnt" : 5
+		"logger_lv":"DEBUG"
+	},
+	"master" : {
+		"host":"127.0.0.1",
+		"port":33301,
+		"iocp_thread_cnt":1
+	},
+	"chat" : {
+		"host":"127.0.0.1",
+		"port":23301,
+		"iocp_thread_cnt":5
+	},
+	"game":{
+		"host":"127.0.0.1",
+		"port":43301,
+		"iocp_thread_cnt":5
+	}
+}

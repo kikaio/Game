@@ -19,6 +19,12 @@
     <Filter Include="Dummy\GameData">
       <UniqueIdentifier>{883bfc7a-bcb7-4b9e-915e-87a2668362a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ConfigClass">
+      <UniqueIdentifier>{116dcbd8-2c7b-4db0-9642-0515eb0614dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Configs">
+      <UniqueIdentifier>{551022db-845c-4252-8e32-e4f91b527cd6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -68,6 +74,18 @@
     </ClCompile>
     <ClCompile Include="UserAndGameServerHandle\AnsGameConn.cpp">
       <Filter>UserAndGameServerHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigClass\ClientConfig.cpp">
+      <Filter>ConfigClass</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigClass\MasterConfig.cpp">
+      <Filter>ConfigClass</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigClass\GameConfig.cpp">
+      <Filter>ConfigClass</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigClass\ChatConfig.cpp">
+      <Filter>ConfigClass</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -125,5 +143,22 @@
     <ClInclude Include="Dummy\DumAct\ProtocolCallbacMap.h">
       <Filter>Dummy</Filter>
     </ClInclude>
+    <ClInclude Include="ConfigClass\ClientConfig.h">
+      <Filter>ConfigClass</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigClass\MasterConfig.h">
+      <Filter>ConfigClass</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigClass\GameConfig.h">
+      <Filter>ConfigClass</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigClass\ChatConfig.h">
+      <Filter>ConfigClass</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configs\ClientConfig.json">
+      <Filter>Configs</Filter>
+    </None>
   </ItemGroup>
 </Project>
