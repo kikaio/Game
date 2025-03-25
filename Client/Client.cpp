@@ -4,24 +4,23 @@ using namespace std;
 
 atomic<bool> clientDoRunning = true;
 
-void DoClientToGameServer(NetworkCoreSptr gameServerNetCore) {
+void DoClientToGameServer(NetworkCoreSptr _netCore) {
 
 	GameServerPacketHandler::Init();
+	ASSERT_CRASH(_netCore->Ready());
 	string ip = "127.0.0.1";
 	int port = 7777;
 
-	ASSERT_CRASH(gameServerNetCore->Ready());
-
 	DUM_DEBUG_LOG("game wsa standby.");
 
-	if (gameServerNetCore->ReadyToConnect(ip, port) == false) {
+	if (_netCore->ReadyToConnect(ip, port) == false) {
 		DUM_DEBUG_LOG("ReadyToConnect failed.");
 		return ;
 	}
 
 	UInt32 waitMilliSec = INFINITE;
 	while (true) {
-		gameServerNetCore->Dispatch(waitMilliSec);
+		_netCore->Dispatch(waitMilliSec);
 	}
 }
 void DoClientToChatServer(NetworkCoreSptr _netCore) {
