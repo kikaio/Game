@@ -6,7 +6,7 @@ const string& ChatConfig::Host()
 	return host;
 }
 
-int16_t ChatConfig::Port()
+uint16_t ChatConfig::Port()
 {
 	return port;
 }
@@ -21,6 +21,15 @@ void ChatConfig::Init(const rapidjson::Value& _val) {
 	ASSERT_CRASH(_val.HasMember("iocp_thread_cnt"));
 
 	host = _val["host"].GetString();
-	port = _val["port"].GetInt();
+	port = _val["port"].GetUint();
 	iocpThreadCnt = _val["iocp_thread_cnt"].GetInt();
 }
+
+
+void ChatConfig::Render() {
+	CLIENT_DEBUG_LOG("[chat]======");
+	CLIENT_DEBUG_LOG("host : {}:{}", host, port);
+	CLIENT_DEBUG_LOG("iocp thread cnt : {}", iocpThreadCnt);
+	return;
+}
+

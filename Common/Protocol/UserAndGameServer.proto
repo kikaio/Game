@@ -129,6 +129,4 @@ message ReqGameConn {
 
 message AnsGameConn {
 	string encrypt_key = 1;
-	string chat_host = 2;
-	int32 chat_port = 3;
 }

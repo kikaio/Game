@@ -10,7 +10,7 @@ void PrintLn(const char* _msg)
 }
 
 
-void InitConfigs();
+void Init();
 void DoIocpGameService(NetworkCoreSptr netCore);
 void DoIocpMasterService(NetworkCoreSptr netCore);
 int32_t DoServerLogic();
@@ -22,7 +22,7 @@ static ChatConfig chatConf;
 int main()
 {
     //config 정보 초기화
-    InitConfigs();
+    Init();
     int32_t ret = DoServerLogic();
     ThreadManager::Get().JoinAll();
     ThreadManager::Get().Clear();
@@ -31,7 +31,10 @@ int main()
     return ret;
 }
 
-void InitConfigs() {
+void Init() {
+
+    string logFolderPath = "logs";
+    LogHelper::Init(logFolderPath);
 
     JsonReader jr;
     jr.ReadFile("./configs/ServerConfig.json");
@@ -39,14 +42,17 @@ void InitConfigs() {
     rapidjson::Value masterValue(kObjectType);
     jr.GetObjectW("master", OUT masterValue);
     masterConf.Init(masterValue);
+    masterConf.Render();
 
     rapidjson::Value chatValue(kObjectType);
     jr.GetObjectW("chat", OUT chatValue);
     chatConf.Init(chatValue);
+    chatConf.Render();
 
     rapidjson::Value gameValue(kObjectType);
     jr.GetObjectW("game", OUT gameValue);
     gameConf.ReadFromJson(gameValue);
+    gameConf.Render();
 
     rapidjson::Value dbValue(kArrayType);
     jr.GetArray("db_configs", OUT dbValue);
@@ -70,8 +76,6 @@ void InitConfigs() {
         RedisConnPool::Get().Add(redisConf);
     }
 
-    string logFilePath = "logs/GameServer.log";
-    LogHelper::Init(logFilePath);
 }
 
 int32_t DoServerLogic() {
@@ -104,18 +108,22 @@ int32_t DoServerLogic() {
 
 void DoIocpGameService(NetworkCoreSptr netCore) {
     ServerPacketHandler::Init();
-    UInt32 tag1 = 1;
-    UInt32 tag2 = 2;
+    UInt32 tag1 = gameConf.No();
+    UInt32 tag2 = 0;
+
+    UInt32 iocpThreadCnt = 1;
+
+    int accepterCnt = gameConf.AcceptCnt();
+    int backlog = gameConf.BackLog();
+    uint16_t listenPort = gameConf.ListenPort();
+
 
     netCore->SetTag(tag1, tag2);
-    ASSERT_CRASH(netCore->Ready());
+    ASSERT_CRASH(netCore->Ready(iocpThreadCnt));
     GS_DEBUG_LOG("wsa standby.");
 
-    int accepterCnt = 1;
-    int backlog = 100;
-    int port = 7777;
 
-    ListenerSptr listener = MakeShared<Listener>(port);
+    ListenerSptr listener = MakeShared<Listener>(listenPort);
 
     netCore->CreateSessionFactory = [] {
         //sid는 accept, connect 완료 시 자동 할당한다. => After 함수들 참고.

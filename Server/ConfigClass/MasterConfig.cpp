@@ -15,6 +15,6 @@ void MasterConfig::Init(rapidjson::Value& _doc) {
 }
 
 void MasterConfig::Render() {
-	printf("======master config======\n");
-	printf("host : %s:%d\n", hostStr.c_str(), port);
+	GS_DEBUG_LOG("[master server config]===========");
+	GS_DEBUG_LOG("host : {}:{}", hostStr, port);
 }

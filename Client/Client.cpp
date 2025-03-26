@@ -40,12 +40,12 @@ int main()
 		, "DoClientToGameServer", "iocp port dispatch while shutdown"
 	);
 
-	ThreadManager::Get().PushAndStart(
-		[chatServerNetCore]() {
-			DoClientToChatServer(chatServerNetCore);
-		}
-		, "DoClientToChatServer", "iocp port dispatch while shutdown"
-	);
+	//ThreadManager::Get().PushAndStart(
+	//	[chatServerNetCore]() {
+	//		DoClientToChatServer(chatServerNetCore);
+	//	}
+	//	, "DoClientToChatServer", "iocp port dispatch while shutdown"
+	//);
 
 
 	//worker thread 및 job timer 준비
@@ -75,25 +75,29 @@ int main()
 void Init() {
 	
 	//logger 초기화
-	LogHelper::Init("logs/dummyLog.log");
+	LogHelper::Init("logs");
 
 	JsonReader jr;
 	jr.ReadFile("./Configs/ClientConfig.json");
 	rapidjson::Value clientVal(kObjectType);
 	jr.GetObject("client", OUT clientVal);
 	clientConfig.Init(clientVal);
+	clientConfig.Render();
 
 	rapidjson::Value chatVal(kObjectType);
 	jr.GetObject("chat", OUT chatVal);
 	chatConfig.Init(chatVal);
+	chatConfig.Render();
 
 	rapidjson::Value gameVal(kObjectType);
 	jr.GetObject("game", OUT gameVal);
 	gameConfig.Init(gameVal);
+	gameConfig.Render();
 
 	rapidjson::Value masterVal(kObjectType);
 	jr.GetObject("master", OUT masterVal);
 	masterConfig.Init(masterVal);
+	masterConfig.Render();
 
 	return ;
 }

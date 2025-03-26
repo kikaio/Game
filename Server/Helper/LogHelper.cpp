@@ -6,13 +6,32 @@
 LoggerSptr LogHelper::gameLogger = nullptr;
 LoggerSptr LogHelper::masterServerLogger = nullptr;
 
-void LogHelper::Init(string _logFilePath)
+void LogHelper::Init(string _logFolderPath, string _lvStr)
 {
-	GAME_LOGGER = CreateGameLogger(_logFilePath);
-	MASTER_SERVER_LOGGER = CreateMasterServerLogger(_logFilePath);
+	auto loggerLv = spdlog::level::debug;
+	std::transform(_lvStr.begin(), _lvStr.end(), _lvStr.begin(), ::toupper);
+	if(_lvStr == "ERROR") {
+		loggerLv = spdlog::level::err;
+	}
+	else if (_lvStr == "INFO") {
+		loggerLv = spdlog::level::info;
+	}
+	else if (_lvStr == "WARN") {
+		loggerLv = spdlog::level::warn;
+	}
+	else if (_lvStr == "TRACE") {
+		loggerLv = spdlog::level::trace;
+	}
+	else {
+		loggerLv = spdlog::level::debug;
+	}
 
-	GAME_LOGGER->SetLevel(spdlog::level::debug);
-	MASTER_SERVER_LOGGER->SetLevel(spdlog::level::debug);
+
+	GAME_LOGGER = CreateGameLogger(_logFolderPath + "/game.log");
+	GAME_LOGGER->SetLevel(loggerLv);
+	
+	MASTER_SERVER_LOGGER = CreateMasterServerLogger(_logFolderPath + "/master.log");
+	MASTER_SERVER_LOGGER->SetLevel(loggerLv);
 }
 
 LoggerSptr LogHelper::CreateGameLogger(string _logFilePath)

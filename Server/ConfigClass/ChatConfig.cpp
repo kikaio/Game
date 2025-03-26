@@ -15,6 +15,6 @@ void ChatConfig::Init(rapidjson::Value& _doc) {
 }
 
 void ChatConfig::Render() {
-	GS_DEBUG_LOG("======[Chat Config]======\n");
+	GS_DEBUG_LOG("======[Chat Config]======");
 	GS_DEBUG_LOG("host : {}:{}", hostStr, port);
 }

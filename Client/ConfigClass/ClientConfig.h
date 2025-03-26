@@ -11,4 +11,5 @@ public:
 	int32_t WorkerThreadCnt();
 public:
 	void Init(const rapidjson::Value& _val);
+	void Render();
 };

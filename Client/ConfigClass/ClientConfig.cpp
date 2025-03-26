@@ -26,3 +26,12 @@ void ClientConfig::Init(const rapidjson::Value& _val)
     workerThreadCnt = _val["worker_thread_cnt"].GetInt();
     loggerLv = _val["logger_lv"].GetString();
 }
+
+
+void ClientConfig::Render() {
+    CLIENT_DEBUG_LOG("[client]======");
+    CLIENT_DEBUG_LOG("init logger level : {}", loggerLv);
+    CLIENT_DEBUG_LOG("worker thread cnt : {}", workerThreadCnt);
+    return;
+}
+

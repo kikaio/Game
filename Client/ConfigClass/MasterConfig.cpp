@@ -6,7 +6,7 @@ const string& MasterConfig::Host()
 	return host;
 }
 
-int16_t MasterConfig::Port()
+uint16_t MasterConfig::Port()
 {
 	return port;
 }
@@ -21,6 +21,14 @@ void MasterConfig::Init(const rapidjson::Value& _val) {
 	ASSERT_CRASH(_val.HasMember("iocp_thread_cnt"));
 
 	host = _val["host"].GetString();
-	port = _val["port"].GetInt();
+	port = _val["port"].GetUint();
 	iocpThreadCnt = _val["iocp_thread_cnt"].GetInt();
 }
+
+void MasterConfig::Render() {
+	CLIENT_DEBUG_LOG("[master]======");
+	CLIENT_DEBUG_LOG("host : {}:{}", host, port);
+	CLIENT_DEBUG_LOG("iocp thread cnt : {}", iocpThreadCnt);
+	return;
+}
+

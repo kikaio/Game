@@ -188,13 +188,9 @@ void ProtoConverter::FromPacket(IN const UserAndGameServer::AnsLogin& _packet
 
 void ProtoConverter::FromPacket(IN const UserAndGameServer::AnsGameConn& _packet
 	, OUT string& _encryptKey
-	, OUT string& _chatHost
-	, OUT int16_t& _chatPort
 	)
 {
 	_encryptKey = _packet.encrypt_key();
-	_chatHost = _packet.chat_host();
-	_chatPort = _packet.chat_port();
 }
 
 

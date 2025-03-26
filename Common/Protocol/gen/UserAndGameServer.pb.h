@@ -3773,8 +3773,6 @@ class AnsGameConn final :
 
   enum : int {
     kEncryptKeyFieldNumber = 1,
-    kChatHostFieldNumber = 2,
-    kChatPortFieldNumber = 3,
   };
   // string encrypt_key = 1;
   void clear_encrypt_key();
@@ -3790,29 +3788,6 @@ class AnsGameConn final :
   std::string* _internal_mutable_encrypt_key();
   public:
 
-  // string chat_host = 2;
-  void clear_chat_host();
-  const std::string& chat_host() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_chat_host(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_chat_host();
-  PROTOBUF_NODISCARD std::string* release_chat_host();
-  void set_allocated_chat_host(std::string* chat_host);
-  private:
-  const std::string& _internal_chat_host() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_chat_host(const std::string& value);
-  std::string* _internal_mutable_chat_host();
-  public:
-
-  // int32 chat_port = 3;
-  void clear_chat_port();
-  int32_t chat_port() const;
-  void set_chat_port(int32_t value);
-  private:
-  int32_t _internal_chat_port() const;
-  void _internal_set_chat_port(int32_t value);
-  public:
-
   // @@protoc_insertion_point(class_scope:UserAndGameServer.AnsGameConn)
  private:
   class _Internal;
@@ -3821,8 +3796,6 @@ class AnsGameConn final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr encrypt_key_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr chat_host_;
-  int32_t chat_port_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_UserAndGameServer_2eproto;
 };
@@ -5794,77 +5767,6 @@ inline void AnsGameConn::set_allocated_encrypt_key(std::string* encrypt_key) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.AnsGameConn.encrypt_key)
-}
-
-// string chat_host = 2;
-inline void AnsGameConn::clear_chat_host() {
-  chat_host_.ClearToEmpty();
-}
-inline const std::string& AnsGameConn::chat_host() const {
-  // @@protoc_insertion_point(field_get:UserAndGameServer.AnsGameConn.chat_host)
-  return _internal_chat_host();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void AnsGameConn::set_chat_host(ArgT0&& arg0, ArgT... args) {
- 
- chat_host_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:UserAndGameServer.AnsGameConn.chat_host)
-}
-inline std::string* AnsGameConn::mutable_chat_host() {
-  std::string* _s = _internal_mutable_chat_host();
-  // @@protoc_insertion_point(field_mutable:UserAndGameServer.AnsGameConn.chat_host)
-  return _s;
-}
-inline const std::string& AnsGameConn::_internal_chat_host() const {
-  return chat_host_.Get();
-}
-inline void AnsGameConn::_internal_set_chat_host(const std::string& value) {
-  
-  chat_host_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* AnsGameConn::_internal_mutable_chat_host() {
-  
-  return chat_host_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* AnsGameConn::release_chat_host() {
-  // @@protoc_insertion_point(field_release:UserAndGameServer.AnsGameConn.chat_host)
-  return chat_host_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void AnsGameConn::set_allocated_chat_host(std::string* chat_host) {
-  if (chat_host != nullptr) {
-    
-  } else {
-    
-  }
-  chat_host_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), chat_host,
-      GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (chat_host_.IsDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited())) {
-    chat_host_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:UserAndGameServer.AnsGameConn.chat_host)
-}
-
-// int32 chat_port = 3;
-inline void AnsGameConn::clear_chat_port() {
-  chat_port_ = 0;
-}
-inline int32_t AnsGameConn::_internal_chat_port() const {
-  return chat_port_;
-}
-inline int32_t AnsGameConn::chat_port() const {
-  // @@protoc_insertion_point(field_get:UserAndGameServer.AnsGameConn.chat_port)
-  return _internal_chat_port();
-}
-inline void AnsGameConn::_internal_set_chat_port(int32_t value) {
-  
-  chat_port_ = value;
-}
-inline void AnsGameConn::set_chat_port(int32_t value) {
-  _internal_set_chat_port(value);
-  // @@protoc_insertion_point(field_set:UserAndGameServer.AnsGameConn.chat_port)
 }
 
 #ifdef __GNUC__
