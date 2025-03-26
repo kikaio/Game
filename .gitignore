@@ -31,3 +31,7 @@ Debug/ChatServer/
 ChatServer/logs/chat.log
 ChatServer/logs/master.log
 Debug/Client/Configs/
+Debug/Client/logs/client.log
+Debug/Client/logs/dum.log
+Client/logs/client.log
+Client/logs/dum.log
