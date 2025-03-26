@@ -7,14 +7,15 @@
 static MasterConfig masterConfig;
 static ChatConfig chatConfig;
 
+void Init();
+
 void StartMasterThread();
 void StartChatThread();
 
-void InitConfig();
 
 int main()
 {
-	InitConfig();
+	Init();
 
 	ThreadManager::Get().PushThread(StartMasterThread
 		, "for master server"
@@ -34,7 +35,10 @@ int main()
 	CS_DEBUG_LOG("chat server fin");
 	return 0;
 }
-void InitConfig() {
+void Init() {
+	const string logFolderPath = "logs";
+	LogHelper::Init(logFolderPath, "debug");
+
 	JsonReader jr;
 	string configFilePath = "./configs/ServerConfig.json";
 	jr.ReadFile(configFilePath.c_str());
@@ -58,18 +62,17 @@ void InitConfig() {
 		//todo : init for redis
 	}
 
-	const string logFolderPath = "logs";
-	LogHelper::Init(logFolderPath, "debug");
 }
 
 void StartMasterThread() {
 
 	NetworkCoreSptr masterNet = MakeShared<NetworkCore>();
 	this_thread::sleep_for(3s);
-	const string& host = masterConfig.GetHost();
-	int16_t port = masterConfig.GetPort();
+	const string& host = masterConfig.Host();
+	uint16_t port = masterConfig.Port();
 	int32_t serverNo = 1;
 	string serverName = "chat_instance";
+	
 	MasterPacketDiscriminator::Init();
 	ASSERT_CRASH(masterNet->Ready(1));
 	ASSERT_CRASH(masterNet->ReadyToConnect(host, port));

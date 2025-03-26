@@ -17,7 +17,7 @@ public:
 
 private:
 	void ErrorHandle(UInt32 _err);
-	void DispatchEvent(class IocpEvent* _event, UInt32 _bytes);
+	void DispatchEvent(class IocpEvent* _event, UInt32 _bytes, int32_t _err_no = NO_ERROR);
 
 public:
 	bool Ready(DWORD _iocpThreadPoolCnt = 0);

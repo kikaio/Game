@@ -4,36 +4,32 @@
 
 bool DummyUserManager::LoadScenarioFromFile()
 {
-	{
-		//시작 시 connect 요청
-		auto _dumActSptr = MakeShared<DumActGameServerConnect>(100);
-		dumActs.push_back(_dumActSptr);
-	}
-	{
-		//LoginData 설정
-		auto _dumActSptr = MakeShared<DumActGameConn>(100);
-		dumActs.push_back(_dumActSptr);
-	}
-	{
-		//LoginData 설정
-		auto _dumActSptr = MakeShared<DumActSetLoginData>("testDummy");
-		dumActs.push_back(_dumActSptr);
-	}
-	{
-		//LoginData 설정
-		auto _dumActSptr = MakeShared<DumActLogin>(100);
-		dumActs.push_back(_dumActSptr);
-	}
 	//{
-	//	//connect 후 chat 전송
-	//	auto _dumActSptr = MakeShared<DumActChat>(1, "first chat");
+	//	//시작 시 connect 요청
+	//	auto _dumActSptr = MakeShared<DumActGameServerConnect>(100);
 	//	dumActs.push_back(_dumActSptr);
 	//}
 	//{
-	//	//connect 후 chat 전송
-	//	auto _dumActSptr = MakeShared<DumActChat>(2, "second chat");
+	//	//LoginData 설정
+	//	auto _dumActSptr = MakeShared<DumActGameConn>(100);
 	//	dumActs.push_back(_dumActSptr);
 	//}
+	//{
+	//	//LoginData 설정
+	//	auto _dumActSptr = MakeShared<DumActSetLoginData>("testDummy");
+	//	dumActs.push_back(_dumActSptr);
+	//}
+	//{
+	//	//LoginData 설정
+	//	auto _dumActSptr = MakeShared<DumActLogin>(100);
+	//	dumActs.push_back(_dumActSptr);
+	//}
+
+	{
+		//connect 후 chat 전송
+		auto _dumActSptr = MakeShared<DumActChatConn>(100);
+		dumActs.push_back(_dumActSptr);
+	}
 	return true;
 }
 

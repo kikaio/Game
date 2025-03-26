@@ -51,10 +51,10 @@ void NetworkCore::ErrorHandle(UInt32 _err)
 	}
 }
 
-void NetworkCore::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
+void NetworkCore::DispatchEvent(IocpEvent* _event, UInt32 _bytes, int32_t _err_no)
 {
 	IocpObjSptr obj = _event->owner;
-	obj->DispatchEvent(_event, _bytes);
+	obj->DispatchEvent(_event, _bytes, _err_no);
 }
 
 bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _backlog, UInt32 _acceptCnt)
@@ -155,7 +155,7 @@ void NetworkCore::Dispatch(UInt32 _milliSec)
 		default: {
 			//이 경우 처리를 해줘야 server에서 usersession에 대한 disconnected를 탐지가능.
 			IocpEvent* iocpEvent = reinterpret_cast<IocpEvent*>(overlappedPtr);
-			DispatchEvent(iocpEvent, bytes);
+			DispatchEvent(iocpEvent, bytes, error);
 			return;
 		}
 		}

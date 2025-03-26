@@ -85,5 +85,5 @@ protected:
 	}
 public:
 	void SetIocpCore(IocpCoreSptr _iocpCore);
-	void DispatchEvent(IocpEvent* _event, UInt32 _bytes);
+	void DispatchEvent(IocpEvent* _event, UInt32 _bytes, int32_t _err_no);
 };

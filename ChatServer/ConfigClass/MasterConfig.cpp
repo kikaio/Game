@@ -1,6 +1,15 @@
 #include "pch.h"
 #include "MasterConfig.h"
 
+
+const string& MasterConfig::Host() {
+	return hostStr;
+}
+
+uint16_t MasterConfig::Port() {
+	return port;
+}
+
 void MasterConfig::Init(rapidjson::Value& _val) {
 	ASSERT_CRASH(_val.HasMember("host"));
 	string _host = _val["host"].GetString();

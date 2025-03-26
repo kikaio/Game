@@ -231,9 +231,10 @@ void IocpObj::OnConnected()
 {
 	if(isConnected.exchange(true) == true) {
 		printf("duplicated connect????\n");
+		return ;
 	}
-	iocpConnect.owner = nullptr;
 
+	iocpConnect.owner = nullptr;
 	TryRecv();
 	AfterConnected();
 }
@@ -336,27 +337,36 @@ void IocpObj::SetIocpCore(IocpCoreSptr _iocpCore)
 
 char testMsg[SMALL_BUF_SIZE] = "Wellcome to the Game!!\0";
 
-void IocpObj::DispatchEvent(IocpEvent* _event, UInt32 _bytes)
+void IocpObj::DispatchEvent(IocpEvent* _event, UInt32 _bytes, int32_t _err_no)
 {
 	switch (_event->Type()) {
 	case IocpEvent::IOCP_EVENT::ACCEPT: {
-		printf("On Accept!!\n");
 		IocpAccept* iocpAccept = reinterpret_cast<IocpAccept*>(_event);
 		SessionSptr session = iocpAccept->session;
 		OnAccepted(iocpAccept, session);
 		break;
 	}
 	case IocpEvent::IOCP_EVENT::CONNECT: {
-		printf("On Connected\n");
 		IocpConnect* iocpConnect = reinterpret_cast<IocpConnect*>(_event);
-		OnConnected();
+		if(_err_no == NO_ERROR) {
+			OnConnected();
+		}
+		else {
+			printf("error at OnConnected : %d\n", _err_no);
+		}
 		break;
 	}
 	case IocpEvent::IOCP_EVENT::RECV: {
+		if (_err_no != NO_ERROR) {
+			printf("error at OnRecved : %d\n", _err_no);
+		}
 		OnRecved(_bytes);
 		break;
 	}
 	case IocpEvent::IOCP_EVENT::SEND: {
+		if (_err_no != NO_ERROR) {
+			printf("error at OnSended : %d\n", _err_no);
+		}
 		OnSended(_bytes);
 		break;
 	}

@@ -5,14 +5,10 @@ private:
 	string hostStr = "";
 	int16_t port = 0;
 public:
-	void Init(rapidjson::Value& _val);
+	const string& Host();
+	uint16_t Port();
 public:
-	const string& GetHost() {
-		return hostStr;
-	}
-	int16_t GetPort() {
-		return port;
-	}
+	void Init(rapidjson::Value& _val);
 public:
 	void Render();
 };
