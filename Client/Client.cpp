@@ -28,24 +28,25 @@ int main()
 		auto dummyUser = MakeShared<DummyUser>();
 		dummyUser->gameServerNetCore = gameServerNetCore;
 		dummyUser->chatServerNetCore = chatServerNetCore;
+		dummyUser->SetChatServerInfo(chatConfig.Host(), chatConfig.Port());
 		DummyUserManager::Get().PushDummyUser(dummyUser);
 	}
 
 
 	//기본적인 Net 연결 관련 설정 준비 - game server
-	ThreadManager::Get().PushAndStart(
+	/*ThreadManager::Get().PushAndStart(
 		[gameServerNetCore](){ 
 			DoClientToGameServer(gameServerNetCore); 
 		}
 		, "DoClientToGameServer", "iocp port dispatch while shutdown"
-	);
+	);*/
 
-	//ThreadManager::Get().PushAndStart(
-	//	[chatServerNetCore]() {
-	//		DoClientToChatServer(chatServerNetCore);
-	//	}
-	//	, "DoClientToChatServer", "iocp port dispatch while shutdown"
-	//);
+	ThreadManager::Get().PushAndStart(
+		[chatServerNetCore]() {
+			DoClientToChatServer(chatServerNetCore);
+		}
+		, "DoClientToChatServer", "iocp port dispatch while shutdown"
+	);
 
 
 	//worker thread 및 job timer 준비
@@ -126,7 +127,7 @@ void DoClientToChatServer(NetworkCoreSptr _netCore) {
 	ChatServerDiscriminator::Init();
 	ASSERT_CRASH(_netCore->Ready(chatConfig.IocpThreadCnt()));
 
-	DUM_DEBUG_LOG("chat wsa standby.");
+	DUM_DEBUG_LOG("chat wsa standby. host : {}:{}", chatConfig.Host(), chatConfig.Port());
 	if (_netCore->ReadyToConnect(chatConfig.Host(), chatConfig.Port()) == false) {
 		DUM_DEBUG_LOG("ReadyToConnect failed.");
 		return;

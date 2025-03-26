@@ -67,7 +67,7 @@ bool NetworkCore::ReadyToAccept(ListenerSptr _listener, UInt32 _backlog, UInt32 
 		UInt32 err = WSAGetLastError();
 		if (err != WSA_IO_PENDING) {
 			// todo  : ASSERT?
-			printf("bind failed\n");
+			printf("bind failed, error : %d\n", err);
 			CRASH("bind failed\n");
 			ErrorHandle(err);
 		}

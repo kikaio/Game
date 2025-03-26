@@ -46,10 +46,12 @@ void Init() {
 	rapidjson::Value masterValue(rapidjson::kObjectType);
 	jr.GetObjectW("master", masterValue);
 	masterConfig.Init(masterValue);
+	masterConfig.Render();
 		
 	rapidjson::Value chatValue(rapidjson::kObjectType);
 	jr.GetObjectW("chat", chatValue);
 	chatConfig.Init(chatValue);
+	chatConfig.Render();
 
 
 	rapidjson::Value mongoDBValue(rapidjson::kObjectType);
@@ -100,5 +102,33 @@ void StartMasterThread() {
 
 void StartChatThread() {
 	NetworkCoreSptr chatNet = MakeShared<NetworkCore>();
+	int32_t acceptCnt = chatConfig.AcceptCnt();
+	int32_t backLog = chatConfig.BackLog();
+	uint16_t listenPort = chatConfig.ListenPort();
+	int32_t iocpThreadCnt = 1;
+
+	string serverName = chatConfig.Name();
+	int32_t tag1 = chatConfig.No();
+	UInt32 tag2 = 0;
+
+
+	ASSERT_CRASH(chatNet->Ready(iocpThreadCnt));
+	CS_DEBUG_LOG("wsa standby");
+	
+	ListenerSptr listener = MakeShared<Listener>(listenPort);
+	CS_DEBUG_LOG("ready listener for chat server");
+
+	chatNet->CreateSessionFactory = [] {
+		UserSessionSptr _session = MakeShared<UserSession>();
+		return static_pointer_cast<Session>(_session);
+	};
+
+	ASSERT_CRASH(chatNet->ReadyToAccept(listener, backLog, acceptCnt));
+	CS_DEBUG_LOG("accept ready");
+	
+	UInt32 waitMilliSec = INFINITE;
+	while (true) {
+		chatNet->Dispatch(waitMilliSec);
+	}
 	return ;
 }

@@ -5,3 +5,9 @@ Listener::Listener(UInt32 _port)
 {
 	Net()->SetAddrAny(_port);
 }
+
+Listener::Listener(uint16_t _port)
+	: IocpObj()
+{
+	Net()->SetAddrAny(_port);
+}
