@@ -54,10 +54,10 @@
     <ClCompile Include="Sessions\MasterSession.cpp">
       <Filter>Sessions</Filter>
     </ClCompile>
-    <ClCompile Include="PacketHandles\ServerPacketHandler.cpp">
+    <ClCompile Include="PacketHandles\UserPacketDiscriminator.cpp">
       <Filter>PacketHandles</Filter>
     </ClCompile>
-    <ClCompile Include="PacketHandles\MasterPacketHandler.cpp">
+    <ClCompile Include="PacketHandles\MasterPacketDiscriminator.cpp">
       <Filter>PacketHandles</Filter>
     </ClCompile>
     <ClCompile Include="MasterAndGameServerHandle\AnsMasterServerConnect.cpp">
@@ -125,10 +125,10 @@
     <ClInclude Include="Sessions\MasterSession.h">
       <Filter>Sessions</Filter>
     </ClInclude>
-    <ClInclude Include="PacketHandles\ServerPacketHandler.h">
+    <ClInclude Include="PacketHandles\UserPacketDiscriminator.h">
       <Filter>PacketHandles</Filter>
     </ClInclude>
-    <ClInclude Include="PacketHandles\MasterPacketHandler.h">
+    <ClInclude Include="PacketHandles\MasterPacketDiscriminator.h">
       <Filter>PacketHandles</Filter>
     </ClInclude>
     <ClInclude Include="MasterAndGameServerHandle\MasterAndGameServerHandle.h">

@@ -1,18 +1,23 @@
 #pragma once
 //master server와 server간의 주고받는 packet에 대한 handler 관련 코드들.
 
-class MasterPacketHandler
+#define MASTER_AND_GAME_FUNC_MAP map<MasterAndGameServer::Protocol, PacketFunc*>
+
+#define DECL_MAKE_SENDBUF_FROM_MASTER_PACKET(_msgType, _protocolName) 																	\
+	static SendBufferSptr MakePacket##_msgType##_protocolName(const MasterAndGameServer::##_msgType##_protocolName& _packet)			\
+
+class MasterPacketDiscriminator
 {
 private:
-	static map<MasterAndGameServer::Protocol, PacketFunc*> reqMap;	//받은 req를 handle
-	static map<MasterAndGameServer::Protocol, PacketFunc*> ansMap;  //받은 ans를 handle
-	static map<MasterAndGameServer::Protocol, PacketFunc*> notiMap;  //받은 noti를 handle
-	static map<MasterAndGameServer::Protocol, PacketFunc*> errMap;  //받은 err를 handle
+	static MASTER_AND_GAME_FUNC_MAP reqMap;	//받은 req를 handle
+	static MASTER_AND_GAME_FUNC_MAP ansMap;  //받은 ans를 handle
+	static MASTER_AND_GAME_FUNC_MAP notiMap;  //받은 noti를 handle
+	static MASTER_AND_GAME_FUNC_MAP errMap;  //받은 err를 handle
 private:
-	static bool HandleMasterAndGameServerReq(SessionSptr _session, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol, BufReader* _brPtr);
-	static bool HandleMasterAndGameServerAns(SessionSptr _session, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol, BufReader* _brPtr);
-	static bool HandleMasterAndGameServerNoti(SessionSptr _session, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol, BufReader* _brPtr);
-	static bool HandleMasterAndGameServerErr(SessionSptr _session, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol, BufReader* _brPtr);
+	static bool DiscriminateReq(SessionSptr _session, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol, BufReader* _brPtr);
+	static bool DiscriminateAns(SessionSptr _session, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol, BufReader* _brPtr);
+	static bool DiscriminateNoti(SessionSptr _session, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol, BufReader* _brPtr);
+	static bool DiscriminateErr(SessionSptr _session, MasterAndGameServer::MsgType _msgType, MasterAndGameServer::Protocol _protocol, BufReader* _brPtr);
 private:
 	static void AbusingRecord(SessionSptr _session, int32_t _msgType, int32_t _protocol, BufReader* _buf);
 public:
@@ -29,7 +34,7 @@ public: //해당 packet에 대해서 전송해주는 함수들.
 
 //실질적으로 각 packet 발송 시 여기서 buffer 처리를 한다.
 template<typename MSG_TYPE, typename P, typename T>
-SendBufferSptr MasterPacketHandler::MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet) {
+SendBufferSptr MasterPacketDiscriminator::MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet) {
 
 	uint16_t byteLen = _packet.ByteSizeLong();
 	uint32_t headerVal = sizeof(MSG_TYPE) + sizeof(P) + byteLen;

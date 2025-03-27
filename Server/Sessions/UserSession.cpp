@@ -4,7 +4,7 @@
 #define IMPL_USER_SESSION_SEND_PACKET(_msgType, _protocolName)										\
 bool UserSession::SendPacket(const UserAndGameServer::##_msgType##_protocolName& _packet)			\
 {																									\
-	SendBufferSptr sendBuf = ServerPacketHandler::MakePacket##_msgType##_protocolName(_packet);		\
+	SendBufferSptr sendBuf = UserPacketDiscriminator::MakePacket##_msgType##_protocolName(_packet);	\
 	return TrySend(sendBuf);																		\
 }																									\
 
@@ -25,7 +25,7 @@ GameUserSptr UserSession::GetGameUser() {
 
 bool UserSession::OnPacketRecved(BYTE* _payloadPtr, uint32_t _payloadBytes)
 {
-	if (ServerPacketHandler::HandlePayload(GetSession(), _payloadPtr, _payloadBytes) == false) {
+	if (UserPacketDiscriminator::HandlePayload(GetSession(), _payloadPtr, _payloadBytes) == false) {
 		//todo : error logging
 		return false;
 	}
@@ -34,7 +34,7 @@ bool UserSession::OnPacketRecved(BYTE* _payloadPtr, uint32_t _payloadBytes)
 
 bool UserSession::SendError(const UserAndGameServer::NotiErrInfo& _err)
 {
-	SendBufferSptr sendBuf = ServerPacketHandler::MakePacketNotiErrInfo(_err);
+	SendBufferSptr sendBuf = UserPacketDiscriminator::MakePacketNotiErrInfo(_err);
 	return TrySend(sendBuf);
 }
 

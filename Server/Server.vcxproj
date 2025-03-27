@@ -167,8 +167,8 @@
     <ClCompile Include="Helper\MonitorHelper.cpp" />
     <ClCompile Include="Helper\ProtoConverter.cpp" />
     <ClCompile Include="MasterAndGameServerHandle\AnsMasterServerConnect.cpp" />
-    <ClCompile Include="PacketHandles\MasterPacketHandler.cpp" />
-    <ClCompile Include="PacketHandles\ServerPacketHandler.cpp" />
+    <ClCompile Include="PacketHandles\MasterPacketDiscriminator.cpp" />
+    <ClCompile Include="PacketHandles\UserPacketDiscriminator.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -194,8 +194,8 @@
     <ClInclude Include="Helper\MonitorHelper.h" />
     <ClInclude Include="Helper\ProtoConverter.h" />
     <ClInclude Include="MasterAndGameServerHandle\MasterAndGameServerHandle.h" />
-    <ClInclude Include="PacketHandles\MasterPacketHandler.h" />
-    <ClInclude Include="PacketHandles\ServerPacketHandler.h" />
+    <ClInclude Include="PacketHandles\MasterPacketDiscriminator.h" />
+    <ClInclude Include="PacketHandles\UserPacketDiscriminator.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ServerDBTypes.h" />
     <ClInclude Include="ServerDefines.h" />

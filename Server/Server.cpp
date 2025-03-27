@@ -107,7 +107,7 @@ int32_t DoServerLogic() {
 }
 
 void DoIocpGameService(NetworkCoreSptr netCore) {
-    ServerPacketHandler::Init();
+    UserPacketDiscriminator::Init();
     UInt32 tag1 = gameConf.No();
     UInt32 tag2 = 0;
 
@@ -156,7 +156,7 @@ void DoIocpMasterService(NetworkCoreSptr master) {
     //master server instance 기다려주는 시간
     this_thread::sleep_for(3s);
 
-    MasterPacketHandler::Init();
+    MasterPacketDiscriminator::Init();
 
     int32_t serverNo = 1;
     string serverName = "game_instance";

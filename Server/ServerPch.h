@@ -23,8 +23,8 @@
 
 #include "LogHelper.h"
 
-#include "ServerPacketHandler.h"
-#include "MasterPacketHandler.h"
+#include "UserPacketDiscriminator.h"
+#include "MasterPacketDiscriminator.h"
 
 #include "UserSession.h"
 #include "MasterSession.h"
