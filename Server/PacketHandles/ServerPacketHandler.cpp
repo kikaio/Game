@@ -82,19 +82,6 @@ void ServerPacketHandler::Init()
 		printf("handle for AnsTestMsg.\n");
 		return false;
 	});
-	//REGIST_PACKET_FUNC(Req, Chat, [](SessionSptr _session, BufReader* _brPtr){
-	//	UserAndGameServer::ReqChat packet;
-	//	packet.ParseFromArray(_brPtr->Buffer() + _brPtr->ReadSize(), _brPtr->FreeSize());
-	//	_brPtr->Close();
-	//	return UserAndGameServerHandle::ReqChat(static_pointer_cast<UserSession>(_session), packet);
-	//});
-	//REGIST_PACKET_FUNC(Req, Login, [](SessionSptr _session, BufReader* _brPtr){
-	//	UserAndGameServer::ReqLogin packet;
-	//	packet.ParseFromArray(_brPtr->Buffer() + _brPtr->ReadSize(), _brPtr->FreeSize());
-	//	_brPtr->Close();
-	//	return UserAndGameServerHandle::ReqLogin(static_pointer_cast<UserSession>(_session), packet);
-	//});
-	REGIST_USER_PACKET_HANDLE(Req, Chat);
 	REGIST_USER_PACKET_HANDLE(Req, Login);
 	REGIST_USER_PACKET_HANDLE(Req, GameConn);
 }
@@ -157,6 +144,5 @@ bool ServerPacketHandler::HandlePayload(SessionSptr _session, BYTE* _buf, uint32
 
 
 IMPL_MAKE_PACKET_FUNC(ServerPacketHandler, Noti, ErrInfo);
-IMPL_MAKE_PACKET_FUNC(ServerPacketHandler, Ans, Chat);
 IMPL_MAKE_PACKET_FUNC(ServerPacketHandler, Ans, Login);
 IMPL_MAKE_PACKET_FUNC(ServerPacketHandler, Ans, GameConn);

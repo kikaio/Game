@@ -21,7 +21,6 @@ public:
 	bool SendError(const PacketError& _err);
 public:
 	DECL_USER_SESSION_SEND_PACKET(Noti, ErrInfo);
-	DECL_USER_SESSION_SEND_PACKET(Ans, Chat);
 	DECL_USER_SESSION_SEND_PACKET(Ans, Login);
 	DECL_USER_SESSION_SEND_PACKET(Ans, GameConn);
 };

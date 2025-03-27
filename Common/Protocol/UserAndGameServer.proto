@@ -16,9 +16,8 @@ enum Protocol {
 	PublicKey = 2;
 	Connect = 3;
 	TestMsg = 4;
-	Chat = 5;
-	Login = 6;
-	GameConn = 7;
+	Login = 5;
+	GameConn = 6;
 }
 
 message ItemData {
@@ -47,20 +46,6 @@ message GameProfile {
 	string greeting_ment = 2;
 	int32 main_hero_id = 3;
 	int32 main_frame_id = 4;
-}
-
-message ChatProfile {
-	int32 profile_id = 1;
-	string nick_name = 2;
-	int32 profile_hero_id = 3;
-	int32 profile_frame_id = 4;
-	int32 main_hero_id = 5;
-}
-
-message ChatData {
-	int32 chat_type = 1;
-	ChatProfile chat_profile = 2;
-	string msg = 3;
 }
 
 message LoginData {
@@ -104,14 +89,6 @@ message ReqTestMsg {
 
 message AnsTestMsg {
 	string msg = 1;
-}
-
-message ReqChat {
-	ChatData chat_data = 1;
-}
-
-message AnsChat {
-	ChatData chat_data = 1;
 }
 
 message ReqLogin {

@@ -45,9 +45,6 @@
     <ClCompile Include="ServerPch.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="UserAndGameServerHandle\ReqChat.cpp">
-      <Filter>Main\UserAndGameServerHandle</Filter>
-    </ClCompile>
     <ClCompile Include="DBWrapper\DBWrapper.cpp">
       <Filter>DBWrapper</Filter>
     </ClCompile>

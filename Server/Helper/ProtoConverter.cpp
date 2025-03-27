@@ -16,22 +16,6 @@ void ProtoConverter::ToProto(const GameProfile& _in, UserAndGameServer::GameProf
 	_out.set_main_frame_id(_in.MainFrameId());
 }
 
-void ProtoConverter::ToProto(const ChatProfile& _in, UserAndGameServer::ChatProfile& _out)
-{
-	_out.set_profile_id(_in.profileId);
-	_out.set_nick_name(_in.nickName);
-	_out.set_profile_hero_id(_in.profileHeroId);
-	_out.set_profile_frame_id(_in.profileFrameId);
-	_out.set_main_hero_id(_in.mainHeroId);
-}
-
-void ProtoConverter::ToProto(const ChatData& _in, UserAndGameServer::ChatData& _out)
-{
-	_out.set_chat_type(ENUM_TO_INT(_in.chatType));
-	ToProto(_in.chatProfile, *_out.mutable_chat_profile());
-	_out.set_msg(_in.msg);
-}
-
 void ProtoConverter::ToProto(const ItemData& _in, UserAndGameServer::ItemData& _out)
 {
 	_out.set_basis_id(_in.GetBasisId());
@@ -82,11 +66,6 @@ void ProtoConverter::ToPacket(
 	ToProto(_inventory, *_out.mutable_user_inventory());
 }
 
-void ProtoConverter::ToPacket(const ChatData& _chatData, UserAndGameServer::AnsChat& _out) {
-	ToProto(_chatData, *_out.mutable_chat_data());
-	return ;
-}
-
 void ProtoConverter::ToPacket(const PacketError& _packetError, UserAndGameServer::NotiErrInfo& _out)
 {
 	_out.set_err_no(_packetError.err_no);
@@ -117,27 +96,6 @@ void ProtoConverter::FromProto(const UserAndGameServer::LoginData& _in, LoginDat
 	return ;
 }
 
-void ProtoConverter::FromProto(const UserAndGameServer::ChatProfile& _in, ChatProfile& _out)
-{
-	_out.profileId = _in.profile_id();
-	_out.nickName = _in.nick_name();
-	_out.profileHeroId = _in.profile_hero_id();
-	_out.profileFrameId = _in.profile_frame_id();
-	_out.mainHeroId = _in.main_hero_id();
-}
-
-void ProtoConverter::FromProto(const UserAndGameServer::ChatData& _in, ChatData& _out) {
-	auto _optional = ENUM_FROM_INT(CHAT_TYPE, _in.chat_type());
-	if(_optional.has_value()) {
-		_out.chatType = _optional.value();
-	}
-	else {
-		//todo : error logging
-	}
-	FromProto(_in.chat_profile(), _out.chatProfile);
-	_out.msg = _in.msg();
-}
-
 void ProtoConverter::FromProto(const UserAndGameServer::ItemData& _in, ItemData& _out)
 {
 	_out.SetBasisId(_in.basis_id());
@@ -159,10 +117,6 @@ void ProtoConverter::FromProto(const UserAndGameServer::CharacterData& _in, Char
 void ProtoConverter::FromPacket(const UserAndGameServer::ReqLogin& _in, LoginData& _loginData)
 {
 	FromProto(_in.login_data(), _loginData);
-}
-
-void ProtoConverter::FromPacket(const UserAndGameServer::ReqChat& _in, ChatData& _chatData) {
-	FromProto(_in.chat_data(), _chatData);
 }
 
 void ProtoConverter::FromPacket(const UserAndGameServer::NotiErrInfo& _in, PacketError& _packetError)

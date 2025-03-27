@@ -179,7 +179,6 @@
     <ClCompile Include="ServerPch.cpp" />
     <ClCompile Include="Sessions\MasterSession.cpp" />
     <ClCompile Include="Sessions\UserSession.cpp" />
-    <ClCompile Include="UserAndGameServerHandle\ReqChat.cpp" />
     <ClCompile Include="UserAndGameServerHandle\ReqGameConn.cpp" />
     <ClCompile Include="UserAndGameServerHandle\ReqLogin.cpp" />
     <ClCompile Include="User\GameProfile.cpp" />
