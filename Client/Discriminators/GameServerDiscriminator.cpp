@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "GameServerPacketHandler.h"
+#include "GameServerDiscriminator.h"
 
 #define REGIST_GAME_SERVER_PACKET_FUNC(_msgType, _protocol, _func)																\
 {																													\
@@ -22,79 +22,78 @@
 }																															\
 
 
-map<UserAndGameServer::Protocol, PacketFunc*> GameServerPacketHandler::userAndGameServerReqMap;	//받은 req를 handle
-map<UserAndGameServer::Protocol, PacketFunc*> GameServerPacketHandler::userAndGameServerAnsMap;  //받은 ans를 handle
-map<UserAndGameServer::Protocol, PacketFunc*> GameServerPacketHandler::userAndGameServerNotiMap;  //받은 noti를 handle
-map<UserAndGameServer::Protocol, PacketFunc*> GameServerPacketHandler::userAndGameServerErrMap;  //받은 err를 handle
+USER_AND_GAME_FUNC_MAP  GameServerDiscriminator::reqMap;	//받은 req를 handle
+USER_AND_GAME_FUNC_MAP  GameServerDiscriminator::ansMap;  //받은 ans를 handle
+USER_AND_GAME_FUNC_MAP  GameServerDiscriminator::notiMap;  //받은 noti를 handle
+USER_AND_GAME_FUNC_MAP  GameServerDiscriminator::errMap;  //받은 err를 handle
 
 
-
-bool GameServerPacketHandler::HandleUserAndGameServerReq(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr)
+bool GameServerDiscriminator::DiscriminateReq(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr)
 {
-	auto finder = userAndGameServerReqMap.find(_protocol);
-	if (finder == userAndGameServerReqMap.end()) {
+	auto finder = reqMap.find(_protocol);
+	if (finder == reqMap.end()) {
 		//abusing 기록
 		AbusingRecord(_session, _msgType, _protocol, _brPtr);
 		return false;
 	}
-	return userAndGameServerReqMap[_protocol](_session, _brPtr);
+	return reqMap[_protocol](_session, _brPtr);
 }
 
-bool GameServerPacketHandler::HandleUserAndGameServerAns(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr)
+bool GameServerDiscriminator::DiscriminateAns(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr)
 {
-	auto finder = userAndGameServerAnsMap.find(_protocol);
-	if (finder == userAndGameServerAnsMap.end()) {
+	auto finder = ansMap.find(_protocol);
+	if (finder == ansMap.end()) {
 		//abusing 기록
 		AbusingRecord(_session, _msgType, _protocol, _brPtr);
 		return false;
 	}
-	return userAndGameServerAnsMap[_protocol](_session, _brPtr);
+	return ansMap[_protocol](_session, _brPtr);
 }
 
-bool GameServerPacketHandler::HandleUserAndGameServerNoti(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr)
+bool GameServerDiscriminator::DiscriminateNoti(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr)
 {
-	auto finder = userAndGameServerNotiMap.find(_protocol);
-	if (finder == userAndGameServerNotiMap.end()) {
+	auto finder = notiMap.find(_protocol);
+	if (finder == notiMap.end()) {
 		//abusing 기록
 		AbusingRecord(_session, _msgType, _protocol, _brPtr);
 		return false;
 	}
-	return userAndGameServerNotiMap[_protocol](_session, _brPtr);
+	return notiMap[_protocol](_session, _brPtr);
 }
 
-bool GameServerPacketHandler::HandleUserAndGameServerErr(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr)
+bool GameServerDiscriminator::DiscriminateErr(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr)
 {
-	auto finder = userAndGameServerErrMap.find(_protocol);
-	if (finder == userAndGameServerErrMap.end()) {
+	auto finder = errMap.find(_protocol);
+	if (finder == errMap.end()) {
 		//abusing 기록
 		AbusingRecord(_session, _msgType, _protocol, _brPtr);
 		return false;
 	}
-	return userAndGameServerErrMap[_protocol](_session, _brPtr);
+	return errMap[_protocol](_session, _brPtr);
 }
 
 
-void GameServerPacketHandler::AbusingRecord(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _buf)
+void GameServerDiscriminator::AbusingRecord(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _buf)
 {
 }
 
-void GameServerPacketHandler::RegistPacketFunc(UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, PacketFunc* _func)
+void GameServerDiscriminator::RegistPacketFunc(UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, PacketFunc* _func)
 {
 	switch(_msgType) {
 	case UserAndGameServer::MsgType::Req : {
-		userAndGameServerReqMap[_protocol] = _func;
+		reqMap[_protocol] = _func;
 		break;
 	}
 	case UserAndGameServer::MsgType::Ans: {
-		userAndGameServerAnsMap[_protocol] = _func;
+		ansMap[_protocol] = _func;
 		break;
 	}
 	case UserAndGameServer::MsgType::Noti: {
-		userAndGameServerNotiMap[_protocol] = _func;
+		notiMap[_protocol] = _func;
 		break;
 	}
 	case UserAndGameServer::MsgType::Err: {
-		userAndGameServerErrMap[_protocol] = _func;
+		errMap[_protocol] = _func;
 		break;
 	}
 	default: {
@@ -105,7 +104,7 @@ void GameServerPacketHandler::RegistPacketFunc(UserAndGameServer::MsgType _msgTy
 	return ;
 }
 
-void GameServerPacketHandler::Init()
+void GameServerDiscriminator::Init()
 {
 	// msgType, protocolName을 처리하는 function을 각각의 map에 연결해준다.
 	//각 msg, packet에 대한 handler를 호출해주는 function을 연결해주는 과정을 여기서 진행한다.
@@ -115,7 +114,7 @@ void GameServerPacketHandler::Init()
 	return;
 }
 
-bool GameServerPacketHandler::HandlePayload(SessionSptr _session, BYTE* _buf, uint32_t _size)
+bool GameServerDiscriminator::HandlePayload(SessionSptr _session, BYTE* _buf, uint32_t _size)
 {
 	BufReader br(_buf, _size);
 	UserAndGameServer::MsgType msgType;
@@ -126,19 +125,19 @@ bool GameServerPacketHandler::HandlePayload(SessionSptr _session, BYTE* _buf, ui
 	bool ret = false;
 	switch(msgType) {
 	case UserAndGameServer::MsgType::Req: {
-		ret = HandleUserAndGameServerReq(_session, msgType, protocol, &br);
+		ret = DiscriminateReq(_session, msgType, protocol, &br);
 		break;
 	}
 	case UserAndGameServer::MsgType::Ans: {
-		ret = HandleUserAndGameServerAns(_session, msgType, protocol, &br);
+		ret = DiscriminateAns(_session, msgType, protocol, &br);
 		break;
 	}
 	case UserAndGameServer::MsgType::Noti : {
-		ret = HandleUserAndGameServerNoti(_session, msgType, protocol, &br);
+		ret = DiscriminateNoti(_session, msgType, protocol, &br);
 		break;
 	}
 	case UserAndGameServer::MsgType::Err: {
-		ret = HandleUserAndGameServerErr(_session, msgType, protocol, &br);
+		ret = DiscriminateErr(_session, msgType, protocol, &br);
 		break;
 	}
 	default: {

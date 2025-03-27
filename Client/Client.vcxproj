@@ -166,7 +166,7 @@
     <ClCompile Include="ConfigClass\GameConfig.cpp" />
     <ClCompile Include="ConfigClass\MasterConfig.cpp" />
     <ClCompile Include="Discriminators\ChatServerDiscriminator.cpp" />
-    <ClCompile Include="Discriminators\GameServerPacketHandler.cpp" />
+    <ClCompile Include="Discriminators\GameServerDiscriminator.cpp" />
     <ClCompile Include="Dummy\ChatData\ChatData.cpp" />
     <ClCompile Include="Dummy\ChatData\ChatProfile.cpp" />
     <ClCompile Include="Dummy\DumAct\DumAct.cpp" />
@@ -195,7 +195,7 @@
     <ClInclude Include="ConfigClass\GameConfig.h" />
     <ClInclude Include="ConfigClass\MasterConfig.h" />
     <ClInclude Include="Discriminators\ChatServerDiscriminator.h" />
-    <ClInclude Include="Discriminators\GameServerPacketHandler.h" />
+    <ClInclude Include="Discriminators\GameServerDiscriminator.h" />
     <ClInclude Include="Dummy\ChatData\ChatData.h" />
     <ClInclude Include="Dummy\ChatData\ChatProfile.h" />
     <ClInclude Include="Dummy\DumAct\DumAct.h" />

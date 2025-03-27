@@ -84,7 +84,7 @@
     <ClCompile Include="Discriminators\ChatServerDiscriminator.cpp">
       <Filter>Discriminators</Filter>
     </ClCompile>
-    <ClCompile Include="Discriminators\GameServerPacketHandler.cpp">
+    <ClCompile Include="Discriminators\GameServerDiscriminator.cpp">
       <Filter>Discriminators</Filter>
     </ClCompile>
     <ClCompile Include="ConfigClass\ChatConfig.cpp">
@@ -164,7 +164,7 @@
     <ClInclude Include="Discriminators\ChatServerDiscriminator.h">
       <Filter>Discriminators</Filter>
     </ClInclude>
-    <ClInclude Include="Discriminators\GameServerPacketHandler.h">
+    <ClInclude Include="Discriminators\GameServerDiscriminator.h">
       <Filter>Discriminators</Filter>
     </ClInclude>
     <ClInclude Include="ConfigClass\ChatConfig.h">

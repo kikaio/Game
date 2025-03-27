@@ -14,18 +14,21 @@ static SendBufferSptr MakeSendBufferFromPacket(UserAndGameServer::##_msgType##_p
 }																																\
 
 
-class GameServerPacketHandler
+#define USER_AND_GAME_FUNC_MAP map<UserAndGameServer::Protocol, PacketFunc*>
+
+
+class GameServerDiscriminator
 {
 private:
-	static map<UserAndGameServer::Protocol, PacketFunc*> userAndGameServerReqMap;	//받은 req를 handle
-	static map<UserAndGameServer::Protocol, PacketFunc*> userAndGameServerAnsMap;  //받은 ans를 handle
-	static map<UserAndGameServer::Protocol, PacketFunc*> userAndGameServerNotiMap;  //받은 noti를 handle
-	static map<UserAndGameServer::Protocol, PacketFunc*> userAndGameServerErrMap;  //받은 err를 handle
+	static USER_AND_GAME_FUNC_MAP reqMap;	//받은 req를 handle
+	static USER_AND_GAME_FUNC_MAP ansMap;  //받은 ans를 handle
+	static USER_AND_GAME_FUNC_MAP notiMap;  //받은 noti를 handle
+	static USER_AND_GAME_FUNC_MAP errMap;  //받은 err를 handle
 private:
-	static bool HandleUserAndGameServerReq(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr);
-	static bool HandleUserAndGameServerAns(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr);
-	static bool HandleUserAndGameServerNoti(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr);
-	static bool HandleUserAndGameServerErr(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr);
+	static bool DiscriminateReq(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr);
+	static bool DiscriminateAns(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr);
+	static bool DiscriminateNoti(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr);
+	static bool DiscriminateErr(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _brPtr);
 private:
 	static void AbusingRecord(SessionSptr _session, UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, BufReader* _buf);
 	static void RegistPacketFunc(UserAndGameServer::MsgType _msgType, UserAndGameServer::Protocol _protocol, PacketFunc* _func);
@@ -43,7 +46,7 @@ public: //server에 보낼 packet을 통해 sendBytes를 만드는 과정에 대
 };
 
 template<typename MSG_TYPE, typename P, typename T>
-SendBufferSptr GameServerPacketHandler::MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet) {
+SendBufferSptr GameServerDiscriminator::MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet) {
 
 	uint16_t byteLen = _packet.ByteSizeLong();
 	uint32_t headerVal = sizeof(MSG_TYPE) + sizeof(P) + byteLen;

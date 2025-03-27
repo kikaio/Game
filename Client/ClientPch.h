@@ -23,10 +23,10 @@
 
 #include "GameServerSession.h"
 #include "ChatServerSession.h"
-#include "GameServerPacketHandler.h"
-#include "UserAndGameServerHandle.h"
-
+#include "GameServerDiscriminator.h"
 #include "ChatServerDiscriminator.h"
+
+#include "UserAndGameServerHandle.h"
 
 #include "ChatData.h"
 #include "ChatProfile.h"

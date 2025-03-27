@@ -106,7 +106,7 @@ void Init() {
 
 void DoClientToGameServer(NetworkCoreSptr _netCore) {
 
-	GameServerPacketHandler::Init();
+	GameServerDiscriminator::Init();
 	ASSERT_CRASH(_netCore->Ready(gameConfig.IocpThreadCnt()));
 	gameConfig.Host();
 
