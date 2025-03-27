@@ -28,6 +28,5 @@ DummyUserSptr GameServerSession::GetDummyUser()
 	return dummyUserWptr.lock();
 }
 
-IMPL_GAME_SERVER_SEND_FUNC(Req, Chat);
 IMPL_GAME_SERVER_SEND_FUNC(Req, Login);
 IMPL_GAME_SERVER_SEND_FUNC(Req, GameConn);

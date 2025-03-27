@@ -40,7 +40,6 @@ public:
 public: //server에 보낼 packet을 통해 sendBytes를 만드는 과정에 대한 영역, 모든 gameserver로 보내는 packet에 대하여 선언해야한다.
 	template<typename MSG_TYPE, typename P, typename T>
 	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet);
-	DECL_MAKE_SENDBUF_FROM_GAME_SERVER_PACKET(Req, Chat);
 	DECL_MAKE_SENDBUF_FROM_GAME_SERVER_PACKET(Req, Login);
 	DECL_MAKE_SENDBUF_FROM_GAME_SERVER_PACKET(Req, GameConn);
 };

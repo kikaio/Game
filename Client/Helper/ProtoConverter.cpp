@@ -13,25 +13,6 @@ void ProtoConverter::ToProto(const LoginData& _in, UserAndGameServer::LoginData&
 	_out.set_refresh_token(_in.refreshToken);
 }
 
-void ProtoConverter::ToProto(const ChatProfile& _in, UserAndGameServer::ChatProfile _out)
-{
-	_out.set_profile_id(_in.GetProfileId());
-	_out.set_nick_name(_in.GetNickName());
-	_out.set_profile_hero_id(_in.GetProfileId());
-	_out.set_profile_frame_id(_in.GetProfileHeroId());
-	_out.set_main_hero_id(_in.GetProfileFrameId());
-}
-
-void ProtoConverter::ToProto(const ChatData& _in, UserAndGameServer::ChatData& _out)
-{
-	_out.set_chat_type(ENUM_TO_INT(_in.GetChatType()));
-	auto profile = _in.GetChatProfile();
-	if (profile != nullptr) {
-		ToProto(*profile, *_out.mutable_chat_profile());
-	}
-	_out.set_msg(_in.GetMsg());
-}
-
 void ProtoConverter::ToProto(const DummyProfile& _in, UserAndGameServer::GameProfile& _out)
 {
 	_out.set_account_id(_in.AccountId());
@@ -86,12 +67,6 @@ void ProtoConverter::ToPacket(const LoginData& _loginData, UserAndGameServer::Re
 	return;
 }
 
-void ProtoConverter::ToPacket(const ChatData& _chatData, UserAndGameServer::ReqChat& _outProto)
-{
-	ToProto(_chatData, *_outProto.mutable_chat_data());
-	return;
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma endregion to packet
 
@@ -104,32 +79,6 @@ void ProtoConverter::FromProto(const UserAndGameServer::LoginResultData& _in, Lo
 	_out.loginToken = _in.login_token();
 }
 
-void ProtoConverter::FromProto(const UserAndGameServer::ChatProfile& _in, ChatProfile& _out)
-{
-	_out.SetProfileId(_in.profile_id());
-	_out.SetNickName(_in.nick_name());
-	_out.SetProfileHeroId(_in.profile_hero_id());
-	_out.SetProfileFrameId(_in.profile_frame_id());
-}
-
-void ProtoConverter::FromProto(const UserAndGameServer::ChatData& _in, ChatData& _out)
-{
-	auto _optinal = ENUM_FROM_INT(CHAT_TYPE, _in.chat_type());
-	if(_optinal.has_value()) {
-		_out.SetChatType(_optinal.value());
-	}
-	else {
-		//todo : error logging
-	}
-	auto profile = _out.GetChatProfile();
-	FromProto(_in.chat_profile(), *profile);
-	_out.SetMsg(_in.msg());
-}
-
-void ProtoConverter::FromProto(const UserAndGameServer::AnsChat& _in, ChatData& _out)
-{
-	FromProto(_in.chat_data(), _out);
-}
 
 void ProtoConverter::FromProto(const UserAndGameServer::GameProfile& _in, DummyProfile& _out) {
 	_out.SetAccountId(_in.account_id());

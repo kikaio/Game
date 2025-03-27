@@ -16,7 +16,6 @@ private:
 protected:
 	virtual bool OnPacketRecved(BYTE* _payloadPtr, uint32_t payloadBytes);
 public:
-	DCLE_GAME_SERVER_SEND_FUNC(Req, Chat);
 	DCLE_GAME_SERVER_SEND_FUNC(Req, Login);
 	DCLE_GAME_SERVER_SEND_FUNC(Req, GameConn);
 public:
