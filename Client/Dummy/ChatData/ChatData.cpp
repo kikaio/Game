@@ -1,29 +1,32 @@
 #include "pch.h"
 #include "ChatData.h"
 
-ChatProfileSptr ChatData::GetChatProfile()
+ChatProfileSptr ChatData::GetChatProfile() const
 {
-	return ChatProfileSptr();
+	return chatProfile;
 }
 
-ChatType ChatData::GetChatType()
+CHAT_TYPE ChatData::GetChatType() const
 {
-	return ChatType();
+	return chatType;
 }
 
-const string& ChatData::GetMsg()
+const string& ChatData::GetMsg() const
 {
-	// TODO: 여기에 return 문을 삽입합니다.
+	return msg;
 }
 
 void ChatData::SetChatProfile(ChatProfileSptr _profile)
 {
+	chatProfile = _profile;
 }
 
-void ChatData::SetChatType(ChatType _type)
+void ChatData::SetChatType(CHAT_TYPE _type)
 {
+	chatType = _type;
 }
 
 void ChatData::SetMsg(const string& _msg)
 {
+	msg = _msg;
 }

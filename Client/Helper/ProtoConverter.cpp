@@ -15,18 +15,21 @@ void ProtoConverter::ToProto(const LoginData& _in, UserAndGameServer::LoginData&
 
 void ProtoConverter::ToProto(const ChatProfile& _in, UserAndGameServer::ChatProfile _out)
 {
-	_out.set_profile_id(_in.profileId);
-	_out.set_nick_name(_in.nickName);
-	_out.set_profile_hero_id(_in.profileHeroId);
-	_out.set_profile_frame_id(_in.profileFrameId);
-	_out.set_main_hero_id(_in.mainHeroId);
+	_out.set_profile_id(_in.GetProfileId());
+	_out.set_nick_name(_in.GetNickName());
+	_out.set_profile_hero_id(_in.GetProfileId());
+	_out.set_profile_frame_id(_in.GetProfileHeroId());
+	_out.set_main_hero_id(_in.GetProfileFrameId());
 }
 
 void ProtoConverter::ToProto(const ChatData& _in, UserAndGameServer::ChatData& _out)
 {
-	_out.set_chat_type(ENUM_TO_INT(_in.chatType));
-	ToProto(_in.chatProfile, *_out.mutable_chat_profile());
-	_out.set_msg(_in.msg);
+	_out.set_chat_type(ENUM_TO_INT(_in.GetChatType()));
+	auto profile = _in.GetChatProfile();
+	if (profile != nullptr) {
+		ToProto(*profile, *_out.mutable_chat_profile());
+	}
+	_out.set_msg(_in.GetMsg());
 }
 
 void ProtoConverter::ToProto(const DummyProfile& _in, UserAndGameServer::GameProfile& _out)
@@ -103,24 +106,24 @@ void ProtoConverter::FromProto(const UserAndGameServer::LoginResultData& _in, Lo
 
 void ProtoConverter::FromProto(const UserAndGameServer::ChatProfile& _in, ChatProfile& _out)
 {
-	_out.profileId = _in.profile_id();
-	_out.nickName = _in.nick_name();
-	_out.profileHeroId = _in.profile_hero_id();
-	_out.profileFrameId = _in.profile_frame_id();
-	_out.mainHeroId = _in.main_hero_id();
+	_out.SetProfileId(_in.profile_id());
+	_out.SetNickName(_in.nick_name());
+	_out.SetProfileHeroId(_in.profile_hero_id());
+	_out.SetProfileFrameId(_in.profile_frame_id());
 }
 
 void ProtoConverter::FromProto(const UserAndGameServer::ChatData& _in, ChatData& _out)
 {
 	auto _optinal = ENUM_FROM_INT(CHAT_TYPE, _in.chat_type());
 	if(_optinal.has_value()) {
-		_out.chatType = _optinal.value();
+		_out.SetChatType(_optinal.value());
 	}
 	else {
 		//todo : error logging
 	}
-	FromProto(_in.chat_profile(), _out.chatProfile);
-	_out.msg = _in.msg();
+	auto profile = _out.GetChatProfile();
+	FromProto(_in.chat_profile(), *profile);
+	_out.SetMsg(_in.msg());
 }
 
 void ProtoConverter::FromProto(const UserAndGameServer::AnsChat& _in, ChatData& _out)

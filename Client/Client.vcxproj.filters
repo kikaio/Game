@@ -45,9 +45,6 @@
     <ClCompile Include="UserAndGameServerHandle\ReqTestMsg.cpp">
       <Filter>UserAndGameServerHandle</Filter>
     </ClCompile>
-    <ClCompile Include="UserAndGameServerHandle\AnsChat.cpp">
-      <Filter>UserAndGameServerHandle</Filter>
-    </ClCompile>
     <ClCompile Include="Dummy\DummyUser.cpp">
       <Filter>Dummy</Filter>
     </ClCompile>

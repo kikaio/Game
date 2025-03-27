@@ -184,7 +184,6 @@
     </ClCompile>
     <ClCompile Include="Sessions\ChatServerSession.cpp" />
     <ClCompile Include="Sessions\GameServerSession.cpp" />
-    <ClCompile Include="UserAndGameServerHandle\AnsChat.cpp" />
     <ClCompile Include="UserAndGameServerHandle\AnsGameConn.cpp" />
     <ClCompile Include="UserAndGameServerHandle\AnsLogin.cpp" />
     <ClCompile Include="UserAndGameServerHandle\ReqTestMsg.cpp" />

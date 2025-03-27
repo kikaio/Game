@@ -2,15 +2,15 @@
 
 class ChatData {
 private:
-	ChatProfileSptr chatProfile = nullptr;
-	ChatType chatType = ChatType::NORMAL;
+	mutable ChatProfileSptr chatProfile = nullptr;
+	CHAT_TYPE chatType = CHAT_TYPE::NORMAL;
 	string msg = "";
 public:
-	ChatProfileSptr GetChatProfile();
-	ChatType GetChatType();
-	const string& GetMsg();
+	ChatProfileSptr GetChatProfile()const;
+	CHAT_TYPE GetChatType() const;
+	const string& GetMsg() const;
 public:
 	void SetChatProfile(ChatProfileSptr _profile);
-	void SetChatType(ChatType _type);
+	void SetChatType(CHAT_TYPE _type);
 	void SetMsg(const string& _msg);
 };

@@ -110,7 +110,6 @@ void GameServerPacketHandler::Init()
 	// msgType, protocolName을 처리하는 function을 각각의 map에 연결해준다.
 	//각 msg, packet에 대한 handler를 호출해주는 function을 연결해주는 과정을 여기서 진행한다.
 	REGIST_GAME_SERVER_HANDLE(Req, TestMsg);
-	REGIST_GAME_SERVER_HANDLE(Ans, Chat);
 	REGIST_GAME_SERVER_HANDLE(Ans, Login);
 	REGIST_GAME_SERVER_HANDLE(Ans, GameConn);
 	return;

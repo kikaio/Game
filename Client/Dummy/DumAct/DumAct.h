@@ -36,16 +36,6 @@ protected:
 	void DoAct(DummyUserSptr _dumSptr) override;
 };
 
-class DumActChat : public DumAct{
-public:
-	CHAT_TYPE chatType;
-	string chatMsg = "dum chat";
-public:
-	DumActChat(uint64_t _delayMsec, string _chatMsg = "dum default chat", CHAT_TYPE _chatType=CHAT_TYPE::NORMAL);
-protected:
-	void DoAct(DummyUserSptr _dumSptr) override; 
-};
-
 class DumActSetLoginData : public DumAct {
 public:
 	bool isNewLogin = false;

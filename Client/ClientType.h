@@ -15,7 +15,7 @@ public:
 };
 
 
-enum class ChatType {
+enum class CHAT_TYPE {
 	NORMAL,
 	GUILD,
 	NOTICE
