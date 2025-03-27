@@ -19,3 +19,10 @@ DECL_WREF_USING(DummyUser);
 DECL_REF_USING(Logger);
 DECL_WREF_USING(Logger);
 
+
+DECL_REF_USING(ChatProfile);
+DECL_WREF_USING(ChatProfile);
+
+DECL_REF_USING(ChatData);
+DECL_WREF_USING(ChatData);
+

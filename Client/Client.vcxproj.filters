@@ -31,6 +31,9 @@
     <Filter Include="ConfigClass">
       <UniqueIdentifier>{3d9585f7-c6f7-4e0c-9756-c8d9fa5f6bbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Dummy\ChatData">
+      <UniqueIdentifier>{32df29d0-a8a4-4c8d-923a-4d23ed41474a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -98,6 +101,12 @@
     </ClCompile>
     <ClCompile Include="ConfigClass\MasterConfig.cpp">
       <Filter>ConfigClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Dummy\ChatData\ChatData.cpp">
+      <Filter>Dummy\ChatData</Filter>
+    </ClCompile>
+    <ClCompile Include="Dummy\ChatData\ChatProfile.cpp">
+      <Filter>Dummy\ChatData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +181,12 @@
     </ClInclude>
     <ClInclude Include="ConfigClass\MasterConfig.h">
       <Filter>ConfigClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Dummy\ChatData\ChatProfile.h">
+      <Filter>Dummy\ChatData</Filter>
+    </ClInclude>
+    <ClInclude Include="Dummy\ChatData\ChatData.h">
+      <Filter>Dummy\ChatData</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

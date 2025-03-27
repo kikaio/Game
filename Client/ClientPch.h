@@ -28,6 +28,9 @@
 
 #include "ChatServerDiscriminator.h"
 
+#include "ChatData.h"
+#include "ChatProfile.h"
+
 
 #include "ItemData.h"
 #include "CostumeData.h"

@@ -15,6 +15,10 @@ enum Protocol {
 	Chat = 1;
 }
 
+enum ChatRoomType {
+	NORMAL_ROOM = 0;
+}
+
 message ChatProfile {
 	int64 profile_id = 1;
 	string nick_name = 2;
@@ -33,5 +37,15 @@ message ReqChat {
 }
 
 message NotiChat {
-	ChatData chat_data = 1;
+	ChatRoomType chat_room_type = 1;
+	ChatData chat_data = 2;
+}
+
+message ReqEnterChatRoom {
+	
+	int32 chat_room_no = 1;
+}
+
+message NotiEnterChatRoom {
+	ChatProfile enter_profile = 1;
 }
