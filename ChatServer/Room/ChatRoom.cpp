@@ -23,20 +23,20 @@ std::map<int64_t, ChatUserSptr> ChatRoom::GetUsers()
 
 void ChatRoom::Enter(ChatUserSptr _user)
 {
-	int64_t profileId = _user->GetProfileId();
-	auto iter = chatUsers.find(profileId);
+	int64_t accountId = _user->GetAccountId();
+	auto iter = chatUsers.find(accountId);
 	if(iter != chatUsers.end()) {
 		//todo : duplication error log
 		return ;
 	}
-	chatUsers[profileId] = _user;
+	chatUsers[accountId] = _user;
 	return ;
 }
 
 void ChatRoom::Leave(ChatUserSptr _user)
 {
-	int64_t profileId = _user->GetProfileId();
-	auto iter = chatUsers.find(profileId);
+	int64_t accountId = _user->GetAccountId();
+	auto iter = chatUsers.find(accountId);
 	if(iter == chatUsers.end()) {
 		//todo : not exist in this room error log
 		return ;
