@@ -7,7 +7,14 @@ DECL_WREF_USING(Logger);
 DECL_REF_USING(ChatUser);
 DECL_WREF_USING(ChatUser);
 
+DECL_REF_USING(ChatProfile);
+DECL_WREF_USING(ChatProfile);
 
+DECL_REF_USING(ChatData);
+DECL_WREF_USING(ChatData);
+
+DECL_REF_USING(ChatRoom);
+DECL_WREF_USING(ChatRoom);
 
 DECL_REF_USING(UserSession);
 DECL_WREF_USING(UserSession);

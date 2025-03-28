@@ -71,11 +71,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\DB;$(SolutionDir)Common\Job;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Logging;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Random;$(SolutionDir)Common\Redis;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Libraries\include;$(SolutionDir)Libraries\include\mysql-connector-9;$(SolutionDir)Libraries\include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)ConfigClass;$(ProjectDir)Configs;$(ProjectDir)Helper;$(ProjectDir)PacketHandles;$(ProjectDir)PacketHandles\MasterAndChatPacketHandles;$(ProjectDir)PacketHandles\UserAndChatPacketHandles;$(ProjectDir)PacketDiscriminator;$(ProjectDir)Sessions;$(ProjectDir)User;$(ProjectDir)User\UserData;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\DB;$(SolutionDir)Common\Job;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Logging;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Random;$(SolutionDir)Common\Redis;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Libraries\include;$(SolutionDir)Libraries\include\mysql-connector-9;$(SolutionDir)Libraries\include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)ConfigClass;$(ProjectDir)Configs;$(ProjectDir)Helper;$(ProjectDir)PacketHandles;$(ProjectDir)PacketHandles\MasterAndChatPacketHandles;$(ProjectDir)PacketHandles\UserAndChatPacketHandles;$(ProjectDir)PacketDiscriminator;$(ProjectDir)Sessions;$(ProjectDir)User;$(ProjectDir)User\UserData;$(ProjectDir)Room;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Configuration)\ChatServer\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\DB;$(SolutionDir)Common\Job;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Logging;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Random;$(SolutionDir)Common\Redis;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Libraries\include;$(SolutionDir)Libraries\include\mysql-connector-9;$(SolutionDir)Libraries\include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)ConfigClass;$(ProjectDir)Configs;$(ProjectDir)Helper;$(ProjectDir)PacketHandles;$(ProjectDir)PacketHandles\MasterAndChatPacketHandles;$(ProjectDir)PacketHandles\UserAndChatPacketHandles;$(ProjectDir)PacketDiscriminator;$(ProjectDir)Sessions;$(ProjectDir)User;$(ProjectDir)User\UserData;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Common;$(SolutionDir)Common\Buffer;$(SolutionDir)Common\DB;$(SolutionDir)Common\Job;$(SolutionDir)Common\Lock;$(SolutionDir)Common\Logging;$(SolutionDir)Common\Memory;$(SolutionDir)Common\Network;$(SolutionDir)Common\Network\IOCP;$(SolutionDir)Common\Network\Session;$(SolutionDir)Common\Protocol;$(SolutionDir)Common\Protocol\gen;$(SolutionDir)Common\Random;$(SolutionDir)Common\Redis;$(SolutionDir)Common\Threads;$(SolutionDir)Common\Utils;$(SolutionDir)Libraries\include;$(SolutionDir)Libraries\include\mysql-connector-9;$(SolutionDir)Libraries\include\mysql_connector_9\jdbc;$(SolutionDir)Libraries\Include\rapidjson;$(SolutionDir)Libraries\Include\magic_enum;$(ProjectDir)ConfigClass;$(ProjectDir)Configs;$(ProjectDir)Helper;$(ProjectDir)PacketHandles;$(ProjectDir)PacketHandles\MasterAndChatPacketHandles;$(ProjectDir)PacketHandles\UserAndChatPacketHandles;$(ProjectDir)PacketDiscriminator;$(ProjectDir)Sessions;$(ProjectDir)User;$(ProjectDir)User\UserData;$(ProjectDir)Room;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Configuration)\ChatServer\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -151,16 +151,22 @@
     <ClCompile Include="PacketDiscriminator\UserPacketDiscriminator.cpp" />
     <ClCompile Include="PacketHandles\MasterAndChatPacketHandles\AnsChatConnectMaster.cpp" />
     <ClCompile Include="PacketHandles\MasterAndChatPacketHandles\NotiErrInfo.cpp" />
+    <ClCompile Include="PacketHandles\UserAndChatPacketHandles\ReqChat.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Room\ChatRoom.cpp" />
+    <ClCompile Include="Room\ChatRoomMng.cpp" />
     <ClCompile Include="Sessions\MasterServerSession.cpp" />
     <ClCompile Include="Sessions\UserSession.cpp" />
     <ClCompile Include="User\ChatUser.cpp" />
+    <ClCompile Include="User\UserData\ChatData.cpp" />
     <ClCompile Include="User\UserData\ChatProfile.cpp" />
+    <ClCompile Include="User\UserData\ChatProfileMng.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ChatEnums.h" />
     <ClInclude Include="ChatServerPch.h" />
     <ClInclude Include="ChatTypes.h" />
     <ClInclude Include="ConfigClass\ChatConfig.h" />
@@ -172,10 +178,14 @@
     <ClInclude Include="PacketHandles\MasterAndChatPacketHandles\MasterAndChatPacketHandle.h" />
     <ClInclude Include="PacketHandles\UserAndChatPacketHandles\UserAndChatPacketHandle.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Room\ChatRoom.h" />
+    <ClInclude Include="Room\ChatRoomMng.h" />
     <ClInclude Include="Sessions\MasterServerSession.h" />
     <ClInclude Include="Sessions\UserSession.h" />
     <ClInclude Include="User\ChatUser.h" />
+    <ClInclude Include="User\UserData\ChatData.h" />
     <ClInclude Include="User\UserData\ChatProfile.h" />
+    <ClInclude Include="User\UserData\ChatProfileMng.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Configs\ServerConfig.json" />

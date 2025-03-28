@@ -6,7 +6,6 @@ class SessionManager;
 class Listener : public IocpObj //, public enable_shared_from_this<Listener>
 {
 public:
-	Listener(UInt32 _port);
 	Listener(uint16_t _port);
 private:
 	SessionManager* sessionMgr = nullptr;

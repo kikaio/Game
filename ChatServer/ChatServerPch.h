@@ -7,6 +7,7 @@
 #endif
 
 #include "CommonPch.h"
+#include "ChatEnums.h"
 #include "ChatTypes.h"
 
 
@@ -14,6 +15,11 @@
 #include "ChatConfig.h"
 
 #include "LogHelper.h"
+
+#include "ChatData.h"
+#include "ChatProfile.h"
+#include "ChatProfileMng.h"
+
 #include "ProtoConverter.h"
 
 #include "UserAndChatPacketHandle.h"
@@ -24,5 +30,9 @@
 
 #include "UserSession.h"
 #include "MasterServerSession.h"
-#include "ChatProfile.h"
+
+
+#include "ChatRoom.h"
+#include "ChatRoomMng.h"
+
 #include "ChatUser.h"

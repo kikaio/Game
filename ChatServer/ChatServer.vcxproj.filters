@@ -34,6 +34,9 @@
     <Filter Include="PacketHandles\MasterAndChatPacketHandles">
       <UniqueIdentifier>{b509abfa-2f8c-4768-80f4-120a6b0d7177}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Room">
+      <UniqueIdentifier>{252a9ccf-e691-48a5-b880-04fb2a5a3813}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChatServer.cpp">
@@ -77,6 +80,21 @@
     </ClCompile>
     <ClCompile Include="PacketHandles\MasterAndChatPacketHandles\AnsChatConnectMaster.cpp">
       <Filter>PacketHandles\MasterAndChatPacketHandles</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketHandles\UserAndChatPacketHandles\ReqChat.cpp">
+      <Filter>PacketHandles\UserAndChatPacketHandles</Filter>
+    </ClCompile>
+    <ClCompile Include="Room\ChatRoom.cpp">
+      <Filter>Room</Filter>
+    </ClCompile>
+    <ClCompile Include="Room\ChatRoomMng.cpp">
+      <Filter>Room</Filter>
+    </ClCompile>
+    <ClCompile Include="User\UserData\ChatData.cpp">
+      <Filter>User\UserData</Filter>
+    </ClCompile>
+    <ClCompile Include="User\UserData\ChatProfileMng.cpp">
+      <Filter>User\UserData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +142,21 @@
     </ClInclude>
     <ClInclude Include="PacketHandles\MasterAndChatPacketHandles\MasterAndChatPacketHandle.h">
       <Filter>PacketHandles\MasterAndChatPacketHandles</Filter>
+    </ClInclude>
+    <ClInclude Include="Room\ChatRoom.h">
+      <Filter>Room</Filter>
+    </ClInclude>
+    <ClInclude Include="Room\ChatRoomMng.h">
+      <Filter>Room</Filter>
+    </ClInclude>
+    <ClInclude Include="User\UserData\ChatData.h">
+      <Filter>User\UserData</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatEnums.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="User\UserData\ChatProfileMng.h">
+      <Filter>User\UserData</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

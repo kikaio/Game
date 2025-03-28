@@ -126,6 +126,9 @@ void StartChatThread() {
 	ASSERT_CRASH(chatNet->ReadyToAccept(listener, backLog, acceptCnt));
 	CS_DEBUG_LOG("accept ready");
 	
+	ChatRoomMng::Get().Init(100, 100);
+
+
 	UInt32 waitMilliSec = INFINITE;
 	while (true) {
 		chatNet->Dispatch(waitMilliSec);
