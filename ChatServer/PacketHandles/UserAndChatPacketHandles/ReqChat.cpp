@@ -39,7 +39,8 @@ namespace UserAndChatPacketHandle {
 					, protoProfile.profile_frame_id()
 				);
 			}
-			
+			UserAndChatServer::NotiChat _noti;
+
 		}
 		return true;
 	}

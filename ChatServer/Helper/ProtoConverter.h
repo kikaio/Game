@@ -14,4 +14,13 @@ public:
 	static void FromProto(IN const UserAndChatServer::ChatProfile& _in, OUT ChatProfile& _out);
 #pragma endregion from proto
 
+#pragma region to Packet
+public:
+	static void ToPacket(IN const ChatData& _chatData, OUT UserAndChatServer::NotiChat& _packet);
+#pragma endregion to Packet
+
+#pragma region from Packet
+public:
+
+#pragma endregion from Packet
 };

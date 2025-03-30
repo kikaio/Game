@@ -54,3 +54,13 @@ void ProtoConverter::FromProto(IN const UserAndChatServer::ChatProfile& _in, OUT
 }
 
 #pragma endregion from proto
+
+#pragma region to packet
+void ProtoConverter::ToPacket(IN const ChatData& _chatData, OUT UserAndChatServer::NotiChat& _packet) {
+	_packet.chat_data()
+}
+
+#pragma region to packet
+
+#pragma region from packet
+#pragma region from packet
