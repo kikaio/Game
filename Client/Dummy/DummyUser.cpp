@@ -76,11 +76,14 @@ bool DummyUser::IsChatConnected() {
 
 void DummyUser::OnChatServerSessionDisconnected() {
 	DUM_DEBUG_LOG("chat server disConnected");
+	chatServerSession = nullptr;
+	DoDumAct();
 	return;
 }
 
 void DummyUser::OnChatServerSessionConnected() {
 	DUM_DEBUG_LOG("chat server Connected");
+	DoDumAct();
 	return;
 }
 

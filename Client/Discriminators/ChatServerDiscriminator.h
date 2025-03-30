@@ -1,8 +1,12 @@
 #pragma once
 
 #define CHAT_PACKET_FUNC_MAP std::map<UserAndChatServer::Protocol, PacketFunc*>
-#define DECL_CHAT_PACKET_SEND_BUF(_msgType, _protocolType)																	\
-static SendBufferSptr MakePacket##_msgType##_protocolType(const UserAndChatServer::##_msgType##_protocolType& _packet)	\
+
+#define DECL_CHAT_PACKET_SEND_BUF(_msgType, _protocolName)														\
+static SendBufferSptr MakeSendBufferFromPacket(UserAndChatServer::##_msgType##_protocolName& _packet)							\
+{																																\
+	return MakeProtoSendBuffer(UserAndChatServer::MsgType::##_msgType, UserAndChatServer::Protocol::##_protocolName, _packet);	\
+}																																\
 
 
 class ChatServerDiscriminator {
@@ -27,7 +31,7 @@ public:
 	template<typename MSG_TYPE, typename P, typename T>
 	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, const T& _packet);
 public:
-//	DECL_CHAT_PACKET_SEND_BUF(Ans, ChatConnectMaster);
+	DECL_CHAT_PACKET_SEND_BUF(Req, ChatConn);
 };
 
 

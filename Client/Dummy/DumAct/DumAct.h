@@ -61,6 +61,13 @@ protected:
 	void DoAct(DummyUserSptr _dumSptr) override;
 };
 
+class DumActChatServerConn : public DumAct {
+public:
+	DumActChatServerConn(uint64_t _delayMsec);
+protected:
+	void DoAct(DummyUserSptr _dumSptr) override;
+};
+
 class DumActChatConn : public DumAct {
 public:
 	DumActChatConn(uint64_t _delayMsec);

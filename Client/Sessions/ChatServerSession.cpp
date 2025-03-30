@@ -28,4 +28,4 @@ DummyUserSptr ChatServerSession::GetDummyUser()
 	return dummyUserWptr.lock();
 }
 
-//IMPL_GAME_SERVER_SEND_FUNC(Req, Chat);
+IMPL_CHAT_SERVER_SEND_FUNC(Req, ChatConn);

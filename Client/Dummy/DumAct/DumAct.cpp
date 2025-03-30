@@ -127,12 +127,12 @@ void DumActLogin::DoAct(DummyUserSptr _dumSptr)
 	return ;
 }
 
-DumActChatConn::DumActChatConn(uint64_t _delayMsec)
+DumActChatServerConn::DumActChatServerConn(uint64_t _delayMsec)
 {
 	actDelayMsec = _delayMsec;
 }
 
-void DumActChatConn::DoAct(DummyUserSptr _dumSptr)
+void DumActChatServerConn::DoAct(DummyUserSptr _dumSptr)
 {
 	ReserveAct(_dumSptr, [_dumSptr, this]() {
 
@@ -157,6 +157,25 @@ void DumActChatConn::DoAct(DummyUserSptr _dumSptr)
 		_session->SetIocpCore(iocpCoreSptr);
 		iocpCoreSptr->RegistToIocp(_session->Sock());
 		_session->TryConnect();
+	});
+	return;
+}
+
+DumActChatConn::DumActChatConn(uint64_t _delayMsec) {
+	actDelayMsec = _delayMsec;
+	return;
+}
+
+void DumActChatConn::DoAct(DummyUserSptr _dumSptr) {
+	ReserveAct(_dumSptr, [_dumSptr, this]() {
+		auto gameProfile = _dumSptr->GetProfile();
+		int64_t accountId = gameProfile.AccountId();
+		UserAndChatServer::ReqChatConn req;
+		ProtoConverter::ToPacket(IN accountId, OUT req);
+		auto chatSession = _dumSptr->GetChatServerSession();
+		if (chatSession->IsConnected()) {
+			chatSession->SendPacket(req);
+		}
 	});
 	return;
 }

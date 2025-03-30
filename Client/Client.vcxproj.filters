@@ -34,6 +34,9 @@
     <Filter Include="Dummy\ChatData">
       <UniqueIdentifier>{32df29d0-a8a4-4c8d-923a-4d23ed41474a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UserAndChatServerHandle">
+      <UniqueIdentifier>{e1dcc860-f1ba-4f69-b95f-9a5966e98d0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -104,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="Dummy\ChatData\ChatProfile.cpp">
       <Filter>Dummy\ChatData</Filter>
+    </ClCompile>
+    <ClCompile Include="UserAndChatServerHandle\AnsChatConn.cpp">
+      <Filter>UserAndChatServerHandle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +190,9 @@
     </ClInclude>
     <ClInclude Include="Dummy\ChatData\ChatData.h">
       <Filter>Dummy\ChatData</Filter>
+    </ClInclude>
+    <ClInclude Include="UserAndChatServerHandle\UserAndChatServerHandle.h">
+      <Filter>UserAndChatServerHandle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -34,12 +34,12 @@ int main()
 
 
 	//기본적인 Net 연결 관련 설정 준비 - game server
-	/*ThreadManager::Get().PushAndStart(
+	ThreadManager::Get().PushAndStart(
 		[gameServerNetCore](){ 
 			DoClientToGameServer(gameServerNetCore); 
 		}
 		, "DoClientToGameServer", "iocp port dispatch while shutdown"
-	);*/
+	);
 
 	ThreadManager::Get().PushAndStart(
 		[chatServerNetCore]() {

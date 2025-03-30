@@ -67,6 +67,12 @@ void ProtoConverter::ToPacket(const LoginData& _loginData, UserAndGameServer::Re
 	return;
 }
 
+
+void ProtoConverter::ToPacket(const int64_t _accountId, UserAndChatServer::ReqChatConn& _out) {
+	_out.set_account_id(_accountId);
+	return;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma endregion to packet
 

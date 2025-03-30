@@ -17,6 +17,7 @@ public:
 public:
 	//proto packet 까지 생성하는 함수들.
 	static void ToPacket(const LoginData& _loginData, UserAndGameServer::ReqLogin& _outProto);
+	static void ToPacket(const int64_t _accountId, UserAndChatServer::ReqChatConn& _out);
 
 public:
 	// FromProto : proto 구조체->구조체로 변환 담당

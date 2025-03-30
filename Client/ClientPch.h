@@ -26,6 +26,7 @@
 #include "GameServerDiscriminator.h"
 #include "ChatServerDiscriminator.h"
 
+#include "UserAndChatServerHandle.h"
 #include "UserAndGameServerHandle.h"
 
 #include "ChatData.h"

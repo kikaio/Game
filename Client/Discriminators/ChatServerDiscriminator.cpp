@@ -97,7 +97,7 @@ void ChatServerDiscriminator::AbusingRecord(SessionSptr _session
 
 void ChatServerDiscriminator::Init()
 {
-//	REGIST_CHAT_PACKET_HANDLE_FUNC(Req, ChatConnectMaster);
+	REGIST_CHAT_PACKET_HANDLE_FUNC(Ans, ChatConn);
 }
 
 void ChatServerDiscriminator::RegistPacketFunc(UserAndChatServer::MsgType _msg_type, UserAndChatServer::Protocol _protocol, PacketFunc* _packetHandle)
@@ -155,5 +155,4 @@ bool ChatServerDiscriminator::HandlePayload(SessionSptr _session, BYTE* _buf, ui
 	}
 	return true;
 }
-
-//IMPL_CHAT_PACKET_MAKE_FUNC(Ans, ChatConnectMaster);
+IMPL_CHAT_PACKET_MAKE_FUNC(Req, ChatConn);
