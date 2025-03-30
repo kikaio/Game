@@ -1,6 +1,8 @@
 #pragma once
 
 class ChatRoom : public JobQueue {
+public:
+	static int32_t maxUserCnt;
 private:
 	int32_t roomNo = 0;
 private:
@@ -13,11 +15,14 @@ public:
 	int32_t GetRoomNo();
 public:
 	std::map<int64_t, ChatUserSptr> GetUsers();
+	void GetProfiles(OUT vector<ChatProfileSptr>& _out);
 public:
 	void Enter(ChatUserSptr _user);
 	void Leave(ChatUserSptr _user);
 public:
-	void Broadcast(const UserAndChatServer::NotiChat& _packet);
+	void Broadcast(UserAndChatServer::NotiChat _packet);
 public:
 	void Render();
 };
+
+

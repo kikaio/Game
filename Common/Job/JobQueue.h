@@ -20,7 +20,7 @@ public:
 	void DoAsync(Ret(T::*memFunc)(Args...), Args... args)
 	{
 		shared_ptr<T> owner = static_pointer_cast<T>(shared_from_this());
-		Push(MakeShared(owner, memFunc, std::forward<Args>(args)...));
+		Push(MakeShared<Job>(owner, memFunc, std::forward<Args>(args)...));
 		return ;
 	}
 

@@ -120,6 +120,9 @@ void StartChatThread() {
 
 	chatNet->CreateSessionFactory = [] {
 		UserSessionSptr _session = MakeShared<UserSession>();
+		ChatUserSptr chatUser = MakeShared<ChatUser>();
+		_session->SetChatUser(chatUser);
+		chatUser->SetSession(_session);
 		return static_pointer_cast<Session>(_session);
 	};
 

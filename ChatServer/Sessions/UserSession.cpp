@@ -28,4 +28,5 @@ bool UserSession::OnPacketRecved(BYTE* _payloadPtr, uint32_t _payloadBytes)
 	return true;
 }
 
-IMPL_USER_SESSION_SEND_PACKET(Noti, Chat)
+IMPL_USER_SESSION_SEND_PACKET(Noti, Chat);
+IMPL_USER_SESSION_SEND_PACKET(Ans, ChatConn);

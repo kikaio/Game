@@ -6,4 +6,5 @@ bool _msgType##_protocolType(UserSessionSptr _session, const UserAndChatServer::
 
 namespace UserAndChatPacketHandle {
 	DECL_USER_AND_CHAT_PACKET_HANDLE(Req, Chat);
+	DECL_USER_AND_CHAT_PACKET_HANDLE(Req, ChatConn);
 }

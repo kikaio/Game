@@ -43,6 +43,7 @@ public:
 	template<typename MSG_TYPE, typename P, typename T>
 	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet);
 	DECL_MAKE_SENDBUF_USER_CLIENT_PACKET(Noti, Chat);
+	DECL_MAKE_SENDBUF_USER_CLIENT_PACKET(Ans, ChatConn);
 
 };
 

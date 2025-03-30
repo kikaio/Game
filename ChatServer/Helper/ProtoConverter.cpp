@@ -19,6 +19,22 @@ void ProtoConverter::ToProto(IN const ChatProfile& _in, OUT UserAndChatServer::C
 
 #pragma endregion to proto
 
+#pragma region to packet
+void ProtoConverter::ToPacket(IN const ChatData& _chatData, OUT UserAndChatServer::NotiChat& _packet) {
+	ToProto(IN _chatData, OUT * _packet.mutable_chat_data());
+}
+
+void ProtoConverter::ToPacket(
+	IN const ChatProfileSptr _profile
+	, const int32_t& _roomNo
+	, const vector<ChatProfileSptr> _others
+	, OUT UserAndChatServer::AnsChatConn& _packet
+) {
+	
+}
+
+#pragma endregion to packet
+
 #pragma region from proto
 
 void ProtoConverter::FromProto(IN const UserAndChatServer::ChatData& _in, OUT ChatData& _out) {
@@ -55,12 +71,15 @@ void ProtoConverter::FromProto(IN const UserAndChatServer::ChatProfile& _in, OUT
 
 #pragma endregion from proto
 
-#pragma region to packet
-void ProtoConverter::ToPacket(IN const ChatData& _chatData, OUT UserAndChatServer::NotiChat& _packet) {
-	_packet.chat_data()
-}
-
-#pragma region to packet
 
 #pragma region from packet
+void ProtoConverter::FromPacket(const UserAndChatServer::ReqChatConn& _packet, OUT int64_t& _accountId) {
+	_accountId = _packet.account_id();
+	return ;
+}
+
+void ProtoConverter::FromPacket(const UserAndChatServer::ReqChat& _packet, OUT ChatData& _chatData) {
+	FromProto(_packet.chat_data(), _chatData);
+	return ;
+}
 #pragma region from packet

@@ -96,6 +96,9 @@
     <ClCompile Include="User\UserData\ChatProfileMng.cpp">
       <Filter>User\UserData</Filter>
     </ClCompile>
+    <ClCompile Include="PacketHandles\UserAndChatPacketHandles\ReqChatConn.cpp">
+      <Filter>PacketHandles\UserAndChatPacketHandles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

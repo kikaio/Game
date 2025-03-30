@@ -14,7 +14,6 @@ void ChatRoomMng::Init(int32_t _normalRoomCnt, int32_t _guildRoomCnt)
 		roomSptr->SetRoomNo(idx + 1);
 		guildRooms.emplace(idx + 1, roomSptr);
 	}
-
 }
 
 ChatRoomSptr ChatRoomMng::GetNormalRoom(int32_t _roomNo)
@@ -26,6 +25,29 @@ ChatRoomSptr ChatRoomMng::GetNormalRoom(int32_t _roomNo)
 	return iter->second;
 }
 
+ChatRoomSptr ChatRoomMng::GetRoundRobinNormalRoom() {
+	bool finded = false;
+	int64_t targetNo = roundRobinIdx.fetch_add(1) % normalRooms.size() + 1;
+	for(int cnt = 0; cnt < normalRooms.size(); cnt++) {
+		if (normalRooms[targetNo]->GetUserCnt() >= ChatRoom::maxUserCnt) {
+			targetNo = roundRobinIdx.fetch_add(1) % normalRooms.size();
+			continue;
+		}
+		finded = true;
+		break;
+	}
+
+	if(finded) {
+		return normalRooms[targetNo];
+	}
+	//모든 방이 가득 찬 경우
+	//신규 방 생성
+	targetNo = normalRooms.size() + 1;
+	normalRooms[targetNo] = MakeShared<ChatRoom>();
+	normalRooms[targetNo]->SetRoomNo(targetNo);
+	return normalRooms[targetNo];
+}
+
 ChatRoomSptr ChatRoomMng::GetGuildRoom(int32_t _roomNo)
 {
 	auto iter = guildRooms.find(_roomNo);
@@ -34,6 +56,8 @@ ChatRoomSptr ChatRoomMng::GetGuildRoom(int32_t _roomNo)
 	}
 	return iter->second;
 }
+
+
 
 void ChatRoomMng::BroadcastToNormalRooms(const UserAndChatServer::NotiChat& _noti)
 {

@@ -12,7 +12,8 @@ enum MsgType {
 
 enum Protocol {
 	INVALID_PROTOCOL = 0;
-	Chat = 1;
+	ChatConn = 1;
+	Chat = 2;
 }
 
 enum ChatRoomType {
@@ -31,6 +32,17 @@ message ChatData {
 	int32 chat_type = 2;
 	string msg = 3;
 }
+
+message ReqChatConn {
+	int64 account_id = 1;
+}
+
+message AnsChatConn {
+	ChatProfile profile = 1;
+	int32 room_no = 2;
+	repeated ChatProfile profiles = 3;
+}
+
 
 message ReqChat {
 	ChatData chat_data = 1;

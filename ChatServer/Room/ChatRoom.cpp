@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "ChatRoom.h"
 
+int32_t ChatRoom::maxUserCnt = 0;
+
 int32_t ChatRoom::GetUserCnt()
 {
 	return chatUsers.size();
@@ -19,6 +21,13 @@ int32_t ChatRoom::GetRoomNo()
 std::map<int64_t, ChatUserSptr> ChatRoom::GetUsers()
 {
 	return chatUsers;
+}
+
+void ChatRoom::GetProfiles(OUT vector<ChatProfileSptr>& _out) {
+	for(auto pair : chatUsers) {
+		_out.push_back(pair.second->GetProfile());
+	}
+	return ;
 }
 
 void ChatRoom::Enter(ChatUserSptr _user)
@@ -45,7 +54,7 @@ void ChatRoom::Leave(ChatUserSptr _user)
 	return ;
 }
 
-void ChatRoom::Broadcast(const UserAndChatServer::NotiChat& _packet)
+void ChatRoom::Broadcast(UserAndChatServer::NotiChat _packet)
 {
 	auto chatDataSptr = MakeShared<ChatData>();
 	ProtoConverter::FromProto(_packet.chat_data(), OUT * chatDataSptr);

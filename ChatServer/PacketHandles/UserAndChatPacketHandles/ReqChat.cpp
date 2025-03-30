@@ -5,6 +5,10 @@ namespace UserAndChatPacketHandle {
 	bool ReqChat(UserSessionSptr _session, const UserAndChatServer::ReqChat& _packet) {
 		CS_DEBUG_LOG("ReqChat called");
 		auto chatUser = _session->GetChatUser();
+		ChatData chatData;
+		ProtoConverter::FromPacket(IN _packet, OUT chatData);
+
+
 		if(chatUser != nullptr) {
 			auto chatRoom = chatUser->GetChatRoom();
 			if (chatRoom == nullptr) {
@@ -28,6 +32,7 @@ namespace UserAndChatPacketHandle {
 					chatUser->SetProfile(profile);
 				}
 			}
+
 			if (profile == nullptr) {
 				//todo : error! - user's profile not exist
 				// 일단 packet 기반 profile로 설정해준다.
@@ -39,8 +44,11 @@ namespace UserAndChatPacketHandle {
 					, protoProfile.profile_frame_id()
 				);
 			}
-			UserAndChatServer::NotiChat _noti;
 
+			UserAndChatServer::NotiChat _noti;
+			ProtoConverter::ToPacket(IN chatData, OUT _noti);
+			
+			chatRoom->DoAsync(&ChatRoom::Broadcast, _noti);
 		}
 		return true;
 	}
