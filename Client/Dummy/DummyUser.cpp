@@ -12,9 +12,7 @@ void DummyUser::SetChatServerInfo(const string& _host, int16_t _port) {
 	chatHost = _host;
 	chatPort = _port;
 	return ;
-}
-
-bool DummyUser::IsConnected()
+}bool DummyUser::IsConnected()
 {
 	if(gameServerSession == nullptr || gameServerSession->IsConnected() == false) {
 		return false;
@@ -70,6 +68,20 @@ void DummyUser::OnGameServerSessionConnected()
 	DoDumAct();
 }
 
+vector<ChatProfileSptr>& DummyUser::GetOtherUserChatProfiles() {
+	return otherUserChatProfiles;
+}
+
+int32_t DummyUser::GetCurChatRoomNo() {
+	return curChatRoomNo;
+}
+
+void DummyUser::SetCurChatRoomNo(int32_t _no) {
+	curChatRoomNo = _no;
+}
+
+
+
 bool DummyUser::IsChatConnected() {
 	return chatServerSession->IsConnected();
 }
@@ -97,12 +109,12 @@ const LoginData& DummyUser::GetLoginData() {
 	return loginData;
 }
 
-void DummyUser::SetChatProfile(const ChatProfile& _chatProfile)
+void DummyUser::SetChatProfile(ChatProfileSptr _chatProfile)
 {
 	chatProfile = _chatProfile;
 }
 
-const ChatProfile& DummyUser::GetChatProfile()
+ChatProfileSptr DummyUser::GetChatProfile()
 {
 	return chatProfile;
 }

@@ -1,11 +1,13 @@
 #pragma once
 
-#define GET_CHAT_SERVER_ESSION_AND_DUM										\
+#define GET_CHAT_SERVER_SESSION_AND_DUM										\
 auto chatSession = static_pointer_cast<ChatServerSession>(_session);		\
 auto dum = chatSession->GetDummyUser();										\
 
-#define DECL_CHAT_SERVER_SEND_FUNC(_protocolType, _protocolName) \
-bool SendPacket##_protocolType##_protocolName(UserAndChatServer::##_protocolType##_protocolName& _packet)
+
+#define DECL_CHAT_SERVER_SEND_FUNC(_msgType, _protocolType)						\
+bool SendPacket(const UserAndChatServer::##_msgType##_protocolType& _packet)	\
+
 
 
 class ChatServerSession : public Session
@@ -20,4 +22,5 @@ public:
 	DummyUserSptr GetDummyUser();
 public:
 	DECL_CHAT_SERVER_SEND_FUNC(Req, ChatConn);
+	DECL_CHAT_SERVER_SEND_FUNC(Req, Chat);
 };

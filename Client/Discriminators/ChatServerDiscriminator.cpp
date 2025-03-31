@@ -4,7 +4,7 @@
 // handler 함수 지정용 define
 #define REGIST_CHAT_PACKET_FUNC(_msgType, _protocol, _func)																\
 {																														\
-	RegistPacketFunc(UserAndChatServer::MsgType::##_msgType, UserAndChatServer::Protocol::##_protocol, _func);		\
+	RegistPacketFunc(UserAndChatServer::MsgType::##_msgType, UserAndChatServer::Protocol::##_protocol, _func);			\
 }																														\
 
 
@@ -17,13 +17,6 @@
 		return UserAndChatServerHandle::##_msgType##_protocol(static_pointer_cast<ChatServerSession>(_session), packet);			\
 	});																																\
 }
-
-#define IMPL_CHAT_PACKET_MAKE_FUNC(_msgType, _protocolName) \
-SendBufferSptr ChatServerDiscriminator::MakePacket##_msgType##_protocolName(const UserAndChatServer::##_msgType##_protocolName& _packet)					\
-{																																							\
-	return MakeProtoSendBuffer(UserAndChatServer::MsgType::##_msgType, UserAndChatServer::Protocol::##_protocolName, _packet);							\
-}																																							\
-
 
 
 CHAT_PACKET_FUNC_MAP ChatServerDiscriminator::reqMap;
@@ -98,6 +91,7 @@ void ChatServerDiscriminator::AbusingRecord(SessionSptr _session
 void ChatServerDiscriminator::Init()
 {
 	REGIST_CHAT_PACKET_HANDLE_FUNC(Ans, ChatConn);
+	REGIST_CHAT_PACKET_HANDLE_FUNC(Noti, Chat);
 }
 
 void ChatServerDiscriminator::RegistPacketFunc(UserAndChatServer::MsgType _msg_type, UserAndChatServer::Protocol _protocol, PacketFunc* _packetHandle)
@@ -134,25 +128,39 @@ bool ChatServerDiscriminator::HandlePayload(SessionSptr _session, BYTE* _buf, ui
 	UserAndChatServer::Protocol protocol;
 	br >> msgType;
 	br >> protocol;
+	bool ret = false;
 
 	switch (msgType) {
 	case UserAndGameServer::MsgType::Req: {
-		return DiscriminateReq(_session, UserAndChatServer::MsgType::Req, protocol, &br);
+		ret = DiscriminateReq(_session, UserAndChatServer::MsgType::Req, protocol, &br);
+		break;
 	}
 	case UserAndGameServer::MsgType::Ans: {
-		return DiscriminateAns(_session, UserAndChatServer::MsgType::Ans, protocol, &br);
+		ret = DiscriminateAns(_session, UserAndChatServer::MsgType::Ans, protocol, &br);
+		break;
 	}
 	case UserAndGameServer::MsgType::Noti: {
-		return DiscriminateNoti(_session, UserAndChatServer::MsgType::Noti, protocol, &br);
+		ret = DiscriminateNoti(_session, UserAndChatServer::MsgType::Noti, protocol, &br);
+		break;
 	}
 	case UserAndGameServer::MsgType::Err: {
-		return DiscriminateErr(_session, UserAndChatServer::MsgType::Err, protocol, &br);
+		ret = DiscriminateErr(_session, UserAndChatServer::MsgType::Err, protocol, &br);
+		break;
 	}
 	default: {
 		AbusingRecord(_session, msgType, protocol, &br);
 		return false;
 	}
 	}
+	//todo : dum에게 어떤 packet에 대한 처리가 완료되었는지 통보.
+	if (ret == true) {
+		ChatServerSessionSptr _chSession = static_pointer_cast<ChatServerSession>(_session);
+		auto dummy = _chSession->GetDummyUser();
+		if (dummy != nullptr) {
+			dummy->RecvChatServerProtocol(msgType, protocol);
+		}
+	}
+
 	return true;
 }
-IMPL_CHAT_PACKET_MAKE_FUNC(Req, ChatConn);
+

@@ -8,7 +8,7 @@
 class BufReader;
 
 #define DECL_MAKE_SENDBUF_FROM_GAME_SERVER_PACKET(_msgType, _protocolName)														\
-static SendBufferSptr MakeSendBufferFromPacket(UserAndGameServer::##_msgType##_protocolName& _packet)							\
+static SendBufferSptr MakeSendBufferFromPacket(const UserAndGameServer::##_msgType##_protocolName& _packet)						\
 {																																\
 	return MakeProtoSendBuffer(UserAndGameServer::MsgType::##_msgType, UserAndGameServer::Protocol::##_protocolName, _packet);	\
 }																																\

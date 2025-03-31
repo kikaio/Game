@@ -2,8 +2,8 @@
 
 #define CHAT_PACKET_FUNC_MAP std::map<UserAndChatServer::Protocol, PacketFunc*>
 
-#define DECL_CHAT_PACKET_SEND_BUF(_msgType, _protocolName)														\
-static SendBufferSptr MakeSendBufferFromPacket(UserAndChatServer::##_msgType##_protocolName& _packet)							\
+#define DECL_CHAT_PACKET_SEND_BUF(_msgType, _protocolName)																		\
+static SendBufferSptr MakeSendBufferFromPacket(const UserAndChatServer::##_msgType##_protocolName& _packet)						\
 {																																\
 	return MakeProtoSendBuffer(UserAndChatServer::MsgType::##_msgType, UserAndChatServer::Protocol::##_protocolName, _packet);	\
 }																																\
@@ -32,6 +32,7 @@ public:
 	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, const T& _packet);
 public:
 	DECL_CHAT_PACKET_SEND_BUF(Req, ChatConn);
+	DECL_CHAT_PACKET_SEND_BUF(Req, Chat);
 };
 
 

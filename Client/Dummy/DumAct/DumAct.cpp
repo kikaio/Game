@@ -43,7 +43,7 @@ void DumActGameServerConnect::DoAct(DummyUserSptr _dumSptr)
 	return ;
 }
 
-DumActSetChatProfile::DumActSetChatProfile(const ChatProfile& _chatProfile)
+DumActSetChatProfile::DumActSetChatProfile(ChatProfileSptr _chatProfile)
 {
 	chatProfile = _chatProfile;
 }
@@ -84,12 +84,12 @@ void DumActGameConn::DoAct(DummyUserSptr _dumSptr)
 	ReserveAct(_dumSptr, [_dumSptr]() {
 		UserAndGameServer::ReqGameConn _req;
 		auto gsSession = _dumSptr->GetGameServerSession();
-		if(gsSession->SendPacketReqGameConn(_req) == false) {
+		if(gsSession->SendPacket(_req) == false) {
 			//todo : error logging
 			return ;
 		}
 		//callback 등록
-		_dumSptr->ReserveGameServerProtocol(
+		_dumSptr->SetWaitGamePacket(
 			UserAndGameServer::Ans, UserAndGameServer::GameConn
 			, [_dumSptr](){
 				DUM_DEBUG_LOG("dum recv AnsGameConn");
@@ -111,12 +111,12 @@ void DumActLogin::DoAct(DummyUserSptr _dumSptr)
 		UserAndGameServer::ReqLogin _req;
 		ProtoConverter::ToPacket(IN _dumSptr->GetLoginData(), OUT _req);
 		auto gsSession = _dumSptr->GetGameServerSession();
-		if(gsSession->SendPacketReqLogin(_req) == false){
+		if(gsSession->SendPacket(_req) == false){
 			//todo : erro logging
 			return ;
 		}
 		//callback 등록
-		_dumSptr->ReserveGameServerProtocol(
+		_dumSptr->SetWaitGamePacket(
 			UserAndGameServer::Ans, UserAndGameServer::Login
 			, [_dumSptr]() {
 				DUM_DEBUG_LOG("dum recv AnsLogin");
@@ -174,8 +174,51 @@ void DumActChatConn::DoAct(DummyUserSptr _dumSptr) {
 		ProtoConverter::ToPacket(IN accountId, OUT req);
 		auto chatSession = _dumSptr->GetChatServerSession();
 		if (chatSession->IsConnected()) {
-			chatSession->SendPacket(req);
+			if(chatSession->SendPacket(req) == false) {
+			}
+			else {
+				//callback 등록
+				_dumSptr->SetWaitChatPacket(
+					UserAndChatServer::Ans, UserAndChatServer::ChatConn
+					, [_dumSptr]() {
+						DUM_DEBUG_LOG("dum recv AnsChatConn");
+						_dumSptr->DoDumAct();
+					});
+			}
 		}
 	});
 	return;
+}
+
+
+DumActChat::DumActChat(uint64_t _delayMsec) {
+	actDelayMsec = _delayMsec;
+}
+
+void DumActChat::DoAct(DummyUserSptr _dumSptr){
+	ReserveAct(_dumSptr, [_dumSptr, this] (){
+		auto csSession = _dumSptr->GetChatServerSession();
+		if(csSession == nullptr || (csSession->IsConnected() == false)) {
+			return ;
+		}
+
+		auto chatProfile = _dumSptr->GetChatProfile();
+		if(chatProfile == nullptr) {
+			//todo : error loging, need to call DoActChatConn
+			int64_t accountId = chatProfile->GetAccountId();
+			UserAndChatServer::ReqChat req;
+			string msg = "test chat from dummy account - " + to_string(accountId);
+			ChatData chatData;
+			chatData.SetChatProfile(chatProfile);
+			chatData.SetChatType(CHAT_TYPE::NORMAL);
+			chatData.SetMsg(msg);
+			ProtoConverter::ToPacket(IN chatData, OUT req);
+			if(csSession->SendPacket(req) == false) {
+				//todo : erro send packet is failed
+				return ;
+			}
+			//해당 act에 대한 콜백처리는 실제 packet handle 쪽에서 담당한다.
+			//이유 : 다른 유저가 보낸 Noti에도 반응할 수 있어 별도의 확인 후 다음 act를 호출해야 하기 때문에.
+		}
+	});
 }

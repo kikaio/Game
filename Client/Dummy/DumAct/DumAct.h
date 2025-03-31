@@ -29,9 +29,9 @@ protected:
 
 class DumActSetChatProfile : public DumAct {
 public: 
-	ChatProfile chatProfile;
+	ChatProfileSptr chatProfile = nullptr;
 public:
-	DumActSetChatProfile(const ChatProfile& _chatProfile);
+	DumActSetChatProfile(ChatProfileSptr _chatProfile);
 protected:
 	void DoAct(DummyUserSptr _dumSptr) override;
 };
@@ -71,6 +71,13 @@ protected:
 class DumActChatConn : public DumAct {
 public:
 	DumActChatConn(uint64_t _delayMsec);
+protected:
+	void DoAct(DummyUserSptr _dumSptr) override;
+};
+
+class DumActChat : public DumAct {
+public:
+	DumActChat(uint64_t _delayMsec);
 protected:
 	void DoAct(DummyUserSptr _dumSptr) override;
 };

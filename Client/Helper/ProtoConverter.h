@@ -14,10 +14,14 @@ public:
 	static void ToProto(const CostumeData& _in, UserAndGameServer::CostumeData& _out);
 	static void ToProto(const CharacterData& _in, UserAndGameServer::CharacterData& _out);
 
+	static void ToProto(IN const ChatProfile& _in, OUT UserAndChatServer::ChatProfile& _out);
+	static void ToProto(IN const ChatData& _in, OUT UserAndChatServer::ChatData& _out);
+
 public:
 	//proto packet 까지 생성하는 함수들.
 	static void ToPacket(const LoginData& _loginData, UserAndGameServer::ReqLogin& _outProto);
 	static void ToPacket(const int64_t _accountId, UserAndChatServer::ReqChatConn& _out);
+	static void ToPacket(IN const ChatData& _chatData, OUT UserAndChatServer::ReqChat& _packet);
 
 public:
 	// FromProto : proto 구조체->구조체로 변환 담당
@@ -29,6 +33,8 @@ public:
 	static void FromProto(const UserAndGameServer::CostumeData& _in, CostumeData& _out);
 	static void FromProto(const UserAndGameServer::CharacterData& _in, CharacterData& _out);
 
+	static void FromProto(const UserAndChatServer::ChatData& _in, ChatData& _out);
+	static void FromProto(const UserAndChatServer::ChatProfile& _in, ChatProfile& _out);
 	// MakeProto : 구조체 등의 인자를 통한 message packet 값 설정.
 public:
 	static void FromPacket(IN const UserAndGameServer::AnsLogin& _packet
@@ -39,4 +45,11 @@ public:
 	static void FromPacket(IN const UserAndGameServer::AnsGameConn& _packet,
 		OUT string& _encryptKey
 	);
+
+	static void FromPacket(const UserAndChatServer::AnsChatConn& _packet
+		, IN ChatProfileSptr _profile
+		, IN int32_t& _roomNo
+		, IN vector<ChatProfileSptr>& _profiles
+	);
+	static void FromPacket(const UserAndChatServer::NotiChat& _packet, ChatData& _chatData);
 };

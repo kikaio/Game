@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "ChatProfile.h"
 
-void ChatProfile::SetProfileId(int64_t _id)
+void ChatProfile::SetAccountId(int64_t _id)
 {
-    profileId = _id;
+    accountId = _id;
 }
 
 void ChatProfile::SetNickName(const string& _name)
@@ -21,9 +21,9 @@ void ChatProfile::SetProfileFrameId(int64_t _id)
     profileFrameId = _id;
 }
 
-int64_t ChatProfile::GetProfileId() const
+int64_t ChatProfile::GetAccountId() const
 {
-    return profileId;
+    return accountId;
 }
 
 const string& ChatProfile::GetNickName() const
@@ -43,7 +43,7 @@ int64_t ChatProfile::GetProfileFrameId() const
 
 void ChatProfile::Render()
 {
-    DUM_DEBUG_LOG("[chat profile]======");
+    DUM_DEBUG_LOG("[chat profile - accountId {}]======", accountId);
     DUM_DEBUG_LOG("nickname : {}, mainHeroId : {}, mainFrameId : {}"
         , nickName, profileHeroId, profileFrameId
     );

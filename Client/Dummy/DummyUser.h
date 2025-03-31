@@ -32,6 +32,8 @@ public:
 public:
 	NetworkCoreSptr gameServerNetCore = nullptr;
 	ProtocolCallbackMap gameServerProtoCallback; //game server 용 protocol callback 담당.
+	tuple<int, int> waitingGamePacket = std::make_tuple(0, 0);
+	const tuple<int, int> noneWaitingPacket = std::make_tuple(0, 0);
 private:
 	GameServerSessionSptr gameServerSession = nullptr;
 public:
@@ -43,14 +45,37 @@ public:
 public:
 	void OnGameServerSessionDisconnected();
 	void OnGameServerSessionConnected();
-public:
+private:
 	template<typename MSG_TYPE, typename PROTO_TYPE>
 	void ReserveGameServerProtocol(MSG_TYPE _msg, PROTO_TYPE _proto, DUM_PROTOCOL_CB&& _cb) {
 		gameServerProtoCallback.ReserveCallback(_msg, _proto, std::move(_cb));
 	}
+public:
+	
+	template<typename MSG_TYPE, typename PROTO_TYPE>
+	void SetWaitGamePacket(MSG_TYPE _msg, PROTO_TYPE _proto) {
+		waitingGamePacket = std::make_tuple((int32_t)_msg, (int32_t)_proto);
+	}
+
+	template<typename MSG_TYPE, typename PROTO_TYPE>
+	bool CheckAndClearWaitGamePacket(MSG_TYPE _msg, PROTO_TYPE _proto) {
+		if (waitingGamePacket == std::make_tuple((int32_t)_msg, (int32_t)_proto)) { 
+			waitingGamePacket = noneWaitingPacket;
+			return true;
+		}
+		return false;
+	}
+	template<typename MSG_TYPE, typename PROTO_TYPE>
+	void SetWaitGamePacket(MSG_TYPE _msg, PROTO_TYPE _proto, DUM_PROTOCOL_CB&& _cb) {
+		waitingGamePacket = std::make_tuple((int32_t)_msg, (int32_t)_proto);
+		ReserveGameServerProtocol(_msg, _proto, std::move(_cb));
+	}
 	template<typename MSG_TYPE, typename PROTO_TYPE>
 	void RecvGameServerProtocol(MSG_TYPE _msg, PROTO_TYPE _proto) {
-		gameServerProtoCallback.RecvProtocol(_msg, _proto);
+		if(waitingGamePacket == std::make_tuple((int32_t)_msg, (int32_t)_proto)) {
+			gameServerProtoCallback.RecvProtocol(_msg, _proto);
+			waitingGamePacket = noneWaitingPacket;
+		}
 	}
 
 #pragma endregion 
@@ -59,10 +84,13 @@ public:
 public:
 	NetworkCoreSptr chatServerNetCore = nullptr;
 	ProtocolCallbackMap chatServerProtoCallback; //game server 용 protocol callback 담당.
+	tuple<int, int> waitingChatPacket = std::make_tuple(0, 0);
 private:
 	ChatServerSessionSptr chatServerSession = nullptr;
 	string chatHost = "";
 	int32_t chatPort = 0;
+	vector<ChatProfileSptr> otherUserChatProfiles;
+	int32_t curChatRoomNo = 0;
 public:
 	void SetChatServerInfo(const string& _host, int16_t _port);
 	void SetChatServerSession(ChatServerSessionSptr _session) {
@@ -71,19 +99,39 @@ public:
 	ChatServerSessionSptr GetChatServerSession() {
 		return chatServerSession;
 	}
+	vector<ChatProfileSptr>& GetOtherUserChatProfiles();
+	int32_t GetCurChatRoomNo();
+	void SetCurChatRoomNo(int32_t _no);
 public:
 	bool IsChatConnected();
 public:
 	void OnChatServerSessionDisconnected();
 	void OnChatServerSessionConnected();
-public:
+private:
 	template<typename MSG_TYPE, typename PROTO_TYPE>
 	void ReserveChatServerProtocol(MSG_TYPE _msg, PROTO_TYPE _proto, DUM_PROTOCOL_CB&& _cb) {
 		chatServerProtoCallback.ReserveCallback(_msg, _proto, std::move(_cb));
 	}
+public:
+	template<typename MSG_TYPE, typename PROTO_TYPE>
+	bool CheckAndClearWaitChatPacket(MSG_TYPE _msg, PROTO_TYPE _proto) {
+		if (waitingChatPacket == std::make_tuple((int32_t)_msg, (int32_t)_proto)) {
+			waitingChatPacket = noneWaitingPacket;
+			return true;
+		}
+		return false;
+	}
+	template<typename MSG_TYPE, typename PROTO_TYPE>
+	void SetWaitChatPacket(MSG_TYPE _msg, PROTO_TYPE _proto, DUM_PROTOCOL_CB&& _cb) {
+		waitingChatPacket = std::make_tuple((int32_t)_msg, (int32_t)_proto);
+		ReserveChatServerProtocol(_msg, _proto, std::move(_cb));
+	}
 	template<typename MSG_TYPE, typename PROTO_TYPE>
 	void RecvChatServerProtocol(MSG_TYPE _msg, PROTO_TYPE _proto) {
-		chatServerProtoCallback.RecvProtocol(_msg, _proto);
+		if(waitingChatPacket == std::make_tuple((int32_t)_msg, (int32_t)_proto)) {
+			chatServerProtoCallback.RecvProtocol(_msg, _proto);
+			waitingChatPacket = noneWaitingPacket;
+		}
 	}
 #pragma endregion 
 
@@ -93,13 +141,13 @@ private:
 	Inventory inventory;
 	LoginData loginData;
 	LoginResultData loginResultData;
-	ChatProfile chatProfile;
+	ChatProfileSptr chatProfile;
 public:
 	void SetLoginData(const LoginData& _loginData);
 	const LoginData& GetLoginData();
 
-	void SetChatProfile(const ChatProfile& _chatProfile);
-	const ChatProfile& GetChatProfile();
+	void SetChatProfile(ChatProfileSptr _chatProfile);
+	ChatProfileSptr GetChatProfile();
 
 	void SetProfile(const DummyProfile& _profile);
 	DummyProfile& GetProfile();

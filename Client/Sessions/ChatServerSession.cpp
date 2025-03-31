@@ -2,7 +2,7 @@
 #include "ChatServerSession.h"
 
 #define IMPL_CHAT_SERVER_SEND_FUNC(_protoType, _protoName) \
-bool ChatServerSession::SendPacket##_protoType##_protoName(UserAndChatServer::##_protoType##_protoName& _packet)		\
+bool ChatServerSession::SendPacket(const UserAndChatServer::##_protoType##_protoName& _packet)								\
 {																														\
 	SendBufferSptr sendBuf = ChatServerDiscriminator::MakeSendBufferFromPacket(_packet);								\
 	return TrySend(sendBuf);																							\
@@ -29,3 +29,5 @@ DummyUserSptr ChatServerSession::GetDummyUser()
 }
 
 IMPL_CHAT_SERVER_SEND_FUNC(Req, ChatConn);
+
+IMPL_CHAT_SERVER_SEND_FUNC(Req, Chat);

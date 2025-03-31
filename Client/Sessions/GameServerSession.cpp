@@ -2,7 +2,7 @@
 #include "GameServerSession.h"
 
 #define IMPL_GAME_SERVER_SEND_FUNC(_protoType, _protoName) \
-bool GameServerSession::SendPacket##_protoType##_protoName(UserAndGameServer::##_protoType##_protoName& _packet)		\
+bool GameServerSession::SendPacket(const UserAndGameServer::##_protoType##_protoName& _packet)							\
 {																														\
 	SendBufferSptr sendBuf = GameServerDiscriminator::MakeSendBufferFromPacket(_packet);								\
 	return TrySend(sendBuf);																							\
@@ -28,5 +28,7 @@ DummyUserSptr GameServerSession::GetDummyUser()
 	return dummyUserWptr.lock();
 }
 
-IMPL_GAME_SERVER_SEND_FUNC(Req, Login);
+bool GameServerSession::SendPacket(const UserAndGameServer::ReqLogin& _packet) {
+	SendBufferSptr sendBuf = GameServerDiscriminator::MakeSendBufferFromPacket(_packet); return TrySend(sendBuf);
+};
 IMPL_GAME_SERVER_SEND_FUNC(Req, GameConn);
