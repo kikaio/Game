@@ -12,9 +12,9 @@ public:
 public:
 	static void ToPacket(IN const ChatData& _chatData, OUT UserAndChatServer::NotiChat& _packet);
 	static void ToPacket(
-		IN const ChatProfileSptr _profile
+		IN ChatProfileSptr _profile
 		, const int32_t& _roomNo
-		, const vector<ChatProfileSptr> _others
+		, vector<ChatProfileSptr>& _others
 		, OUT UserAndChatServer::AnsChatConn& _packet
 	);
 #pragma endregion to Packet

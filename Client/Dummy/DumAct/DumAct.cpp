@@ -175,6 +175,7 @@ void DumActChatConn::DoAct(DummyUserSptr _dumSptr) {
 		auto chatSession = _dumSptr->GetChatServerSession();
 		if (chatSession->IsConnected()) {
 			if(chatSession->SendPacket(req) == false) {
+				DUM_ERR_LOG("DumActChatConn - dummy send packet failed.");
 			}
 			else {
 				//callback 등록

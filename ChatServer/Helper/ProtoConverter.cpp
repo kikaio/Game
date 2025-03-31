@@ -25,12 +25,16 @@ void ProtoConverter::ToPacket(IN const ChatData& _chatData, OUT UserAndChatServe
 }
 
 void ProtoConverter::ToPacket(
-	IN const ChatProfileSptr _profile
+	IN ChatProfileSptr _profile
 	, const int32_t& _roomNo
-	, const vector<ChatProfileSptr> _others
+	, vector<ChatProfileSptr>& _others
 	, OUT UserAndChatServer::AnsChatConn& _packet
 ) {
-	
+	ToProto(IN *_profile, OUT *_packet.mutable_profile());
+	_packet.set_room_no(_roomNo);
+	for (auto _ele : _others) {
+		ToProto(*_ele, *_packet.add_profiles());
+	}
 }
 
 #pragma endregion to packet

@@ -27,8 +27,8 @@ namespace UserAndChatPacketHandle {
 				chatProfile = ChatProfileMng::Get().CreateProfile(
 					accountId
 					, "test nick_" + to_string(accountId)
-					, 0
-					, 0
+					, 1
+					, 100
 				);
 				chatUser->SetProfile(chatProfile);
 			}
@@ -38,6 +38,7 @@ namespace UserAndChatPacketHandle {
 		ASSERT_CRASH(room != nullptr);
 		CS_DEBUG_LOG("[chatuser :{}] try enter to room[{}]", accountId, room->GetRoomNo());
 		vector<ChatProfileSptr> profiles;
+		chatUser->SetChatRoom(room);
 		room->GetProfiles(OUT profiles);
 		room->DoAsync(&ChatRoom::Enter, chatUser);
 

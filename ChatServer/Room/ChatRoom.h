@@ -3,6 +3,7 @@
 class ChatRoom : public JobQueue {
 public:
 	static int32_t maxUserCnt;
+	static int32_t maxRoomCnt;
 private:
 	int32_t roomNo = 0;
 private:

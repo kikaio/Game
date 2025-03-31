@@ -7,18 +7,17 @@ namespace UserAndChatPacketHandle {
 		auto chatUser = _session->GetChatUser();
 		ChatData chatData;
 		ProtoConverter::FromPacket(IN _packet, OUT chatData);
-
+		//todo : 해당 유저의 room에 채팅 전달.
+		auto senderProfile = chatData.GetChatProfile();
+		int64_t senderAccountId = senderProfile->GetProfileId();
 
 		if(chatUser != nullptr) {
 			auto chatRoom = chatUser->GetChatRoom();
 			if (chatRoom == nullptr) {
 				//todo : error this user need to enter any chat room, send error
-
+				CS_ERROR_LOG("this user's chat room is empty. check please");
 				return false;
 			}
-
-			//todo : 해당 유저의 room에 채팅 전달.
-			int64_t profileId = _packet.chat_data().chat_profile().profile_id();
 
 			auto profile = chatUser->GetProfile();
 			if (profile == nullptr) {
@@ -36,12 +35,11 @@ namespace UserAndChatPacketHandle {
 			if (profile == nullptr) {
 				//todo : error! - user's profile not exist
 				// 일단 packet 기반 profile로 설정해준다.
-				const auto& protoProfile = _packet.chat_data().chat_profile();
 				profile = ChatProfileMng::Get().CreateProfile(
-					protoProfile.profile_id()
-					, protoProfile.nick_name()
-					, protoProfile.profile_hero_id()
-					, protoProfile.profile_frame_id()
+					senderAccountId
+					, senderProfile->GetNickName()
+					, senderProfile->GetMainHeroId()
+					, senderProfile->GetMainFrameId()
 				);
 			}
 
