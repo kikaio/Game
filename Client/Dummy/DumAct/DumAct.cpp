@@ -68,6 +68,7 @@ DumActSetLoginData::DumActSetLoginData(string _userKey, string _token, string _r
 void DumActSetLoginData::DoAct(DummyUserSptr _dumSptr)
 {
 	_dumSptr->SetLoginData(loginData);
+	DUM_DEBUG_LOG("dum[{}] set sid : {}", _dumSptr->GetDummyIdx(), loginData.sId);
 	ReserveAct(_dumSptr, [_dumSptr](){
 		_dumSptr->DoDumAct();
 	});

@@ -16,7 +16,7 @@ bool DummyUserManager::LoadScenarioFromFile()
 	}
 	{
 		//LoginData 설정
-		auto _dumActSptr = MakeShared<DumActSetLoginData>("testDummy");
+		auto _dumActSptr = MakeShared<DumActSetLoginData>("");
 		dumActs.push_back(_dumActSptr);
 	}
 	{
@@ -24,21 +24,21 @@ bool DummyUserManager::LoadScenarioFromFile()
 		auto _dumActSptr = MakeShared<DumActLogin>(100);
 		dumActs.push_back(_dumActSptr);
 	}
-	{
-		//connect 후 chat 전송
-		auto _dumActSptr = MakeShared<DumActChatServerConn>(100);
-		dumActs.push_back(_dumActSptr);
-	}
-	{
-		//connect 후 chat 전송
-		auto _dumActSptr = MakeShared<DumActChatConn>(100);
-		dumActs.push_back(_dumActSptr);
-	}
-	{
-		//connect 후 chat 전송
-		auto _dumActSptr = MakeShared<DumActChat>(100);
-		dumActs.push_back(_dumActSptr);
-	}
+	//{
+	//	//connect 후 chat 전송
+	//	auto _dumActSptr = MakeShared<DumActChatServerConn>(100);
+	//	dumActs.push_back(_dumActSptr);
+	//}
+	//{
+	//	//connect 후 chat 전송
+	//	auto _dumActSptr = MakeShared<DumActChatConn>(100);
+	//	dumActs.push_back(_dumActSptr);
+	//}
+	//{
+	//	//connect 후 chat 전송
+	//	auto _dumActSptr = MakeShared<DumActChat>(100);
+	//	dumActs.push_back(_dumActSptr);
+	//}
 
 	return true;
 }

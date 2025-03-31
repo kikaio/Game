@@ -91,7 +91,7 @@ void DBConnectionPool::Clear()
 shared_ptr<DBConnection> DBConnectionPool::PopCommonDB(RWType _rwType) {
 	
 	auto start = std::chrono::steady_clock::now();
-	int32_t timeoutMsec = 100;
+	int32_t timeoutMsec = 1000;
 
 	auto iterConf = commonDBConfMap.find(_rwType);
 	ASSERT_CRASH(iterConf != commonDBConfMap.end());
@@ -138,7 +138,7 @@ shared_ptr<DBConnection> DBConnectionPool::PopCommonDB(RWType _rwType) {
 shared_ptr<DBConnection> DBConnectionPool::PopGameDB(RWType _rwType) {
 
 	auto start = std::chrono::steady_clock::now();
-	int32_t timeoutMsec = 100;
+	int32_t timeoutMsec = 1000;
 
 	auto iterConf = gameDBConfMap.find(_rwType);
 	ASSERT_CRASH(iterConf != gameDBConfMap.end());

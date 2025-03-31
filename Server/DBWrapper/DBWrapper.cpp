@@ -69,6 +69,10 @@ int32_t DBWrapper::DoDatabaseTest()
 PacketError DBWrapper::PlatformSelect(const LoginData& _loginData, GameUserSptr _gameUser, bool& _is_old_user, int32_t _def_main_hero_id, int32_t _def_main_frame_id, string _def_main_greeting_ment)
 {
     DBConnectionSptr conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
+    if (conn == nullptr) {
+        GS_DEBUG_LOG("db connection pool is empty, check this. - PlatformSelect");
+        return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::CONNECTION_NOT_EXIST);
+    }
     DBBind<7, 0> dbBinder(*conn, "call usp_platform_select(?, ?, ?, ?, ?, ?, ?);");
     
     int32_t platformVal = ENUM_TO_INT(_loginData.loginPlatform);
