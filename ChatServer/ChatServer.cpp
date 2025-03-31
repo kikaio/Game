@@ -112,6 +112,7 @@ void StartChatThread() {
 	UInt32 tag2 = 0;
 
 
+	UserPacketDiscriminator::Init();
 	ASSERT_CRASH(chatNet->Ready(iocpThreadCnt));
 	CS_DEBUG_LOG("wsa standby");
 	

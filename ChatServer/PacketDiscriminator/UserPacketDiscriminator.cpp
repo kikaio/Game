@@ -99,8 +99,8 @@ void UserPacketDiscriminator::AbusingRecord(SessionSptr _session
 
 void UserPacketDiscriminator::Init()
 {
-	REGIST_USER_CLIENT_PACKET_HANDLE(Req, Chat);
 	REGIST_USER_CLIENT_PACKET_HANDLE(Req, ChatConn);
+	REGIST_USER_CLIENT_PACKET_HANDLE(Req, Chat);
 }
 
 void UserPacketDiscriminator::RegistPacketFunc(UserAndChatServer::MsgType _msgType

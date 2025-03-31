@@ -26,7 +26,7 @@ namespace UserAndChatPacketHandle {
 				// testㅣ용 profile 적용
 				chatProfile = ChatProfileMng::Get().CreateProfile(
 					accountId
-					, "test nick"
+					, "test nick_" + to_string(accountId)
 					, 0
 					, 0
 				);
@@ -36,6 +36,7 @@ namespace UserAndChatPacketHandle {
 		//todo : GetRoomNo for random to enter
 		auto room = ChatRoomMng::Get().GetRoundRobinNormalRoom();
 		ASSERT_CRASH(room != nullptr);
+		CS_DEBUG_LOG("[chatuser :{}] try enter to room[{}]", accountId, room->GetRoomNo());
 		vector<ChatProfileSptr> profiles;
 		room->GetProfiles(OUT profiles);
 		room->DoAsync(&ChatRoom::Enter, chatUser);

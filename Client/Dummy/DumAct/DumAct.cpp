@@ -203,7 +203,7 @@ void DumActChat::DoAct(DummyUserSptr _dumSptr){
 		}
 
 		auto chatProfile = _dumSptr->GetChatProfile();
-		if(chatProfile == nullptr) {
+		if(chatProfile != nullptr) {
 			//todo : error loging, need to call DoActChatConn
 			int64_t accountId = chatProfile->GetAccountId();
 			UserAndChatServer::ReqChat req;
