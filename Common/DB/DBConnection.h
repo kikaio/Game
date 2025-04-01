@@ -27,6 +27,7 @@ private:
 	void HandleError(SQLRETURN _ret);
 public:
 	void SetDBNameType(DBNameType _type);
+	void SetReadWriteType(RWType _type);
 	bool Connect(SQLHENV _henv, const char* _connStr);
 	void Clear();
 	bool Execute(const char* _sql);

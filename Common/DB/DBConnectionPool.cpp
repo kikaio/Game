@@ -49,6 +49,7 @@ bool DBConnectionPool::Connect(const DBConfig& _conf) {
 			return false;
 		}
 		_conn->SetDBNameType(_conf.dbNameType);
+		_conn->SetReadWriteType(_rwType);
 		switch (_conn->DbNameType()) {
 		case DBNameType::CommonDB: {
 			commonDBConfMap[_rwType].curPoolCnt++;

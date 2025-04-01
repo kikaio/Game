@@ -6,6 +6,10 @@ void DBConnection::SetDBNameType(DBNameType _type) {
 	return ;
 }
 
+void DBConnection::SetReadWriteType(RWType _type) {
+	rwType = _type;
+	return;
+}
 
 bool DBConnection::Connect(SQLHENV _henv, const char* _connStr)
 {
