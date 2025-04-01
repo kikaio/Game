@@ -55,20 +55,20 @@ void DumActSetChatProfile::DoAct(DummyUserSptr _dumSptr)
 
 DumActSetLoginData::DumActSetLoginData(string _userKey, string _token, string _refresh_token, bool _isNewLogin)
  : isNewLogin(_isNewLogin)
+	, sId(_userKey), loginToken(_token), refreshToken(_refresh_token)
 {
-	if (_userKey == "") {
-		_userKey = StrUtil::GetRandomStr(16);
-	}
-	loginData.sId = _userKey;
-	loginData.loginToken = _token;
-	loginData.refreshToken = _refresh_token;
-
 }
 
 void DumActSetLoginData::DoAct(DummyUserSptr _dumSptr)
 {
-	_dumSptr->SetLoginData(loginData);
-	DUM_DEBUG_LOG("dum[{}] set sid : {}", _dumSptr->GetDummyIdx(), loginData.sId);
+	string curSid = sId;
+	if (curSid == "") {
+		curSid = StrUtil::GetRandomStr(16);
+	}
+
+	_dumSptr->SetLoginData(curSid, loginToken, refreshToken);
+
+	DUM_DEBUG_LOG("dum[{}] set sid : {}", _dumSptr->GetDummyIdx(), curSid);
 	ReserveAct(_dumSptr, [_dumSptr](){
 		_dumSptr->DoDumAct();
 	});
@@ -209,7 +209,7 @@ void DumActChat::DoAct(DummyUserSptr _dumSptr){
 			//todo : error loging, need to call DoActChatConn
 			int64_t accountId = chatProfile->GetAccountId();
 			UserAndChatServer::ReqChat req;
-			string msg = "test chat from dummy account - " + to_string(accountId);
+			string msg = "test chat from dummy account - " + to_string(accountId) + " in room - " + to_string(_dumSptr->GetCurChatRoomNo());
 			ChatData chatData;
 			chatData.SetChatProfile(chatProfile);
 			chatData.SetChatType(CHAT_TYPE::NORMAL);

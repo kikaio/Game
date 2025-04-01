@@ -1,6 +1,6 @@
 {
 	"client" : {
-		"dummy_cnt" : 2,
+		"dummy_cnt" : 1,
 		"worker_thread_cnt" : 5,
 		"logger_lv":"DEBUG"
 	},

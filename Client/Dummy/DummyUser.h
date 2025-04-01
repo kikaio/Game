@@ -144,6 +144,7 @@ private:
 	ChatProfileSptr chatProfile;
 public:
 	void SetLoginData(const LoginData& _loginData);
+	void SetLoginData(const string& _sid, const string& _token, const string& _refreshToken);
 	const LoginData& GetLoginData();
 
 	void SetChatProfile(ChatProfileSptr _chatProfile);

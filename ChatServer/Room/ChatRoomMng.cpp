@@ -28,9 +28,10 @@ ChatRoomSptr ChatRoomMng::GetNormalRoom(int32_t _roomNo)
 ChatRoomSptr ChatRoomMng::GetRoundRobinNormalRoom() {
 	bool finded = false;
 	int64_t targetNo = roundRobinIdx.fetch_add(1) % normalRooms.size() + 1;
-	for(int cnt = 0; cnt < normalRooms.size(); cnt++) {
+	printf("roundRobinIdx : %d / normalRooms size : %d / target room no : %d\n", roundRobinIdx.load(), normalRooms.size(), targetNo);
+	for(int idx = 0; idx < normalRooms.size(); idx++) {
 		if (normalRooms[targetNo]->GetUserCnt() >= ChatRoom::maxUserCnt) {
-			targetNo = roundRobinIdx.fetch_add(1) % normalRooms.size();
+			targetNo = roundRobinIdx.fetch_add(1) % normalRooms.size() + 1;
 			continue;
 		}
 		finded = true;

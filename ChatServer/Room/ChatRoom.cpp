@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "ChatRoom.h"
 
-int32_t ChatRoom::maxUserCnt = 10;
+int32_t ChatRoom::maxUserCnt = 3;
 int32_t ChatRoom::maxRoomCnt = 10;
 
 int32_t ChatRoom::GetUserCnt()

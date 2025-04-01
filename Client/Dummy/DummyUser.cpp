@@ -104,6 +104,11 @@ void DummyUser::SetLoginData(const LoginData& _loginData)
 {
 	loginData = _loginData;
 }
+void DummyUser::SetLoginData(const string& _sid, const string& _token, const string& _refreshToken) {
+	loginData.sId = _sid;
+	loginData.loginToken = _token;
+	loginData.refreshToken = _refreshToken;
+}
 
 const LoginData& DummyUser::GetLoginData() {
 	return loginData;

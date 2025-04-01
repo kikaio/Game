@@ -39,8 +39,10 @@ protected:
 class DumActSetLoginData : public DumAct {
 public:
 	bool isNewLogin = false;
-	LoginData loginData;
-	LoginData nextLoginData;
+	string sId;
+	string loginToken;
+	string refreshToken;
+
 public:
 	DumActSetLoginData(string _userKey, string _token = "", string _refresh_token = "", bool _isNewLogin = true);
 protected:

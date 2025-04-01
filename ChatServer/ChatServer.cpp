@@ -130,9 +130,15 @@ void StartChatThread() {
 	ASSERT_CRASH(chatNet->ReadyToAccept(listener, backLog, acceptCnt));
 	CS_DEBUG_LOG("accept ready");
 	
-	int32_t normalRoomSize = 1;
-	int32_t guildRoomSize = 0;
-	ChatRoomMng::Get().Init(normalRoomSize, guildRoomSize);
+	int32_t initNormalRoomSize = 3;
+	int32_t initGuildRoomSize = 0;
+	int32_t maxUserCntInChatRoom = 3;
+	int32_t maxRoomCntInChatRoom = 10;
+
+	ChatRoom::maxUserCnt = maxUserCntInChatRoom;
+	ChatRoom::maxRoomCnt = maxRoomCntInChatRoom;
+
+	ChatRoomMng::Get().Init(initNormalRoomSize, initGuildRoomSize);
 
 
 	UInt32 waitMilliSec = INFINITE;
