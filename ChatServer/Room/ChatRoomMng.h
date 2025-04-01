@@ -1,12 +1,15 @@
 #pragma once
 
 class ChatRoomMng : public Singleton<ChatRoomMng> {
+public:
+	static int32_t initNormalRoomSize;
+	static int32_t initGuildRoomSize;
 private:
 	atomic<int64_t> roundRobinIdx = 0;
 	std::map<int32_t, ChatRoomSptr> normalRooms;
 	std::map<int32_t, ChatRoomSptr> guildRooms;
 public:
-	void Init(int32_t _normalRoomCnt, int32_t _guildRoomCnt);
+	void Init();
 public:
 	ChatRoomSptr GetNormalRoom(int32_t _roomNo);
 	ChatRoomSptr GetRoundRobinNormalRoom();

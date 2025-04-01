@@ -135,10 +135,12 @@ void StartChatThread() {
 	int32_t maxUserCntInChatRoom = 3;
 	int32_t maxRoomCntInChatRoom = 10;
 
+	ChatRoomMng::initGuildRoomSize = initGuildRoomSize;
+	ChatRoomMng::initNormalRoomSize = initNormalRoomSize;
 	ChatRoom::maxUserCnt = maxUserCntInChatRoom;
 	ChatRoom::maxRoomCnt = maxRoomCntInChatRoom;
 
-	ChatRoomMng::Get().Init(initNormalRoomSize, initGuildRoomSize);
+	ChatRoomMng::Get().Init();
 
 
 	UInt32 waitMilliSec = INFINITE;

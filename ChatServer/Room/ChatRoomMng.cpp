@@ -1,15 +1,18 @@
 #include "pch.h"
 #include "ChatRoomMng.h"
 
-void ChatRoomMng::Init(int32_t _normalRoomCnt, int32_t _guildRoomCnt)
+int32_t ChatRoomMng::initNormalRoomSize = 1;
+int32_t ChatRoomMng::initGuildRoomSize = 1;
+
+void ChatRoomMng::Init()
 {
-	for(int idx = 0; idx < _normalRoomCnt; idx++) {
+	for(int idx = 0; idx < initNormalRoomSize; idx++) {
 		auto roomSptr = MakeShared<ChatRoom>();
 		roomSptr->SetRoomNo(idx+1);
 		normalRooms.emplace(idx+1, roomSptr);
 	}
 
-	for (int idx = 0; idx < _guildRoomCnt; idx++) {
+	for (int idx = 0; idx < initGuildRoomSize; idx++) {
 		auto roomSptr = MakeShared<ChatRoom>();
 		roomSptr->SetRoomNo(idx + 1);
 		guildRooms.emplace(idx + 1, roomSptr);
