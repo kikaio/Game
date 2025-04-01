@@ -11,26 +11,14 @@ namespace UserAndChatPacketHandle {
 		chatUser->SetAccountId(accountId);
 		auto chatProfile = ChatProfileMng::Get().GetProfile(accountId);
 		if(chatProfile == nullptr) {
-			if(false) {
-				//todo : read from redis
-				if (chatProfile == nullptr) {
-					//todo : read from database
-				}
-
-				if (chatProfile == nullptr) {
-					//todo : send err packet about profile not exist.
-					return false;
-				}
+			//todo : read from redis
+			if (chatProfile == nullptr) {
+				//todo : read from database
+				chatProfile = DBWarpper::ChatProfileSelect(accountId);
 			}
-			else {
-				// testㅣ용 profile 적용
-				chatProfile = ChatProfileMng::Get().CreateProfile(
-					accountId
-					, "test nick_" + to_string(accountId)
-					, 1
-					, 100
-				);
-				chatUser->SetProfile(chatProfile);
+			if (chatProfile == nullptr) {
+				//todo : send err packet about profile not exist.
+				return false;
 			}
 		}
 		//todo : GetRoomNo for random to enter

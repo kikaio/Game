@@ -14,6 +14,8 @@
 #include "MasterConfig.h"
 #include "ChatConfig.h"
 
+#include "DBWrapper.h"
+
 #include "LogHelper.h"
 
 #include "ChatData.h"

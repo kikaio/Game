@@ -49,6 +49,8 @@ namespace UserAndGameServerHandle {
 			// todo : render 지울 것.
 			gameUser->Render();
 		}
+		//todo : redis save
+
 
 		UserAndGameServer::AnsLogin _ans;
 		LoginResultData loginResultData;

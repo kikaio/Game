@@ -37,6 +37,12 @@
     <Filter Include="Room">
       <UniqueIdentifier>{252a9ccf-e691-48a5-b880-04fb2a5a3813}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DBWrapper">
+      <UniqueIdentifier>{7c3e043a-c306-4c0c-b04c-43b02730bc3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DBWrapper\Rows">
+      <UniqueIdentifier>{f65b7e07-06bf-4557-b939-58ccd637a5a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChatServer.cpp">
@@ -99,6 +105,9 @@
     <ClCompile Include="PacketHandles\UserAndChatPacketHandles\ReqChatConn.cpp">
       <Filter>PacketHandles\UserAndChatPacketHandles</Filter>
     </ClCompile>
+    <ClCompile Include="DBWrapper\DBWrapper.cpp">
+      <Filter>DBWrapper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -160,6 +169,12 @@
     </ClInclude>
     <ClInclude Include="User\UserData\ChatProfileMng.h">
       <Filter>User\UserData</Filter>
+    </ClInclude>
+    <ClInclude Include="DBWrapper\DBWrapper.h">
+      <Filter>DBWrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="DBWrapper\Rows\ProfileRow.h">
+      <Filter>DBWrapper\Rows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
