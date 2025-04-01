@@ -14,14 +14,15 @@ public:
 public:
 	template<typename DB_BINDER>
 	void FromDB(DB_BINDER& _binder) {
-		_binder.GetInt64(1, OUT pId);
-		_binder.GetStr(2, OUT sId);
-		_binder.GetInt32(3, OUT pType);
-		_binder.GetInt64(4, OUT aId);
-		_binder.GetStr(5, OUT token);
-		_binder.GetStr(6, OUT refreshToken);
-		_binder.GetInt64(7, OUT cDate);
-		_binder.GetInt64(8, OUT mDate);
+		int32_t colNo = 1;
+		_binder.GetInt64(colNo++, OUT pId);
+		_binder.GetStr(colNo++, OUT sId);
+		_binder.GetInt32(colNo++, OUT pType);
+		_binder.GetInt64(colNo++, OUT aId);
+		_binder.GetStr(colNo++, OUT token);
+		_binder.GetStr(colNo++, OUT refreshToken);
+		_binder.GetInt64(colNo++, OUT cDate);
+		_binder.GetInt64(colNo++, OUT mDate);
 		return ;
 	}
 public:
@@ -40,9 +41,10 @@ public:
 public:
 	template<typename DB_BINDER>
 	void FromDB(DB_BINDER& _binder) {
-		_binder.GetInt64(1, OUT aId);
-		_binder.GetInt64(2, OUT cDate);
-		_binder.GetInt64(3, OUT mDate);
+		int32_t colNo = 1;
+		_binder.GetInt64(colNo++, OUT aId);
+		_binder.GetInt64(colNo++, OUT cDate);
+		_binder.GetInt64(colNo++, OUT mDate);
 		return ;
 	}
 public:
@@ -62,10 +64,11 @@ public:
 public:
 	template<typename DB_BINDER> 
 	void FromDB(DB_BINDER& _binder) {
-		_binder.GetInt64(1, OUT sId);
-		_binder.GetInt64(2, OUT aId);
-		_binder.GetInt64(3, OUT cDate);
-		_binder.GetInt64(4, OUT mDate);
+		int32_t colNo = 1;
+		_binder.GetInt64(colNo++, OUT sId);
+		_binder.GetInt64(colNo++, OUT aId);
+		_binder.GetInt64(colNo++, OUT cDate);
+		_binder.GetInt64(colNo++, OUT mDate);
 		return ;
 	}
 public:
@@ -80,6 +83,7 @@ class ProfileRow {
 public:
 	int64_t pId = 0;
 	int64_t aId = 0;
+	string nickName = "";
 	int64_t mainHeroId = 0;
 	int32_t mainFrameId = 0;
 	string greetingMent = "";
@@ -89,15 +93,17 @@ public:
 public:
 	template<typename DB_BINDER>
 	void FromDB(DB_BINDER& _binder) {
-		_binder.GetInt64(1, OUT pId);
-		_binder.GetInt64(2, OUT aId);
-		_binder.GetInt64(3, OUT mainHeroId);
-		_binder.GetInt32(4, OUT mainFrameId);
+		int32_t colNo= 1;
+		_binder.GetInt64(colNo++, OUT pId);
+		_binder.GetInt64(colNo++, OUT aId);
+		_binder.GetStr(colNo++, OUT nickName);
+		_binder.GetInt64(colNo++, OUT mainHeroId);
+		_binder.GetInt32(colNo++, OUT mainFrameId);
 		
-		_binder.GetStr(5, OUT greetingMent);
+		_binder.GetStr(colNo++, OUT greetingMent);
 
-		_binder.GetInt64(6, OUT cDate);
-		_binder.GetInt64(7, OUT mDate);
+		_binder.GetInt64(colNo++, OUT cDate);
+		_binder.GetInt64(colNo++, OUT mDate);
 
 		return ;
 	}
@@ -118,10 +124,11 @@ public:
 public:
 	template<typename DB_BINDER>
 	void FromDB(DB_BINDER& _binder) {
-		_binder.GetInt64(1, OUT gameUserId);
-		_binder.GetInt64(2, OUT accountId);
-		_binder.GetInt64(3, OUT cDate);
-		_binder.GetInt64(4, OUT mDate);
+		int32_t colNo = 1;
+		_binder.GetInt64(colNo++, OUT gameUserId);
+		_binder.GetInt64(colNo++, OUT accountId);
+		_binder.GetInt64(colNo++, OUT cDate);
+		_binder.GetInt64(colNo++, OUT mDate);
 	}
 public:
 	void Render() {
@@ -142,11 +149,12 @@ public:
 public:
 	template<typename DB_BINDER>
 	void FromDB(DB_BINDER& _binder) {
-		_binder.GetInt64(1, OUT id);
-		_binder.GetInt64(2, OUT gameUserId);
-		_binder.GetInt64(3, OUT basisId);
-		_binder.GetInt64(4, OUT cDate);
-		_binder.GetInt64(5, OUT mDate);
+		int32_t colNo = 1;
+		_binder.GetInt64(colNo++, OUT id);
+		_binder.GetInt64(colNo++, OUT gameUserId);
+		_binder.GetInt64(colNo++, OUT basisId);
+		_binder.GetInt64(colNo++, OUT cDate);
+		_binder.GetInt64(colNo++, OUT mDate);
 	}
 public:
 	void Render() {
@@ -169,13 +177,14 @@ public:
 public:
 	template<typename DB_BINDER>
 	void FromDB(DB_BINDER& _binder) {
-		_binder.GetInt64(1, OUT id);
-		_binder.GetInt64(2, OUT gameUserId);
-		_binder.GetInt64(3, OUT basisId);
-		_binder.GetInt64(4, OUT itemCnt);
-		_binder.GetInt64(5, OUT itemCntPrev);
-		_binder.GetInt64(6, OUT cDate);
-		_binder.GetInt64(7, OUT mDate);
+		int32_t colNo = 1;
+		_binder.GetInt64(colNo++, OUT id);
+		_binder.GetInt64(colNo++, OUT gameUserId);
+		_binder.GetInt64(colNo++, OUT basisId);
+		_binder.GetInt64(colNo++, OUT itemCnt);
+		_binder.GetInt64(colNo++, OUT itemCntPrev);
+		_binder.GetInt64(colNo++, OUT cDate);
+		_binder.GetInt64(colNo++, OUT mDate);
 	}
 public:
 	void Render() {
@@ -197,11 +206,12 @@ public:
 public:
 	template<typename DB_BINDER>
 	void FromDB(DB_BINDER& _binder) {
-		_binder.GetInt64(1, OUT id);
-		_binder.GetInt64(2, OUT gameUserId);
-		_binder.GetInt64(3, OUT basisId);
-		_binder.GetInt64(4, OUT cDate);
-		_binder.GetInt64(5, OUT mDate);
+		int32_t colNo = 1;
+		_binder.GetInt64(colNo++, OUT id);
+		_binder.GetInt64(colNo++, OUT gameUserId);
+		_binder.GetInt64(colNo++, OUT basisId);
+		_binder.GetInt64(colNo++, OUT cDate);
+		_binder.GetInt64(colNo++, OUT mDate);
 	}
 public:
 	void Render() {

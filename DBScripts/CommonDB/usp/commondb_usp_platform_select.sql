@@ -8,6 +8,7 @@ create procedure `usp_platform_select`(
 	, IN in_p_type int
 	, IN in_token varchar(300)
 	, IN in_refresh_token varchar(300)
+	, IN in_def_nick_name varchar(300)
 	, IN in_def_main_hero_id int
 	, IN in_def_main_frame_id int 
 	, IN in_def_greeting_ment varchar(50)
@@ -28,8 +29,8 @@ BEGIN
 		VALUES (in_s_id, in_p_type, @new_a_id, in_token, in_refresh_token);
 		-- 신규생성 관련해서 한번에 생성해 준다.
 
-		INSERT INTO `profiles` (`a_id`, `main_hero_id`, `main_frame_id`, `greeting_ment`) 
-		VALUE (@new_a_id, in_def_main_hero_id, in_def_main_frame_id, in_def_greeting_ment);
+		INSERT INTO `profiles` (`a_id`, `nick_name`, `main_hero_id`, `main_frame_id`, `greeting_ment`) 
+		VALUE (@new_a_id, in_def_nick_name, in_def_main_hero_id, in_def_main_frame_id, in_def_greeting_ment);
 
 		INSERT INTO `summaries` (`a_id`) 
 		VALUES (@new_a_id);
@@ -51,7 +52,7 @@ BEGIN
 	SELECT `s_id`, `a_id`, `c_date`, `m_date` 
 	FROM `summaries` WHERE `a_id` = @new_a_id;
 
-	SELECT `p_id`, `a_id`, `main_hero_id`, `main_frame_id`, `greeting_ment`, `c_date`, `m_date`
+	SELECT `p_id`, `a_id`, `nick_name`, `main_hero_id`, `main_frame_id`, `greeting_ment`, `c_date`, `m_date`
 	FROM `profiles` WHERE `a_id` = @new_a_id;
 	
 END$$

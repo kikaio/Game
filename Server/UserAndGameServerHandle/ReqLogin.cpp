@@ -15,6 +15,7 @@ namespace UserAndGameServerHandle {
 		GameUserSptr gameUser = _session->GetGameUser();
 		{
 			//todo : 기획 data에서 읽은 값으로 대체
+			string def_nick_name = "dum";
 			int def_main_hero_id = 1;
 			int def_main_frame_id = 1000;
 			string def_greeting_ment = "def greeting";
@@ -29,7 +30,7 @@ namespace UserAndGameServerHandle {
 			// platform 정보를 읽는다, 신규 유저라면 use_select_platform에서 account 등 data를 생성한다.
 			auto platformError = DBWrapper::PlatformSelect(
 				loginData, gameUser
-				, OUT isOldUser, IN def_main_hero_id, IN def_main_frame_id, IN def_greeting_ment
+				, OUT isOldUser, IN def_nick_name, IN def_main_hero_id, IN def_main_frame_id, IN def_greeting_ment
 			);
 			if (platformError.HasError()) {
 				return _session->SendError(platformError);

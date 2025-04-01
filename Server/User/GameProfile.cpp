@@ -4,13 +4,13 @@
 
 bool GameProfile::InvalidNickNameCheck(string& _name)
 {
-    //todo : check logic 추가 필수 [지금은 단순히 4글자 ~ 12글자 허용]
+    //todo : check logic 추가 필수
     return true;
 }
 
 void GameProfile::Render()
 {
-    GS_DEBUG_LOG("=========[game profile : {}]================", accountId);
+    GS_DEBUG_LOG("=========[game profile-{}:{}]================", accountId, nickName);
     GS_DEBUG_LOG("greeting ment : {}", greetingMent);
     GS_DEBUG_LOG("main hero id : {}", mainHeroId);
     GS_DEBUG_LOG("main frame id : {}", mainFrameId);
@@ -25,6 +25,9 @@ int64_t GameProfile::AccountId() const
 void GameProfile::SetAccountId(int64_t _aid)
 {
     accountId = _aid;
+}
+const string& GameProfile::NickName() const {
+    return nickName;
 }
 
 const string& GameProfile::GreetingMent() const
@@ -44,6 +47,7 @@ const uint32_t& GameProfile::MainFrameId() const
 void GameProfile::InitGameProfile(ProfileRow _profileRow)
 {
     accountId = _profileRow.aId;
+    nickName = _profileRow.nickName;
     greetingMent = _profileRow.greetingMent;
     mainHeroId = _profileRow.mainHeroId;
     mainFrameId = _profileRow.mainFrameId;

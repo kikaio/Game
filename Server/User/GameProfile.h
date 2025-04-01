@@ -5,6 +5,7 @@ struct GameProfile
 private:
 	int64_t accountId = 0;
 	string greetingMent = "";
+	string nickName = "";
 	uint32_t mainHeroId = 0;
 	uint32_t mainFrameId = 0;
 private:
@@ -14,6 +15,7 @@ public:
 public:
 	int64_t AccountId() const ;
 	void SetAccountId(int64_t _aid);
+	const string& NickName() const;
 	const string& GreetingMent() const;
 	const uint32_t& MainHeroId() const;
 	const uint32_t& MainFrameId() const;

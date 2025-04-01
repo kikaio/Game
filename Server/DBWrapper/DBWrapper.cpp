@@ -66,14 +66,17 @@ int32_t DBWrapper::DoDatabaseTest()
     return 0;
 }
 
-PacketError DBWrapper::PlatformSelect(const LoginData& _loginData, GameUserSptr _gameUser, bool& _is_old_user, int32_t _def_main_hero_id, int32_t _def_main_frame_id, string _def_main_greeting_ment)
+PacketError DBWrapper::PlatformSelect(const LoginData& _loginData, GameUserSptr _gameUser
+    , OUT bool& _is_old_user
+    , IN const string& _def_nick_name, IN int32_t _def_main_hero_id, IN int32_t _def_main_frame_id, IN string _def_main_greeting_ment
+)
 {
     DBConnectionSptr conn = DBConnectionPool::Get().PopCommonDB(RWType::READ_WRITE);
     if (conn == nullptr) {
         GS_DEBUG_LOG("db connection pool is empty, check this. - PlatformSelect");
         return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::CONNECTION_NOT_EXIST);
     }
-    DBBind<7, 0> dbBinder(*conn, "call usp_platform_select(?, ?, ?, ?, ?, ?, ?);");
+    DBBind<8, 0> dbBinder(*conn, "call usp_platform_select(?, ?, ?, ?, ?, ?, ?, ?);");
     
     int32_t platformVal = ENUM_TO_INT(_loginData.loginPlatform);
 
@@ -82,6 +85,7 @@ PacketError DBWrapper::PlatformSelect(const LoginData& _loginData, GameUserSptr 
     dbBinder.BindParam(bindIdx++, IN platformVal);
     dbBinder.BindParam(bindIdx++, IN _loginData.loginToken.c_str());
     dbBinder.BindParam(bindIdx++, IN _loginData.refreshToken.c_str());
+    dbBinder.BindParam(bindIdx++, IN _def_nick_name.c_str());
     dbBinder.BindParam(bindIdx++, IN _def_main_hero_id);
     dbBinder.BindParam(bindIdx++, IN _def_main_frame_id);
     dbBinder.BindParam(bindIdx++, IN _def_main_greeting_ment.c_str());
