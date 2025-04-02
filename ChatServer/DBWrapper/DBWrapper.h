@@ -3,6 +3,6 @@
 
 class DBWrapper {
 public:
-	static ChatProfileSptr ChatProfileSelect(int64_t _accountId);
+	static PacketError ChatProfileSelect(IN int64_t _accountId, OUT ChatProfileSptr& _profile);
 };
 

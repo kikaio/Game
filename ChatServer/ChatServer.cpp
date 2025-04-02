@@ -43,6 +43,15 @@ void Init() {
 	string configFilePath = "./configs/ServerConfig.json";
 	jr.ReadFile(configFilePath.c_str());
 
+	rapidjson::Value dbValues(rapidjson::kArrayType);
+	jr.GetArray("db_configs", dbValues);
+	for(auto _iter = dbValues.Begin(); _iter != dbValues.End(); ++_iter) {
+		DBConfig dbConf;
+		dbConf.Init(*_iter);
+		ASSERT_CRASH(DBConnectionPool::Get().Connect(dbConf));
+	}
+
+
 	rapidjson::Value masterValue(rapidjson::kObjectType);
 	jr.GetObjectW("master", masterValue);
 	masterConfig.Init(masterValue);

@@ -14,6 +14,7 @@
 #include "MasterConfig.h"
 #include "ChatConfig.h"
 
+#include "ProfileRow.h"
 #include "DBWrapper.h"
 
 #include "LogHelper.h"

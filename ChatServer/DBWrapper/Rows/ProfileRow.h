@@ -6,7 +6,7 @@ public:
 	int64_t aId = 0;
 	string nickName = "";
 	int64_t mainHeroId = 0;
-	int32_t mainFrameId = 0;
+	int64_t mainFrameId = 0;
 	string greetingMent = "";
 	int64_t cDate = 0;
 	int64_t mDate = 0;
@@ -19,7 +19,7 @@ public:
 		_binder.GetInt64(colNo++, OUT aId);
 		_binder.GetStr(colNo++, OUT nickName);
 		_binder.GetInt64(colNo++, OUT mainHeroId);
-		_binder.GetInt32(colNo++, OUT mainFrameId);
+		_binder.GetInt64(colNo++, OUT mainFrameId);
 
 		_binder.GetStr(colNo++, OUT greetingMent);
 

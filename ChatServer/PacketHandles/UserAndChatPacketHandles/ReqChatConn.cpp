@@ -14,8 +14,13 @@ namespace UserAndChatPacketHandle {
 			//todo : read from redis
 			if (chatProfile == nullptr) {
 				//todo : read from database
-				chatProfile = DBWarpper::ChatProfileSelect(accountId);
+				PacketError pErr = DBWrapper::ChatProfileSelect(accountId, chatProfile);
+				if(pErr.HasError()) {
+					//toso : send error packet
+					return false;
+				}
 			}
+
 			if (chatProfile == nullptr) {
 				//todo : send err packet about profile not exist.
 				return false;

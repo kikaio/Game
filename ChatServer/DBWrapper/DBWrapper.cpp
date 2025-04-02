@@ -2,12 +2,12 @@
 #include "DBWrapper.h"
 
 
-ChatProfileSptr DBWrapper::ChatProfileSelect(int64_t _accountId) {
+PacketError DBWrapper::ChatProfileSelect(IN int64_t _accountId, OUT ChatProfileSptr& _profile) {
 	
 	
 	DBConnectionSptr conn = DBConnectionPool::Get().PopCommonDB();
 	if (conn == nullptr) {
-		GS_DEBUG_LOG("db connection pool is empty, check this. - PlatformSelect");
+		CS_DEBUG_LOG("db connection pool is empty, check this. - PlatformSelect");
 		return MAKE_PACKET_ERROR(ERR_CATEGORY::DB, DB_ERR_DETAIL::CONNECTION_NOT_EXIST);
 	}
 	DBBind<1, 0> dbBinder(*conn, "call usp_profile_select(?);");
@@ -24,10 +24,12 @@ ChatProfileSptr DBWrapper::ChatProfileSelect(int64_t _accountId) {
 		profileRow.FromDB(dbBinder);
 	}
 
-	return ChatProfileMng::Get().CreateProfile(
+	_profile = ChatProfileMng::Get().CreateProfile(
 		profileRow.aId
 		, profileRow.nickName
 		, profileRow.mainHeroId
 		, profileRow.mainFrameId
 	);
+
+	return PacketError{};
 }
