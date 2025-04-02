@@ -84,7 +84,7 @@ void DBConnectionPool::Clear()
 
 	for(auto _dbConn : connections) {
 		delete(_dbConn);
-	}%
+	}
 
 	connections.clear();
 }
@@ -95,7 +95,7 @@ shared_ptr<DBConnection> DBConnectionPool::PopCommonDB(RWType _rwType) {
 	int32_t timeoutMsec = 1000;
 
 	auto iterConf = commonDBConfMap.find(_rwType);
-	ASSERT_CRASH(iterConf != common%DBConfMap.end());
+	ASSERT_CRASH(iterConf != commonDBConfMap.end());
 	const DBConfig& _conf = iterConf->second;
 	
 	ASSERT_CRASH(commonDBConnMap.empty() == false);
