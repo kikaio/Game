@@ -47,7 +47,7 @@ struct TableStruct_UserAndChatServer_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[8]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[9]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -70,6 +70,9 @@ extern NotiChatDefaultTypeInternal _NotiChat_default_instance_;
 class NotiEnterChatRoom;
 struct NotiEnterChatRoomDefaultTypeInternal;
 extern NotiEnterChatRoomDefaultTypeInternal _NotiEnterChatRoom_default_instance_;
+class NotiLeaveChatRoom;
+struct NotiLeaveChatRoomDefaultTypeInternal;
+extern NotiLeaveChatRoomDefaultTypeInternal _NotiLeaveChatRoom_default_instance_;
 class ReqChat;
 struct ReqChatDefaultTypeInternal;
 extern ReqChatDefaultTypeInternal _ReqChat_default_instance_;
@@ -86,6 +89,7 @@ template<> ::UserAndChatServer::ChatData* Arena::CreateMaybeMessage<::UserAndCha
 template<> ::UserAndChatServer::ChatProfile* Arena::CreateMaybeMessage<::UserAndChatServer::ChatProfile>(Arena*);
 template<> ::UserAndChatServer::NotiChat* Arena::CreateMaybeMessage<::UserAndChatServer::NotiChat>(Arena*);
 template<> ::UserAndChatServer::NotiEnterChatRoom* Arena::CreateMaybeMessage<::UserAndChatServer::NotiEnterChatRoom>(Arena*);
+template<> ::UserAndChatServer::NotiLeaveChatRoom* Arena::CreateMaybeMessage<::UserAndChatServer::NotiLeaveChatRoom>(Arena*);
 template<> ::UserAndChatServer::ReqChat* Arena::CreateMaybeMessage<::UserAndChatServer::ReqChat>(Arena*);
 template<> ::UserAndChatServer::ReqChatConn* Arena::CreateMaybeMessage<::UserAndChatServer::ReqChatConn>(Arena*);
 template<> ::UserAndChatServer::ReqEnterChatRoom* Arena::CreateMaybeMessage<::UserAndChatServer::ReqEnterChatRoom>(Arena*);
@@ -124,12 +128,14 @@ enum Protocol : int {
   INVALID_PROTOCOL = 0,
   ChatConn = 1,
   Chat = 2,
+  EnterChatRoom = 3,
+  LeaveChatRoom = 4,
   Protocol_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   Protocol_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool Protocol_IsValid(int value);
 constexpr Protocol Protocol_MIN = INVALID_PROTOCOL;
-constexpr Protocol Protocol_MAX = Chat;
+constexpr Protocol Protocol_MAX = LeaveChatRoom;
 constexpr int Protocol_ARRAYSIZE = Protocol_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Protocol_descriptor();
@@ -1490,6 +1496,152 @@ class NotiEnterChatRoom final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_UserAndChatServer_2eproto;
 };
+// -------------------------------------------------------------------
+
+class NotiLeaveChatRoom final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:UserAndChatServer.NotiLeaveChatRoom) */ {
+ public:
+  inline NotiLeaveChatRoom() : NotiLeaveChatRoom(nullptr) {}
+  ~NotiLeaveChatRoom() override;
+  explicit constexpr NotiLeaveChatRoom(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  NotiLeaveChatRoom(const NotiLeaveChatRoom& from);
+  NotiLeaveChatRoom(NotiLeaveChatRoom&& from) noexcept
+    : NotiLeaveChatRoom() {
+    *this = ::std::move(from);
+  }
+
+  inline NotiLeaveChatRoom& operator=(const NotiLeaveChatRoom& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline NotiLeaveChatRoom& operator=(NotiLeaveChatRoom&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const NotiLeaveChatRoom& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const NotiLeaveChatRoom* internal_default_instance() {
+    return reinterpret_cast<const NotiLeaveChatRoom*>(
+               &_NotiLeaveChatRoom_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(NotiLeaveChatRoom& a, NotiLeaveChatRoom& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(NotiLeaveChatRoom* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(NotiLeaveChatRoom* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  NotiLeaveChatRoom* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<NotiLeaveChatRoom>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const NotiLeaveChatRoom& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const NotiLeaveChatRoom& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(NotiLeaveChatRoom* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "UserAndChatServer.NotiLeaveChatRoom";
+  }
+  protected:
+  explicit NotiLeaveChatRoom(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAccounIdFieldNumber = 1,
+  };
+  // int64 accoun_id = 1;
+  void clear_accoun_id();
+  int64_t accoun_id() const;
+  void set_accoun_id(int64_t value);
+  private:
+  int64_t _internal_accoun_id() const;
+  void _internal_set_accoun_id(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:UserAndChatServer.NotiLeaveChatRoom)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  int64_t accoun_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_UserAndChatServer_2eproto;
+};
 // ===================================================================
 
 
@@ -2281,9 +2433,35 @@ inline void NotiEnterChatRoom::set_allocated_enter_profile(::UserAndChatServer::
   // @@protoc_insertion_point(field_set_allocated:UserAndChatServer.NotiEnterChatRoom.enter_profile)
 }
 
+// -------------------------------------------------------------------
+
+// NotiLeaveChatRoom
+
+// int64 accoun_id = 1;
+inline void NotiLeaveChatRoom::clear_accoun_id() {
+  accoun_id_ = int64_t{0};
+}
+inline int64_t NotiLeaveChatRoom::_internal_accoun_id() const {
+  return accoun_id_;
+}
+inline int64_t NotiLeaveChatRoom::accoun_id() const {
+  // @@protoc_insertion_point(field_get:UserAndChatServer.NotiLeaveChatRoom.accoun_id)
+  return _internal_accoun_id();
+}
+inline void NotiLeaveChatRoom::_internal_set_accoun_id(int64_t value) {
+  
+  accoun_id_ = value;
+}
+inline void NotiLeaveChatRoom::set_accoun_id(int64_t value) {
+  _internal_set_accoun_id(value);
+  // @@protoc_insertion_point(field_set:UserAndChatServer.NotiLeaveChatRoom.accoun_id)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

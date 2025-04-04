@@ -17,6 +17,14 @@ public:
 		, vector<ChatProfileSptr>& _others
 		, OUT UserAndChatServer::AnsChatConn& _packet
 	);
+	static void ToPacket(
+		IN ChatProfileSptr _profile
+		, OUT UserAndChatServer::NotiEnterChatRoom& _packet
+	);
+	static void ToPacket(
+		IN int64_t _accountId
+		, OUT UserAndChatServer::NotiLeaveChatRoom& _packet
+	);
 #pragma endregion to Packet
 
 #pragma region from proto
@@ -29,5 +37,6 @@ public:
 public:
 	static void FromPacket(const UserAndChatServer::ReqChatConn& _packet, OUT int64_t& _accountId);
 	static void FromPacket(const UserAndChatServer::ReqChat& _packet, OUT ChatData& _chatData);
+	static void FromPacket(const UserAndChatServer::ReqEnterChatRoom& _packet, OUT int32_t& _chatRoomNo);
 #pragma endregion from Packet
 };

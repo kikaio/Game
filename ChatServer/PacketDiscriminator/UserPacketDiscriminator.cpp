@@ -101,6 +101,7 @@ void UserPacketDiscriminator::Init()
 {
 	REGIST_USER_CLIENT_PACKET_HANDLE(Req, ChatConn);
 	REGIST_USER_CLIENT_PACKET_HANDLE(Req, Chat);
+	REGIST_USER_CLIENT_PACKET_HANDLE(Req, EnterChatRoom);
 }
 
 void UserPacketDiscriminator::RegistPacketFunc(UserAndChatServer::MsgType _msgType
@@ -164,3 +165,5 @@ bool UserPacketDiscriminator::HandlePayload(SessionSptr _session, BYTE* _buf, ui
 
 IMPL_MAKE_SENDBUF_USER_CLIENT_PACKET(Noti, Chat);
 IMPL_MAKE_SENDBUF_USER_CLIENT_PACKET(Ans, ChatConn);
+IMPL_MAKE_SENDBUF_USER_CLIENT_PACKET(Noti, EnterChatRoom);
+IMPL_MAKE_SENDBUF_USER_CLIENT_PACKET(Noti, LeaveChatRoom);

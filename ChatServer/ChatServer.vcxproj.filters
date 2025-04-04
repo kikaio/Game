@@ -108,6 +108,9 @@
     <ClCompile Include="DBWrapper\DBWrapper.cpp">
       <Filter>DBWrapper</Filter>
     </ClCompile>
+    <ClCompile Include="PacketHandles\UserAndChatPacketHandles\ReqEnterChatRoom.cpp">
+      <Filter>PacketHandles\UserAndChatPacketHandles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

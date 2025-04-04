@@ -39,19 +39,42 @@ void ChatRoom::Enter(ChatUserSptr _user)
 		//todo : duplication error log
 		return ;
 	}
+
+	UserAndChatServer::NotiEnterChatRoom noti;
+	ProtoConverter::ToPacket(IN _user->GetProfile(), OUT noti);
+	for (auto _pair : chatUsers) {
+		auto chatUser = _pair.second;
+		auto userSession = chatUser->GetSession();
+		if (userSession != nullptr && userSession->IsConnected()) {
+			userSession->SendPacket(noti);
+		}
+	}
+
 	chatUsers[accountId] = _user;
 	return ;
 }
 
 void ChatRoom::Leave(ChatUserSptr _user)
 {
-	int64_t accountId = _user->GetAccountId();
-	auto iter = chatUsers.find(accountId);
-	if(iter == chatUsers.end()) {
-		//todo : not exist in this room error log
-		return ;
-	}
-	chatUsers.erase(iter);
+	//int64_t accountId = _user->GetAccountId();
+	//auto iter = chatUsers.find(accountId);
+	//if(iter == chatUsers.end()) {
+	//	//todo : not exist in this room error log
+	//	return ;
+	//}
+	//chatUsers.erase(iter);
+	//
+	//UserAndChatServer::NotiLeaveChatRoom noti;
+	//
+	//ProtoConverter::ToPacket(IN accountId, OUT noti);
+
+	//for (auto _pair : chatUsers) {
+	//	auto chatUser = _pair.second;
+	//	auto userSession = chatUser->GetSession();
+	//	if (userSession != nullptr && userSession->IsConnected()) {
+	//		userSession->SendPacket(noti);
+	//	}
+	//}
 	return ;
 }
 

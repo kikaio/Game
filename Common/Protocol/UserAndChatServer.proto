@@ -14,6 +14,8 @@ enum Protocol {
 	INVALID_PROTOCOL = 0;
 	ChatConn = 1;
 	Chat = 2;
+	EnterChatRoom = 3;
+	LeaveChatRoom = 4;
 }
 
 enum ChatRoomType {
@@ -60,4 +62,8 @@ message ReqEnterChatRoom {
 
 message NotiEnterChatRoom {
 	ChatProfile enter_profile = 1;
+}
+
+message NotiLeaveChatRoom {
+	int64 accoun_id = 1;
 }

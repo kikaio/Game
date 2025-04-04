@@ -36,6 +36,18 @@ void ProtoConverter::ToPacket(
 		ToProto(*_ele, *_packet.add_profiles());
 	}
 }
+void ProtoConverter::ToPacket(
+	IN ChatProfileSptr _profile
+	, OUT UserAndChatServer::NotiEnterChatRoom& _packet
+) {
+	ToProto(IN * _profile, *_packet.mutable_enter_profile());
+}
+void ProtoConverter::ToPacket(
+	IN int64_t _accountId
+	, OUT UserAndChatServer::NotiLeaveChatRoom& _packet
+) {
+	_packet.set_accoun_id(_accountId);
+}
 
 #pragma endregion to packet
 
@@ -86,4 +98,9 @@ void ProtoConverter::FromPacket(const UserAndChatServer::ReqChat& _packet, OUT C
 	FromProto(_packet.chat_data(), _chatData);
 	return ;
 }
+
+void ProtoConverter::FromPacket(const UserAndChatServer::ReqEnterChatRoom& _packet, OUT int32_t& _chatRoomNo) {
+	_chatRoomNo = _packet.chat_room_no();
+}
+
 #pragma region from packet

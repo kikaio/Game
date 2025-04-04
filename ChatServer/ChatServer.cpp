@@ -133,6 +133,15 @@ void StartChatThread() {
 		ChatUserSptr chatUser = MakeShared<ChatUser>();
 		_session->SetChatUser(chatUser);
 		chatUser->SetSession(_session);
+		_session->SetOnSessionDisconnectedFunc([_session]() {
+			auto chatUser = _session->GetChatUser();
+			if (chatUser != nullptr) {
+				auto chatRoom = chatUser->GetChatRoom();
+				if (chatRoom != nullptr) {
+					chatRoom->DoAsync(&ChatRoom::Leave, chatUser);
+				}
+			}
+		});
 		return static_pointer_cast<Session>(_session);
 	};
 

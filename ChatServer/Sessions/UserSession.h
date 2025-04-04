@@ -15,4 +15,6 @@ public:
 public:
 	DECL_USER_SESSION_SEND_PACKET(Noti, Chat);
 	DECL_USER_SESSION_SEND_PACKET(Ans, ChatConn);
+	DECL_USER_SESSION_SEND_PACKET(Noti, EnterChatRoom);
+	DECL_USER_SESSION_SEND_PACKET(Noti, LeaveChatRoom);
 };

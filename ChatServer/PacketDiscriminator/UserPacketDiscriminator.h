@@ -44,6 +44,8 @@ public:
 	static SendBufferSptr MakeProtoSendBuffer(MSG_TYPE _msgType, P _protocol, T& _packet);
 	DECL_MAKE_SENDBUF_USER_CLIENT_PACKET(Noti, Chat);
 	DECL_MAKE_SENDBUF_USER_CLIENT_PACKET(Ans, ChatConn);
+	DECL_MAKE_SENDBUF_USER_CLIENT_PACKET(Noti, EnterChatRoom);
+	DECL_MAKE_SENDBUF_USER_CLIENT_PACKET(Noti, LeaveChatRoom);
 
 };
 

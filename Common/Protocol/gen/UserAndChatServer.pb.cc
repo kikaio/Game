@@ -122,8 +122,20 @@ struct NotiEnterChatRoomDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT NotiEnterChatRoomDefaultTypeInternal _NotiEnterChatRoom_default_instance_;
+constexpr NotiLeaveChatRoom::NotiLeaveChatRoom(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : accoun_id_(int64_t{0}){}
+struct NotiLeaveChatRoomDefaultTypeInternal {
+  constexpr NotiLeaveChatRoomDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~NotiLeaveChatRoomDefaultTypeInternal() {}
+  union {
+    NotiLeaveChatRoom _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT NotiLeaveChatRoomDefaultTypeInternal _NotiLeaveChatRoom_default_instance_;
 }  // namespace UserAndChatServer
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_UserAndChatServer_2eproto[8];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_UserAndChatServer_2eproto[9];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_UserAndChatServer_2eproto[3];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_UserAndChatServer_2eproto = nullptr;
 
@@ -192,6 +204,13 @@ const uint32_t TableStruct_UserAndChatServer_2eproto::offsets[] PROTOBUF_SECTION
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::UserAndChatServer::NotiEnterChatRoom, enter_profile_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::UserAndChatServer::NotiLeaveChatRoom, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::UserAndChatServer::NotiLeaveChatRoom, accoun_id_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::UserAndChatServer::ChatProfile)},
@@ -202,6 +221,7 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 42, -1, -1, sizeof(::UserAndChatServer::NotiChat)},
   { 50, -1, -1, sizeof(::UserAndChatServer::ReqEnterChatRoom)},
   { 57, -1, -1, sizeof(::UserAndChatServer::NotiEnterChatRoom)},
+  { 64, -1, -1, sizeof(::UserAndChatServer::NotiLeaveChatRoom)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -213,6 +233,7 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::UserAndChatServer::_NotiChat_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::UserAndChatServer::_ReqEnterChatRoom_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::UserAndChatServer::_NotiEnterChatRoom_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::UserAndChatServer::_NotiLeaveChatRoom_default_instance_),
 };
 
 const char descriptor_table_protodef_UserAndChatServer_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -233,16 +254,18 @@ const char descriptor_table_protodef_UserAndChatServer_2eproto[] PROTOBUF_SECTIO
   "\0132\033.UserAndChatServer.ChatData\"(\n\020ReqEnt"
   "erChatRoom\022\024\n\014chat_room_no\030\001 \001(\005\"J\n\021Noti"
   "EnterChatRoom\0225\n\renter_profile\030\001 \001(\0132\036.U"
-  "serAndChatServer.ChatProfile*D\n\007MsgType\022"
+  "serAndChatServer.ChatProfile\"&\n\021NotiLeav"
+  "eChatRoom\022\021\n\taccoun_id\030\001 \001(\003*D\n\007MsgType\022"
   "\024\n\020INVALID_MSG_TYPE\020\000\022\007\n\003Req\020\001\022\007\n\003Ans\020\002\022"
-  "\010\n\004Noti\020\003\022\007\n\003Err\020\004*8\n\010Protocol\022\024\n\020INVALI"
-  "D_PROTOCOL\020\000\022\014\n\010ChatConn\020\001\022\010\n\004Chat\020\002*\037\n\014"
-  "ChatRoomType\022\017\n\013NORMAL_ROOM\020\000b\006proto3"
+  "\010\n\004Noti\020\003\022\007\n\003Err\020\004*^\n\010Protocol\022\024\n\020INVALI"
+  "D_PROTOCOL\020\000\022\014\n\010ChatConn\020\001\022\010\n\004Chat\020\002\022\021\n\r"
+  "EnterChatRoom\020\003\022\021\n\rLeaveChatRoom\020\004*\037\n\014Ch"
+  "atRoomType\022\017\n\013NORMAL_ROOM\020\000b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_UserAndChatServer_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_UserAndChatServer_2eproto = {
-  false, false, 877, descriptor_table_protodef_UserAndChatServer_2eproto, "UserAndChatServer.proto", 
-  &descriptor_table_UserAndChatServer_2eproto_once, nullptr, 0, 8,
+  false, false, 955, descriptor_table_protodef_UserAndChatServer_2eproto, "UserAndChatServer.proto", 
+  &descriptor_table_UserAndChatServer_2eproto_once, nullptr, 0, 9,
   schemas, file_default_instances, TableStruct_UserAndChatServer_2eproto::offsets,
   file_level_metadata_UserAndChatServer_2eproto, file_level_enum_descriptors_UserAndChatServer_2eproto, file_level_service_descriptors_UserAndChatServer_2eproto,
 };
@@ -279,6 +302,8 @@ bool Protocol_IsValid(int value) {
     case 0:
     case 1:
     case 2:
+    case 3:
+    case 4:
       return true;
     default:
       return false;
@@ -2098,6 +2123,184 @@ void NotiEnterChatRoom::InternalSwap(NotiEnterChatRoom* other) {
       file_level_metadata_UserAndChatServer_2eproto[7]);
 }
 
+// ===================================================================
+
+class NotiLeaveChatRoom::_Internal {
+ public:
+};
+
+NotiLeaveChatRoom::NotiLeaveChatRoom(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:UserAndChatServer.NotiLeaveChatRoom)
+}
+NotiLeaveChatRoom::NotiLeaveChatRoom(const NotiLeaveChatRoom& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  accoun_id_ = from.accoun_id_;
+  // @@protoc_insertion_point(copy_constructor:UserAndChatServer.NotiLeaveChatRoom)
+}
+
+inline void NotiLeaveChatRoom::SharedCtor() {
+accoun_id_ = int64_t{0};
+}
+
+NotiLeaveChatRoom::~NotiLeaveChatRoom() {
+  // @@protoc_insertion_point(destructor:UserAndChatServer.NotiLeaveChatRoom)
+  if (GetArenaForAllocation() != nullptr) return;
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+inline void NotiLeaveChatRoom::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void NotiLeaveChatRoom::ArenaDtor(void* object) {
+  NotiLeaveChatRoom* _this = reinterpret_cast< NotiLeaveChatRoom* >(object);
+  (void)_this;
+}
+void NotiLeaveChatRoom::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void NotiLeaveChatRoom::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void NotiLeaveChatRoom::Clear() {
+// @@protoc_insertion_point(message_clear_start:UserAndChatServer.NotiLeaveChatRoom)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  accoun_id_ = int64_t{0};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* NotiLeaveChatRoom::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int64 accoun_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          accoun_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* NotiLeaveChatRoom::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:UserAndChatServer.NotiLeaveChatRoom)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int64 accoun_id = 1;
+  if (this->_internal_accoun_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(1, this->_internal_accoun_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:UserAndChatServer.NotiLeaveChatRoom)
+  return target;
+}
+
+size_t NotiLeaveChatRoom::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:UserAndChatServer.NotiLeaveChatRoom)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int64 accoun_id = 1;
+  if (this->_internal_accoun_id() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64SizePlusOne(this->_internal_accoun_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData NotiLeaveChatRoom::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    NotiLeaveChatRoom::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NotiLeaveChatRoom::GetClassData() const { return &_class_data_; }
+
+void NotiLeaveChatRoom::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<NotiLeaveChatRoom *>(to)->MergeFrom(
+      static_cast<const NotiLeaveChatRoom &>(from));
+}
+
+
+void NotiLeaveChatRoom::MergeFrom(const NotiLeaveChatRoom& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:UserAndChatServer.NotiLeaveChatRoom)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_accoun_id() != 0) {
+    _internal_set_accoun_id(from._internal_accoun_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void NotiLeaveChatRoom::CopyFrom(const NotiLeaveChatRoom& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:UserAndChatServer.NotiLeaveChatRoom)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool NotiLeaveChatRoom::IsInitialized() const {
+  return true;
+}
+
+void NotiLeaveChatRoom::InternalSwap(NotiLeaveChatRoom* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(accoun_id_, other->accoun_id_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata NotiLeaveChatRoom::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_UserAndChatServer_2eproto_getter, &descriptor_table_UserAndChatServer_2eproto_once,
+      file_level_metadata_UserAndChatServer_2eproto[8]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace UserAndChatServer
 PROTOBUF_NAMESPACE_OPEN
@@ -2124,6 +2327,9 @@ template<> PROTOBUF_NOINLINE ::UserAndChatServer::ReqEnterChatRoom* Arena::Creat
 }
 template<> PROTOBUF_NOINLINE ::UserAndChatServer::NotiEnterChatRoom* Arena::CreateMaybeMessage< ::UserAndChatServer::NotiEnterChatRoom >(Arena* arena) {
   return Arena::CreateMessageInternal< ::UserAndChatServer::NotiEnterChatRoom >(arena);
+}
+template<> PROTOBUF_NOINLINE ::UserAndChatServer::NotiLeaveChatRoom* Arena::CreateMaybeMessage< ::UserAndChatServer::NotiLeaveChatRoom >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::UserAndChatServer::NotiLeaveChatRoom >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
