@@ -8,4 +8,6 @@ class UserAndChatServerHandle {
 public:
 	DECL_CHAT_SERVER_HANDLE(Ans, ChatConn);
 	DECL_CHAT_SERVER_HANDLE(Noti, Chat);
+	DECL_CHAT_SERVER_HANDLE(Noti, EnterChatRoom);
+	DECL_CHAT_SERVER_HANDLE(Noti, LeaveChatRoom);
 };

@@ -186,6 +186,8 @@
     <ClCompile Include="Sessions\GameServerSession.cpp" />
     <ClCompile Include="UserAndChatServerHandle\AnsChatConn.cpp" />
     <ClCompile Include="UserAndChatServerHandle\NotiChat.cpp" />
+    <ClCompile Include="UserAndChatServerHandle\NotiEnterChatRoom.cpp" />
+    <ClCompile Include="UserAndChatServerHandle\NotiLeaveChatRoom.cpp" />
     <ClCompile Include="UserAndGameServerHandle\AnsGameConn.cpp" />
     <ClCompile Include="UserAndGameServerHandle\AnsLogin.cpp" />
     <ClCompile Include="UserAndGameServerHandle\ReqTestMsg.cpp" />

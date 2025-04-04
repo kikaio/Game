@@ -31,3 +31,6 @@ DummyUserSptr ChatServerSession::GetDummyUser()
 IMPL_CHAT_SERVER_SEND_FUNC(Req, ChatConn);
 
 IMPL_CHAT_SERVER_SEND_FUNC(Req, Chat);
+
+IMPL_CHAT_SERVER_SEND_FUNC(Req, EnterChatRoom);
+

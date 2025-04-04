@@ -114,6 +114,12 @@
     <ClCompile Include="UserAndChatServerHandle\NotiChat.cpp">
       <Filter>UserAndChatServerHandle</Filter>
     </ClCompile>
+    <ClCompile Include="UserAndChatServerHandle\NotiLeaveChatRoom.cpp">
+      <Filter>UserAndChatServerHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="UserAndChatServerHandle\NotiEnterChatRoom.cpp">
+      <Filter>UserAndChatServerHandle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClientPch.h">

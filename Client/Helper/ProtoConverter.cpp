@@ -95,6 +95,10 @@ void ProtoConverter::ToPacket(IN const ChatData& _chatData, OUT UserAndChatServe
 	return ;
 }
 
+void ProtoConverter::ToPacket(IN int32_t _roomNo, OUT UserAndChatServer::ReqEnterChatRoom& _packet) {
+	_packet.set_chat_room_no(_roomNo);
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma endregion to packet
@@ -225,6 +229,19 @@ void ProtoConverter::FromPacket(IN const UserAndChatServer::NotiChat& _packet, O
 	FromProto(IN _packet.chat_data(), OUT _chatData);
 	return ;
 }
+
+void ProtoConverter::FromPacket(const UserAndChatServer::NotiEnterChatRoom& _packet, OUT ChatProfileSptr& _enterProfile) {
+	if (_enterProfile == nullptr) {
+		_enterProfile = MakeShared<ChatProfile>();
+	}
+	FromProto(_packet.enter_profile(), *_enterProfile);
+}
+
+
+void ProtoConverter::FromPacket(const UserAndChatServer::NotiLeaveChatRoom& _packet, OUT int64_t _leaveAccountId) {
+	_leaveAccountId = _packet.accoun_id();
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma endregion

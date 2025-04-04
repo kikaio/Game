@@ -33,6 +33,7 @@ public:
 public:
 	DECL_CHAT_PACKET_SEND_BUF(Req, ChatConn);
 	DECL_CHAT_PACKET_SEND_BUF(Req, Chat);
+	DECL_CHAT_PACKET_SEND_BUF(Req, EnterChatRoom);
 };
 
 

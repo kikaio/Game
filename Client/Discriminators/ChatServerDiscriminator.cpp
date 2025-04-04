@@ -92,6 +92,8 @@ void ChatServerDiscriminator::Init()
 {
 	REGIST_CHAT_PACKET_HANDLE_FUNC(Ans, ChatConn);
 	REGIST_CHAT_PACKET_HANDLE_FUNC(Noti, Chat);
+	REGIST_CHAT_PACKET_HANDLE_FUNC(Noti, EnterChatRoom);
+	REGIST_CHAT_PACKET_HANDLE_FUNC(Noti, LeaveChatRoom);
 }
 
 void ChatServerDiscriminator::RegistPacketFunc(UserAndChatServer::MsgType _msg_type, UserAndChatServer::Protocol _protocol, PacketFunc* _packetHandle)

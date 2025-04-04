@@ -22,6 +22,7 @@ public:
 	static void ToPacket(const LoginData& _loginData, UserAndGameServer::ReqLogin& _outProto);
 	static void ToPacket(const int64_t _accountId, UserAndChatServer::ReqChatConn& _out);
 	static void ToPacket(IN const ChatData& _chatData, OUT UserAndChatServer::ReqChat& _packet);
+	static void ToPacket(IN int32_t _roomNo, OUT UserAndChatServer::ReqEnterChatRoom& _packet);
 
 public:
 	// FromProto : proto 구조체->구조체로 변환 담당
@@ -51,5 +52,9 @@ public:
 		, IN int32_t& _roomNo
 		, IN vector<ChatProfileSptr>& _profiles
 	);
+
 	static void FromPacket(const UserAndChatServer::NotiChat& _packet, ChatData& _chatData);
+	static void FromPacket(const UserAndChatServer::NotiEnterChatRoom& _packet, OUT ChatProfileSptr& _enterProfile);
+	static void FromPacket(const UserAndChatServer::NotiLeaveChatRoom& _packet, OUT int64_t _leaveAccountId);
+
 };

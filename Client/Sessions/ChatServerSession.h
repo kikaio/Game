@@ -23,4 +23,5 @@ public:
 public:
 	DECL_CHAT_SERVER_SEND_FUNC(Req, ChatConn);
 	DECL_CHAT_SERVER_SEND_FUNC(Req, Chat);
+	DECL_CHAT_SERVER_SEND_FUNC(Req, EnterChatRoom);
 };
