@@ -55,6 +55,6 @@ public:
 
 	static void FromPacket(const UserAndChatServer::NotiChat& _packet, ChatData& _chatData);
 	static void FromPacket(const UserAndChatServer::NotiEnterChatRoom& _packet, OUT ChatProfileSptr& _enterProfile);
-	static void FromPacket(const UserAndChatServer::NotiLeaveChatRoom& _packet, OUT int64_t _leaveAccountId);
+	static void FromPacket(const UserAndChatServer::NotiLeaveChatRoom& _packet, OUT int64_t& _leaveAccountId);
 
 };

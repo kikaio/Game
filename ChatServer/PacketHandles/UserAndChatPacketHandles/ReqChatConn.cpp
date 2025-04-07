@@ -32,6 +32,7 @@ namespace UserAndChatPacketHandle {
 		CS_DEBUG_LOG("[chatuser :{}] try enter to room[{}]", accountId, room->GetRoomNo());
 		vector<ChatProfileSptr> profiles;
 		chatUser->SetChatRoom(room);
+		chatUser->SetProfile(chatProfile);
 		room->GetProfiles(OUT profiles);
 		room->DoAsync(&ChatRoom::Enter, chatUser);
 

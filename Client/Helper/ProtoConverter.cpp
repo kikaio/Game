@@ -238,7 +238,7 @@ void ProtoConverter::FromPacket(const UserAndChatServer::NotiEnterChatRoom& _pac
 }
 
 
-void ProtoConverter::FromPacket(const UserAndChatServer::NotiLeaveChatRoom& _packet, OUT int64_t _leaveAccountId) {
+void ProtoConverter::FromPacket(const UserAndChatServer::NotiLeaveChatRoom& _packet, OUT int64_t& _leaveAccountId) {
 	_leaveAccountId = _packet.accoun_id();
 }
 
